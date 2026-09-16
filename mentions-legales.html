@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentions légales et données personnelles — Perify</title>
+<meta name="description" content="Mentions légales de Perify, éditeur du programme de fidélité pour commerces de proximité, et informations sur le traitement des données personnelles.">
+<meta name="theme-color" content="#0B0A08">
+<meta name="robots" content="noindex">
+<link rel="icon" href="perify-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="doc.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" aria-label="Perify"><img src="perify-logo.png" alt="Perify"></a>
+    <a class="retour" href="index.html">← Retour au site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="mono">Informations légales</p>
+  <h1>Mentions légales</h1>
+  <p class="chapeau">Qui édite ce site, qui l'héberge, et ce que deviennent les données personnelles.</p>
+
+  <h2>Éditeur du site</h2>
+  <div class="bloc">
+    <dl>
+      <dt>Éditeur</dt><dd>Valentin CARILLO, entrepreneur individuel</dd>
+      <dt>Nom commercial</dt><dd>Perify</dd>
+      <dt>Siège</dt><dd>14 place du Monument, 74350 Cruseilles, France</dd>
+      <dt>SIREN</dt><dd>130 064 231</dd>
+      <dt>Directeur de la publication</dt><dd>Valentin CARILLO</dd>
+      <dt>E-mail</dt><dd><a id="mail1" href="#">chargement…</a></dd>
+      <dt>Téléphone</dt><dd><a href="tel:+33667835956">+33 6 67 83 59 56</a></dd>
+      <dt>TVA</dt><dd>TVA non applicable, article 293 B du code général des impôts</dd>
+    </dl>
+  </div>
+
+  <h2>Hébergement</h2>
+  <p>Le site et le service sont hébergés par <strong>Vercel Inc.</strong>, 440 N Barranca Avenue #4133,
+    Covina, CA 91723, États-Unis — <a href="https://vercel.com" rel="noopener">vercel.com</a>.
+    Les données du programme de fidélité sont hébergées dans l'Union européenne.</p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>Le site, la plateforme Perify, ses textes, ses visuels et son code sont la propriété de l'éditeur.
+    Les noms, logos et marques des commerces cités appartiennent à leurs titulaires respectifs et ne sont
+    utilisés qu'avec leur accord.</p>
+
+  <h2 id="donnees">Données personnelles</h2>
+
+  <h3>Sur ce site</h3>
+  <p>Ce site ne dépose <strong>aucun cookie</strong>, n'utilise <strong>aucun outil de mesure d'audience</strong>
+    et ne suit pas ses visiteurs. Si vous remplissez le formulaire de contact, il ouvre votre messagerie :
+    vos coordonnées nous parviennent par e-mail et servent <strong>uniquement à vous répondre</strong>.
+    Elles sont conservées le temps de l'échange commercial, puis supprimées si aucune suite n'est donnée.</p>
+
+  <h3>Dans le programme de fidélité</h3>
+  <p>Quand vous prenez une carte de fidélité chez un commerçant, <strong>c'est ce commerçant qui décide</strong>
+    de ce programme et de l'usage fait de vos données : il en est le responsable de traitement.
+    <strong>Perify est son sous-traitant</strong> au sens de l'article 28 du RGPD : nous traitons ces données
+    uniquement sur ses instructions, pour faire fonctionner le programme, et nous n'en faisons aucun usage
+    propre — ni revente, ni réutilisation pour un autre commerce, ni prospection pour notre compte.</p>
+  <p>Un contrat de sous-traitance est signé avec chaque commerçant. Les données de chaque commerce sont
+    cloisonnées : aucun commerçant n'accède aux clients d'un autre.</p>
+
+  <h3>Vos droits</h3>
+  <p>Vous pouvez demander l'accès à vos données, leur correction, leur effacement, la limitation de leur
+    traitement, ou vous opposer à leur usage. Adressez votre demande au commerce concerné, ou écrivez-nous :
+    nous la transmettons et l'exécutons. Réponse <strong>sous un mois</strong>.</p>
+  <p>Chaque e-mail envoyé dans le cadre du programme contient un lien de désinscription, effectif
+    immédiatement, sans effet sur votre carte.</p>
+  <p>Si une réponse ne vous satisfait pas, vous pouvez saisir la <strong>CNIL</strong> —
+    <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>.</p>
+
+  <div class="actions">
+    <a href="aide.html">🛟 Page d'aide</a>
+    <a id="mail2" href="#">✉️ Nous écrire</a>
+    <a href="index.html">← Retour au site</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Perify — programme de fidélité pour commerces de proximité.</span>
+    <span><a href="index.html">Accueil</a> · <a href="aide.html">Aide</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var adresse = 'carrillovpro' + '@' + 'gmail.com';
+  ['mail1','mail2'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.href = 'mailto:' + adresse + '?subject=' + encodeURIComponent('Perify — contact');
+    if(id === 'mail1') el.textContent = adresse;
+  });
+})();
+</script>
+</body>
+</html>
