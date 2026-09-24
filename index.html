@@ -114,10 +114,14 @@ section{position:relative;z-index:1}
 .intro-bloc{color:var(--texte-doux);max-width:58ch;margin-top:16px;font-size:clamp(16.5px,1.7vw,18px)}
 .blanc .intro-bloc{color:#3F4460}
 
-/* constat */
-.constat .wrap{display:grid;gap:26px}
-@media(min-width:860px){.constat .wrap{grid-template-columns:1fr 1fr;gap:56px;align-items:center}}
-.constat p{font-size:clamp(16.5px,1.7vw,18.5px)}
+/* les trois piliers (référencement, fidélité, offres) */
+.piliers{display:grid;gap:18px;margin-top:38px}
+@media(min-width:820px){.piliers{grid-template-columns:repeat(3,1fr);gap:26px}}
+.pilier{background:var(--creme);border-radius:var(--rayon);padding:26px 24px 28px}
+.pilier-ico{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,107,44,.14);color:var(--orange-texte);margin-bottom:16px}
+.pilier-ico svg{width:24px;height:24px}
+.pilier h3{margin:0 0 10px;font-size:clamp(19px,2.1vw,22px)}
+.pilier p{margin:0;font-size:15.5px;line-height:1.6}
 
 /* étapes */
 .etapes{display:grid;gap:18px;margin-top:44px}
@@ -260,16 +264,31 @@ footer a:hover{color:var(--accent)}
     </div>
   </section>
 
-  <!-- ══ CONSTAT ══ -->
-  <section class="bloc blanc constat">
+  <!-- ══ CE QUE ÇA CHANGE (24/09 soir, à sa demande : référencement, avis, fidélisation, en concret) ══ -->
+  <section class="bloc blanc piliers-bloc" id="pourquoi">
     <div class="wrap">
-      <h2 class="rev">La carte en carton finit à la poubelle.<br>L'appli, personne ne l'installe.</h2>
-      <div class="rev">
-        <p>Vos clients ne veulent pas d'un compte de plus. Ils veulent leur carte quand ils sont devant vous,
-          en deux secondes, sans chercher.</p>
-        <p style="margin:0">Perify la met là où ils regardent déjà cinquante fois par jour : dans leur téléphone,
-          à côté de leur carte bancaire. Elle se met à jour toute seule, et <strong class="fort">vos offres arrivent
-          directement dessus</strong>.</p>
+      <p class="eti rev">Ce que ça change pour vous</p>
+      <h2 class="titre-bloc rev" style="max-width:22ch">Boostez votre référencement, et créez votre système de fidélisation.</h2>
+      <div class="piliers">
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
+          <h3>Plus d'avis Google, sans les quémander</h3>
+          <p>Le client satisfait est invité à laisser son avis depuis sa carte, et il gagne un tampon pour ça.
+            Plus d'avis, plus récents&nbsp;: c'est ce que Google regarde pour classer les commerces autour de vous.</p>
+        </article>
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M12 9v11.5M3.5 13.5h17M12 9c-1.4-2.8-5.5-3.2-5.5-1.2S10.2 9 12 9zm0 0c1.4-2.8 5.5-3.2 5.5-1.2S13.8 9 12 9z"/></svg></span>
+          <h3>Votre programme de fidélité, à vos couleurs</h3>
+          <p>La carte en carton finit à la poubelle, l'appli, personne ne l'installe. Perify met votre carte là où vos
+            clients regardent déjà cinquante fois par jour&nbsp;: dans leur téléphone, à côté de leur carte bancaire.
+            Vos paliers, vos cadeaux, votre présentoir.</p>
+        </article>
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10v4a1.5 1.5 0 001.5 1.5h2.5l6.5 4.5v-16L7.5 8.5H5A1.5 1.5 0 003.5 10z"/><path d="M17.5 9.2a4 4 0 010 5.6M8.5 15.5l1.3 4.5"/></svg></span>
+          <h3>Vos offres arrivent directement sur la carte</h3>
+          <p>Une offre, une promo, vos invendus du soir&nbsp;: vous l'écrivez, elle s'affiche sur la carte de chaque
+            client et part par e-mail à ceux qui l'ont accepté. La carte se met à jour toute seule.</p>
+        </article>
       </div>
     </div>
   </section>
