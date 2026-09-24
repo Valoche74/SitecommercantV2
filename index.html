@@ -4,248 +4,217 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Perify — la carte de fidélité qui vit dans le téléphone de vos clients</title>
-<meta name="description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet sans installer d'appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
-<meta name="theme-color" content="#0B0A08">
-<link rel="icon" href="perify-logo.png">
+<meta name="description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet ou Google Wallet sans installer d'appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta property="og:title" content="Perify — la carte de fidélité qui vit dans le téléphone">
-<meta property="og:description" content="Vos clients ajoutent leur carte à Apple Wallet sans installer d'appli. Vos offres arrivent dessus.">
+<meta property="og:description" content="Vos clients ajoutent leur carte à Apple Wallet ou Google Wallet, sans installer d'appli. Vos offres arrivent dessus.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://perify.app/">
+<meta property="og:image" content="https://perify.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- 24/09 — direction B : Plus Jakarta Sans (titres) + Inter (texte), feuille non bloquante, repli sans script. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <style>
 /* ─────────────────────────────────────────────────────────────
-   PERIFY — site vitrine
-   Direction : « comptoir la nuit » — noir chaud, or, crème.
-   Reprend les couleurs et la Fraunces déjà utilisées sur la carte client.
+   PERIFY — front page, direction B « vitaminée » (24/09/2026)
+   Nuit #1B1F3B · orange #FF6B2C · jaune #FFC53D · blocs blancs.
+   Les mêmes couleurs et polices que la carte client et l'espace
+   commerçant. Les images sont de vraies images (visuels de Valentin,
+   captures des vraies pages) : aucune maquette dessinée en HTML.
    ───────────────────────────────────────────────────────────── */
 :root{
-  --noir:#0B0A08; --noir-2:#131009; --noir-3:#1B1610;
-  --creme:#FBF7EF; --creme-2:#EFE7D8;
-  --or:#E2B25A; --or-clair:#F5D07A; --or-fonce:#C8963E;
-  --vert:#4E9B3A; --brun:#3A2705;
-  --texte:#EDE6D9; --texte-doux:#A39887;
-  --rayon:18px;
-  --gutter:20px;
-  --max:1120px;
-  --serif:'Fraunces',Georgia,serif;
-  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  --mono:'DM Mono',ui-monospace,monospace;
+  --nuit:#1B1F3B; --nuit-2:#232849; --nuit-3:#2A3057;
+  --orange:#FF6B2C; --orange-2:#E85A1B; --orange-clair:#FF8A4C; --jaune:#FFC53D; --orange-texte:#C2410C;
+  --blanc:#FFFFFF; --creme:#FFF8F0; --encre:#1B1F3B; --gris:#5B5F7A;
+  --texte:#F4F5FB; --texte-doux:#C4C8DE; --ligne:rgba(255,255,255,.10); --vert:#22C55E;
+  --rayon:20px; --gutter:20px; --max:1120px;
+  --titre:'Plus Jakarta Sans',Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+  --texte-ff:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  margin:0; background:var(--noir); color:var(--texte);
-  font-family:var(--sans); font-size:17px; line-height:1.62;
-  -webkit-font-smoothing:antialiased; overflow-x:hidden;
-}
-/* grain + halos : de l'atmosphère plutôt qu'un aplat */
-body::before{
-  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.05;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
-}
+body{margin:0;background:var(--nuit);color:var(--texte);font-family:var(--texte-ff);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* grain + halos, comme sur la carte */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(52% 40% at 12% 0%,rgba(255,107,44,.30),transparent 70%),
+             radial-gradient(45% 38% at 100% 100%,rgba(255,197,61,.12),transparent 70%)}
 a{color:inherit}
-img{max-width:100%;display:block}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.018em;line-height:1.06;margin:0}
-h1{font-size:clamp(38px,7.2vw,76px)}
-h2{font-size:clamp(29px,4.6vw,50px)}
-h3{font-size:clamp(20px,2.4vw,25px);line-height:1.2}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--titre);font-weight:800;letter-spacing:-.02em;line-height:1.06;margin:0}
+h1{font-size:clamp(38px,5.8vw,62px)}
+h2{font-size:clamp(28px,4.2vw,46px)}
+h3{font-size:clamp(20px,2.3vw,25px);line-height:1.2;font-weight:700}
 p{margin:0 0 1em}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-.mono{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter);position:relative;z-index:1}
+.eti{font-family:var(--texte-ff);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--jaune);margin:0 0 14px}
+.blanc .eti{color:var(--orange-texte)}
 .doux{color:var(--texte-doux)}
-.or{color:var(--or-clair)}
+.fort{color:var(--jaune);font-weight:600}
+.blanc .fort{color:var(--orange-texte)}
 
 /* ── barre du haut ─────────────────────────────────────── */
-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-  background:rgba(11,10,8,.72);border-bottom:1px solid rgba(226,178,90,.14)}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(27,31,59,.78);border-bottom:1px solid var(--ligne)}
 .nav{display:flex;align-items:center;gap:26px;height:68px}
 .nav img{height:26px;width:auto}
 .nav nav{display:none;gap:26px;margin-left:auto;font-size:15px}
-.nav nav a{text-decoration:none;color:var(--texte-doux);transition:color .2s}
-.nav nav a:hover{color:var(--or-clair)}
+.nav nav a{text-decoration:none;color:var(--texte-doux);transition:color .2s;padding:6px 0}
+.nav nav a:hover{color:var(--jaune)}
 .nav .cta{margin-left:auto}
-@media(min-width:920px){ .nav nav{display:flex} .nav .cta{margin-left:0} }
+@media(min-width:920px){.nav nav{display:flex}.nav .cta{margin-left:0}}
 
 /* ── boutons ───────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:999px;
-  font-family:var(--sans);font-weight:600;font-size:15.5px;text-decoration:none;cursor:pointer;
-  border:1px solid transparent;transition:transform .18s ease,box-shadow .25s ease,background .2s}
-.btn-or{background:linear-gradient(170deg,var(--or-clair),var(--or-fonce));color:#2A1D04;
-  box-shadow:0 10px 30px -12px rgba(226,178,90,.75)}
-.btn-or:hover{transform:translateY(-2px);box-shadow:0 16px 40px -14px rgba(226,178,90,.95)}
-.btn-ghost{border-color:rgba(226,178,90,.32);color:var(--texte)}
-.btn-ghost:hover{border-color:var(--or);background:rgba(226,178,90,.08)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 26px;border-radius:999px;
+  font-family:var(--texte-ff);font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;
+  transition:transform .18s ease,box-shadow .25s ease,background .2s,border-color .2s}
+/* Texte encre sur orange : 5,7:1 (le blanc ne fait que 2,84:1 — rapport d'accessibilité du 24/09) */
+.btn-o{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:var(--encre);
+  box-shadow:0 12px 30px -12px rgba(255,107,44,.75)}
+.btn-o:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(255,107,44,.95)}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:var(--texte)}
+.btn-ghost:hover{border-color:var(--jaune);background:rgba(255,197,61,.08)}
+.blanc .btn-ghost{border-color:rgba(27,31,59,.25);color:var(--encre)}
+.blanc .btn-ghost:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
+:where(a,button,input,textarea,summary):focus-visible{outline:2px solid var(--jaune);outline-offset:3px}
+.blanc :where(a,button,input,textarea,summary):focus-visible{outline-color:var(--orange-texte)}
 
-/* ── hero ──────────────────────────────────────────────── */
-.hero{position:relative;padding:clamp(48px,9vw,104px) 0 clamp(40px,7vw,88px);overflow:hidden}
-.hero::after{content:"";position:absolute;width:760px;height:760px;right:-280px;top:-340px;z-index:0;
-  background:radial-gradient(circle,rgba(226,178,90,.20),transparent 62%);pointer-events:none}
-.hero .wrap{position:relative;z-index:1;display:grid;gap:clamp(36px,6vw,64px)}
-@media(min-width:960px){.hero .wrap{grid-template-columns:1.06fr .94fr;align-items:center}}
-.hero h1 em{font-style:normal;color:var(--or-clair);
-  background:linear-gradient(180deg,transparent 64%,rgba(226,178,90,.22) 64%)}
-.lead{font-size:clamp(17px,2vw,19.5px);color:var(--texte-doux);max-width:33em;margin-top:22px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.preuve{display:flex;align-items:center;gap:11px;margin-top:26px;font-size:14.5px;color:var(--texte-doux)}
-.pastille{width:9px;height:9px;border-radius:50%;background:var(--vert);
-  box-shadow:0 0 0 4px rgba(78,155,58,.18);flex:none}
-
-/* ── téléphone dessiné en CSS ──────────────────────────── */
-.phone{position:relative;width:min(300px,82vw);margin:0 auto;
-  border-radius:44px;padding:11px;background:linear-gradient(160deg,#2B2519,#0E0C08);
-  box-shadow:0 44px 90px -34px rgba(0,0,0,.95),0 0 0 1px rgba(226,178,90,.18)}
-.phone::before{content:"";position:absolute;top:19px;left:50%;transform:translateX(-50%);
-  width:86px;height:22px;background:#0B0A08;border-radius:999px;z-index:3}
-.screen{border-radius:34px;background:linear-gradient(175deg,#241D11,#100D08);padding:30px 15px 17px;overflow:hidden}
-.pass{background:linear-gradient(168deg,var(--creme),var(--creme-2));color:var(--brun);
-  border-radius:16px;padding:15px;box-shadow:0 18px 34px -18px rgba(0,0,0,.9)}
-.pass-haut{display:flex;justify-content:space-between;align-items:center;
-  border-bottom:1px solid rgba(58,39,5,.14);padding-bottom:10px;margin-bottom:12px}
-.pass-nom{font-family:var(--serif);font-size:16px;font-weight:600}
-.pass-eti{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:#8A7B5E;text-transform:uppercase}
-.tampons{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:12px 0 4px}
-.tampon{aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(58,39,5,.26);
-  display:grid;place-items:center;font-size:12px;color:transparent}
-.tampon.ok{border:none;background:linear-gradient(165deg,var(--or-clair),var(--or-fonce));color:#3A2705;
-  animation:pop .5s cubic-bezier(.2,1.5,.4,1) backwards}
-.tampon.ok:nth-child(1){animation-delay:.45s}.tampon.ok:nth-child(2){animation-delay:.55s}
-.tampon.ok:nth-child(3){animation-delay:.65s}.tampon.ok:nth-child(4){animation-delay:.75s}
-.tampon.ok:nth-child(5){animation-delay:.85s}.tampon.ok:nth-child(6){animation-delay:.95s}
-.tampon.ok:nth-child(7){animation-delay:1.05s}
-@keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
-.pass-bas{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;
-  border-top:1px solid rgba(58,39,5,.14);padding-top:10px;font-size:11.5px;color:#7A6B4F}
-.notif{margin-top:14px;background:rgba(251,247,239,.09);border:1px solid rgba(226,178,90,.22);
-  border-radius:15px;padding:11px 13px;display:flex;gap:10px;align-items:flex-start;
-  animation:glisse .7s ease 1.25s backwards}
-@keyframes glisse{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
-.notif b{display:block;font-size:13.5px;color:var(--creme);font-weight:600}
-.notif span{font-size:12.5px;color:var(--texte-doux);line-height:1.45}
-.notif .ico{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(160deg,var(--or-clair),var(--or-fonce));font-size:14px}
-
-/* ── bandeau constat ───────────────────────────────────── */
-.constat{border-top:1px solid rgba(226,178,90,.14);border-bottom:1px solid rgba(226,178,90,.14);
-  background:linear-gradient(180deg,var(--noir-2),var(--noir));padding:clamp(48px,7vw,86px) 0}
-.constat .wrap{display:grid;gap:26px}
-@media(min-width:860px){.constat .wrap{grid-template-columns:1fr 1fr;gap:56px;align-items:center}}
+/* ── héros ─────────────────────────────────────────────── */
+.hero{position:relative;padding:clamp(40px,7vw,84px) 0 clamp(28px,5vw,60px);overflow:hidden}
+.hero .wrap{display:grid;gap:clamp(30px,5vw,56px);align-items:center}
+@media(min-width:960px){.hero .wrap{grid-template-columns:1.02fr .98fr}}
+.hero h1 em{font-style:normal;color:var(--jaune)}
+.lead{font-size:clamp(17px,1.9vw,19.5px);color:var(--texte-doux);max-width:34em;margin-top:22px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.preuve{display:flex;align-items:flex-start;gap:11px;margin:24px 0 0;font-size:15px;color:var(--texte-doux);max-width:36em}
+.pastille{width:10px;height:10px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 4px rgba(34,197,94,.18);flex:none;margin-top:7px}
+.hero-visu{position:relative;margin:0 auto;width:min(560px,100%)}
+.hero-visu::before{content:"";position:absolute;inset:10% 12% 6%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,107,44,.34),transparent);filter:blur(18px);z-index:0}
+.hero-visu img{position:relative;z-index:1;width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+.wallets{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:18px;font-size:14px;color:var(--texte-doux)}
+.wallets b{color:var(--texte);font-weight:600}
 
 /* ── sections ──────────────────────────────────────────── */
 section{position:relative;z-index:1}
-.bloc{padding:clamp(54px,8vw,104px) 0}
-.titre-bloc{max-width:30ch}
-.intro-bloc{color:var(--texte-doux);max-width:56ch;margin-top:16px}
+.bloc{padding:clamp(56px,8vw,104px) 0}
+.blanc{background:var(--blanc);color:var(--encre)}
+.blanc h2,.blanc h3{color:var(--encre)}
+.blanc p{color:#3F4460}
+.titre-bloc{max-width:26ch}
+.intro-bloc{color:var(--texte-doux);max-width:58ch;margin-top:16px;font-size:clamp(16.5px,1.7vw,18px)}
+.blanc .intro-bloc{color:#3F4460}
+
+/* constat */
+.constat .wrap{display:grid;gap:26px}
+@media(min-width:860px){.constat .wrap{grid-template-columns:1fr 1fr;gap:56px;align-items:center}}
+.constat p{font-size:clamp(16.5px,1.7vw,18.5px)}
 
 /* étapes */
 .etapes{display:grid;gap:18px;margin-top:44px}
 @media(min-width:840px){.etapes{grid-template-columns:repeat(3,1fr);gap:22px}}
-.etape{border:1px solid rgba(226,178,90,.16);border-radius:var(--rayon);padding:26px 22px 28px;
-  background:linear-gradient(175deg,rgba(226,178,90,.05),rgba(226,178,90,0));position:relative;overflow:hidden}
-.etape::after{content:attr(data-n);position:absolute;right:14px;top:2px;font-family:var(--serif);
-  font-size:78px;color:rgba(226,178,90,.09);line-height:1}
-.etape h3{margin:14px 0 8px}
+.etape{background:var(--nuit-2);border:1px solid var(--ligne);border-radius:var(--rayon);padding:0 0 26px;overflow:hidden;display:flex;flex-direction:column}
+.etape-visu{position:relative;aspect-ratio:1/1;overflow:hidden;
+  background:radial-gradient(60% 55% at 50% 40%,rgba(255,107,44,.22),transparent 72%)}
+/* en absolu : les pourcentages se résolvent sur la hauteur donnée par aspect-ratio (sinon l'image déborde sur téléphone) */
+.etape-visu img{position:absolute;left:22px;top:22px;width:calc(100% - 44px);height:calc(100% - 44px);object-fit:contain;filter:drop-shadow(0 20px 30px rgba(0,0,0,.5))}
+.etape .texte{padding:20px 22px 0}
+.etape .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--orange);color:var(--encre);
+  font-weight:800;font-size:14px;margin-bottom:12px}
+.etape .qui{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--jaune);font-weight:700;margin:0 0 6px}
+.etape h3{margin:0 0 8px;color:var(--blanc)}
 .etape p{margin:0;color:var(--texte-doux);font-size:15.5px}
 
-/* modules (les 3 grands blocs) */
-.module{display:grid;gap:30px;align-items:center;padding:clamp(34px,5vw,54px) 0;
-  border-top:1px solid rgba(226,178,90,.12)}
-@media(min-width:900px){
-  .module{grid-template-columns:1fr 1fr;gap:60px}
-  .module.inv .visu{order:-1}
-}
-.module h3{font-size:clamp(23px,3.2vw,33px);margin:12px 0 12px}
+/* modules « ce que vous pilotez » */
+.module{display:grid;gap:30px;align-items:center;padding:clamp(34px,5vw,56px) 0;border-top:1px solid var(--ligne)}
+.module:first-of-type{border-top:0}
+@media(min-width:900px){.module{grid-template-columns:1fr 1fr;gap:60px}.module.inv .visu{order:-1}}
+.module h3{font-size:clamp(23px,3vw,32px);margin:12px 0 12px;font-weight:800;color:var(--blanc)}
 .module p{color:var(--texte-doux)}
 .liste{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
 .liste li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px}
-.liste svg{flex:none;margin-top:4px}
+.liste svg{flex:none;margin-top:5px}
+.visu{position:relative;display:grid;place-items:center;min-height:320px}
+.visu::before{content:"";position:absolute;inset:14% 18%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,107,44,.28),transparent);filter:blur(22px)}
+.visu img{position:relative;filter:drop-shadow(0 30px 44px rgba(0,0,0,.55))}
+.visu .tel{width:min(270px,72%)}
+.visu .legende{position:relative;margin:10px 0 0;font-size:13px;color:var(--texte-doux);text-align:center}
+.mails{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(440px,92%);align-items:end}
+.mails img{border-radius:18px;box-shadow:0 30px 50px -22px rgba(0,0,0,.8)}
+.mails img:first-child{transform:rotate(-4deg) translateY(10px)}
+.mails img:last-child{transform:rotate(3deg)}
 
-/* maquettes */
-.visu{border:1px solid rgba(226,178,90,.18);border-radius:var(--rayon);padding:20px;
-  background:radial-gradient(120% 90% at 20% 0%,rgba(226,178,90,.10),rgba(19,16,9,.6));
-  box-shadow:0 30px 60px -34px rgba(0,0,0,.9)}
-.fake-offre{background:linear-gradient(168deg,var(--creme),var(--creme-2));color:var(--brun);
-  border-radius:14px;padding:16px}
-.fake-offre .eti{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#8A7B5E;text-transform:uppercase}
-.fake-offre h4{font-family:var(--serif);font-size:20px;margin:6px 0 4px;font-weight:600}
-.fake-offre .date{font-size:12.5px;color:#7A6B4F}
-.fake-btn{margin-top:13px;background:linear-gradient(170deg,var(--or-clair),var(--or-fonce));color:#2A1D04;
-  text-align:center;border-radius:999px;padding:11px;font-weight:600;font-size:14.5px}
-.code{margin-top:12px;border:1px dashed rgba(226,178,90,.5);border-radius:12px;padding:12px;text-align:center;
-  font-family:var(--mono);font-size:26px;letter-spacing:.3em;color:var(--or-clair);background:rgba(226,178,90,.06)}
-.mail{background:#141009;border:1px solid rgba(226,178,90,.2);border-radius:14px;overflow:hidden}
-.mail-banniere{height:112px;background:
-   radial-gradient(90% 120% at 78% 25%,rgba(245,208,122,.55),transparent 60%),
-   linear-gradient(140deg,#4A2C0C,#1A1005);
-  display:grid;place-items:center;text-align:center;padding:12px}
-.mail-banniere b{font-family:var(--serif);font-size:23px;color:var(--creme);display:block;line-height:1.1}
-.mail-banniere i{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--or-clair)}
-.mail-corps{padding:14px;font-size:14px;color:var(--texte-doux)}
-.mail-corps b{color:var(--creme);font-weight:600}
-.sacs{display:grid;gap:10px}
-.sac{display:flex;justify-content:space-between;align-items:center;gap:12px;
-  border:1px solid rgba(226,178,90,.18);border-radius:12px;padding:12px 14px;background:rgba(226,178,90,.04)}
-.sac b{font-weight:600;color:var(--creme);font-size:15px}
-.sac .q{font-family:var(--mono);font-size:13px;color:var(--or-clair)}
+/* invendus : une bande à part, en option */
+.option{margin-top:clamp(30px,5vw,50px);border:1px solid rgba(255,197,61,.3);border-radius:var(--rayon);padding:clamp(24px,4vw,40px);
+  background:linear-gradient(135deg,rgba(255,197,61,.08),rgba(255,107,44,.06));display:grid;gap:18px}
+@media(min-width:900px){.option{grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}}
+.option h3{color:var(--blanc);font-size:clamp(21px,2.6vw,28px);margin:6px 0 10px}
+.option p{color:var(--texte-doux);margin:0}
 
-/* grille des petites fonctions */
-.grille{display:grid;gap:14px;margin-top:38px}
+/* grille des fonctions : blocs blancs, comme sur la carte */
+.grille{display:grid;gap:14px;margin-top:clamp(30px,5vw,50px)}
 @media(min-width:680px){.grille{grid-template-columns:1fr 1fr}}
 @media(min-width:1000px){.grille{grid-template-columns:repeat(3,1fr)}}
-.carte{border:1px solid rgba(226,178,90,.15);border-radius:15px;padding:20px;background:rgba(226,178,90,.035);
-  transition:border-color .25s,transform .25s,background .25s}
-.carte:hover{border-color:rgba(226,178,90,.4);transform:translateY(-3px);background:rgba(226,178,90,.07)}
-.carte b{display:block;font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:6px}
-.carte span{font-size:15px;color:var(--texte-doux)}
+.carte{background:var(--blanc);color:var(--encre);border-radius:18px;padding:22px 22px 24px;box-shadow:0 18px 40px -26px rgba(0,0,0,.7);
+  transition:transform .25s}
+.carte:hover{transform:translateY(-3px)}
+.carte b{display:block;font-family:var(--titre);font-size:18.5px;font-weight:800;margin-bottom:6px;letter-spacing:-.01em}
+.carte span{font-size:15px;color:#3F4460}
 
-/* section crème : l'honnêteté */
-.creme{background:linear-gradient(175deg,var(--creme),var(--creme-2));color:var(--brun)}
-.creme h2{color:var(--brun)}
-.creme .mono{color:var(--or-fonce)}
-.creme p{color:#5C4A28}
-.creme .encadre{border:1px solid rgba(58,39,5,.16);border-radius:var(--rayon);padding:24px;
-  background:rgba(255,255,255,.5);margin-top:26px}
-.creme .encadre p:last-child{margin-bottom:0}
+/* déjà en place : photos */
+.photos{display:grid;gap:14px;margin-top:34px}
+@media(min-width:700px){.photos{grid-template-columns:repeat(3,1fr);gap:18px}}
+.photos img{width:100%;border-radius:18px;box-shadow:0 24px 44px -26px rgba(27,31,59,.5);aspect-ratio:3/4;object-fit:cover}
+.legende-photos{display:flex;align-items:flex-start;gap:11px;margin:22px 0 0;font-size:15.5px;color:#3F4460;max-width:40em}
+.legende-photos .pastille{margin-top:7px}
 
 /* FAQ */
-.faq{margin-top:38px;border-top:1px solid rgba(226,178,90,.16)}
-details{border-bottom:1px solid rgba(226,178,90,.16)}
-summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
-  font-family:var(--serif);font-size:clamp(18px,2.2vw,21px);font-weight:500}
+.faq{margin-top:38px;border-top:1px solid var(--ligne);max-width:820px}
+details{border-bottom:1px solid var(--ligne)}
+summary{list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;font-family:var(--titre);font-size:clamp(17.5px,2vw,20px);font-weight:700;line-height:1.3}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
-  font-family:var(--sans);font-size:24px;color:var(--or);transition:transform .25s}
+summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:var(--texte-ff);font-size:26px;color:var(--jaune);transition:transform .25s}
 details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
 details p{color:var(--texte-doux);padding-right:40px;margin:-4px 0 20px}
 
 /* contact */
-.contact{border-top:1px solid rgba(226,178,90,.16);
-  background:radial-gradient(120% 100% at 50% 0%,rgba(226,178,90,.13),transparent 60%)}
-form{display:grid;gap:14px;margin-top:32px}
+.contact{border-top:1px solid var(--ligne);background:radial-gradient(120% 100% at 50% 0%,rgba(255,107,44,.16),transparent 60%)}
+form{display:grid;gap:14px;margin-top:32px;max-width:820px}
 @media(min-width:720px){form{grid-template-columns:1fr 1fr}.champ.large{grid-column:1/-1}}
-.champ label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--or);margin-bottom:7px}
-.champ input,.champ textarea{width:100%;background:rgba(251,247,239,.05);color:var(--texte);
-  border:1px solid rgba(226,178,90,.22);border-radius:12px;padding:13px 15px;font-family:var(--sans);font-size:16px}
-.champ input:focus,.champ textarea:focus{outline:none;border-color:var(--or);background:rgba(251,247,239,.08)}
+.champ label{display:block;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--jaune);margin-bottom:7px}
+.champ input,.champ textarea{width:100%;background:rgba(255,255,255,.06);color:var(--texte);border:1.5px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:13px 15px;font-family:var(--texte-ff);font-size:16px}
+.champ input:focus,.champ textarea:focus{outline:none;border-color:var(--jaune);background:rgba(255,255,255,.09)}
 .champ textarea{min-height:110px;resize:vertical}
 .direct{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;font-size:15.5px}
-.direct a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--texte);
-  border:1px solid rgba(226,178,90,.22);border-radius:999px;padding:11px 18px}
-.direct a:hover{border-color:var(--or);background:rgba(226,178,90,.07)}
+.direct a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--texte);min-height:48px;
+  border:1.5px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 18px}
+.direct a:hover{border-color:var(--jaune);background:rgba(255,197,61,.08)}
+.direct svg{flex:none}
 
-footer{border-top:1px solid rgba(226,178,90,.14);padding:38px 0 46px;color:var(--texte-doux);font-size:14.5px}
+footer{border-top:1px solid var(--ligne);padding:38px 0 46px;color:var(--texte-doux);font-size:14.5px;position:relative;z-index:1}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;justify-content:space-between}
-footer a{color:var(--texte-doux);text-decoration:none;border-bottom:1px solid rgba(226,178,90,.3)}
-footer a:hover{color:var(--or-clair)}
+footer img{height:22px;width:auto;opacity:.9}
+footer a{color:var(--texte-doux);text-decoration:none;border-bottom:1px solid rgba(255,197,61,.4);padding:4px 0}
+footer a:hover{color:var(--jaune)}
 
 /* apparitions */
 .rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 .rev.vu{opacity:1;transform:none}
-@media(max-width:430px){ .mono{font-size:11px;letter-spacing:.11em} .hero .preuve{font-size:14px} }
+@media(max-width:430px){.eti{font-size:11.5px;letter-spacing:.11em}}
 @media(prefers-reduced-motion:reduce){
   .rev{opacity:1;transform:none;transition:none}
-  .tampon.ok,.notif{animation:none}
+  .btn,.carte{transition:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -254,76 +223,52 @@ footer a:hover{color:var(--or-clair)}
 
 <header>
   <div class="wrap nav">
-    <a href="#haut" aria-label="Perify"><img src="perify-logo.png" alt="Perify"></a>
-    <nav>
+    <a href="#haut" aria-label="Perify, retour en haut de page"><img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156"></a>
+    <nav aria-label="Sections de la page">
       <a href="#comment">Comment ça marche</a>
       <a href="#pilotage">Ce que vous pilotez</a>
+      <a href="#terrain">Déjà en place</a>
       <a href="#questions">Questions</a>
     </nav>
-    <a class="btn btn-or cta" href="#contact">Être rappelé</a>
+    <a class="btn btn-o cta" href="#contact">Être rappelé</a>
   </div>
 </header>
 
 <main id="haut">
 
-  <!-- ══ HERO ══ -->
+  <!-- ══ HÉROS ══ -->
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="mono rev">Commerces de proximité · Haute-Savoie</p>
+        <p class="eti rev">Commerces de proximité · Haute-Savoie</p>
         <h1 class="rev">La carte de fidélité qui vit dans le <em>téléphone</em> de vos clients.</h1>
-        <p class="lead rev">Un seul QR sur votre comptoir. Vos clients ajoutent leur carte à Apple Wallet
+        <p class="lead rev">Un seul QR sur votre comptoir. Vos clients ajoutent leur carte à Apple Wallet ou Google Wallet
           — sans installer la moindre appli —, cumulent leurs tampons, reçoivent vos offres,
           et laissent un avis Google au passage.</p>
         <div class="hero-actions rev">
-          <a class="btn btn-or" href="#contact">Être rappelé</a>
+          <a class="btn btn-o" href="#contact">Être rappelé</a>
           <a class="btn btn-ghost" href="#comment">Voir comment ça marche</a>
         </div>
-        <p class="preuve rev"><span class="pastille"></span>
+        <p class="preuve rev"><span class="pastille" aria-hidden="true"></span>
           En service aujourd'hui dans une boulangerie à Cruseilles et un restaurant à Annecy.</p>
       </div>
 
-      <div class="rev">
-        <div class="phone" role="img" aria-label="Carte de fidélité dans Apple Wallet, avec sept tampons sur dix et une offre reçue">
-          <div class="screen">
-            <div class="pass">
-              <div class="pass-haut">
-                <span class="pass-nom">Votre commerce</span>
-                <span class="pass-eti">Carte fidélité</span>
-              </div>
-              <div class="pass-eti">7 tampons sur 10</div>
-              <div class="tampons">
-                <div class="tampon ok">✓</div><div class="tampon ok">✓</div><div class="tampon ok">✓</div>
-                <div class="tampon ok">✓</div><div class="tampon ok">✓</div><div class="tampon ok">✓</div>
-                <div class="tampon ok">✓</div><div class="tampon"></div><div class="tampon"></div><div class="tampon"></div>
-              </div>
-              <div class="pass-bas">
-                <span>Plus que 3 passages</span>
-                <span>N° BAP-3K9P2A</span>
-              </div>
-            </div>
-            <div class="notif">
-              <span class="ico">🎁</span>
-              <span>
-                <b>Nouvelle offre pour vous</b>
-                <span>2 achetés = 1 offert · valable jusqu'au 30/09. Appuyez pour l'activer.</span>
-              </span>
-            </div>
-          </div>
-        </div>
+      <div class="hero-visu rev">
+        <img src="img/carte-main.webp" width="1200" height="1262" fetchpriority="high"
+             alt="La carte de fidélité ouverte sur un iPhone tenu en main : sept tampons sur dix, les récompenses à venir et les façons de gagner plus de tampons">
       </div>
     </div>
   </section>
 
   <!-- ══ CONSTAT ══ -->
-  <section class="constat">
+  <section class="bloc blanc constat">
     <div class="wrap">
       <h2 class="rev">La carte en carton finit à la poubelle.<br>L'appli, personne ne l'installe.</h2>
       <div class="rev">
         <p>Vos clients ne veulent pas d'un compte de plus. Ils veulent leur carte quand ils sont devant vous,
           en deux secondes, sans chercher.</p>
         <p style="margin:0">Perify la met là où ils regardent déjà cinquante fois par jour : dans leur téléphone,
-          à côté de leur carte bancaire. Elle se met à jour toute seule, et <strong class="or">vos offres arrivent
+          à côté de leur carte bancaire. Elle se met à jour toute seule, et <strong class="fort">vos offres arrivent
           directement dessus</strong>.</p>
       </div>
     </div>
@@ -332,29 +277,50 @@ footer a:hover{color:var(--or-clair)}
   <!-- ══ COMMENT ══ -->
   <section class="bloc" id="comment">
     <div class="wrap">
-      <p class="mono rev">Comment ça marche</p>
+      <p class="eti rev">Comment ça marche</p>
       <h2 class="titre-bloc rev">Trois gestes, et le client est fidélisé.</h2>
       <p class="intro-bloc rev">Rien à brancher sur votre caisse, rien à apprendre. Le présentoir est posé
         sur le comptoir, tout le reste se passe sur les téléphones.</p>
 
       <div class="etapes">
-        <article class="etape rev" data-n="01">
-          <p class="mono">Le client</p>
-          <h3>Il scanne le présentoir</h3>
-          <p>Pas de compte à créer, pas d'appli à télécharger. Sa carte s'ouvre en deux secondes,
-            à vos couleurs.</p>
+        <article class="etape rev">
+          <div class="etape-visu">
+            <img src="img/roue-iphone.webp" width="652" height="1239" loading="lazy"
+                 alt="La roue de la chance sur un iPhone : le client la tourne une fois et découvre son cadeau de bienvenue">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">1</span>
+            <p class="qui">Le client</p>
+            <h3>Il scanne le présentoir</h3>
+            <p>Pas de compte à créer, pas d'appli à télécharger. Sa carte s'ouvre en deux secondes,
+              à vos couleurs. Et il tourne la roue : un cadeau de bienvenue, à chaque nouvelle carte.</p>
+          </div>
         </article>
-        <article class="etape rev" data-n="02">
-          <p class="mono">Son téléphone</p>
-          <h3>Il l'ajoute à son Wallet</h3>
-          <p>La carte reste dans son iPhone, à côté de sa carte bancaire. Sur Android, elle s'épingle
-            à l'écran d'accueil.</p>
+        <article class="etape rev">
+          <div class="etape-visu">
+            <img src="img/pass-main.webp" width="1200" height="1262" loading="lazy"
+                 alt="Deux cartes de fidélité dans l'application Cartes d'un iPhone tenu en main">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">2</span>
+            <p class="qui">Son téléphone</p>
+            <h3>Il l'ajoute à son Wallet</h3>
+            <p>La carte reste dans son iPhone, à côté de sa carte bancaire. Sur Android, elle s'ajoute
+              à Google Wallet.</p>
+          </div>
         </article>
-        <article class="etape rev" data-n="03">
-          <p class="mono">Votre comptoir</p>
-          <h3>Il revient, il est récompensé</h3>
-          <p>Chaque passage ajoute un tampon. Au palier, le cadeau apparaît avec un code
-            que vous vérifiez en caisse.</p>
+        <article class="etape rev">
+          <div class="etape-visu large">
+            <img src="img/tampons.webp" width="900" height="537" loading="lazy"
+                 alt="Le compteur de la carte : sept tampons, plus que trois pour le prochain cadeau">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">3</span>
+            <p class="qui">Votre comptoir</p>
+            <h3>Il revient, il est récompensé</h3>
+            <p>Chaque passage ajoute un tampon. Au palier, le cadeau apparaît avec un code
+              que vous vérifiez en caisse.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -363,40 +329,33 @@ footer a:hover{color:var(--or-clair)}
   <!-- ══ PILOTAGE ══ -->
   <section class="bloc" id="pilotage" style="padding-top:0">
     <div class="wrap">
-      <p class="mono rev">Ce que vous pilotez</p>
+      <p class="eti rev">Ce que vous pilotez</p>
       <h2 class="titre-bloc rev">Tout se commande depuis votre téléphone, entre deux clients.</h2>
 
-      <!-- module 1 -->
+      <!-- module 1 : l'offre sur la carte -->
       <div class="module">
         <div class="rev">
-          <p class="mono">Nouveau</p>
+          <p class="eti">Nouveau</p>
           <h3>Votre offre s'affiche sur la carte de vos clients</h3>
           <p>Vous créez l'offre en trois touches. Elle part par e-mail, et surtout : elle apparaît
-            <strong class="or">directement sur la carte</strong> de chaque client concerné.</p>
+            <strong class="fort">directement sur la carte</strong> de chaque client concerné.</p>
           <p>Il appuie sur « Activer mon offre », un code s'affiche, vous le vérifiez en caisse. C'est tout.</p>
           <ul class="liste">
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
               Durée au choix : 3, 7, 14 ou 30 jours</li>
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
               Passé la date, l'offre disparaît toute seule</li>
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
               Un code déjà utilisé est refusé en caisse</li>
           </ul>
         </div>
         <div class="visu rev">
-          <div class="fake-offre">
-            <span class="eti">🎁 Nouvelle offre</span>
-            <h4>2 achetés = 1 offert</h4>
-            <div class="date">Valable jusqu'au 30/09 inclus</div>
-            <div class="fake-btn">Activer mon offre</div>
-          </div>
-          <div class="code">253570</div>
-          <p style="margin:12px 0 0;font-size:13.5px;color:var(--texte-doux);text-align:center">
-            Le code que le client vous montre au comptoir</p>
+          <img class="tel" src="img/commercant-offre-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="L'espace commerçant sur un iPhone : l'offre du moment, son aperçu sur la carte Wallet et la notification reçue par le client">
         </div>
       </div>
 
-      <!-- module 2 -->
+      <!-- module 2 : la promo avec son affiche -->
       <div class="module inv">
         <div class="rev">
           <h3>La promo part avec son affiche, sans logiciel photo</h3>
@@ -404,70 +363,83 @@ footer a:hover{color:var(--or-clair)}
             à vos couleurs, avec la date de validité.</p>
           <p>Vous pouvez l'envoyer maintenant, ou la programmer pour demain matin.</p>
           <ul class="liste">
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
               Seuls les clients qui ont accepté reçoivent vos e-mails</li>
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
               Une même affiche ne peut pas partir deux fois par erreur</li>
           </ul>
         </div>
         <div class="visu rev">
-          <div class="mail">
-            <div class="mail-banniere">
-              <div>
-                <i>Offre du moment</i>
-                <b>2 achetés<br>= 1 offert</b>
-              </div>
-            </div>
-            <div class="mail-corps">
-              <b>Bonjour,</b><br>
-              Cette semaine, profitez de votre offre en boutique. Présentez simplement votre carte.
-              <br><br><span style="font-size:12.5px">Offre valable jusqu'au 30/09 · Se désinscrire</span>
-            </div>
+          <div class="mails">
+            <img src="img/offre-mail-1.webp" width="400" height="715" loading="lazy" alt="Un e-mail promo envoyé aux clients : « Burger, 1 acheté = 1 offert »">
+            <img src="img/offre-mail-2.webp" width="400" height="713" loading="lazy" alt="Un second e-mail promo, avec le produit en grand et le bouton « Profiter de l'offre »">
           </div>
         </div>
       </div>
 
-      <!-- module 3 -->
+      <!-- module 3 : le tableau de bord -->
       <div class="module">
         <div class="rev">
-          <h3>Vos invendus, prévenus avant la fermeture</h3>
-          <p>En option : à 18 h, vous annoncez ce qu'il reste à sauver. Vos clients inscrits sont prévenus,
-            viennent chercher, et vous jetez moins.</p>
-          <ul class="liste">
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
-              Vous choisissez les produits, la quantité et l'heure de retrait</li>
-            <li><svg width="15" height="15" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#E2B25A" stroke-width="2.4" stroke-linecap="round"/></svg>
-              Module facultatif, activé commerce par commerce</li>
-          </ul>
+          <h3>Votre tableau de bord, en clair</h3>
+          <p>Cartes actives, cadeaux à remettre, offres envoyées. Les passages de la semaine, comparés à la semaine
+            d'avant. Sur votre téléphone, sans rien installer.</p>
         </div>
         <div class="visu rev">
-          <div class="sacs">
-            <div class="sac"><b>Panier surprise</b><span class="q">3 restants</span></div>
-            <div class="sac"><b>Viennoiseries du jour</b><span class="q">5 restants</span></div>
-            <div class="sac"><b>Sandwichs</b><span class="q">2 restants</span></div>
-          </div>
-          <p style="margin:14px 0 0;font-size:13.5px;color:var(--texte-doux);text-align:center">
-            À retirer avant 19 h 30</p>
+          <img class="tel" src="img/dashboard-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="Le tableau de bord de l'espace commerçant sur un iPhone : passages, clients venus, scans du QR, cartes ouvertes et la courbe par jour">
+          <p class="legende">Données de démonstration.</p>
         </div>
       </div>
 
-      <!-- petites fonctions -->
+      <!-- en option : les invendus -->
+      <div class="option rev">
+        <div>
+          <p class="eti" style="margin-bottom:6px">En option</p>
+          <h3>Vos invendus, prévenus avant la fermeture</h3>
+          <p>À 18 h, vous annoncez ce qu'il reste à sauver. Vos clients inscrits sont prévenus,
+            viennent chercher, et vous jetez moins.</p>
+        </div>
+        <ul class="liste" style="margin-top:0">
+          <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
+            Vous choisissez les produits, la quantité et l'heure de retrait</li>
+          <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FFC53D" stroke-width="2.4" stroke-linecap="round"/></svg>
+            Module facultatif, activé commerce par commerce</li>
+        </ul>
+      </div>
+
+      <!-- les fonctions, en blocs blancs -->
       <div class="grille">
         <div class="carte rev"><b>Vos récompenses</b><span>Vous fixez les paliers et les cadeaux, et vous les changez quand vous voulez&nbsp;: un message suffit, c'est compris.</span></div>
         <div class="carte rev"><b>Vérification en caisse</b><span>Le client montre son code, vous le tapez, l'écran dit oui ou non. Un code déjà utilisé est refusé.</span></div>
         <div class="carte rev"><b>Les avis Google</b><span>Le client satisfait est invité à laisser son avis depuis sa carte, et il est récompensé pour ça.</span></div>
-        <div class="carte rev"><b>Votre tableau de bord</b><span>Cartes actives, cadeaux à remettre, offres envoyées. Sur votre téléphone, en clair.</span></div>
+        <div class="carte rev"><b>La roue de bienvenue</b><span>À la première carte, le client tourne la roue une fois et gagne un produit offert. Il revient le chercher.</span></div>
         <div class="carte rev"><b>La carte se met à jour seule</b><span>Nouveaux tampons, cadeau gagné, offre expirée : la carte Wallet change sans que le client n'ouvre rien.</span></div>
         <div class="carte rev"><b>Vos données restent les vôtres</b><span>Chaque commerce a sa base et son code d'accès. Aucun commerçant ne voit les clients d'un autre.</span></div>
       </div>
     </div>
   </section>
 
+  <!-- ══ DÉJÀ EN PLACE ══ -->
+  <section class="bloc blanc" id="terrain">
+    <div class="wrap">
+      <p class="eti rev">Déjà en place</p>
+      <h2 class="titre-bloc rev">Posé sur le comptoir, ça se voit.</h2>
+      <p class="intro-bloc rev">Le présentoir est fourni et installé. Le client le voit, le scanne, et tout le reste
+        se passe sur son téléphone.</p>
+      <div class="photos rev">
+        <img src="img/presentoir-1.webp" width="642" height="856" loading="lazy" alt="Le présentoir Perify posé sur le comptoir d'un restaurant, entre deux plantes">
+        <img src="img/presentoir-2.webp" width="642" height="856" loading="lazy" alt="Le présentoir vu de près : « Scannez et gagnez votre cadeau », avec le QR à scanner">
+        <img src="img/presentoir-3.webp" width="642" height="856" loading="lazy" alt="Le présentoir sur le comptoir, avec les boutons Apple Cartes et Google Wallet">
+      </div>
+      <p class="legende-photos rev"><span class="pastille" aria-hidden="true"></span>
+        En service aujourd'hui dans une boulangerie à Cruseilles et un restaurant à Annecy.</p>
+    </div>
+  </section>
 
   <!-- ══ FAQ ══ -->
   <section class="bloc" id="questions">
     <div class="wrap">
-      <p class="mono rev">Questions fréquentes</p>
+      <p class="eti rev">Questions fréquentes</p>
       <h2 class="titre-bloc rev">Ce qu'on me demande le plus souvent.</h2>
 
       <div class="faq rev">
@@ -478,9 +450,8 @@ footer a:hover{color:var(--or-clair)}
         </details>
         <details>
           <summary>Et ceux qui n'ont pas d'iPhone ?</summary>
-          <p>La carte fonctionne sur tous les téléphones : c'est une page web. Sur Android, elle s'épingle
-            à l'écran d'accueil comme un raccourci. Seul l'ajout à Apple Wallet est réservé aux iPhone —
-            la version Google Wallet est en préparation.</p>
+          <p>La carte fonctionne sur tous les téléphones : c'est une page web. Sur iPhone, elle s'ajoute
+            à Apple Wallet ; sur Android, à Google Wallet. Dans les deux cas en un geste, sans appli.</p>
         </details>
         <details>
           <summary>Il faut brancher quelque chose sur ma caisse ?</summary>
@@ -518,7 +489,7 @@ footer a:hover{color:var(--or-clair)}
   <!-- ══ CONTACT ══ -->
   <section class="bloc contact" id="contact">
     <div class="wrap">
-      <p class="mono rev">Parlons-en</p>
+      <p class="eti rev">Parlons-en</p>
       <h2 class="titre-bloc rev">Dites-moi où vous en êtes, je vous rappelle.</h2>
       <p class="intro-bloc rev">Vous parlez directement à la personne qui a construit l'outil —
         pas à un standard. Cinq minutes suffisent pour savoir si Perify a du sens chez vous.</p>
@@ -531,15 +502,15 @@ footer a:hover{color:var(--or-clair)}
         <div class="champ large"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email"></div>
         <div class="champ large"><label for="message">Votre message (facultatif)</label><textarea id="message" name="message" placeholder="Ce que vous aimeriez mettre en place, vos horaires pour être rappelé…"></textarea></div>
         <div class="champ large" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
-          <button type="submit" class="btn btn-or">Demander à être rappelé</button>
-          <span style="font-size:13.5px;color:var(--texte-doux)">Vos coordonnées servent uniquement à vous répondre.</span>
+          <button type="submit" class="btn btn-o">Demander à être rappelé</button>
+          <span style="font-size:14px;color:var(--texte-doux)">Vos coordonnées servent uniquement à vous répondre.</span>
         </div>
       </form>
 
       <div class="direct rev">
-        <a href="tel:+33667835956">📞 06 67 83 59 56</a>
-        <a id="lienMail" href="#">✉️ Écrire un e-mail</a>
-        <a href="/aide">🛟 Page d'aide</a>
+        <a href="tel:+33667835956"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>06 67 83 59 56</a>
+        <a id="lienMail" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 8l9 6 9-6"/></svg>Écrire un e-mail</a>
+        <a href="/aide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.8-2.5 2-2.5 4M12 17h.01"/></svg>Page d'aide</a>
       </div>
     </div>
   </section>
@@ -547,6 +518,7 @@ footer a:hover{color:var(--or-clair)}
 
 <footer>
   <div class="wrap">
+    <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156">
     <span>© 2026 Perify — programme de fidélité pour commerces de proximité.</span>
     <span>
       <a href="/aide">Aide</a> ·
