@@ -16,10 +16,13 @@ simple, sans framework ni build. Hébergé sur Vercel (`cleanUrls`), déploiemen
   (`mailto:` assemblé en JavaScript, adresse jamais écrite en clair). Garder les identifiants des
   champs ; ne pas brancher de service tiers sans accord.
 - **Les badges Apple / Google** sont les fichiers officiels (`img/`), jamais redessinés.
-- **Direction visuelle en cours (23/09)** : « B vitaminé » — nuit `#1B1F3B`, orange `#FF6B2C`, jaune
-  `#FFC53D`, Plus Jakarta Sans 800 + Inter ; **la refonte attend les vraies images de Valentin**
-  (logo en couleur, capture de la carte dans un iPhone, photos du comptoir). Pas de maquette dessinée
-  en HTML à la place d'une vraie image ; pas de police à empattements « style IA ».
+- **Direction B en ligne depuis le 24/09** : nuit `#1B1F3B`, orange `#FF6B2C`, jaune `#FFC53D`, Plus Jakarta Sans 800
+  + Inter, la même identité que la carte et l'espace commerçant. Les images sont de **vraies images** (`img/` : visuels
+  Photoshop de Valentin recadrés en WebP, photos du présentoir, éléments de la vraie carte) ; jamais de maquette
+  dessinée en HTML à la place d'une image, jamais de police à empattements « style IA ». Les sources sont hors dépôt
+  (`IMAGE/ressources/valentin-24-09/`, `IMAGE/ressources-valentin/`). Un QR ou un numéro de carte réel ne se publie
+  jamais : flouter. Les captures d'écrans avec des chiffres portent « Données de démonstration ». Les boutons orange ont
+  le texte en nuit (lisibilité 5,7:1). Les badges Apple/Google ne servent pas de décoration.
 - Lisibilité : contraste ≥ 4,5:1, 16 px minimum sur téléphone, boutons ≥ 48 px, quatre largeurs
   (375, 768, 1024, 1440), `prefers-reduced-motion` respecté, pas d'emoji en guise d'icône.
 - Commentaires en **français**.
