@@ -12,19 +12,37 @@
 <meta property="og:description" content="Qui édite le site, qui l'héberge, et ce que deviennent les données personnelles du programme de fidélité.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://perify.app/mentions-legales">
+<meta property="og:image" content="https://perify.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="doc.css">
+<script src="site.js" defer></script>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a href="/" aria-label="Perify"><img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156"></a>
-    <a class="retour" href="/">← Retour au site</a>
+<header class="entete">
+  <div class="wrap entete-barre">
+    <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <ul class="menu-liens">
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+      </ul>
+      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
+    </nav>
   </div>
 </header>
 
@@ -61,8 +79,11 @@
 
   <h3>Sur ce site</h3>
   <p>Ce site ne dépose <strong>aucun cookie</strong>, n'utilise <strong>aucun outil de mesure d'audience</strong>
-    et ne suit pas ses visiteurs. Si vous remplissez le formulaire de contact, il ouvre votre messagerie&nbsp;:
-    vos coordonnées nous parviennent par e-mail et servent <strong>uniquement à vous répondre</strong>.
+    et ne suit pas ses visiteurs. Si vous remplissez le formulaire d'essai gratuit, vos coordonnées sont
+    transmises au serveur de Perify (hébergé par Vercel), qui nous les envoie par e-mail via Brevo, notre
+    prestataire d'envoi&nbsp;; elles ne sont enregistrées dans aucune base de données et servent
+    <strong>uniquement à vous répondre</strong>. Si cet envoi échoue, le formulaire vous propose d'ouvrir
+    votre messagerie avec votre demande déjà écrite.
     Elles sont conservées le temps de l'échange commercial, puis supprimées si aucune suite n'est donnée.</p>
 
   <h3>Dans le programme de fidélité</h3>
@@ -91,10 +112,18 @@
   </div>
 </main>
 
-<footer>
+<footer class="pied">
   <div class="wrap">
-    <span>© 2026 Perify — programme de fidélité pour commerces de proximité.</span>
-    <span><a href="/">Accueil</a> · <a href="/aide">Aide</a></span>
+    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+    <p class="pied-copie">© 2026 Perify — programme de fidélité pour commerces de proximité.</p>
+    <nav class="pied-liens" aria-label="Pied de page">
+      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
+      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
+      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales#donnees">Données personnelles</a>
+    </nav>
   </div>
 </footer>
 

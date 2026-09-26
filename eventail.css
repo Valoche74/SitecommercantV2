@@ -1,0 +1,119 @@
+/* ─────────────────────────────────────────────────────────────
+   PERIFY — eventail.css, l'ÉVENTAIL DES PRÉSENTOIRS (effet 6, 26/09/2026)
+   Cahier IMAGE/design-kit/REFONTE-4-PAGES.md, § 3 (effet 6) et § 4 (« Le présentoir »).
+   Modèle de Valentin : « card fan carousel » — refait à la main, sans GSAP ni React.
+   Chargée après site.css (jetons, focus). Le mouvement : eventail.js.
+
+   Balisage (écrit par la page d'accueil) :
+   <div class="eventail" data-eventail tabindex="0" role="region" aria-roledescription="carrousel" aria-label="…">
+     <ul class="eventail-cartes"><li class="eventail-carte"><img …></li> …</ul>
+     <div class="eventail-nav">
+       <button class="eventail-prec" …>(svg)</button>
+       <div class="eventail-points" aria-hidden="true"></div>
+       <button class="eventail-suiv" …>(svg)</button>
+     </div>
+     <p class="eventail-etat visually-hidden" aria-live="polite"></p>
+   </div>
+
+   Deux états :
+   - SANS eventail.js (ou s'il plante) : les cartes côte à côte, défilement horizontal
+     DANS le bloc seulement (jamais la page), boutons masqués. Rien n'est caché.
+   - AVEC : eventail.js pose .eventail-pret → la scène en arc (-12°, -4°, 4°, 12°), la
+     carte active au milieu, devant, droite. Les positions sont calculées par le script
+     (transform en ligne) ; ici : la scène, les cartes, les transitions, la navigation.
+   Mouvement réduit : aucune transition (media query ET classe .eventail-reduit posée
+   par le script, qui suit window.PerifySite.mouvementReduit).
+   ───────────────────────────────────────────────────────────── */
+
+.eventail{
+  /* largeur d'une carte : ~58 % de l'écran sur téléphone (cahier), 220-272 px au-delà */
+  --l:min(58vw,250px);
+  --ressort:cubic-bezier(.34,1.56,.64,1);
+  --ressort-entree:cubic-bezier(.34,1.56,.64,1);
+  position:relative;border-radius:24px}
+@media(min-width:768px){.eventail{--l:clamp(220px,22vw,272px)}}
+/* ressort amorti (un rebond, ~10 %) quand le navigateur connaît linear() ; sinon le cubic-bezier ci-dessus */
+@supports (transition-timing-function:linear(0,1)){
+  .eventail{
+    --ressort:linear(0,.323,.615,.839,.987,1.068,1.099,1.098,1.08,1.056,1.034,1.016,1.003,.996,.993,.993,.994,.995,.997,.999,1,1,1);
+    --ressort-entree:linear(0,.345,.631,.846,.992,1.079,1.119,1.128,1.117,1.095,1.07,1.047,1.027,1.012,1.002,.995,.992,.991,.992,.993,.995,.997,.998,.999,1,1,1)}
+}
+
+/* ── 1. sans script : côte à côte, défilement dans le bloc ── */
+.eventail-cartes{list-style:none;margin:0;padding:6px 2px 20px;display:flex;gap:16px;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+  scrollbar-width:thin;scrollbar-color:rgba(255,138,76,.55) transparent}
+.eventail-carte{position:relative;flex:0 0 var(--l);margin:0;aspect-ratio:2/3;scroll-snap-align:center;
+  border-radius:16px;overflow:hidden;background:var(--nuit-2);
+  box-shadow:0 26px 50px -22px rgba(6,8,24,.85),0 4px 12px -4px rgba(6,8,24,.5)}
+.eventail-carte img{width:100%;height:100%;object-fit:cover;display:block;
+  -webkit-user-drag:none;-webkit-user-select:none;user-select:none}
+/* liseré clair + voile des cartes du fond (le voile ne sert qu'avec le script) */
+.eventail-carte::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);background:rgba(27,31,59,0);transition:background .35s ease}
+/* ordinateur sans script : les quatre tiennent sur la ligne, sans défilement */
+@media(min-width:1024px){
+  .eventail:not(.eventail-pret) .eventail-carte{flex:1 1 0;min-width:0}
+}
+.eventail-nav{display:none}
+/* « Présentoir 2 sur 4 » : lu par les lecteurs d'écran seulement (la classe visually-hidden
+   du balisage n'existe pas dans site.css : on la couvre ici) */
+.eventail-etat,.eventail .visually-hidden{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ── 2. avec script : la scène en éventail ─────────────── */
+.eventail-pret .eventail-cartes{display:block;position:relative;overflow:hidden;padding:0;gap:0;
+  scroll-snap-type:none;overscroll-behavior-x:auto;
+  /* hauteur : la carte (2:3) + la place du lever, de l'arc et des coins tournés */
+  height:calc(var(--l) * 1.82 + 40px);
+  /* le doigt fait défiler la page verticalement ; le glisser horizontal est pour l'éventail */
+  touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+/* téléphone : la scène va jusqu'aux bords de l'écran (elle est posée dans un .wrap) —
+   les cartes extérieures, plus serrées, sont rognées au bord de l'écran, pas avant */
+@media(max-width:767.98px){
+  .eventail-pret .eventail-cartes{margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter))}
+}
+.eventail-pret .eventail-carte{position:absolute;left:50%;top:calc(var(--l) * .11 + 10px);width:var(--l);
+  margin-left:calc(var(--l) / -2);transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;cursor:pointer;
+  transition:transform .62s var(--ressort),opacity .35s ease,box-shadow .35s ease}
+.eventail-pret .eventail-carte img{pointer-events:none}
+.eventail-pret .eventail-carte.est-active{cursor:default;
+  box-shadow:0 34px 60px -24px rgba(6,8,24,.95),0 6px 16px -6px rgba(6,8,24,.6)}
+.eventail-pret .eventail-carte:not(.est-active)::after{background:rgba(27,31,59,.24)}
+.eventail-pret .eventail-carte:not(.est-active):hover::after{background:rgba(27,31,59,.06)}
+
+/* avant l'entrée (la section n'est pas encore à l'écran) : cartes repliées, invisibles */
+.eventail-attente .eventail-carte{opacity:0;transition:none}
+/* l'entrée : rebond élastique, en cascade (délais posés par le script) */
+.eventail-entree .eventail-carte{transition:transform 1.15s var(--ressort-entree),opacity .4s ease}
+/* le tour du cercle : la carte sort d'un côté… (puis revient de l'autre, sans transition) */
+.eventail-pret .eventail-carte.eventail-sortie{transition:transform .28s cubic-bezier(.55,0,.8,.4),opacity .22s ease-in}
+.eventail-pret .eventail-carte.eventail-sans-transition{transition:none}
+
+/* ── 3. navigation : flèches ‹ › (≥ 48 px) et points ─────── */
+.eventail-pret .eventail-nav{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,22px);margin-top:4px}
+.eventail-prec,.eventail-suiv{display:inline-grid;place-items:center;flex:none;width:52px;height:52px;margin:0;padding:0;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.26);background:rgba(255,255,255,.04);color:var(--texte);cursor:pointer;
+  transition:border-color .2s,background .2s,transform .18s ease}
+.eventail-prec svg,.eventail-suiv svg{width:22px;height:22px;display:block}
+.eventail-prec:hover,.eventail-suiv:hover{border-color:var(--accent);background:rgba(255,138,76,.10)}
+.eventail-prec:active,.eventail-suiv:active{transform:scale(.94)}
+.eventail-points{display:flex;align-items:center;gap:8px}
+.eventail-point{display:block;width:8px;height:8px;border-radius:999px;background:rgba(196,200,222,.5);
+  transition:width .35s var(--sortie),background .3s ease}
+.eventail-point.est-actif{width:24px;background:var(--orange)}
+
+/* sur un bloc blanc ou crème (le cahier le pose sur la nuit, mais au cas où) */
+.blanc .eventail-prec,.blanc .eventail-suiv,.creme .eventail-prec,.creme .eventail-suiv{border-color:rgba(27,31,59,.25);background:transparent;color:var(--encre)}
+.blanc .eventail-prec:hover,.blanc .eventail-suiv:hover,.creme .eventail-prec:hover,.creme .eventail-suiv:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
+.blanc .eventail-point,.creme .eventail-point{background:rgba(27,31,59,.3)}
+.blanc .eventail-carte::after,.creme .eventail-carte::after{box-shadow:inset 0 0 0 1px rgba(27,31,59,.08)}
+
+/* ── 4. mouvement réduit : cartes posées, changements instantanés ── */
+.eventail-reduit .eventail-carte,.eventail-reduit .eventail-carte::after,.eventail-reduit .eventail-point,
+.eventail-reduit .eventail-prec,.eventail-reduit .eventail-suiv{transition:none !important}
+.eventail-reduit .eventail-prec:active,.eventail-reduit .eventail-suiv:active{transform:none}
+@media(prefers-reduced-motion:reduce){
+  .eventail-carte,.eventail-carte::after,.eventail-point,.eventail-prec,.eventail-suiv{transition:none !important}
+  .eventail-prec:active,.eventail-suiv:active{transform:none}
+}

@@ -1,0 +1,177 @@
+/* ─────────────────────────────────────────────────────────────
+   PERIFY — accueil.css, la mise en page de la page d'accueil (26/09/2026)
+   Chargée après site.css (le socle : jetons, en-tête, boutons, effets
+   communs). Cahier : IMAGE/design-kit/REFONTE-4-PAGES.md, § 4.
+
+   Ici : le héros, le visuel du parcours, les trois piliers, la scène
+   du présentoir (l'éventail lui-même est dans eventail.css / eventail.js),
+   la grille des fonctions (effet 7) et la grille « Ça marche avec » (effet 8).
+   Aucun jaune : les couleurs du § 0 du cahier (jetons du socle), plus un
+   gris très clair (#EEEFF5) pour l'anneau extérieur des pastilles.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── 1. héros : texte à gauche, la carte en main à droite, halo orange ── */
+.hero{position:relative;padding:clamp(40px,7vw,84px) 0 clamp(40px,6vw,72px);overflow:hidden}
+.hero .wrap{display:grid;gap:clamp(30px,5vw,56px);align-items:center}
+/* ordinateur : colonne de texte plus large et titre un peu moins grand, pour que le bouton
+   d'essai tienne dans le premier écran (1024 × 768, 1280 × 720) et que les deux boutons restent
+   sur une seule ligne */
+@media(min-width:960px){.hero .wrap{grid-template-columns:1.12fr .88fr}.hero h1{font-size:clamp(38px,4.3vw,58px)}}
+.hero-texte{min-width:0}
+/* la ligne du mot qui défile : la taille de la phrase fixe celle du mot */
+.hero-metiers{margin:20px 0 0;font-family:var(--titre);font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.35;
+  letter-spacing:-.01em;color:var(--texte)}
+.hero .lead{margin-top:18px}
+.hero .actions{margin-top:30px}
+/* petite ligne sous les boutons : coche orange, pas de pastille verte */
+.hero-note{display:flex;align-items:flex-start;gap:10px;margin:22px 0 0;font-size:16px;line-height:1.5;color:var(--texte-doux);max-width:36em}
+.hero-note svg{flex:none;margin-top:4px}
+.hero-visu{position:relative;margin:0 auto;width:min(560px,100%)}
+.hero-visu::before{content:"";position:absolute;inset:10% 12% 6%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,107,44,.34),transparent);filter:blur(18px);z-index:0}
+.hero-visu img{position:relative;z-index:1;width:100%;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+
+/* ── 2. le parcours : le visuel de Valentin, posé dans un grand bloc blanc arrondi
+   (son fond est transparent : sur la nuit, un liseré clair borde la vague) ── */
+.parcours .titre-bloc{max-width:22ch}
+/* padding-bottom : les téléphones du visuel sont rognés au ras du bas de l'image, un peu d'air
+   les décolle du bord du bloc */
+.parcours-visu{margin:clamp(28px,4.5vw,52px) auto 0;max-width:1080px;background:var(--blanc);
+  border-radius:clamp(20px,3vw,32px);overflow:hidden;box-shadow:0 44px 90px -48px rgba(0,0,0,.85);
+  padding-bottom:clamp(12px,2.4vw,28px)}
+.parcours-visu img{width:100%}
+/* « Données de démonstration. » (cahier § 0) : le visuel montre des chiffres d'écran.
+   Petit, gris texte, centré, dans le bloc blanc (comme la légende du tableau de bord, page 3) */
+.parcours-visu .legende{margin:clamp(6px,1.2vw,14px) 0 0;padding:0 16px;font-size:14px;line-height:1.4;color:var(--gris);text-align:center}
+/* téléphone : le bloc blanc va d'un bord à l'autre, l'image gagne en taille ; la section
+   n'a plus de marge du bas, le bloc blanc se fond dans la section blanche qui suit (sinon
+   une bande nuit de 56 px, coincée entre deux blancs, fait une rayure) ; légende en 16 px */
+@media(max-width:599.98px){
+  .parcours{padding-bottom:0}
+  .parcours-visu{margin-left:calc(var(--gutter) * -1);margin-right:calc(var(--gutter) * -1);border-radius:0;box-shadow:none}
+  .parcours-visu .legende{font-size:16px}
+}
+
+/* ── 3. ce que ça change : trois piliers (bloc blanc) ── */
+.piliers-titre{max-width:22ch}
+.piliers{display:grid;gap:18px;margin-top:38px}
+@media(min-width:820px){.piliers{grid-template-columns:repeat(3,1fr);gap:26px}}
+.pilier{background:var(--creme);border-radius:var(--rayon);padding:26px 24px 28px}
+.pilier-ico{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,107,44,.14);color:var(--orange-texte);margin-bottom:16px}
+.pilier-ico svg{width:24px;height:24px}
+.pilier h3{margin:0 0 10px;font-size:clamp(19px,2.1vw,22px)}
+.pilier p{margin:0;font-size:16px;line-height:1.6}
+.pilier .citation{margin:16px 0 0;font-size:16px;line-height:1.5;border-left:3px solid var(--orange);padding-left:12px;font-style:italic}
+.citation a{color:var(--orange-texte);font-style:normal;text-underline-offset:3px}
+
+/* ── 4. le présentoir : titre centré, l'éventail en dessous (eventail.css l'anime) ── */
+.presentoir .titre-bloc{max-width:24ch}
+.presentoir-scene{margin-top:clamp(30px,5vw,56px)}
+
+/* ── 5. Effet 7 — la grille des fonctions (modèle « features 8 ») ─────
+   Blocs BLANCS sur la nuit, coins 18 px, bord #E7E8F0. Icône dans une pastille
+   à double anneau, titre Plus Jakarta Sans 800, une phrase. Deux blocs larges
+   portent une vraie image de la carte, posée sur un panneau nuit (les bords
+   sombres des captures s'y fondent).
+   Ordinateur (≥ 1024 px) : 4 colonnes — rang 1 : [large][ ][ ] ; rang 2 : [ ][ ][large].
+   Tablette : 2 colonnes, les blocs larges sur toute la ligne. Téléphone : 1 colonne. */
+.bento{list-style:none;margin:clamp(30px,5vw,50px) 0 0;padding:0;display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.bento-bloc{position:relative;margin:0;min-width:0;background:var(--blanc);color:var(--encre);border:1px solid var(--ligne-claire);
+  border-radius:18px;padding:26px 24px 28px;box-shadow:0 18px 40px -26px rgba(0,0,0,.7)}
+/* la pastille à double anneau */
+.bento-ico{position:relative;display:grid;place-items:center;width:48px;height:48px;margin:9px 0 24px 9px;border-radius:50%;
+  background:var(--blanc);color:var(--encre);border:1px solid var(--ligne-claire)}
+.bento-ico::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid #EEEFF5;pointer-events:none}
+.bento-ico svg{width:24px;height:24px}
+.bento-bloc h3{margin:0 0 8px;font-family:var(--titre);font-weight:800;font-size:clamp(19px,1.9vw,21px);line-height:1.25;letter-spacing:-.015em;color:var(--encre)}
+.bento-bloc p{margin:0;font-size:16px;line-height:1.55;color:var(--gris)}
+/* les blocs larges : le texte, puis l'image sur son panneau nuit */
+.bento-large{display:grid;padding:0;overflow:hidden}
+.bento-large .bento-texte{padding:26px 24px 22px}
+.bento-visu{display:grid;place-items:center;margin:0 10px 10px;padding:16px;border-radius:13px;
+  background:radial-gradient(70% 80% at 50% 30%,rgba(255,107,44,.20),transparent 72%),var(--nuit)}
+.bento-visu img{width:100%;max-width:420px;border-radius:10px}
+/* cadeau-gagne.webp : les 19 dernières lignes de l'image (sur 559), un liseré de 3 px sur les
+   côtés et les coins du bas sont le fond gris de la capture, pas la carte. On les masque ici
+   sans toucher au fichier : l'image est coupée à 540 lignes (le bas de la carte), puis
+   découpée au contour de la carte (côtés rentrés de 4 px sur 800, coins du haut 12 px,
+   coins du bas 56 px — mesurés sur l'image, exprimés en % pour suivre sa taille à l'écran). */
+.bento-roue .bento-visu img{aspect-ratio:800/540;object-fit:cover;object-position:50% 0;
+  clip-path:inset(0 .5% round 1.5% 1.5% 7% 7% / 2.2% 2.2% 10.4% 10.4%)}
+
+/* téléphone : la pastille à gauche, le titre et la phrase à droite (moins haut) */
+@media(max-width:679.98px){
+  .bento-petit,.bento-large .bento-texte{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:start}
+  .bento-petit{padding:20px 20px 22px}
+  .bento-large .bento-texte{padding:20px 20px 16px}
+  .bento-petit .bento-ico,.bento-large .bento-ico{grid-row:1/3;margin:9px}
+  .bento-petit h3{margin-top:6px}
+  .bento-large .bento-texte h3{margin-top:6px}
+}
+@media(min-width:680px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bento-large{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:stretch}
+  .bento-large .bento-texte{display:flex;flex-direction:column;justify-content:space-between;padding:26px 8px 28px 24px}
+  .bento-visu{margin:10px}
+  /* les petits blocs : centrés, comme le modèle */
+  .bento-petit{text-align:center}
+  .bento-petit .bento-ico{margin:9px auto 24px}
+}
+@media(min-width:1024px){
+  .bento{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .bento-large{grid-column:span 2}
+  /* la roue de bienvenue passe en bas à droite (blocs indépendants : l'ordre de lecture reste 1 → 6) */
+  .bento-roue{grid-column:3/5;grid-row:2}
+}
+
+/* ── 6. Effet 8 — « Ça marche avec » (modèle « logo cloud 2 ») ─────
+   8 cases (4 × 2 ; 2 × 4 sur téléphone), filets fins, petites croix « + » aux
+   intersections intérieures, une case sur deux en --nuit-2. Des NOMS en texte,
+   jamais un logo. Les filets du haut et du bas vont d'un bord à l'autre de l'écran. */
+.avec{padding-top:clamp(40px,6vw,72px)}
+.avec-titre{max-width:24ch;margin:0 auto;text-align:center;font-size:clamp(24px,3vw,32px);line-height:1.15}
+.avec-cadre{position:relative;z-index:1;margin-top:clamp(26px,4vw,40px);border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
+.avec-grille{list-style:none;margin:0 auto;padding:0;max-width:880px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  border-left:1px solid var(--ligne);border-right:1px solid var(--ligne)}
+.avec-grille li{position:relative;display:flex;align-items:center;justify-content:center;min-height:92px;margin:0;padding:14px 12px;
+  text-align:center;font-family:var(--titre);font-weight:700;font-size:clamp(17px,1.6vw,19px);line-height:1.25;letter-spacing:-.01em;
+  color:var(--texte-doux);transition:color .2s ease}
+.avec-grille li:hover{color:var(--blanc)}
+/* la petite croix, au coin bas-droit de la case (seulement aux intersections intérieures) */
+.avec-grille li::after{content:"";position:absolute;right:0;bottom:0;z-index:2;width:13px;height:13px;transform:translate(50%,50%);
+  pointer-events:none;display:none;
+  background:linear-gradient(rgba(196,200,222,.7),rgba(196,200,222,.7)) center/13px 1.5px no-repeat,
+             linear-gradient(rgba(196,200,222,.7),rgba(196,200,222,.7)) center/1.5px 13px no-repeat}
+
+/* téléphone et petite tablette : 2 colonnes, 4 rangs (damier : cases 1, 4, 5, 8) */
+@media(max-width:767.98px){
+  .avec-grille li:nth-child(odd){border-right:1px solid var(--ligne)}
+  .avec-grille li:nth-child(-n+6){border-bottom:1px solid var(--ligne)}
+  .avec-grille li:nth-child(1),.avec-grille li:nth-child(4),.avec-grille li:nth-child(5),.avec-grille li:nth-child(8){background:var(--nuit-2)}
+  .avec-grille li:nth-child(1)::after,.avec-grille li:nth-child(3)::after,.avec-grille li:nth-child(5)::after{display:block}
+}
+/* à partir de 768 px : 4 colonnes, 2 rangs (damier : cases 1, 3, 6, 8) */
+@media(min-width:768px){
+  .avec-grille{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .avec-grille li{min-height:96px}
+  .avec-grille li:not(:nth-child(4n)){border-right:1px solid var(--ligne)}
+  .avec-grille li:nth-child(-n+4){border-bottom:1px solid var(--ligne)}
+  .avec-grille li:nth-child(1),.avec-grille li:nth-child(3),.avec-grille li:nth-child(6),.avec-grille li:nth-child(8){background:var(--nuit-2)}
+  .avec-grille li:nth-child(1)::after,.avec-grille li:nth-child(2)::after,.avec-grille li:nth-child(3)::after{display:block}
+}
+
+/* la grille des fonctions suit le présentoir, sur la même nuit : moins d'espace entre les deux */
+.fonctions{padding-top:clamp(16px,3vw,40px)}
+
+/* ── 7. bloc final « Essai » : dans site.css, « .essai-carte p » (plus fort que « .eti »)
+   rend l'étiquette grise et en 18 px. On lui rend sa couleur et sa taille d'étiquette. ── */
+.essai-carte p.eti{color:var(--accent);font-size:12.5px;line-height:inherit;max-width:none;margin:0 auto 16px}
+@media(max-width:430px){.essai-carte p.eti{font-size:11.5px}}
+
+/* ── 8. économie : ce qui tourne en boucle s'arrête hors de l'écran (accueil.js pose .hors-ecran) ── */
+.bande.hors-ecran .bande-piste,.btn-lumiere.hors-ecran,.btn-lumiere.hors-ecran::before{animation-play-state:paused}
+
+/* ── 9. mouvement réduit : rien ne bouge ── */
+@media(prefers-reduced-motion:reduce){
+  .avec-grille li{transition:none}
+}

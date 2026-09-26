@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comment ça marche — Perify</title>
+<meta name="description" content="Le client scanne le présentoir, ajoute sa carte à son Wallet, revient et il est récompensé. Rien à brancher sur votre caisse.">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="canonical" href="https://perify.app/comment-ca-marche">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:title" content="Comment ça marche — Perify">
+<meta property="og:description" content="Le client scanne le présentoir, ajoute sa carte à son Wallet, revient et il est récompensé. Rien à brancher sur votre caisse.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://perify.app/comment-ca-marche">
+<meta property="og:image" content="https://perify.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="comment.css">
+<script src="site.js" defer></script>
+<script src="calcul.js" defer></script>
+</head>
+<body>
+
+<header class="entete">
+  <div class="wrap entete-barre">
+    <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <ul class="menu-liens">
+        <li><a href="/comment-ca-marche" aria-current="page">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+      </ul>
+      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ EN-TÊTE DE PAGE ══ -->
+  <section class="page-tete">
+    <div class="wrap">
+      <p class="eti rev">Comment ça marche</p>
+      <h1 class="rev">Trois gestes, et le client est <span class="marque">fidélisé</span>.</h1>
+      <p class="lead rev">Rien à brancher sur votre caisse, rien à apprendre. Le présentoir est posé
+        sur le comptoir, tout le reste se passe sur les téléphones.</p>
+    </div>
+  </section>
+
+  <!-- ══ LES TROIS ÉTAPES — reprises de l'ancienne page d'accueil (titres passés de h3 à h2 : le h2 d'origine est devenu le h1 de la page) ══ -->
+  <section class="bloc etapes-bloc">
+    <div class="wrap">
+      <div class="etapes">
+        <article class="etape rev">
+          <div class="etape-visu">
+            <img src="img/roue-iphone.webp" width="652" height="1239" decoding="async"
+                 alt="La roue de la chance sur un iPhone : le client la tourne une fois et découvre son cadeau de bienvenue">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">1</span>
+            <p class="qui">Le client</p>
+            <h2>Il scanne le présentoir</h2>
+            <p>Pas de compte à créer, pas d'appli à télécharger. Sa carte s'ouvre en deux secondes,
+              à vos couleurs. Et il tourne la roue&nbsp;: un cadeau de bienvenue, à chaque nouvelle carte.</p>
+          </div>
+        </article>
+        <article class="etape rev">
+          <div class="etape-visu">
+            <img src="img/pass-main.webp" width="1200" height="1262" decoding="async"
+                 alt="Deux cartes de fidélité dans l'application Cartes d'un iPhone tenu en main">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">2</span>
+            <p class="qui">Son téléphone</p>
+            <h2>Il l'ajoute à son Wallet</h2>
+            <p>La carte reste dans son iPhone, à côté de sa carte bancaire. Sur Android, elle s'ajoute
+              à Google Wallet.</p>
+          </div>
+        </article>
+        <article class="etape rev">
+          <div class="etape-visu large">
+            <img src="img/tampons.webp" width="900" height="537" loading="lazy" decoding="async"
+                 alt="Le compteur de la carte : sept tampons, plus que trois pour le prochain cadeau">
+          </div>
+          <div class="texte">
+            <span class="num" aria-hidden="true">3</span>
+            <p class="qui">Votre comptoir</p>
+            <h2>Il revient, il est récompensé</h2>
+            <p>Chaque passage ajoute un tampon. Au palier, le cadeau apparaît avec un code
+              que vous vérifiez en caisse.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EN CHIFFRES — que du vrai : des faits du produit, et une étude citée. Jamais un chiffre inventé.
+       Compteurs qui roulent (site.js) : la valeur finale est écrite ici, le JS part de 0 seulement s'il tourne. ══ -->
+  <section class="chiffres" aria-labelledby="titre-chiffres">
+    <div class="wrap">
+      <p class="eti rev" id="titre-chiffres">En chiffres, sans en inventer</p>
+      <div class="nombres">
+        <div class="nombre rev"><b data-compte="0">0</b><span>appli à installer</span></div>
+        <div class="nombre rev"><b data-compte="2" data-suffixe="&nbsp;s">2&nbsp;s</b><span>pour ouvrir sa carte</span></div>
+        <div class="nombre rev"><b data-compte="1">1</b><span>tampon par passage et par jour</span></div>
+        <div class="nombre rev"><b data-compte="5" data-suffixe="&nbsp;s">5&nbsp;s</b><span>le geste en caisse</span></div>
+        <div class="nombre rev"><b data-compte="15" data-suffixe="&nbsp;j">15&nbsp;j</b><span>pour être en service</span></div>
+        <div class="nombre rev"><b data-compte="14" data-suffixe="&nbsp;j">14&nbsp;j</b><span>d'essai gratuit</span></div>
+        <div class="nombre large rev"><b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b><span>des Français lisent les avis avant d'acheter<sup><a href="#src-avis" aria-label="source">1</a></sup></span></div>
+      </div>
+      <p class="source rev" id="src-avis">1. IFOP pour Guest Suite, « Les Français et les avis clients », 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat,
+        75&nbsp;% le font sur Google. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir l'étude</a>.</p>
+    </div>
+  </section>
+
+  <!-- ══ FAITES LE CALCUL — un calcul, pas une promesse (calcul.js).
+       Sans JavaScript : l'exemple de départ et ses trois résultats, déjà justes. ══ -->
+  <section class="bloc blanc calcul-bloc" id="calcul" aria-labelledby="titre-calcul">
+    <div class="wrap calcul">
+      <div class="calcul-gauche">
+        <p class="eti rev">Faites le calcul</p>
+        <h2 class="titre-bloc rev" id="titre-calcul">Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte.</h2>
+        <p class="intro-bloc rev">Avec vos chiffres à vous. Les valeurs de départ ne sont qu'un exemple&nbsp;: <span class="sans-coupure">remplacez-les.</span></p>
+
+        <form class="calcul-champs rev" id="calcul-formulaire" action="#" novalidate>
+          <div class="champ">
+            <label for="calcul-panier">Panier moyen (€)</label>
+            <input id="calcul-panier" type="text" inputmode="decimal" autocomplete="off" value="9">
+          </div>
+          <div class="champ">
+            <label for="calcul-marge">Votre marge sur ce panier (%)</label>
+            <input id="calcul-marge" type="text" inputmode="decimal" autocomplete="off" value="60">
+          </div>
+          <div class="champ">
+            <label for="calcul-revient">Prix de revient du cadeau (€)</label>
+            <input id="calcul-revient" type="text" inputmode="decimal" autocomplete="off" value="1,50" aria-describedby="calcul-revient-aide">
+            <p class="champ-aide" id="calcul-revient-aide">Le prix de revient, pas le prix de vente&nbsp;: ce que le cadeau vous coûte vraiment.</p>
+          </div>
+          <div class="champ">
+            <label for="calcul-tampons">Tampons pour l'obtenir</label>
+            <input id="calcul-tampons" type="text" inputmode="decimal" autocomplete="off" value="10">
+          </div>
+        </form>
+      </div>
+
+      <div class="calcul-resultats rev">
+        <dl class="resultats">
+          <div class="resultat">
+            <dt>Un tampon vous coûte</dt>
+            <dd><b id="res-tampon" data-compte="0,15" data-decimales="2" data-suffixe="&nbsp;€">0,15&nbsp;€</b></dd>
+          </div>
+          <div class="resultat">
+            <dt>Une visite vous rapporte</dt>
+            <dd><b id="res-visite" data-compte="5,40" data-decimales="2" data-suffixe="&nbsp;€">5,40&nbsp;€</b></dd>
+          </div>
+          <div class="resultat resultat-cle">
+            <dt>Une visite de plus paie</dt>
+            <dd><b id="res-paie" data-compte="36">36</b> <span class="res-unite" id="res-paie-unite">tampons</span></dd>
+          </div>
+        </dl>
+        <p class="calcul-conclusion" id="calcul-conclusion" aria-live="polite">Autrement dit&nbsp;: si le programme fait revenir un client une fois de plus, cette visite paie <strong id="calcul-conclusion-nombre">36&nbsp;tampons</strong>.</p>
+        <p class="calcul-note">Un calcul, pas une promesse&nbsp;: le nombre de visites en plus dépend de votre commerce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BLOC FINAL « ESSAI » ══ -->
+  <section class="essai-final" aria-labelledby="titre-essai">
+    <div class="wrap">
+      <div class="essai-carte rev">
+        <p class="eti">Essai gratuit</p>
+        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
+        <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
+        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SUITE ══ -->
+  <div class="suite">
+    <div class="wrap">
+      <a class="suite-lien" href="/ce-que-vous-pilotez"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> ce que vous pilotez</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+    <p class="pied-copie">© 2026 Perify — programme de fidélité pour commerces de proximité.</p>
+    <nav class="pied-liens" aria-label="Pied de page">
+      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
+      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
+      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales#donnees">Données personnelles</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ce que vous pilotez — Perify</title>
+<meta name="description" content="Vos offres sur la carte de vos clients, vos promos avec leur affiche, votre tableau de bord, et la carte qui se montre près de votre boutique.">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="canonical" href="https://perify.app/ce-que-vous-pilotez">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:title" content="Ce que vous pilotez — Perify">
+<meta property="og:description" content="Vos offres sur la carte de vos clients, vos promos avec leur affiche, votre tableau de bord, et la carte qui se montre près de votre boutique.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://perify.app/ce-que-vous-pilotez">
+<meta property="og:image" content="https://perify.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="pilotez.css">
+<!-- Page 3 : aucun script propre (le cahier ne prévoit que pilotez.css) ; site.js suffit. -->
+<script src="site.js" defer></script>
+</head>
+<body>
+
+<header class="entete">
+  <div class="wrap entete-barre">
+    <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <ul class="menu-liens">
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez" aria-current="page">Ce que vous pilotez</a></li>
+        <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+      </ul>
+      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ CHAPEAU DE PAGE ══ -->
+  <section class="page-tete">
+    <div class="wrap">
+      <p class="eti rev">Ce que vous pilotez</p>
+      <h1 class="rev">Tout se commande depuis votre <span class="insecable"><span class="marque">téléphone</span>,</span> entre deux clients.</h1>
+    </div>
+  </section>
+
+  <!-- ══ LES MODULES ══ (les trois premiers et les invendus : recopiés à l'identique de l'ancienne page d'accueil) -->
+  <section class="bloc pilotage" id="pilotage">
+    <div class="wrap">
+
+      <!-- module 1 : l'offre sur la carte -->
+      <div class="module">
+        <div class="rev">
+          <p class="eti">Nouveau</p>
+          <h2>Votre offre s'affiche sur la carte de vos clients</h2>
+          <p>Vous créez l'offre en trois touches. Elle part par <span class="insecable">e-mail</span>, et surtout&nbsp;: elle apparaît
+            <strong class="fort">directement sur la carte</strong> de chaque client concerné.</p>
+          <p>Il appuie sur «&nbsp;Activer mon offre&nbsp;», un code s'affiche, vous le vérifiez en caisse. C'est tout.</p>
+          <ul class="liste">
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Durée au choix&nbsp;: 3, 7, 14 ou 30 jours</li>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Passé la date, l'offre disparaît toute seule</li>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Un code déjà utilisé est refusé en caisse</li>
+          </ul>
+        </div>
+        <div class="visu rev">
+          <img class="tel" src="img/commercant-offre-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="L'espace commerçant sur un iPhone : l'offre du moment, son aperçu sur la carte Wallet et la notification reçue par le client">
+        </div>
+      </div>
+
+      <!-- module 2 : la promo avec son affiche -->
+      <div class="module inv">
+        <div class="rev">
+          <h2>La promo part avec son affiche, sans logiciel photo</h2>
+          <p>Vous écrivez l'offre. Perify dessine la bannière et envoie <span class="insecable">l'e-mail</span> à vos clients inscrits,
+            à vos couleurs, avec la date de validité.</p>
+          <p>Vous pouvez l'envoyer maintenant, ou la programmer pour demain matin.</p>
+          <ul class="liste">
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Seuls les clients qui ont accepté reçoivent vos e-mails</li>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Une même affiche ne peut pas partir deux fois par erreur</li>
+          </ul>
+        </div>
+        <div class="visu rev">
+          <div class="mails">
+            <img src="img/offre-mail-1.webp" width="400" height="715" loading="lazy" alt="Un e-mail promo envoyé aux clients : « Burger, 1 acheté = 1 offert »">
+            <img src="img/offre-mail-2.webp" width="400" height="713" loading="lazy" alt="Un second e-mail promo, avec le produit en grand et le bouton « Profiter de l'offre »">
+          </div>
+        </div>
+      </div>
+
+      <!-- module 3 : le tableau de bord -->
+      <div class="module">
+        <div class="rev">
+          <h2>Votre tableau de bord, en clair</h2>
+          <p>Cartes actives, cadeaux à remettre, offres envoyées. Les passages de la semaine, comparés à la semaine
+            d'avant. Sur votre téléphone, sans rien installer.</p>
+        </div>
+        <div class="visu rev">
+          <img class="tel" src="img/dashboard-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="Le tableau de bord de l'espace commerçant sur un iPhone : passages, clients venus, scans du QR, cartes ouvertes et la courbe par jour">
+          <p class="legende">Données de démonstration.</p>
+        </div>
+      </div>
+
+      <!-- module 4 : la carte qui se montre près de la boutique (GPS, iPhone) — même mise en page, texte à gauche -->
+      <div class="module module-gps">
+        <div class="rev">
+          <p class="eti">Sur iPhone</p>
+          <h2>Près de votre boutique, la carte se montre toute seule</h2>
+          <p>Quand un client passe près de chez vous, sa carte apparaît en haut de son écran verrouillé.
+            Il n'a rien ouvert&nbsp;: c'est son iPhone qui la lui propose.</p>
+          <ul class="liste">
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Réglé une fois pour toutes, à l'installation</li>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Aucune position enregistrée&nbsp;: tout se passe dans le téléphone du client</li>
+            <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Sur Android, Google ne propose pas cette fonction</li>
+          </ul>
+        </div>
+        <div class="visu visu-gps rev">
+          <!-- À REMPLACER : capture de son écran verrouillé -->
+          <!-- En attendant : une icône (épingle de carte + ondes), pas une maquette de téléphone. -->
+          <div class="gps-disque">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M12 20.2s-5.1-5-5.1-9.7a5.1 5.1 0 0 1 10.2 0c0 4.7-5.1 9.7-5.1 9.7z"/>
+              <circle cx="12" cy="10.5" r="1.9"/>
+              <path class="onde-1" d="M4.6 6.9a6 6 0 0 0 0 7.2M19.4 6.9a6 6 0 0 1 0 7.2"/>
+              <path class="onde-2" d="M2.3 5.3a8.5 8.5 0 0 0 0 10.4M21.7 5.3a8.5 8.5 0 0 1 0 10.4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- en option : les invendus -->
+      <div class="option rev">
+        <div>
+          <p class="eti" style="margin-bottom:6px">En option</p>
+          <h2>Vos invendus, prévenus avant la fermeture</h2>
+          <p>À 18 h, vous annoncez ce qu'il reste à sauver. Vos clients inscrits sont prévenus,
+            viennent chercher, et vous jetez moins.</p>
+        </div>
+        <ul class="liste" style="margin-top:0">
+          <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+            Vous choisissez les produits, la quantité et l'heure de retrait</li>
+          <li><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
+            Module facultatif, activé commerce par commerce</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ BLOC FINAL « ESSAI » ══ -->
+  <section class="essai-final" aria-labelledby="titre-essai">
+    <div class="wrap">
+      <div class="essai-carte rev">
+        <p class="eti">Essai gratuit</p>
+        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
+        <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
+        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SUITE ══ -->
+  <div class="suite">
+    <div class="wrap">
+      <a class="suite-lien" href="/essai-gratuit"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> l'essai gratuit</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+    <p class="pied-copie">© 2026 Perify — programme de fidélité pour commerces de proximité.</p>
+    <nav class="pied-liens" aria-label="Pied de page">
+      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
+      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
+      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales#donnees">Données personnelles</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

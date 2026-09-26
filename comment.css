@@ -1,0 +1,113 @@
+/* ─────────────────────────────────────────────────────────────
+   PERIFY — comment.css, la page 2 « Comment ça marche » (26/09/2026)
+   Chargée APRÈS site.css (le socle : jetons, en-tête, effets, bloc
+   « Essai », lien « Suite », champs, pied). Ici, seulement ce qui est
+   propre à cette page :
+     1. les trois étapes (classes reprises de l'ancienne page d'accueil)
+     2. « En chiffres » (7 cases, compteurs qui roulent de site.js)
+     3. « Faites le calcul » (champs à gauche, résultats à droite ; calcul.js)
+   Aucune couleur hors des jetons du socle. Plus de jaune.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── 1. les trois étapes ─────────────────────────────────── */
+/* juste sous le chapeau de page : pas besoin de toute la marge d'une section */
+.etapes-bloc{padding-top:clamp(8px,2vw,24px);padding-bottom:clamp(40px,6vw,72px)}
+.etapes{display:grid;gap:18px}
+@media(min-width:840px){.etapes{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
+.etape{background:var(--nuit-2);border:1px solid var(--ligne);border-radius:var(--rayon);padding:0 0 26px;overflow:hidden;
+  display:flex;flex-direction:column;margin:0}
+.etape-visu{position:relative;aspect-ratio:1/1;overflow:hidden;
+  background:radial-gradient(60% 55% at 50% 40%,rgba(255,107,44,.22),transparent 72%)}
+/* en absolu : les pourcentages se résolvent sur la hauteur donnée par aspect-ratio (sinon l'image déborde sur téléphone) */
+.etape-visu img{position:absolute;left:22px;top:22px;width:calc(100% - 44px);height:calc(100% - 44px);object-fit:contain;
+  filter:drop-shadow(0 20px 30px rgba(0,0,0,.5))}
+/* l'image des tampons est large : sur une seule colonne, une case moins haute (moins de vide autour) */
+@media(max-width:839.98px){.etape-visu.large{aspect-ratio:4/3}}
+.etape .texte{padding:20px 22px 0}
+.etape .num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--orange);color:var(--encre);
+  font-weight:800;font-size:14px;margin-bottom:12px}
+.etape .qui{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 6px}
+/* h2 (et non plus h3) : le titre de section d'autrefois est devenu le h1 de la page ; même taille qu'avant */
+.etape h2{font-size:clamp(20px,2.3vw,25px);line-height:1.2;font-weight:700;margin:0 0 8px;color:var(--blanc)}
+.etape p{margin:0;color:var(--texte-doux);font-size:15.5px}
+@media(max-width:600px){.etape p:not(.qui){font-size:16px}
+  /* « Le client / Son téléphone / Votre comptoir » : 16 px aussi sur téléphone (règle du cahier),
+     espacement un peu resserré pour rester une étiquette sous le titre */
+  .etape .qui{font-size:16px;letter-spacing:.1em}}
+/* tablette : une étape par ligne, l'image à gauche et le texte à droite (sinon trois images de 700 px de haut) */
+@media(min-width:600px) and (max-width:839.98px){
+  .etape{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;padding:0}
+  .etape-visu.large{aspect-ratio:1/1}
+  .etape .texte{padding:24px 26px 24px 6px}
+}
+
+/* ── 2. en chiffres ──────────────────────────────────────── */
+/* 7 cases : 6 simples + « 92 % » sur deux colonnes → 4 × 2 sur ordinateur, 2 × 4 sur téléphone */
+.chiffres{position:relative;z-index:1;padding:0 0 clamp(56px,8vw,100px)}
+.nombres{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:6px}
+@media(min-width:760px){.nombres{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}}
+.nombre{min-width:0;border:1px solid var(--ligne);border-radius:16px;padding:18px 16px 16px;background:var(--nuit-2)}
+.nombre b{display:block;font-family:var(--titre);font-weight:800;font-size:clamp(30px,3.6vw,42px);line-height:1;color:var(--accent);letter-spacing:-.02em}
+/* « > span » : les spans que site.js pose DANS le <b> (lecteur, compte-vu) ne sont pas touchés */
+.nombre > span{display:block;font-size:15.5px;color:var(--texte-doux);margin-top:10px;line-height:1.4}
+@media(max-width:600px){.nombre > span{font-size:16px}}
+/* la case de l'étude, deux fois plus large : le chiffre et sa légende côte à côte */
+.nombre.large{grid-column:span 2;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;border-color:rgba(255,138,76,.32);
+  background:radial-gradient(80% 140% at 0% 50%,rgba(255,107,44,.16),transparent 70%),var(--nuit-2)}
+.nombre.large b{flex:none;font-size:clamp(38px,4.6vw,56px)}
+.nombre.large > span{flex:1 1 11em;margin-top:0}
+/* le renvoi « 1 » vers la source : petit à l'œil, mais une cible de doigt confortable (48 px).
+   En ligne (inline), pas inline-block : collé à « acheter » sans espace, il ne passe jamais seul
+   à la ligne, et son contour de focus suit la hauteur de la police au lieu d'être aplati à 0.
+   nowrap sur le sup : le rembourrage droit du lien ne part pas seul sur une ligne vide (vu à
+   520 et 1040 px) ; faute de place, « d'acheter¹ » passe à la ligne d'un bloc. */
+.nombre sup{line-height:0;white-space:nowrap}
+.nombre sup a{position:relative;display:inline;margin-left:3px;padding:0 3px;color:var(--accent);text-decoration:none;font-size:12px;font-weight:700;line-height:1}
+.nombre sup a::after{content:"";position:absolute;left:50%;top:50%;width:48px;height:48px;transform:translate(-50%,-50%)}
+.source{font-size:14px;line-height:1.55;color:var(--texte-doux);margin:18px 0 0;max-width:72ch}
+@media(max-width:600px){.source{font-size:16px}}
+.source a{color:var(--accent);text-underline-offset:3px}
+
+/* ── 3. faites le calcul ─────────────────────────────────── */
+.calcul{display:grid;gap:clamp(30px,5vw,56px);align-items:start}
+@media(min-width:960px){.calcul{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center}}
+.calcul-gauche{min-width:0}
+.calcul-bloc h2{font-size:clamp(28px,3.6vw,40px);max-width:22ch}
+.sans-coupure{white-space:nowrap}     /* « remplacez-les » ne se coupe pas au trait d'union */
+
+/* les quatre champs : 1 colonne sur téléphone, 2 × 2 au-delà */
+.calcul-champs{display:grid;gap:20px 16px;margin-top:30px}
+@media(min-width:560px){.calcul-champs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Aligner les champs d'une même rangée même si une étiquette passe sur deux lignes :
+   chaque champ occupe trois rangées partagées (étiquette, saisie, aide). */
+@supports (grid-template-rows:subgrid){
+  @media(min-width:560px){
+    .calcul-champs{row-gap:0}
+    .calcul-champs .champ{grid-row:span 3;grid-template-rows:subgrid;row-gap:8px;margin-bottom:20px}
+    .calcul-champs .champ > label{align-self:end}
+  }
+}
+.calcul-champs input{font-variant-numeric:tabular-nums}
+
+/* le panneau des résultats : sur la nuit, comme un ticket posé sur la page blanche */
+.calcul-resultats{position:relative;overflow:hidden;min-width:0;border-radius:24px;padding:clamp(24px,4vw,38px);color:var(--texte);
+  background:radial-gradient(90% 70% at 100% 0%,rgba(255,107,44,.26),transparent 62%),var(--nuit);
+  box-shadow:0 40px 70px -42px rgba(27,31,59,.7)}
+.resultats{margin:0}
+.resultat{padding:18px 0;border-bottom:1px solid var(--ligne)}
+.resultat:first-child{padding-top:0}
+.resultat dt{font-size:16px;font-weight:600;line-height:1.35;color:var(--texte-doux);margin:0 0 6px}
+.resultat dd{margin:0;font-family:var(--titre);font-weight:800;font-size:clamp(36px,4.4vw,50px);line-height:1.08;letter-spacing:-.02em;
+  color:var(--blanc);overflow-wrap:anywhere}
+/* un nombre démesuré (saisie extrême) passe à la ligne au lieu d'élargir la page */
+.resultat dd .compte-vu{white-space:normal;overflow-wrap:anywhere;max-width:100%}
+.resultat-cle dd{color:var(--accent)}
+.res-unite{font-size:.46em;font-weight:700;letter-spacing:0;color:var(--texte)}
+.res-unite[hidden]{display:none}
+/* ces paragraphes sont dans un bloc .blanc, mais sur le fond nuit du panneau */
+.blanc .calcul-conclusion{margin:22px 0 0;font-size:clamp(16.5px,1.6vw,18px);line-height:1.55;color:var(--texte)}
+.calcul-conclusion strong{color:var(--accent);font-weight:700;white-space:nowrap}
+/* résultat incomplet : la phrase n'a rien à dire, sa place reste réservée (rien ne saute) */
+.calcul-conclusion.vide{visibility:hidden}
+.blanc .calcul-note{margin:14px 0 0;font-size:15px;line-height:1.5;color:var(--texte-doux)}
+@media(max-width:600px){.blanc .calcul-note{font-size:16px}}

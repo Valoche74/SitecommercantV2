@@ -1,0 +1,97 @@
+/* ─────────────────────────────────────────────────────────────
+   PERIFY — pilotez.css, la page 3 « Ce que vous pilotez » (26/09/2026)
+   Chargée APRÈS site.css (jetons, en-tête, boutons, marqueur, bordure
+   lumineuse, bloc « Essai », lien « Suite », pied : tout vient du socle).
+
+   Ici : les classes de l'ancienne page d'accueil reprises telles quelles
+   (.module, .visu, .mails, .option) et le visuel d'attente du module GPS
+   (icône dans un disque, en attendant la capture d'écran verrouillé).
+   Aucune animation propre : les apparitions (.rev) et le marqueur sont
+   ceux du socle, qui respecte déjà « mouvement réduit ».
+   ───────────────────────────────────────────────────────────── */
+
+/* ── chapeau de page : le halo ne doit pas être coupé net ──
+   Le socle met overflow:hidden sur .page-tete. Ici le chapeau n'a pas de chapô
+   (le cahier n'en prévoit pas) : il est court, et le bas du halo orange était
+   tranché par une ligne horizontale visible. On laisse le halo descendre derrière
+   les modules ; on ne coupe que sur les côtés (pas de défilement horizontal) et
+   au-dessus (rien sous l'en-tête). Vieux navigateurs : on garde le socle. */
+@supports (overflow:clip){
+  .page-tete{overflow:visible;overflow-x:clip;clip-path:inset(0 0 -100vh 0)}
+}
+
+/* le mot marqué et la virgule qui le suit restent collés : le marqueur est un
+   inline-block (socle), et sans ça le navigateur pouvait couper juste avant la
+   virgule (de 410 à 422 px de large : « , entre deux clients. » en 3e ligne) */
+.insecable{white-space:nowrap}
+/* titre équilibré : plus de « clients. » seul sur la dernière ligne (768 à 1440 px) */
+.page-tete h1{text-wrap:balance}
+
+/* la section des modules suit le chapeau de page : pas de seconde grande marge en haut */
+.pilotage{padding-top:clamp(4px,1.6vw,18px)}
+
+/* ── les modules (texte d'un côté, vraie image de l'autre) ── */
+.module{display:grid;gap:30px;align-items:center;padding:clamp(34px,5vw,56px) 0;border-top:1px solid var(--ligne)}
+.module:first-child{border-top:0}
+/* les colonnes de grille peuvent rétrécir : rien ne pousse la page en largeur */
+.module > *{min-width:0}
+@media(min-width:900px){.module{grid-template-columns:1fr 1fr;gap:60px}.module.inv .visu{order:-1}}
+/* une seule colonne (tablette) : le texte ne court pas sur toute la largeur, ~75 caractères par ligne */
+@media(max-width:899.98px){.module > .rev:first-child{max-width:36em}}
+/* titres des modules en h2 (sous le h1, sans niveau sauté) ; l'interligne 1,2 est
+   celui des anciens h3 : le rendu ne change pas */
+.module h2{font-size:clamp(23px,3vw,32px);line-height:1.2;margin:12px 0 12px;font-weight:800;color:var(--blanc)}
+.module p{color:var(--texte-doux)}
+/* « .module p » et « .option p » repeignaient les étiquettes en gris doux :
+   elles reprennent l'orange clair de toutes les étiquettes du site (.eti du socle) */
+.module .eti,.option .eti{color:var(--accent)}
+/* pas de mot seul en dernière ligne d'un titre ou d'une coche (« …du / client »,
+   « …avant la / fermeture ») */
+.pilotage h2,.pilotage .liste li{text-wrap:pretty}
+
+/* ── les visuels : halo orange derrière, ombre portée sous l'image ── */
+.visu{position:relative;display:grid;place-items:center;min-height:320px}
+.visu::before{content:"";position:absolute;inset:14% 18%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,107,44,.28),transparent);filter:blur(22px)}
+.visu img{position:relative;filter:drop-shadow(0 30px 44px rgba(0,0,0,.55))}
+.visu .tel{width:min(270px,72%)}
+.visu .legende{position:relative;margin:10px 0 0;font-size:14px;color:var(--texte-doux);text-align:center}
+
+/* les deux e-mails de la promo, légèrement tournés */
+.mails{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(440px,92%);align-items:end}
+.mails img{border-radius:18px;box-shadow:0 30px 50px -22px rgba(0,0,0,.8)}
+.mails img:first-child{transform:rotate(-4deg) translateY(10px)}
+.mails img:last-child{transform:rotate(3deg)}
+
+/* ── module GPS : en attendant la capture de l'écran verrouillé ──
+   Une grande icône (épingle + ondes, trait 1,9, orange clair) dans un disque
+   --nuit-2 de 220 px, avec le halo orange. Ce n'est PAS une maquette de téléphone. */
+.visu-gps::before{inset:6% 12%;background:radial-gradient(closest-side,rgba(255,107,44,.36),transparent);filter:blur(26px)}
+.gps-disque{position:relative;display:grid;place-items:center;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle at 50% 38%,var(--nuit-3),var(--nuit-2) 68%);color:var(--orange-clair);
+  border:1px solid rgba(255,138,76,.24);
+  box-shadow:0 0 0 12px rgba(255,138,76,.045),0 26px 60px -24px rgba(255,107,44,.5)}
+.gps-disque svg{width:112px;height:112px;overflow:visible}
+/* l'onde extérieure un peu plus discrète : on lit « ça rayonne autour de la boutique » */
+.gps-disque .onde-2{opacity:.55}
+
+/* ── invendus : une bande à part, en option ── */
+.option{margin-top:clamp(30px,5vw,50px);border:1px solid rgba(255,138,76,.3);border-radius:var(--rayon);padding:clamp(24px,4vw,40px);
+  background:linear-gradient(135deg,rgba(255,138,76,.08),rgba(255,107,44,.06));display:grid;gap:18px}
+.option > *{min-width:0}
+@media(min-width:900px){.option{grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}}
+/* h2 lui aussi : graisse 700 et interligne 1,2 des anciens h3, rendu inchangé */
+.option h2{color:var(--blanc);font-size:clamp(21px,2.6vw,28px);line-height:1.2;font-weight:700;margin:6px 0 10px}
+.option p{color:var(--texte-doux);margin:0}
+
+/* ── bloc final « Essai » : l'étiquette garde son allure d'étiquette ──
+   Dans site.css, « .essai-carte p » (plus précis que « .eti ») repeint l'étiquette
+   « Essai gratuit » en gris doux et en 16,5 px. On lui rend l'orange clair et la
+   taille des autres étiquettes. À retirer quand le socle sera corrigé. */
+.essai-carte .eti{color:var(--accent);font-size:12.5px;letter-spacing:.14em;max-width:none;margin:0 0 16px}
+@media(max-width:430px){.essai-carte .eti{font-size:11.5px;letter-spacing:.11em}}
+
+/* ── téléphone : 16 px minimum pour tout texte (cahier § 0) ── */
+@media(max-width:600px){
+  .pilotage .liste li,.visu .legende{font-size:16px}
+}
