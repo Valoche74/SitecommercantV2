@@ -10,6 +10,12 @@
 
    Règle d'or : sans essai.js, les trois étapes restent visibles l'une sous
    l'autre (le formulaire ne reçoit .par-etapes que si le script tourne).
+
+   V3 (28/09, rythme des fonds) : le chapeau reste sur la nuit ; l'essai (les
+   deux colonnes et le formulaire) passe sur BLANC — les champs, pastilles,
+   contacts et coches prennent leurs couleurs « fond clair » du socle ; ici,
+   les filets, textes, barre d'étapes et écrans de réussite / d'échec (cartes
+   crème). « Qui est derrière » passe sur CRÈME, les questions sur BLANC.
    ───────────────────────────────────────────────────────────── */
 
 /* Ce que essai.js masque reste masqué, même un bouton ou une étape qui ont leur « display ». */
@@ -17,47 +23,74 @@
 
 /* ── 1. chapeau ────────────────────────────────────────── */
 .essai-tete{padding-bottom:clamp(28px,4.4vw,48px)}
+/* 28/09 (contrôle V3) — ordinateur : « Continuer » était SOUS le premier écran (963→1015 px à
+   1440 × 900), aucun bouton orange plein visible sur la page qui convertit. Le chapeau et le haut de
+   la bande blanche se resserrent (ici et § 2), « Nom du commerce » et « Ville » passent côte à côte (§ 3). */
+@media(min-width:920px){.essai-tete{padding-bottom:28px}}
 .essai-tete h1{max-width:18ch}
 @media(min-width:920px){.essai-tete h1{max-width:24ch}}
+/* 27/09 — « Faire ma demande » (lien fléché du socle) : sur téléphone et tablette, le
+   formulaire ne commence qu'au 2e écran ; ce lien, sous le titre, y mène. La flèche
+   descend trois fois à l'arrivée, puis se tient tranquille. Grand écran : inutile
+   (le formulaire est à côté), caché. */
+.essai-aller{display:none;margin-top:16px}
+@media(max-width:919.98px){.essai-aller{display:inline-flex}}
+.essai-aller:hover svg{transform:translateY(3px)}
+@keyframes essai-fleche{0%,100%{transform:none}50%{transform:translateY(4px)}}
+.essai-aller svg{animation:essai-fleche 1.4s ease-in-out 1.2s 3}
+/* le lien apparaît avec le titre (.rev du socle) ; la transition d'apparition de site.css,
+   plus forte, lui retirerait celle du survol (couleur, soulignement) : on garde les deux. */
+.js .essai-aller.rev{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1),color .2s,text-decoration-color .2s}
 
 /* ── 2. les deux colonnes ─────────────────────────────── */
-.essai{position:relative;z-index:1;padding:0 0 clamp(64px,9vw,112px)}
+/* V3 : fond blanc sous le chapeau — juste assez d'air en haut pour que le formulaire reste près du titre */
+.essai{position:relative;z-index:1;padding:clamp(32px,4.5vw,56px) 0 clamp(64px,9vw,112px)}
 .essai-grille{display:grid;grid-template-columns:minmax(0,1fr)}
 .essai-offre{padding-bottom:clamp(36px,7vw,48px)}
-.essai-demande{border-top:1px solid var(--ligne);padding-top:clamp(34px,7vw,46px);min-width:0}
+.essai-demande{border-top:1px solid var(--ligne-claire);padding-top:clamp(34px,7vw,46px);min-width:0}
 @media(min-width:920px){
+  .essai{padding-top:24px}
   .essai-grille{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
   /* le filet vertical, sur toute la hauteur de la grille, quelle que soit la colonne la plus haute */
-  .essai-grille::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--ligne);pointer-events:none}
+  .essai-grille::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--ligne-claire);pointer-events:none}
   .essai-offre{padding:4px clamp(36px,4.6vw,64px) 0 0;position:sticky;top:calc(var(--entete) + 28px)}
   .essai-demande{border-top:0;padding:4px 0 0 clamp(36px,4.6vw,64px)}
 }
 
 /* colonne gauche */
-.essai-intro{margin:0;max-width:34em;font-size:clamp(17px,1.8vw,19.5px);line-height:1.6;color:var(--texte-doux)}
+.essai-intro{margin:0;max-width:34em;font-size:clamp(17px,1.8vw,19.5px);line-height:1.6;color:var(--gris)}
 .essai-liste{margin-top:28px;gap:14px}
-.essai-liste li{font-size:17px;line-height:1.5;color:var(--texte)}
+.essai-liste li{font-size:17px;line-height:1.5;color:var(--encre)}
 .essai-liste li::before{margin-top:.2em;width:18px;height:18px}
 .essai-offre .direct{margin-top:34px;font-size:16px}
 
 /* ── 3. le formulaire en 3 étapes ─────────────────────── */
 .formulaire{display:grid;gap:30px;margin:0}
 .etape-form{display:grid;gap:22px;min-width:0}
+/* étape 1 : « Nom du commerce » et « Ville » (28/09). Téléphone et tablette : l'un sous l'autre, même
+   écart que les autres champs ; ordinateur : côte à côte (on gagne une rangée, ~100 px). align-items:start :
+   un message d'erreur sous un seul des deux champs n'étire pas l'autre. */
+.champs-duo{display:grid;gap:22px;min-width:0}
+@media(min-width:920px){.champs-duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;align-items:start}}
 .etape-titre{font-size:clamp(24px,2.7vw,30px);line-height:1.15}
 /* le titre reçoit le focus quand on change d'étape (tabindex=-1) : pas de cadre, ce n'est pas une commande */
 .etape-titre:focus,.etape-titre:focus-visible{outline:none}
 /* sans JS, les trois étapes se suivent : un filet les sépare */
-.formulaire:not(.par-etapes) .etape-form + .etape-form{border-top:1px solid var(--ligne);padding-top:30px}
+.formulaire:not(.par-etapes) .etape-form + .etape-form{border-top:1px solid var(--ligne-claire);padding-top:30px}
 /* une étape qui arrive glisse un peu (retiré en mouvement réduit) */
 @keyframes etape-entre{from{opacity:0;transform:translateX(14px)}}
 .etape-form.entre{animation:etape-entre .38s var(--sortie)}
 
 /* l'indicateur « Étape 1 sur 3 » + la barre en trois segments (orange = fait) */
 .progression{display:grid;gap:10px}
-.progression-libelle{margin:0;font-size:15px;font-weight:600;line-height:1.3;color:var(--texte-doux);letter-spacing:.01em}
+.progression-libelle{margin:0;font-size:15px;font-weight:600;line-height:1.3;color:var(--gris);letter-spacing:.01em}
 .progression-barre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-.progression-barre span{display:block;height:6px;border-radius:3px;background:rgba(255,255,255,.14);transition:background-color .35s ease}
-.progression-barre span.fait{background:var(--orange)}
+/* 27/09 — la barre se REMPLIT de gauche à droite (au lieu de changer de couleur d'un coup) :
+   on voit qu'on avance. En mouvement réduit, le segment est plein tout de suite. */
+.progression-barre span{position:relative;display:block;height:6px;border-radius:3px;overflow:hidden;background:rgba(27,31,59,.12)}
+.progression-barre span::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--orange);
+  transform:scaleX(0);transform-origin:left center;transition:transform .5s var(--sortie)}
+.progression-barre span.fait::after{transform:scaleX(1)}
 
 /* les champs de la page : erreurs et pastilles un peu plus grandes */
 .formulaire .champ-erreur{font-size:15.5px}
@@ -74,30 +107,31 @@
 .formulaire .envoi-js .btn[aria-disabled="true"]{opacity:1}
 
 .envoi{display:grid;gap:14px}
-.envoi-note{margin:0;font-size:15px;line-height:1.45;color:var(--texte-doux)}
+.envoi-note{margin:0;font-size:15px;line-height:1.45;color:var(--gris)}
 /* sans essai.js : pas de bouton d'envoi (il ne pourrait rien envoyer), une phrase dit d'appeler */
 .formulaire:not(.par-etapes) .envoi-js{display:none}
-.envoi-sans-js{margin:0;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,138,76,.35);background:rgba(255,138,76,.08);
-  color:var(--texte);font-size:16px;line-height:1.5}
-.envoi-sans-js a{color:var(--texte);font-weight:700;white-space:nowrap;text-decoration-color:rgba(255,138,76,.6);text-underline-offset:3px}
+.envoi-sans-js{margin:0;padding:14px 16px;border-radius:14px;border:1px solid rgba(194,65,12,.35);background:#FFF5EF;
+  color:var(--encre);font-size:16px;line-height:1.5}
+.envoi-sans-js a{color:var(--encre);font-weight:700;white-space:nowrap;text-decoration-color:rgba(194,65,12,.6);text-underline-offset:3px}
 .par-etapes .envoi-sans-js{display:none}
 
 /* le piège à robots : hors de l'écran (pas display:none, que certains robots savent lire) */
 .piege{position:absolute !important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 
 /* ── 4. écrans de réussite et d'échec ─────────────────── */
+/* V3 : cartes crème sur le fond blanc (textes nuit et gris) */
 .essai-resultat{display:grid;gap:20px;justify-items:start;padding:clamp(26px,4vw,38px);border-radius:24px;
-  background:var(--nuit-2);border:1px solid var(--ligne);box-shadow:0 40px 80px -56px rgba(0,0,0,.85)}
+  background:var(--creme);border:1px solid var(--ligne-claire);box-shadow:0 30px 60px -48px rgba(27,31,59,.5)}
 .essai-resultat:focus,.essai-resultat:focus-visible{outline:none}
 .resultat-icone{display:grid;place-items:center;width:58px;height:58px;border-radius:50%}
-.resultat-ok{border-color:rgba(34,197,94,.30)}
+.resultat-ok{border-color:rgba(34,197,94,.40)}
 .resultat-ok .resultat-icone{color:var(--vert);background:rgba(34,197,94,.12);box-shadow:inset 0 0 0 1.5px rgba(34,197,94,.45)}
-.resultat-echec{border-color:rgba(255,138,76,.30)}
-.resultat-echec .resultat-icone{color:var(--accent);background:rgba(255,138,76,.12);box-shadow:inset 0 0 0 1.5px rgba(255,138,76,.45)}
-.essai-resultat p{margin:0;max-width:34em;font-size:clamp(17px,1.8vw,19px);line-height:1.55;color:var(--texte-doux)}
+.resultat-echec{border-color:rgba(194,65,12,.30)}
+.resultat-echec .resultat-icone{color:var(--orange-texte);background:rgba(194,65,12,.08);box-shadow:inset 0 0 0 1.5px rgba(194,65,12,.4)}
+.essai-resultat p{margin:0;max-width:34em;font-size:clamp(17px,1.8vw,19px);line-height:1.55;color:var(--gris)}
 .essai-resultat strong{display:block;margin-bottom:10px;font-family:var(--titre);font-weight:800;font-size:clamp(26px,3vw,34px);
-  line-height:1.1;letter-spacing:-.02em;color:var(--texte)}
-.resultat-tel{color:var(--texte);font-weight:700;white-space:nowrap;text-decoration-color:rgba(255,138,76,.6);text-underline-offset:3px}
+  line-height:1.1;letter-spacing:-.02em;color:var(--encre)}
+.resultat-tel{color:var(--encre);font-weight:700;white-space:nowrap;text-decoration-color:rgba(194,65,12,.6);text-underline-offset:3px}
 .insecable{white-space:nowrap}
 .resultat-actions{display:flex;flex-wrap:wrap;gap:12px}
 .resultat-actions .btn{min-height:52px}
@@ -121,9 +155,12 @@
 #questions .faq{margin-top:34px}
 
 /* ── 7. téléphone ─────────────────────────────────────── */
-@media(max-width:600px){
-  /* 16 px au moins sur téléphone */
+/* 16 px au moins sur téléphone ET tablette (jusqu'à 919 px depuis le 28/09 : à 768 px, ces textes
+   retombaient à 15-15,5 px, plus petits que sur téléphone) */
+@media(max-width:919.98px){
   .progression-libelle,.envoi-note,.formulaire .champ-erreur,.formulaire .pastilles span{font-size:16px}
+}
+@media(max-width:600px){
   /* boutons pleine largeur, le principal au-dessus */
   .etape-actions{flex-direction:column;align-items:stretch}
   .etape-actions > .btn,.etape-actions > .btn-lumiere{width:100%}
@@ -134,5 +171,8 @@
 /* ── 8. mouvement réduit : rien ne glisse ─────────────── */
 @media(prefers-reduced-motion:reduce){
   .etape-form.entre,.essai-resultat.entre{animation:none}
-  .progression-barre span{transition:none}
+  .progression-barre span,.progression-barre span::after{transition:none}
+  .essai-aller svg{animation:none}
+  .essai-aller:hover svg{transform:none}
+  .js .essai-aller.rev{transition:none}
 }

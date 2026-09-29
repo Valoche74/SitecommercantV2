@@ -17,9 +17,15 @@
    - clavier : flèches gauche/droite quand le bloc (ou un de ses boutons) a le focus ;
    - téléphone : glisser du doigt (pointer events, seuil 40 px) ;
    - lecteur d'écran : « Présentoir 2 sur 4 » dans .eventail-etat (aria-live),
-     écrit à chaque changement (pas au chargement : rien ne parle tout seul).
+     écrit à chaque changement (pas au chargement : rien ne parle tout seul) ;
+   - coup de pouce (27/09) : une seule fois, juste après l'entrée, l'éventail avance
+     d'une carte puis revient (~1,5 s en tout), pour montrer qu'on peut le faire
+     glisser. Rien si le visiteur a déjà touché l'éventail (doigt, souris, clavier,
+     boutons) ou s'il a la souris dessus, rien s'il n'est plus à l'écran, jamais en
+     mouvement réduit, et rien n'est annoncé au lecteur d'écran. Moins de 5 s de
+     mouvement automatique (WCAG 2.2.2).
    Mouvement réduit (window.PerifySite.mouvementReduit) : pas d'entrée animée, pas
-   d'écartement au survol, changements instantanés.
+   d'écartement au survol, pas de coup de pouce, changements instantanés.
 
    Règle d'or : rien n'est caché si ce fichier ne tourne pas. Il pose lui-même
    .eventail-pret ; sans cette classe, eventail.css montre les cartes côte à côte.
@@ -33,6 +39,8 @@
   var POUSSEE = 0.55;        // une carte du fond jamais à moins de 55 % de l'écart du centre
   var SEUIL_GLISSE = 40;     // px : un glissé plus court ne change pas de carte
   var SEUIL_APPUI = 8;       // px : en dessous, c'est un appui (pas un glissé)
+  var POUCE_ATTENTE = 350;   // ms après la fin de l'entrée avant le coup de pouce
+  var POUCE_RETOUR = 760;    // ms entre « une carte en avant » et le retour
 
   function mouvementReduit(){
     if (window.PerifySite && typeof window.PerifySite.mouvementReduit === 'boolean') return window.PerifySite.mouvementReduit;
@@ -59,6 +67,9 @@
     var entre = false;       // l'entrée a eu lieu (avant : cartes repliées, invisibles)
     var minuteurEntree = 0;
     var minuteurs = [];      // les retours des cartes qui font le tour du cercle
+    var touche = false;      // le visiteur a déjà manipulé l'éventail (plus de coup de pouce)
+    var pouceFait = false;   // le coup de pouce n'a lieu qu'une fois
+    var minuteurPouce = 0;
 
     // La case de chaque carte dans l'arc (0 = tout à gauche). La carte active occupe la
     // case du milieu (4 cartes : la 2e, celle de -4°) ; les autres suivent l'ordre du cercle.
@@ -153,7 +164,8 @@
     }
 
     // sens : +1 = vers la droite de l'arc (suivant), -1 = vers la gauche (précédent)
-    function aller(cible, sens){
+    // silencieux : rien d'annoncé au lecteur d'écran (le coup de pouce, qui n'est pas un choix du visiteur)
+    function aller(cible, sens, silencieux){
       cible = ((cible % n) + n) % n;
       if (cible === actif) return;
       var avant = actif;
@@ -161,7 +173,7 @@
       finEntree();
       actif = cible;
       survolee = -1;
-      marquer(true);
+      marquer(!silencieux);
       if (!entre) return;                               // pas encore entré : l'entrée posera tout
       var m = mesurer();
       cartes.forEach(function(c, i){
@@ -212,7 +224,34 @@
         c.style.transitionDelay = (0.12 + caseDe(i, actif) * 0.07).toFixed(2) + 's';
       });
       disposer();
-      minuteurEntree = setTimeout(finEntree, 1150 + 120 + n * 70 + 80);
+      var dureeEntree = 1150 + 120 + n * 70 + 80;
+      minuteurEntree = setTimeout(finEntree, dureeEntree);
+      minuteurPouce = setTimeout(coupDePouce, dureeEntree + POUCE_ATTENTE);
+    }
+
+    /* ── Coup de pouce : une carte en avant, puis retour (une seule fois) ── */
+    function coupDePouce(){
+      minuteurPouce = 0;
+      if (reduit || touche || pouceFait) return;
+      pouceFait = true;
+      // souris dessus, ou déjà plus à l'écran. « ouvert » ne suffit pas : pendant l'entrée, le survol
+      // est ignoré (pointerover), donc une souris posée là avant l'entrée ne l'a jamais levé.
+      if (ouvert || survolParLaSouris() || !aLEcran()) return;
+      var depart = actif;
+      aller(depart + 1, 1, true);
+      minuteurPouce = setTimeout(function(){
+        minuteurPouce = 0;
+        if (touche || actif !== (depart + 1) % n) return;
+        aller(depart, -1, true);
+      }, POUCE_RETOUR);
+    }
+    // Le visiteur prend la main : plus de coup de pouce (et celui en cours ne revient pas en arrière).
+    function prendLaMain(){
+      touche = true;
+      if (minuteurPouce) { clearTimeout(minuteurPouce); minuteurPouce = 0; }
+    }
+    function survolParLaSouris(){
+      try { return scene.matches(':hover'); } catch (e) { return false; }
     }
     function aLEcran(){
       var r = scene.getBoundingClientRect();
@@ -250,13 +289,15 @@
     }
 
     /* ── Boutons et clavier ───────────────────────────────── */
-    if (boutonPrec) boutonPrec.addEventListener('click', precedent);
-    if (boutonSuiv) boutonSuiv.addEventListener('click', suivant);
+    if (boutonPrec) boutonPrec.addEventListener('click', function(){ prendLaMain(); precedent(); });
+    if (boutonSuiv) boutonSuiv.addEventListener('click', function(){ prendLaMain(); suivant(); });
     bloc.addEventListener('keydown', function(ev){
       if (ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
-      if (ev.key === 'ArrowRight' || ev.key === 'Right') { ev.preventDefault(); suivant(); }
-      else if (ev.key === 'ArrowLeft' || ev.key === 'Left') { ev.preventDefault(); precedent(); }
+      if (ev.key === 'ArrowRight' || ev.key === 'Right') { ev.preventDefault(); prendLaMain(); suivant(); }
+      else if (ev.key === 'ArrowLeft' || ev.key === 'Left') { ev.preventDefault(); prendLaMain(); precedent(); }
     });
+    // le focus clavier sur l'éventail ou un de ses boutons : le visiteur est dessus, on ne bouge rien
+    bloc.addEventListener('focusin', prendLaMain);
 
     /* ── Doigt et souris : glisser (≥ 40 px) ou toucher une carte du fond ── */
     function carteSous(cible){
@@ -266,6 +307,7 @@
     var geste = null;
     scene.addEventListener('pointerdown', function(ev){
       if (ev.isPrimary === false || (ev.pointerType === 'mouse' && ev.button !== 0)) return;
+      prendLaMain();
       geste = { id: ev.pointerId, x: ev.clientX, y: ev.clientY, carte: carteSous(ev.target) };
       if (ev.pointerType === 'mouse') { try { scene.setPointerCapture(ev.pointerId); } catch (e) {} }
     });

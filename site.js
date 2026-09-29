@@ -9,6 +9,9 @@
    4. Compteur qui roule ([data-compte]) + window.PerifyCompteur
    5. Mot qui défile ([data-defile])
    6. Adresse e-mail assemblée (#lienMail, [data-mail]) + window.PerifyMail
+   7. Bouton d'essai dans la barre du téléphone (.entete-essai, 27/09), effacé
+      quand un autre bouton orange plein est à l'écran (.essai-cache)
+   8. Économie : ce qui tourne en boucle s'arrête hors de l'écran (.hors-ecran, 27/09)
 
    Règle d'or : rien ne reste invisible si ce fichier ne tourne pas.
    Le HTML porte toujours la valeur finale (compteur), le premier mot
@@ -415,6 +418,101 @@
       a.setAttribute('href', PerifyMail.lien(sujet));
       if (a.hasAttribute('data-mail-texte')) a.textContent = PerifyMail.adresse();
     });
+  });
+
+  /* ── 7. Bouton d'essai dans la barre du téléphone (27/09) ──
+     Sous 920 px, le bouton « Essai gratuit 14 jours » du menu était caché dans le panneau :
+     sur les pages 2 et 3, aucun bouton d'essai dans le premier écran d'un téléphone.
+     (Étude comparée du 27/09 : un bouton d'essai toujours dans la barre du haut.)
+     On pose, à gauche de « Menu », un lien vers la même adresse que le bouton du menu
+     (<a class="btn btn-o entete-essai">Essai gratuit<span class="entete-essai-plus"> 14 jours</span></a>) ;
+     site.css ne l'affiche que sous 920 px et, sous 480 px, ne montre que « Essai gratuit »
+     (les lecteurs d'écran lisent toujours « Essai gratuit 14 jours »). Pas sur la page 4 : là,
+     le bouton du menu porte aria-current="page". Sans JS : rien d'ajouté (les liens et le
+     bouton du menu passent déjà sous le logo).
+
+     UN SEUL bouton orange plein à l'écran (cahier § 0, relecture du 27/09) : tant qu'un autre
+     bouton orange plein de la page (<main> .btn-o : celui du haut de l'accueil, celui du bloc
+     final « Essai »…) est à l'écran, sous la barre, l'en-tête porte .essai-cache et site.css
+     efface le bouton de la barre (visibility : il garde sa place, rien ne bouge dans la barre,
+     et caché il ne reçoit ni clic ni focus). Il revient dès que l'autre bouton sort de l'écran.
+     L'état de départ est calculé AVANT de poser le bouton : il n'apparaît pas pour disparaître
+     aussitôt. Un bouton qui a le focus du clavier n'est jamais effacé sous le doigt. */
+  isoler('essai dans la barre', function(){
+    var entete = document.querySelector('.entete');
+    var barre = entete && entete.querySelector('.entete-barre');
+    var bouton = barre && barre.querySelector('.menu-bouton');
+    var source = entete && entete.querySelector('.menu .btn-o');
+    if (!bouton || !source || source.getAttribute('aria-current') === 'page') return;
+    if (barre.querySelector('.entete-essai')) return;         // déjà posé (HTML ou second passage)
+    var lien = document.createElement('a');
+    lien.className = 'btn btn-o entete-essai';
+    lien.setAttribute('href', source.getAttribute('href') || '/essai-gratuit');
+    lien.appendChild(document.createTextNode('Essai gratuit'));
+    var plus = document.createElement('span');
+    plus.className = 'entete-essai-plus';
+    plus.textContent = ' 14 jours';                       // espace insécable : jamais seul en début de ligne
+    lien.appendChild(plus);
+
+    // Les autres boutons orange pleins de la page, et lesquels sont à l'écran (sous la barre).
+    var autres = tous('main .btn-o');
+    var hautBarre = Math.round(entete.getBoundingClientRect().height) || 68;
+    function aLEcran(el){
+      var r = el.getBoundingClientRect();
+      var h = window.innerHeight || racine.clientHeight;
+      return (r.width > 0 || r.height > 0) && r.bottom > hautBarre && r.top < h;
+    }
+    var vus = autres.map(aLEcran);
+    function appliquer(){
+      var cacher = vus.indexOf(true) !== -1 && document.activeElement !== lien;
+      if (cacher) entete.classList.add('essai-cache'); else entete.classList.remove('essai-cache');
+    }
+    appliquer();                                              // avant la pose : pas de clignotement
+
+    barre.insertBefore(lien, bouton);                          // ordre du clavier = ordre à l'écran : logo, essai, Menu
+    entete.classList.add('a-essai');
+    if (!autres.length) return;
+    lien.addEventListener('blur', appliquer);
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){
+          var i = autres.indexOf(e.target);
+          if (i !== -1) vus[i] = e.isIntersecting;
+        });
+        appliquer();
+      }, { rootMargin: '-' + hautBarre + 'px 0px 0px 0px', threshold: 0 });
+      autres.forEach(function(el){ io.observe(el); });
+    } else {
+      // vieux navigateur : on recalcule au défilement (une fois par image au plus)
+      var prevu = false;
+      var recalculer = function(){
+        if (prevu) return;
+        prevu = true;
+        (window.requestAnimationFrame || setTimeout)(function(){ prevu = false; vus = autres.map(aLEcran); appliquer(); });
+      };
+      window.addEventListener('scroll', recalculer, { passive: true });
+      window.addEventListener('resize', recalculer);
+    }
+  });
+
+  /* ── 8. Économie : ce qui tourne en boucle s'arrête hors de l'écran (27/09) ──
+     La bande des métiers, le reflet des bordures lumineuses et tout élément [data-boucle]
+     (ex. le disque GPS de la page 3) reçoivent .hors-ecran quand ils sont à plus de 120 px
+     de l'écran : site.css met alors leur animation en pause (rien n'est caché). (accueil.js le
+     faisait pour l'accueil le 26/09 ; retiré le 27/09, le socle le fait pour toutes les pages.)
+     Mouvement réduit : rien ne tourne déjà. */
+  isoler('économie', function(){
+    if (mouvementReduit || !('IntersectionObserver' in window)) return;
+    var boucles = tous('.bande, .btn-lumiere, [data-boucle]');
+    if (!boucles.length) return;
+    var io = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        if (e.isIntersecting) e.target.classList.remove('hors-ecran');
+        else e.target.classList.add('hors-ecran');
+      });
+    }, { rootMargin: '120px 0px 120px 0px', threshold: 0 });
+    boucles.forEach(function(el){ io.observe(el); });
   });
 
   // Filet de départ : l'observateur montre d'abord le haut de page (en cascade) ; ce qui

@@ -26,7 +26,6 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="comment.css">
 <script src="site.js" defer></script>
-<script src="calcul.js" defer></script>
 </head>
 <body>
 
@@ -60,8 +59,10 @@
     </div>
   </section>
 
-  <!-- ══ LES TROIS ÉTAPES — reprises de l'ancienne page d'accueil (titres passés de h3 à h2 : le h2 d'origine est devenu le h1 de la page) ══ -->
-  <section class="bloc etapes-bloc">
+  <!-- ══ LES TROIS ÉTAPES — reprises de l'ancienne page d'accueil (titres passés de h3 à h2 : le h2 d'origine est devenu le h1 de la page).
+       V3 (28/09) : sur CRÈME, puis les chiffres sur BLANC (la nuit ne garde que le chapeau, l'essai et le pied) ;
+       « Faites le calcul » est parti sur sa propre page, /calculateur. ══ -->
+  <section class="bloc etapes-bloc creme">
     <div class="wrap">
       <div class="etapes">
         <article class="etape rev">
@@ -79,7 +80,7 @@
         </article>
         <article class="etape rev">
           <div class="etape-visu">
-            <img src="img/pass-main.webp" width="1200" height="1262" decoding="async"
+            <img class="bas" src="img/pass-main.webp" width="1200" height="1262" decoding="async"
                  alt="Deux cartes de fidélité dans l'application Cartes d'un iPhone tenu en main">
           </div>
           <div class="texte">
@@ -107,72 +108,45 @@
     </div>
   </section>
 
-  <!-- ══ EN CHIFFRES — que du vrai : des faits du produit, et une étude citée. Jamais un chiffre inventé.
+  <!-- ══ EN CHIFFRES (V2, 27/09) — que du vrai : un fait du produit (0 appli) et des études publiées,
+       VÉRIFIÉES À LA SOURCE le 27/09 (chiffre, population et mesure relus sur la page d'origine).
+       Quatre chiffres, sur une rangée à l'ordinateur : « 0 appli » en tête (comme sur l'accueil),
+       puis les avis, puis la fidélité. Chaque étude garde son organisme et son année juste dessous,
+       et un renvoi numéroté vers sa source en bas du bloc. Jamais un chiffre inventé, jamais une
+       étude présentée comme un résultat promis au commerçant (« vos ventes », « vos clients »).
+       Pas de chiffres de commerçant tant qu'aucun n'a accepté d'être cité (cahier V2 § 1.4).
        Compteurs qui roulent (site.js) : la valeur finale est écrite ici, le JS part de 0 seulement s'il tourne. ══ -->
-  <section class="chiffres" aria-labelledby="titre-chiffres">
+  <section class="bloc chiffres blanc" aria-labelledby="titre-chiffres">
     <div class="wrap">
-      <p class="eti rev" id="titre-chiffres">En chiffres, sans en inventer</p>
+      <p class="eti rev" id="titre-chiffres">En chiffres</p>
       <div class="nombres">
-        <div class="nombre rev"><b data-compte="0">0</b><span>appli à installer</span></div>
-        <div class="nombre rev"><b data-compte="2" data-suffixe="&nbsp;s">2&nbsp;s</b><span>pour ouvrir sa carte</span></div>
-        <div class="nombre rev"><b data-compte="1">1</b><span>tampon par passage et par jour</span></div>
-        <div class="nombre rev"><b data-compte="5" data-suffixe="&nbsp;s">5&nbsp;s</b><span>le geste en caisse</span></div>
-        <div class="nombre rev"><b data-compte="15" data-suffixe="&nbsp;j">15&nbsp;j</b><span>pour être en service</span></div>
-        <div class="nombre rev"><b data-compte="14" data-suffixe="&nbsp;j">14&nbsp;j</b><span>d'essai gratuit</span></div>
-        <div class="nombre large rev"><b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b><span>des Français lisent les avis avant d'acheter<sup><a href="#src-avis" aria-label="source">1</a></sup></span></div>
+        <div class="nombre rev">
+          <b data-compte="0">0</b>
+          <span>appli à installer</span>
+        </div>
+        <div class="nombre rev">
+          <b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b>
+          <span>des Français lisent les avis avant d'acheter<sup><a href="#src-1" aria-label="source 1">1</a></sup></span>
+          <small class="nombre-src">IFOP pour Guest Suite, 2023</small>
+        </div>
+        <div class="nombre rev">
+          <b data-compte="54" data-suffixe="&nbsp;%">54&nbsp;%</b>
+          <span>des Français se disent prêts à payer plus cher quand la note et le nombre d'avis Google sont élevés<sup><a href="#src-2" aria-label="source 2">2</a></sup></span>
+          <small class="nombre-src">IFOP pour Guest Suite, janvier&nbsp;2026</small>
+        </div>
+        <div class="nombre rev">
+          <b data-compte="55" data-suffixe="&nbsp;%">55&nbsp;%</b>
+          <span>des Français interrogés changeraient de commerce de proximité si un concurrent proposait de meilleurs avantages de fidélité<sup><a href="#src-3" aria-label="source 3">3</a></sup></span>
+          <small class="nombre-src">Enquête SumUp, avril&nbsp;2026, 1&nbsp;500&nbsp;Français</small>
+        </div>
       </div>
-      <p class="source rev" id="src-avis">1. IFOP pour Guest Suite, « Les Français et les avis clients », 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat,
-        75&nbsp;% le font sur Google. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir l'étude</a>.</p>
-    </div>
-  </section>
-
-  <!-- ══ FAITES LE CALCUL — un calcul, pas une promesse (calcul.js).
-       Sans JavaScript : l'exemple de départ et ses trois résultats, déjà justes. ══ -->
-  <section class="bloc blanc calcul-bloc" id="calcul" aria-labelledby="titre-calcul">
-    <div class="wrap calcul">
-      <div class="calcul-gauche">
-        <p class="eti rev">Faites le calcul</p>
-        <h2 class="titre-bloc rev" id="titre-calcul">Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte.</h2>
-        <p class="intro-bloc rev">Avec vos chiffres à vous. Les valeurs de départ ne sont qu'un exemple&nbsp;: <span class="sans-coupure">remplacez-les.</span></p>
-
-        <form class="calcul-champs rev" id="calcul-formulaire" action="#" novalidate>
-          <div class="champ">
-            <label for="calcul-panier">Panier moyen (€)</label>
-            <input id="calcul-panier" type="text" inputmode="decimal" autocomplete="off" value="9">
-          </div>
-          <div class="champ">
-            <label for="calcul-marge">Votre marge sur ce panier (%)</label>
-            <input id="calcul-marge" type="text" inputmode="decimal" autocomplete="off" value="60">
-          </div>
-          <div class="champ">
-            <label for="calcul-revient">Prix de revient du cadeau (€)</label>
-            <input id="calcul-revient" type="text" inputmode="decimal" autocomplete="off" value="1,50" aria-describedby="calcul-revient-aide">
-            <p class="champ-aide" id="calcul-revient-aide">Le prix de revient, pas le prix de vente&nbsp;: ce que le cadeau vous coûte vraiment.</p>
-          </div>
-          <div class="champ">
-            <label for="calcul-tampons">Tampons pour l'obtenir</label>
-            <input id="calcul-tampons" type="text" inputmode="decimal" autocomplete="off" value="10">
-          </div>
-        </form>
-      </div>
-
-      <div class="calcul-resultats rev">
-        <dl class="resultats">
-          <div class="resultat">
-            <dt>Un tampon vous coûte</dt>
-            <dd><b id="res-tampon" data-compte="0,15" data-decimales="2" data-suffixe="&nbsp;€">0,15&nbsp;€</b></dd>
-          </div>
-          <div class="resultat">
-            <dt>Une visite vous rapporte</dt>
-            <dd><b id="res-visite" data-compte="5,40" data-decimales="2" data-suffixe="&nbsp;€">5,40&nbsp;€</b></dd>
-          </div>
-          <div class="resultat resultat-cle">
-            <dt>Une visite de plus paie</dt>
-            <dd><b id="res-paie" data-compte="36">36</b> <span class="res-unite" id="res-paie-unite">tampons</span></dd>
-          </div>
-        </dl>
-        <p class="calcul-conclusion" id="calcul-conclusion" aria-live="polite">Autrement dit&nbsp;: si le programme fait revenir un client une fois de plus, cette visite paie <strong id="calcul-conclusion-nombre">36&nbsp;tampons</strong>.</p>
-        <p class="calcul-note">Un calcul, pas une promesse&nbsp;: le nombre de visites en plus dépend de votre commerce.</p>
+      <div class="sources rev">
+        <p class="source" id="src-1">1. IFOP pour Guest Suite, «&nbsp;Les Français et les avis clients&nbsp;», 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat.
+          <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir&nbsp;l'étude</a>.</p>
+        <p class="source" id="src-2">2. IFOP pour Guest Suite, «&nbsp;Statistiques avis clients &amp; IA&nbsp;», janvier 2026, 1&nbsp;003 Français de 18&nbsp;ans et plus.
+          <a href="https://www.guest-suite.com/blog/statistiques-avis-clients" rel="noopener">Voir&nbsp;l'étude</a>.</p>
+        <p class="source" id="src-3">3. SumUp, enquête «&nbsp;Programmes de fidélité en France&nbsp;», avril 2026, 1&nbsp;500 Français.
+          <a href="https://www.sumup.com/fr-fr/business-guide/sondage-sur-les-programmes-de-fidelite-en-france/" rel="noopener">Voir&nbsp;la&nbsp;source</a>.</p>
       </div>
     </div>
   </section>
@@ -182,7 +156,7 @@
     <div class="wrap">
       <div class="essai-carte rev">
         <p class="eti">Essai gratuit</p>
-        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
+        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
         <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
         <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
       </div>
@@ -204,6 +178,7 @@
     <nav class="pied-liens" aria-label="Pied de page">
       <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
       <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
       <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
       <a href="/aide">Aide</a><span aria-hidden="true">·</span>
       <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>

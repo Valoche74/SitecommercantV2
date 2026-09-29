@@ -43,7 +43,9 @@
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <a class="btn btn-o" href="/essai-gratuit" aria-current="page">Essai gratuit 14 jours</a>
+      <!-- sur cette page, le bouton mène au formulaire SANS recharger la page (/essai-gratuit
+           rechargeait et vidait ce qui était déjà tapé) -->
+      <a class="btn btn-o" href="#essai-demande" aria-current="page">Essai gratuit 14 jours</a>
     </nav>
   </div>
 </header>
@@ -54,10 +56,17 @@
     <div class="wrap">
       <p class="eti rev">Essai gratuit</p>
       <h1 class="rev">Quatorze jours pour l'essayer sur votre <span class="marque">comptoir</span>.</h1>
+      <!-- téléphone seulement (essai.css) : le formulaire commence au 2e écran, ce lien y mène.
+           Il vise #essai-demande (le bloc qui entoure le formulaire, jamais animé) et non #formulaire :
+           au premier toucher, le formulaire (.rev) est encore 16 px plus bas, puis remonte, et
+           « Étape 1 sur 3 » finissait collé sous l'en-tête. Il apparaît avec le titre (.rev). -->
+      <a class="lien-fleche essai-aller rev" href="#essai-demande">Faire ma demande<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
     </div>
   </section>
 
-  <section class="essai">
+  <!-- V3 (28/09, rythme des fonds) : chapeau sur la nuit, puis l'essai sur BLANC, « Qui est derrière » sur CRÈME,
+       les questions sur BLANC ; la nuit ne garde que le haut de page et le pied. -->
+  <section class="essai blanc">
     <div class="wrap essai-grille">
 
       <!-- colonne gauche : ce que comprend l'essai, puis les contacts directs -->
@@ -65,10 +74,10 @@
         <p class="essai-intro rev">Je viens installer le présentoir, je règle vos récompenses et vos couleurs, et vous voyez vos clients s'inscrire. Si ça ne vous convient pas, vous arrêtez.</p>
         <ul class="liste coches essai-liste rev">
           <li>Présentoir et mise en place compris</li>
-          <li>Vos récompenses et vos couleurs, réglées avec vous</li>
-          <li>Rien à payer si vous arrêtez pendant l'essai</li>
+          <li>Vos récompenses et vos couleurs, réglées avec&nbsp;vous</li>
+          <li>Rien à payer si vous arrêtez pendant&nbsp;l'essai</li>
           <li>Je reprends le présentoir, et les données de vos clients sont supprimées</li>
-          <li>Si vous continuez&nbsp;: douze mois, sans reconduction automatique</li>
+          <li>Si vous continuez&nbsp;: douze mois, sans reconduction&nbsp;automatique</li>
         </ul>
         <div class="direct rev">
           <a href="tel:+33667835956"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>06 67 83 59 56</a>
@@ -92,10 +101,19 @@
           <!-- Étape 1 -->
           <div class="etape-form" role="group" aria-labelledby="titre-etape-1">
             <h2 class="etape-titre" id="titre-etape-1" tabindex="-1">Votre commerce</h2>
-            <div class="champ">
-              <label for="commerce">Nom du commerce</label>
-              <input id="commerce" name="commerce" type="text" autocomplete="organization" maxlength="80" required aria-describedby="commerce-erreur">
-              <p class="champ-erreur" id="commerce-erreur" hidden></p>
+            <!-- 28/09 : « Nom du commerce » et « Ville » se suivent (ordinateur : côte à côte, essai.css) —
+                 « Continuer » remonte dans le premier écran. L'ordre du clavier suit l'ordre à l'écran. -->
+            <div class="champs-duo">
+              <div class="champ">
+                <label for="commerce">Nom du commerce</label>
+                <input id="commerce" name="commerce" type="text" autocomplete="organization" maxlength="80" required aria-describedby="commerce-erreur">
+                <p class="champ-erreur" id="commerce-erreur" hidden></p>
+              </div>
+              <div class="champ">
+                <label for="ville">Ville</label>
+                <input id="ville" name="ville" type="text" autocomplete="address-level2" maxlength="80" required aria-describedby="ville-erreur">
+                <p class="champ-erreur" id="ville-erreur" hidden></p>
+              </div>
             </div>
             <fieldset class="champ">
               <legend>Votre métier</legend>
@@ -110,11 +128,6 @@
                 <label><input type="radio" name="metier" value="Autre"><span>Autre</span></label>
               </div>
             </fieldset>
-            <div class="champ">
-              <label for="ville">Ville</label>
-              <input id="ville" name="ville" type="text" autocomplete="address-level2" maxlength="80" required aria-describedby="ville-erreur">
-              <p class="champ-erreur" id="ville-erreur" hidden></p>
-            </div>
             <div class="etape-actions" hidden>
               <button class="btn btn-o" type="button" data-suivant>Continuer</button>
             </div>
@@ -198,11 +211,11 @@
   </section>
 
   <!-- ══ QUI EST DERRIÈRE ══ -->
-  <section class="bloc blanc qui" id="qui" aria-labelledby="titre-qui">
+  <section class="bloc creme qui" id="qui" aria-labelledby="titre-qui">
     <div class="wrap qui-grille">
       <div class="qui-tete">
         <p class="eti rev">Qui est derrière</p>
-        <h2 class="titre-bloc rev" id="titre-qui">Une seule personne, que vous aurez au téléphone.</h2>
+        <h2 class="titre-bloc rev" id="titre-qui">Une seule personne, que vous aurez <span class="mot-cle">au téléphone</span>.</h2>
       </div>
       <div class="qui-texte">
         <p class="rev">Je m'appelle Valentin Carrillo. J'ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C'est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
@@ -212,10 +225,10 @@
   </section>
 
   <!-- ══ QUESTIONS FRÉQUENTES ══ -->
-  <section class="bloc" id="questions" aria-labelledby="titre-questions">
+  <section class="bloc blanc" id="questions" aria-labelledby="titre-questions">
     <div class="wrap">
       <p class="eti rev">Questions fréquentes</p>
-      <h2 class="titre-bloc rev" id="titre-questions">Ce qu'on me demande le plus souvent.</h2>
+      <h2 class="titre-bloc rev" id="titre-questions">Ce qu'on me demande <span class="mot-cle">le plus souvent</span>.</h2>
 
       <div class="faq rev">
         <details>
@@ -268,7 +281,8 @@
     <nav class="pied-liens" aria-label="Pied de page">
       <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
       <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
+      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
+      <a href="#essai-demande">Essai gratuit</a><span aria-hidden="true">·</span>
       <a href="/aide">Aide</a><span aria-hidden="true">·</span>
       <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
       <a href="/mentions-legales#donnees">Données personnelles</a>

@@ -6,8 +6,21 @@
    Ici : les classes de l'ancienne page d'accueil reprises telles quelles
    (.module, .visu, .mails, .option) et le visuel d'attente du module GPS
    (icône dans un disque, en attendant la capture d'écran verrouillé).
-   Aucune animation propre : les apparitions (.rev) et le marqueur sont
-   ceux du socle, qui respecte déjà « mouvement réduit ».
+   Les apparitions (.rev) et le marqueur sont ceux du socle.
+   27/09 (lisibilité) : premier écran resserré, UNE
+   mise en avant orange par module (le mot-clé du titre, .mot-cle du socle ;
+   au module 1, le « directement sur la carte » déjà orange du paragraphe),
+   le disque GPS qui « émet » deux fois à son apparition (ondes + anneau, en
+   pause hors de l'écran via [data-boucle]), les visuels qui réagissent au
+   survol d'un module. Tout est coupé en mouvement réduit (bas de fichier).
+   Corrections du soir (27/09) : visuel avant le texte sur téléphone, disque
+   GPS plus petit sur téléphone, plus de mot seul en fin de paragraphe,
+   contraste de l'étiquette « En option ».
+   V3 (28/09, décisions de Valentin) : chaque module a sa propre bande
+   (section .pilote), BLANC et CRÈME en alternance — textes nuit et gris,
+   ombres nuit allégées, le disque GPS garde son fond sombre. Plus d'orange
+   dans les étiquettes ni dans « directement sur la carte » (en gras, nuit) :
+   l'orange est réservé aux boutons.
    ───────────────────────────────────────────────────────────── */
 
 /* ── chapeau de page : le halo ne doit pas être coupé net ──
@@ -27,39 +40,49 @@
 /* titre équilibré : plus de « clients. » seul sur la dernière ligne (768 à 1440 px) */
 .page-tete h1{text-wrap:balance}
 
-/* la section des modules suit le chapeau de page : pas de seconde grande marge en haut */
-.pilotage{padding-top:clamp(4px,1.6vw,18px)}
+/* 27/09 — premier écran : le chapeau se resserre pour que le téléphone du 1er module remonte.
+   V3 : le 1er module est sur une bande blanche, qui commence sous le chapeau (nuit). */
+.page-tete{padding-bottom:clamp(20px,3vw,36px)}
+/* V3 : une bande par module (moins haute qu'une section ordinaire : ~80 px au lieu de 104) */
+.pilote{padding:clamp(44px,6vw,80px) 0}
+/* 28/09 (contrôle V3) : la bande blanche du 1er module avait descendu son titre et son téléphone de
+   76 px par rapport à la V2 ; le haut de la PREMIÈRE bande (et le bas du chapeau, ci-dessus) se resserre. */
+.pilote:first-child{padding-top:clamp(28px,3.5vw,48px)}
 
 /* ── les modules (texte d'un côté, vraie image de l'autre) ── */
-.module{display:grid;gap:30px;align-items:center;padding:clamp(34px,5vw,56px) 0;border-top:1px solid var(--ligne)}
-.module:first-child{border-top:0}
+/* V3 : plus de filet entre deux modules (chacun a son fond), plus de marge propre (celle de la bande) */
+.module{display:grid;gap:30px;align-items:center;padding:0;border:0}
 /* les colonnes de grille peuvent rétrécir : rien ne pousse la page en largeur */
 .module > *{min-width:0}
 @media(min-width:900px){.module{grid-template-columns:1fr 1fr;gap:60px}.module.inv .visu{order:-1}}
-/* une seule colonne (tablette) : le texte ne court pas sur toute la largeur, ~75 caractères par ligne */
-@media(max-width:899.98px){.module > .rev:first-child{max-width:36em}}
+/* une seule colonne (tablette) : le texte ne court pas sur toute la largeur, ~75 caractères par ligne.
+   27/09 — le visuel de chaque module passe AVANT son texte (comme .module.inv sur ordinateur) : sur
+   téléphone, le premier écran montrait le titre puis du texte, et le téléphone du module 1 ne
+   commençait qu'à 781 px (écran de 812). L'ordre du HTML (lecteurs d'écran) ne change pas. */
+@media(max-width:899.98px){.module > .rev:first-child{max-width:36em}.module > .visu{order:-1}}
 /* titres des modules en h2 (sous le h1, sans niveau sauté) ; l'interligne 1,2 est
    celui des anciens h3 : le rendu ne change pas */
-.module h2{font-size:clamp(23px,3vw,32px);line-height:1.2;margin:12px 0 12px;font-weight:800;color:var(--blanc)}
-.module p{color:var(--texte-doux)}
-/* « .module p » et « .option p » repeignaient les étiquettes en gris doux :
-   elles reprennent l'orange clair de toutes les étiquettes du site (.eti du socle) */
-.module .eti,.option .eti{color:var(--accent)}
-/* pas de mot seul en dernière ligne d'un titre ou d'une coche (« …du / client »,
-   « …avant la / fermeture ») */
-.pilotage h2,.pilotage .liste li{text-wrap:pretty}
+.module h2{font-size:clamp(23px,3vw,32px);line-height:1.2;margin:12px 0 12px;font-weight:800;color:var(--encre)}
+.module p{color:var(--gris)}
+/* V3 : « .module p » et « .option p » ne doivent pas toucher aux étiquettes (.eti du socle : gris texte) */
+.module .eti,.option .eti{color:var(--gris)}
+/* pas de mot seul en dernière ligne d'un titre, d'un paragraphe ou d'une coche (« …du / client »,
+   « …avant la / fermeture » ; 27/09 : « concerné. », « validité. », « tout. », « installer. »,
+   « moins. » restaient seuls selon la largeur). Le texte ne change pas. */
+.pilotage h2,.pilotage p,.pilotage .liste li{text-wrap:pretty}
 
 /* ── les visuels : halo orange derrière, ombre portée sous l'image ── */
 .visu{position:relative;display:grid;place-items:center;min-height:320px}
+/* V3 : sur fond clair, halo orange plus doux et ombre nuit (le noir à 55 % y faisait une tache) */
 .visu::before{content:"";position:absolute;inset:14% 18%;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(255,107,44,.28),transparent);filter:blur(22px)}
-.visu img{position:relative;filter:drop-shadow(0 30px 44px rgba(0,0,0,.55))}
+  background:radial-gradient(closest-side,rgba(255,107,44,.2),transparent);filter:blur(22px)}
+.visu img{position:relative;filter:drop-shadow(0 26px 36px rgba(27,31,59,.34))}
 .visu .tel{width:min(270px,72%)}
-.visu .legende{position:relative;margin:10px 0 0;font-size:14px;color:var(--texte-doux);text-align:center}
+.visu .legende{position:relative;margin:10px 0 0;font-size:14px;color:var(--gris);text-align:center}
 
 /* les deux e-mails de la promo, légèrement tournés */
 .mails{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(440px,92%);align-items:end}
-.mails img{border-radius:18px;box-shadow:0 30px 50px -22px rgba(0,0,0,.8)}
+.mails img{border-radius:18px;box-shadow:0 26px 44px -22px rgba(27,31,59,.45)}
 .mails img:first-child{transform:rotate(-4deg) translateY(10px)}
 .mails img:last-child{transform:rotate(3deg)}
 
@@ -74,24 +97,66 @@
 .gps-disque svg{width:112px;height:112px;overflow:visible}
 /* l'onde extérieure un peu plus discrète : on lit « ça rayonne autour de la boutique » */
 .gps-disque .onde-2{opacity:.55}
+/* 27/09 — le message du module est « la carte se montre toute seule » : le disque émet.
+   Les deux ondes s'allument l'une après l'autre, et un anneau s'élargit depuis le disque puis
+   s'efface. [data-boucle] : site.js met tout en pause hors de l'écran.
+   Correction du 27/09 (WCAG 2.2.2 : un mouvement qui démarre seul ne dure pas plus de 5 s) :
+   DEUX émissions quand le disque apparaît (.vu, posé par le socle), puis il se tait — 4,8 s en
+   tout, onde décalée comprise. Les images-clés n'ont pas de 100 % : chaque onde revient en douceur
+   à son opacité de repos (onde 1 pleine, onde 2 à 0,55), l'anneau finit invisible — le même
+   état qu'en mouvement réduit, sans saut à la fin. Sans JavaScript : pas de .vu, le disque reste
+   au repos. */
+@keyframes gps-onde{0%,50%{opacity:.35}25%,75%{opacity:1}}
+@keyframes gps-onde-loin{0%,50%{opacity:.2}25%,75%{opacity:.75}}
+@keyframes gps-anneau{0%{transform:scale(1);opacity:.65}100%{transform:scale(1.34);opacity:0}}
+.gps-disque::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1.5px solid rgba(255,138,76,.55);
+  pointer-events:none;opacity:0}
+@media(prefers-reduced-motion:no-preference){
+  .visu-gps.vu .gps-disque .onde-1{animation:gps-onde 4.8s ease-in-out}
+  .visu-gps.vu .gps-disque .onde-2{animation:gps-onde-loin 4.2s ease-in-out .6s backwards}
+  .visu-gps.vu .gps-disque::after{animation:gps-anneau 2.4s var(--sortie) 2}
+}
 
-/* ── invendus : une bande à part, en option ── */
-.option{margin-top:clamp(30px,5vw,50px);border:1px solid rgba(255,138,76,.3);border-radius:var(--rayon);padding:clamp(24px,4vw,40px);
-  background:linear-gradient(135deg,rgba(255,138,76,.08),rgba(255,107,44,.06));display:grid;gap:18px}
+/* 27/09 — survol d'un module (souris seulement) : son visuel réagit — le téléphone se
+   soulève un peu, les deux e-mails de la promo s'écartent. */
+@media (hover:hover) and (pointer:fine){
+  .visu .tel,.mails img{transition:transform .5s var(--sortie)}
+  .module:hover .visu .tel{transform:translateY(-8px)}
+  .module:hover .mails img:first-child{transform:rotate(-7deg) translate(-8px,14px)}
+  .module:hover .mails img:last-child{transform:rotate(6deg) translate(8px,-6px)}
+}
+
+/* ── invendus : une carte à part, en option ──
+   V3 : sur sa bande blanche, une carte crème bordée (textes nuit et gris). */
+.option{margin:0;border:1px solid var(--ligne-claire);border-radius:var(--rayon);padding:clamp(24px,4vw,40px);
+  background:var(--creme);display:grid;gap:18px}
 .option > *{min-width:0}
 @media(min-width:900px){.option{grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}}
 /* h2 lui aussi : graisse 700 et interligne 1,2 des anciens h3, rendu inchangé */
-.option h2{color:var(--blanc);font-size:clamp(21px,2.6vw,28px);line-height:1.2;font-weight:700;margin:6px 0 10px}
-.option p{color:var(--texte-doux);margin:0}
+.option h2{color:var(--encre);font-size:clamp(21px,2.6vw,28px);line-height:1.2;font-weight:700;margin:6px 0 10px}
+.option p{color:var(--gris);margin:0}
 
-/* ── bloc final « Essai » : l'étiquette garde son allure d'étiquette ──
-   Dans site.css, « .essai-carte p » (plus précis que « .eti ») repeint l'étiquette
-   « Essai gratuit » en gris doux et en 16,5 px. On lui rend l'orange clair et la
-   taille des autres étiquettes. À retirer quand le socle sera corrigé. */
-.essai-carte .eti{color:var(--accent);font-size:12.5px;letter-spacing:.14em;max-width:none;margin:0 0 16px}
-@media(max-width:430px){.essai-carte .eti{font-size:11.5px;letter-spacing:.11em}}
+/* (bloc final « Essai » : l'ancienne surcharge de l'étiquette est retirée le 27/09 —
+   le socle exclut l'étiquette de « .essai-carte p » depuis le 26/09.) */
 
-/* ── téléphone : 16 px minimum pour tout texte (cahier § 0) ── */
+/* ── téléphone : 16 px minimum pour tout texte (cahier § 0) ──
+   27/09 : le disque GPS (une simple icône d'attente) prenait 320 px de haut et laissait le plus
+   grand vide de la page ; il passe à 160 px, sans hauteur minimale. À remplacer par la capture de
+   l'écran verrouillé dès que Valentin la fournit. */
+/* 16 px jusqu'à 919 px, tablette comprise (28/09 : à 768 px, listes et légendes retombaient à 14-15,5 px) */
+@media(max-width:919.98px){.pilotage .liste li,.visu .legende{font-size:16px}}
 @media(max-width:600px){
-  .pilotage .liste li,.visu .legende{font-size:16px}
+  .visu-gps{min-height:0;padding:8px 0}
+  .gps-disque{width:160px;height:160px}
+  .gps-disque svg{width:84px;height:84px}
+}
+
+/* ── mouvement réduit : le disque ne bouge plus, les visuels restent en place ── */
+@media(prefers-reduced-motion:reduce){
+  .gps-disque .onde-1,.gps-disque .onde-2{animation:none}
+  .gps-disque::after{animation:none;display:none}
+  .visu .tel,.mails img{transition:none}
+  .module:hover .visu .tel{transform:none}
+  .module:hover .mails img:first-child{transform:rotate(-4deg) translateY(10px)}
+  .module:hover .mails img:last-child{transform:rotate(3deg)}
 }

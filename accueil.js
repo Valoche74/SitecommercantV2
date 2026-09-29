@@ -1,44 +1,72 @@
 /* ─────────────────────────────────────────────────────────────
-   PERIFY — accueil.js, le script de la page d'accueil (26/09/2026)
+   PERIFY — accueil.js, le script de la page d'accueil (26/09/2026, V2 le 27/09)
    Chargé en defer après site.js. JavaScript simple, sans dépendance.
 
    Les effets de l'accueil viennent presque tous du socle (site.css /
    site.js : marqueur, mot qui défile, bordure lumineuse, bande des
-   métiers, apparitions) ; l'éventail des présentoirs a son propre fichier
-   (eventail.js). Ce fichier ne fait qu'une chose :
+   métiers, apparitions, compteurs, pause hors écran) ; l'éventail des
+   présentoirs a son propre fichier (eventail.js). Ce fichier ne fait
+   qu'une chose :
 
-   ÉCONOMIE — ce qui tourne en boucle (la bande des métiers, le reflet de
-   la bordure lumineuse) s'arrête quand il sort de l'écran et repart quand
-   il y revient (classe .hors-ecran, règle dans accueil.css). Le reflet
-   redessine le bouton à chaque image : inutile de le faire hors de la vue,
-   surtout sur un téléphone.
+   REJOUER LES SCÈNES AU SURVOL — chaque bloc de « Tout est compris »
+   porte une petite scène dessinée qui s'anime une fois quand le bloc
+   apparaît (classe .vu, posée par site.js ; règles dans accueil.css).
+   Quand la souris arrive sur un bloc, on rejoue sa scène : on pose
+   .rejoue (retour instantané au départ), on laisse le navigateur le
+   prendre en compte, puis on la retire (le mouvement repart).
+   - souris seulement (pas au toucher : sur téléphone, le doigt qui fait
+     défiler la page passerait sur les blocs) ;
+   - jamais pendant que la scène joue déjà (durée : data-duree du bloc),
+     pour qu'un passage rapide de la souris ne la fasse pas hoqueter ;
+   - rien en mouvement réduit (les scènes y sont figées dans leur état final).
 
-   Rien n'est jamais caché : sans ce fichier, tout tourne comme avant.
-   Mouvement réduit : rien ne bouge déjà, il n'y a rien à suspendre.
+   (La pause hors écran de la bande et du bouton lumineux, qui était ici
+   le 26/09, est désormais faite par le socle pour toutes les pages.)
+
+   Rien n'est jamais caché : sans ce fichier, les scènes s'animent à
+   l'apparition et c'est tout.
    ───────────────────────────────────────────────────────────── */
 (function(){
   'use strict';
 
   try {
-    var reduit = window.PerifySite ? !!window.PerifySite.mouvementReduit : false;
-    if (!window.PerifySite) {
-      try { reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-    }
-    if (reduit || !('IntersectionObserver' in window)) return;
+    var reduit = false;
+    if (window.PerifySite && typeof window.PerifySite.mouvementReduit === 'boolean') reduit = window.PerifySite.mouvementReduit;
+    else { try { reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {} }
+    if (reduit) return;
 
-    var boucles = [].slice.call(document.querySelectorAll('.bande, .btn-lumiere'));
-    if (!boucles.length) return;
+    var souris = false;
+    try { souris = window.matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) {}
+    if (!souris) return;
 
-    var io = new IntersectionObserver(function(entrees){
-      entrees.forEach(function(e){
-        // une marge de 120 px : l'animation reprend un peu avant d'entrer à l'écran
-        if (e.isIntersecting) e.target.classList.remove('hors-ecran');
-        else e.target.classList.add('hors-ecran');
+    var blocs = [].slice.call(document.querySelectorAll('.bento-bloc'));
+    if (!blocs.length) return;
+
+    blocs.forEach(function(bloc){
+      var duree = parseInt(bloc.getAttribute('data-duree'), 10) || 1600;
+      var depuis = 0;            // moment où la scène a (re)commencé à jouer
+
+      // La première animation part quand site.js pose .vu : on note ce moment, pour qu'un
+      // survol pendant cette première animation ne la relance pas au milieu.
+      if ('MutationObserver' in window) {
+        var mo = new MutationObserver(function(){
+          if (bloc.classList.contains('vu')) { depuis = Date.now(); mo.disconnect(); }
+        });
+        mo.observe(bloc, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      bloc.addEventListener('pointerenter', function(ev){
+        if (ev.pointerType && ev.pointerType !== 'mouse') return;
+        if (!bloc.classList.contains('vu')) return;          // pas encore apparu : l'apparition jouera
+        var maintenant = Date.now();
+        if (maintenant - depuis < duree) return;             // elle joue encore
+        depuis = maintenant;
+        bloc.classList.add('rejoue');
+        void bloc.offsetWidth;                               // le navigateur prend l'état de départ
+        bloc.classList.remove('rejoue');
       });
-    }, { rootMargin: '120px 0px 120px 0px', threshold: 0 });
-
-    boucles.forEach(function(el){ io.observe(el); });
+    });
   } catch (e) {
-    if (window.console) console.error('[accueil.js] économie :', e);
+    if (window.console) console.error('[accueil.js] scènes :', e);
   }
 })();

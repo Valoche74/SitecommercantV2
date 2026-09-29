@@ -3,6 +3,8 @@
 > Fichier de TRAVAIL pour les agents qui construisent les pages. **Pas publié** (`.vercelignore`).
 > Les textes et les règles viennent du cahier `EN-COURS/IMAGE/design-kit/REFONTE-4-PAGES.md` : il prime
 > sur tout. Ici : le HTML commun prêt à copier, et le mode d'emploi de `site.css` / `site.js`.
+> **27/09** : les retours de Valentin (`REFONTE-V2.md`) priment sur le premier cahier là où ils le
+> contredisent ; les ajouts du socle pour la lisibilité et la fluidité sont au **§ 12**.
 
 ## 0. À savoir avant de commencer
 
@@ -17,7 +19,9 @@
   `.piliers`, `.nombres`, `.hero`…) ne sont PAS dans le socle : reprends-les dans ta feuille.
 - Chemins **relatifs** pour les fichiers (`site.css`, `img/…`) ; liens entre pages **absolus sans .html**
   (`/comment-ca-marche`) — `cleanUrls`. Fins de ligne des nouveaux fichiers : LF.
-- Aucun script externe, aucun jaune, aucun chiffre/prix/texte hors cahier, aucun logo de marque tierce.
+- Aucun script externe, aucun jaune, aucun chiffre/prix/texte hors cahier, aucun logo de marque tierce
+  (seule exception, V2 § 1.1 : les logos OFFICIELS de la grille « Ça marche avec », jamais téléchargés
+  sans accord).
 - Essais : `node _outils/tests/lancer-tous.mjs --seulement "des pages"` (syntaxe + catch des pages
   ET des .js du site : `site.js`, `accueil.js`, `eventail.js`, `calcul.js`, `essai.js` — si ta page n'a pas de .js
   prévu par le cahier, dis-le, l'essai le réclamera). Capture téléphone : `node _outils/apercu-mobile.mjs`.
@@ -173,15 +177,22 @@ La flèche est dessinée (SVG) : ne pas ajouter de « → » dans le texte.
 </footer>
 ```
 
-Sous 920 px, les liens passent à la ligne : site.css masque alors les points « · » (aucun ne reste seul
+Sous 960 px (920 jusqu'au 28/09 : avec le 7e lien « Faites le calcul », un point restait seul entre 920
+et 929 px), les liens passent à la ligne : site.css masque alors les points « · » (aucun ne reste seul
 en bout de ligne) et les sépare par un espace. Garde les `<span aria-hidden="true">·</span>` tels quels.
+Chaque lien fait au moins 48 × 48 px (« Aide » compris).
 
 ## 7. Les effets du socle — classes et attributs
 
 ### Apparitions — `.rev` (→ `.vu`)
-Tout élément `.rev` monte en fondu quand il arrive à l'écran (cascade de 70 ms). Sans JS : visible.
-Avec la ligne `.js` mais sans site.js : visible au bout de 3 s (filet). Mouvement réduit : visible, immobile.
-Ne mets pas `.rev` sur un élément dont ton script mesure la position au chargement (il est décalé de 22 px).
+Tout élément `.rev` apparaît quand il arrive à l'écran (cascade de 70 ms, 280 ms au plus). Depuis le
+27/09, trois gestes selon ce qu'il est (plus rien n'apparaît « tout pareil ») :
+- titres, cartes, blocs : fondu + montée de **16 px** (0,7 s) ;
+- texte `p.rev` et étiquette `.eti.rev` : **simple fondu** de 0,5 s, sans bouger ;
+- visuels `.visu.rev` et `.hero-visu.rev` : fondu + **léger zoom** (95 % → 100 %, 1 s).
+Sans JS : visible. Avec la ligne `.js` mais sans site.js : visible au bout de 3 s (filet). Mouvement
+réduit : visible, immobile. Ne mets pas `.rev` sur un élément dont ton script mesure la position au
+chargement (il est décalé de 16 px, ou réduit à 95 % pour un visuel).
 
 ### Effet 1 — le marqueur : `<span class="marque">mot</span>`
 Barre orange sous le bas des lettres, derrière le texte, qui se dessine de gauche à droite 0,35 s après
@@ -252,6 +263,10 @@ réduit. Pure CSS : tourne aussi sans JS. Les deux listes doivent être IDENTIQU
 | `.lead` / `.intro-bloc` | chapô / texte d'introduction d'une section |
 | `.centre` | centre le texte et les blocs `.titre-bloc`, `.intro-bloc`, `.lead` |
 | `.doux` / `.fort` | texte doux / mot fort en orange |
+| `.mot-cle` | 27/09 — LE mot-clé d'un titre de section, en orange (voir § 12) |
+| `.lien-fleche` | 27/09 — lien texte fléché, 48 px (voir § 12) |
+| `.survol` | 27/09 — carte qui monte de 4 px au survol de la souris (voir § 12) |
+| `[data-boucle]` | 27/09 — animation en boucle mise en pause hors de l'écran (voir § 12) |
 | `.actions` | rangée de boutons (retour à la ligne, écart 12 px) |
 | `.btn` + `.btn-o` / `.btn-ghost` | bouton plein orange (texte nuit) / contour. UN SEUL `.btn-o` visible par écran (hors en-tête) |
 | `.liste` | liste sans puces (avec tes SVG de coche, comme l'ancienne page) |
@@ -297,3 +312,109 @@ Pour le repli du formulaire (essai.js) : `PerifyMail.lien(sujet, corps)` → `ma
 Les quatre présentoirs sont des visuels pleins (aucun bord à rogner), QR du présentoir net (permis).
 Les badges Apple/Google qu'on y voit font partie de la vraie image du présentoir : c'est permis, ce n'est
 pas de la décoration.
+
+## 12. Ajouts du 27/09 — lisibilité et fluidité (étude comparée avec TheGiftsClub)
+
+Cahier : `EN-COURS/IMAGE/design-kit/REFONTE-V2.md` § 1.5. Aucune classe existante renommée ni retirée.
+
+### Le mot-clé d'un titre — `.mot-cle`
+```html
+<h2 class="titre-bloc rev">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
+```
+UN mot (ou groupe de mots) par titre de section, en orange clair sur nuit (6,9:1), orange texte sur
+`.blanc` / `.creme` (5,2:1). Le texte ne change pas : on entoure un mot existant. En faisant défiler, on
+saisit le sujet en une seconde. Ce n'est PAS le marqueur (`.marque` : barre orange, un seul par page, sur
+le h1). **Proposition à faire trancher par Valentin** : les mots choisis sont listés dans le rendu des
+agents.
+
+### Le lien fléché — `.lien-fleche`
+```html
+<a class="lien-fleche" href="/comment-ca-marche">Voir comment ça marche<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+```
+Texte en gras, souligné orange clair (orange texte sur blanc), flèche orange qui glisse de 4 px vers la
+droite au survol. Cible de 48 px. Page 4 : `.essai-aller` (« Faire ma demande », flèche ↓, téléphone
+seulement) s'en sert.
+
+### Cartes qui réagissent au survol — `.survol` (et automatique pour 4 cartes)
+Une carte survolée à la souris monte de 4 px, prend une ombre (plus légère sur fond blanc/crème) et, si
+elle a un bord, un liseré orange clair. **Automatique** pour `.bento-bloc`, `.pilier` (page 1), `.etape`,
+`.nombre` (page 2) ; ailleurs, ajoute la classe `survol` (page 3 : `.option`). Marche aussi sur une
+carte `.rev`. Pour donner à tes cartes un autre survol, écris dans ta feuille les MÊMES sélecteurs que
+site.css (§ 18 : `.bento-bloc:hover, .js .bento-bloc.vu:hover`) — ta feuille passe après et l'emporte ;
+avec un sélecteur plus faible, le socle gagnerait (la fin d'apparition `.js .rev.vu{transform:none}`
+écrase tout `:hover` moins précis). Tactile : rien. Mouvement réduit : ni montée ni transition.
+
+### Économie — `[data-boucle]` → `.hors-ecran`
+site.js pose `.hors-ecran` sur la bande des métiers, les `.btn-lumiere` et tout élément `[data-boucle]`
+à plus de 120 px de l'écran ; site.css met alors en pause leurs animations (l'élément ET tout ce qu'il
+contient, pseudo-éléments compris). Rien n'est caché. Pour une animation en boucle à toi : pose
+`data-boucle` sur son conteneur, sans rien écrire d'autre. (accueil.js le faisait pour l'accueil le
+26/09 ; retiré le 27/09 : seul le socle le fait, pour toutes les pages.)
+
+### Le bouton d'essai dans la barre du téléphone — `.entete-essai` (rien à écrire)
+Sous 920 px, site.js pose « Essai gratuit » (lu « Essai gratuit 14 jours ») dans la barre, à gauche de
+« Menu », sur toutes les pages SAUF la page 4 (dont le bouton du menu porte `aria-current="page"`).
+C'est ce que fait TheGiftsClub (étude du 27/09 : bouton d'essai dans sa barre du haut sur ses 4 pages,
+aucune barre fixe en bas). L'en-tête est collant : le bouton est toujours à portée, sans jamais masquer
+un contenu ni le pied de page. Le panneau du menu ne répète alors pas le bouton orange. De 480 à 919 px :
+« Essai gratuit 14 jours » en entier. Sous 360 px : pas la place, le bouton reste dans le panneau.
+Sans JS : rien d'ajouté. Copié dans doc.css (aide, mentions). Texte en 16 px (relecture du 27/09).
+
+**Un seul bouton orange plein à l'écran** (relecture du 27/09) : tant qu'un autre bouton orange plein
+de la page (`main .btn-o` : le bouton du haut de l'accueil, celui du bloc final « Essai »…) est à
+l'écran, sous la barre, site.js pose `.essai-cache` sur `.entete` et le bouton de la barre s'efface en
+fondu (`visibility:hidden` : il garde sa place, rien ne bouge, et caché il ne reçoit ni clic ni focus).
+Il revient dès que l'autre bouton sort de l'écran. Rien à écrire dans ta page : tout `.btn-o` que tu
+poses dans `<main>` est pris en compte. Sur ordinateur, le bouton du menu reste affiché (exception
+« hors en-tête » du § 8, à faire trancher par Valentin).
+
+**Page 4** : le bouton du menu qui porte `aria-current="page"` n'est plus orange plein mais un
+**contour** orange clair (toutes largeurs) : le seul bouton orange plein de l'écran reste celui du
+formulaire.
+
+### Divers
+- FAQ : la question survolée passe en orange clair (orange texte sur blanc).
+- `.bloc` garde ses marges (étude : on a déjà plus d'air entre les sections que TheGiftsClub ; l'air se
+  met DANS les blocs — moins de texte, visuels plus grands). Si l'accueil paraît long après la V2 :
+  `.bloc{padding:clamp(56px,7vw,96px) 0}` (à décider, pas fait).
+
+## 13. V3 du 28/09 — décisions de Valentin (priment sur les § précédents)
+
+- **La page « Faites le calcul »** : `calculateur.html` (`/calculateur`) + `calculateur.css` + `calcul.js`
+  (inchangé). L'étiquette, le titre (devenu le h1, marqueur sur « rapporte ») et la phrase d'introduction sont
+  dans le chapeau ; le bloc blanc ne garde que les 4 champs et le panneau des résultats (ordinateur : champs sur
+  une ligne, résultats côte à côte). Liens : la carte `.vers-calcul` de l'accueil et une ligne « Faites le
+  calcul » dans le pied de page de TOUTES les pages (après « Ce que vous pilotez ») — jamais dans le menu du haut.
+  Page ajoutée à `_outils/tests/lancer-tous.mjs` (PAGES). Pied de page type (§ 6) :
+  `<a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>` entre « Ce que vous pilotez » et
+  « Essai gratuit » (`aria-current="page"` sur la page du calcul).
+- **L'orange est réservé aux boutons** : `.eti` en `--texte-doux` sur la nuit, `--gris` sur blanc/crème (12 px
+  minimum sur téléphone) ; `.mot-cle` prend la couleur du titre (les `<span class="mot-cle">` restent dans les
+  pages : une ligne de `site.css` suffit à les recolorer) ; le mot qui défile est blanc (nuit sur fond clair),
+  seul son cadre à coins reste orange ; « Suite : » en `--texte-doux` ; `.fort` en gras de la couleur du texte.
+  Restent orange : les boutons, le marqueur (un mot par page), les petits repères (coches, renvois ¹, flèches,
+  soulignés des liens, pastilles numérotées, traits des chiffres) et les scènes dessinées.
+- **Rythme des fonds** : la nuit ne garde que le héros / chapeau de page, le bloc final « Essai », « Suite » et
+  le pied. Les autres sections alternent `.blanc` et `.creme` (accueil : présentoir blanc → chiffres crème →
+  ce que ça change blanc → tout est compris crème → ça marche avec blanc ; page 2 : étapes crème → chiffres
+  blanc ; page 3 : une bande par module, blanc/crème en alternance ; page 4 : essai blanc → qui crème → questions
+  blanc ; calcul : blanc). Les scènes illustrées, les visuels des étapes (panneau nuit posé à 10 px du bord de la
+  carte), le disque GPS et le panneau des résultats gardent leur fond sombre dans leur propre bloc.
+- **Un seul bouton orange plein à l'écran, en-tête compris** : sur ordinateur, `.entete.essai-cache .menu > .btn-o`
+  passe en contour (même signal que le bouton de la barre du téléphone, § 12). Copié dans `doc.css`.
+- **Accueil, téléphone et tablette (< 960 px)** : `.hero-texte{display:contents}` — l'image monte sous
+  « Pensée pour les… », plus grande, collée au bord droit de l'écran ; elle entre en entier dans le premier écran
+  de 390 × 844. L'ordre du HTML ne change pas. Le bouton d'essai du héros passe sous l'image : pendant ce temps,
+  celui de la barre est affiché.
+- **Scène « Vérification en caisse »** : « Code valide ✓ » (texte à 12 unités) à partir de 1024 px ; en dessous,
+  la pastille ne montre qu'une grande coche (`.sc-code-texte` / `.sc-code-coche`).
+- **Contrôle du 28/09 (soir) — retouches sans changer un texte** : un filet gris clair (`--ligne-claire`) entre
+  deux sections claires qui se suivent (`.blanc + .creme`, `.creme + .blanc` : crème et blanc ne diffèrent que de
+  1,05:1) ; le marqueur passe SOUS les lettres (`bottom:-.06em; height:.2em`, son haut affleure la ligne de base) ;
+  chapô de page en `text-wrap:pretty` ; sans JavaScript, le bouton du menu est en contour sur ordinateur ; page 4 :
+  « Nom du commerce » et « Ville » côte à côte sur ordinateur (`.champs-duo`), haut de la bande resserré —
+  « Continuer » dans le premier écran de 1440 × 900 ; page 2 : haut des étapes resserré, pastilles 1-2-3 en disque
+  blanc bordé d'orange texte (plus d'aplat orange qui ressemble à un bouton) ; page 3 : 1re bande resserrée,
+  « Données de démonstration. » sous la capture de l'offre ; accueil : sur ordinateur, l'image du héros descend
+  jusqu'au bas de la section (le bras sort par le bord) ; sur écran peu haut, sa largeur suit la hauteur de
+  l'écran ; calcul : plus d'air sous le panneau sombre ; 16 px minimum jusqu'à 919 px (tablette comprise).

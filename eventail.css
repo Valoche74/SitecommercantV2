@@ -26,8 +26,9 @@
    ───────────────────────────────────────────────────────────── */
 
 .eventail{
-  /* largeur d'une carte : ~58 % de l'écran sur téléphone (cahier), 220-272 px au-delà */
-  --l:min(58vw,250px);
+  /* largeur d'une carte : 66 % de l'écran sur téléphone (27/09 : 58 % faisait des visuels plus
+     petits que le texte ; l'éventail est remonté en 2e section), 220-272 px au-delà */
+  --l:min(66vw,270px);
   --ressort:cubic-bezier(.34,1.56,.64,1);
   --ressort-entree:cubic-bezier(.34,1.56,.64,1);
   position:relative;border-radius:24px}
@@ -107,7 +108,15 @@
 .blanc .eventail-prec,.blanc .eventail-suiv,.creme .eventail-prec,.creme .eventail-suiv{border-color:rgba(27,31,59,.25);background:transparent;color:var(--encre)}
 .blanc .eventail-prec:hover,.blanc .eventail-suiv:hover,.creme .eventail-prec:hover,.creme .eventail-suiv:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
 .blanc .eventail-point,.creme .eventail-point{background:rgba(27,31,59,.3)}
+/* V3 : sans cette règle, la précédente (même précision, écrite après) repeignait le point actif en gris */
+.blanc .eventail-point.est-actif,.creme .eventail-point.est-actif{background:var(--encre)}
 .blanc .eventail-carte::after,.creme .eventail-carte::after{box-shadow:inset 0 0 0 1px rgba(27,31,59,.08)}
+/* V3 (28/09) : l'accueil pose désormais l'éventail sur BLANC — ombres nuit plus légères (le noir à
+   85 % y faisait des taches), cartes du fond à peine voilées */
+.blanc .eventail-carte,.creme .eventail-carte{box-shadow:0 22px 40px -22px rgba(27,31,59,.5),0 4px 10px -4px rgba(27,31,59,.18)}
+.blanc .eventail-pret .eventail-carte.est-active,.creme .eventail-pret .eventail-carte.est-active{box-shadow:0 30px 52px -24px rgba(27,31,59,.6),0 6px 14px -6px rgba(27,31,59,.22)}
+.blanc .eventail-pret .eventail-carte:not(.est-active)::after,.creme .eventail-pret .eventail-carte:not(.est-active)::after{background:rgba(27,31,59,.12)}
+.blanc .eventail-pret .eventail-carte:not(.est-active):hover::after,.creme .eventail-pret .eventail-carte:not(.est-active):hover::after{background:rgba(27,31,59,.03)}
 
 /* ── 4. mouvement réduit : cartes posées, changements instantanés ── */
 .eventail-reduit .eventail-carte,.eventail-reduit .eventail-carte::after,.eventail-reduit .eventail-point,

@@ -13,6 +13,13 @@
    ⚠️ L'en-tête, le menu téléphone et le pied de page sont COPIÉS dans
    doc.css (aide, mentions légales) : toute retouche ici s'y reporte.
 
+   V3 (28/09, décisions de Valentin) : l'ORANGE EST RÉSERVÉ AUX BOUTONS —
+   étiquettes, mots-clés des titres, mot qui défile, « Suite : » et mots
+   forts ne sont plus orange (seul le marqueur d'un mot par page le reste) ;
+   les sections alternent BLANC / CRÈME, la nuit ne garde que le haut de
+   page, le bloc final « Essai » et le pied ; sur ordinateur, le bouton du
+   menu passe en contour quand un autre bouton orange plein est à l'écran.
+
    Règle d'or : rien ne reste invisible si le JavaScript ne tourne pas.
      html.js        posé par la ligne de script du <head> (voir _GABARIT.md)
      html.site-pret posé par site.js quand il démarre
@@ -65,16 +72,28 @@ section{position:relative;z-index:1}
 .creme :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline-color:var(--orange-texte)}
 
 /* ── 2. étiquettes, titres, chapôs ─────────────────────── */
-.eti{font-family:var(--texte-ff);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
-.blanc .eti,.creme .eti{color:var(--orange-texte)}
-@media(max-width:430px){.eti{font-size:11.5px;letter-spacing:.11em}}
+/* V3 (28/09) : plus d'orange — gris clair sur la nuit (10:1), gris texte sur blanc/crème (9,6:1).
+   L'orange ne sert plus qu'aux boutons : l'œil va droit au bouton d'essai. */
+.eti{font-family:var(--texte-ff);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--texte-doux);margin:0 0 14px}
+.blanc .eti,.creme .eti{color:var(--gris)}
+/* téléphone : jamais sous 12 px pour des capitales (V3) ; l'espacement se resserre à la place */
+@media(max-width:430px){.eti{font-size:12px;letter-spacing:.1em}}
 .titre-bloc{max-width:26ch}
 .lead{font-size:clamp(17px,1.9vw,19.5px);color:var(--texte-doux);max-width:34em;margin-top:22px}
 .intro-bloc{color:var(--texte-doux);max-width:58ch;margin-top:16px;font-size:clamp(16.5px,1.7vw,18px)}
 .blanc .intro-bloc,.creme .intro-bloc,.blanc .lead,.creme .lead{color:var(--gris)}
 .doux{color:var(--texte-doux)}
-.fort{color:var(--accent);font-weight:600}
-.blanc .fort,.creme .fort{color:var(--orange-texte)}
+/* V3 (28/09) : le mot fort reste en gras, de la couleur du texte (plus d'orange) */
+.fort{color:var(--texte);font-weight:700}
+.blanc .fort,.creme .fort{color:var(--encre)}
+/* 27/09 — le MOT-CLÉ d'un titre de section : <h2>… <span class="mot-cle">quatorze jours</span> …</h2>.
+   V3 (28/09, décision de Valentin : l'orange est réservé aux boutons) : il n'est PLUS coloré, il
+   prend la couleur du titre. Les <span class="mot-cle"> restent dans les pages (rien à retirer) :
+   une seule ligne à changer ici pour les recolorer si on y revient.
+   Ce n'est PAS le marqueur (.marque : la barre orange, une seule par page, sur le h1, qui reste). */
+/* nowrap : le groupe n'est jamais coupé en deux lignes (« quatorze / jours ») — garder
+   des groupes courts (≤ 20 signes) : ils tiennent à 375 px même à la plus grande taille de h2 */
+.mot-cle{color:inherit;white-space:nowrap}
 .centre{text-align:center}
 .centre .titre-bloc,.centre .intro-bloc,.centre .lead{margin-left:auto;margin-right:auto}
 
@@ -84,6 +103,10 @@ section{position:relative;z-index:1}
 .creme{background:var(--creme);color:var(--encre)}
 .blanc h2,.blanc h3,.creme h2,.creme h3{color:var(--encre)}
 .blanc p,.creme p{color:var(--gris)}
+/* 28/09 (contrôle V3) : le crème et le blanc ne diffèrent que de 1,05:1 — sur beaucoup d'écrans, deux
+   bandes claires qui se suivent se fondaient l'une dans l'autre. Un filet gris clair marque la limite
+   (le crème n'est pas foncé : la teinte reste celle choisie par Valentin). */
+.blanc + .creme,.creme + .blanc{border-top:1px solid var(--ligne-claire)}
 
 /* chapeau des pages 2 à 4 : moins haut que le héros d'accueil, halo orange */
 .page-tete{position:relative;z-index:1;padding:clamp(44px,7vw,84px) 0 clamp(30px,5vw,56px);overflow:hidden}
@@ -100,7 +123,8 @@ section{position:relative;z-index:1}
   width:min(980px,130vw);height:min(620px,120vw);border-radius:50%;
   background:radial-gradient(closest-side,rgba(255,107,44,.22),rgba(255,107,44,.08) 55%,transparent 72%);filter:blur(8px)}
 .page-tete h1{font-size:clamp(34px,5.2vw,56px);max-width:20ch}
-.page-tete .lead{max-width:40em}
+/* text-wrap:pretty (28/09) : pas de mot seul sur la dernière ligne d'un chapô (« remplacez-les. » du calculateur) */
+.page-tete .lead{max-width:40em;text-wrap:pretty}
 
 /* ── 4. boutons ────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 26px;border-radius:999px;
@@ -118,6 +142,18 @@ section{position:relative;z-index:1}
 .blanc .btn-ghost:hover,.creme .btn-ghost:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
 .btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* 27/09 — le LIEN FLÉCHÉ : un lien texte en gras, souligné orange clair, avec sa flèche SVG
+   (<a class="lien-fleche" href="…">Texte<svg …></svg></a>). Cible de 48 px. La flèche glisse
+   de 4 px au survol (vers la droite ; une page peut la faire descendre pour une flèche ↓). */
+.lien-fleche{display:inline-flex;align-items:center;gap:8px;min-height:48px;font-weight:700;font-size:16.5px;line-height:1.3;
+  color:var(--texte);text-decoration:underline;text-decoration-color:rgba(255,138,76,.55);text-decoration-thickness:2px;text-underline-offset:.22em;
+  transition:color .2s,text-decoration-color .2s}
+.lien-fleche svg{flex:none;color:var(--accent);transition:transform .25s var(--sortie)}
+.lien-fleche:hover{text-decoration-color:var(--accent)}
+.lien-fleche:hover svg{transform:translateX(4px)}
+.blanc .lien-fleche,.creme .lien-fleche{color:var(--encre);text-decoration-color:rgba(194,65,12,.5)}
+.blanc .lien-fleche svg,.creme .lien-fleche svg{color:var(--orange-texte)}
 
 /* Effet 3 — BORDURE LUMINEUSE (modèle « moving border »), sur le bouton d'essai seulement :
    <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
@@ -141,7 +177,8 @@ section{position:relative;z-index:1}
 
 /* ── 5. en-tête + menu téléphone (collant, flou) ──────── */
 .entete{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  background:rgba(27,31,59,.78);border-bottom:1px solid var(--ligne)}
+  /* V3 : 0,94 au lieu de 0,78 — au-dessus des sections blanches, l'en-tête virait au gris-bleu délavé */
+  background:rgba(27,31,59,.94);border-bottom:1px solid var(--ligne)}
 .entete-barre{display:flex;align-items:center;gap:20px;min-height:var(--entete)}
 .entete-logo{display:inline-flex;align-items:center;min-height:48px;margin-right:auto;flex:none}
 .entete-logo img{height:26px;width:auto}
@@ -155,7 +192,26 @@ section{position:relative;z-index:1}
 .menu-liens a[aria-current="page"]{color:var(--texte)}
 .menu-liens a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:9px;height:2px;border-radius:2px;background:var(--accent)}
 .menu .btn{min-height:48px;padding:11px 22px;font-size:15px}
-.menu .btn[aria-current="page"]{box-shadow:0 0 0 2px var(--nuit),0 0 0 4px var(--accent)}
+/* la page courante (page 4 : le bouton d'essai porte aria-current) : un CONTOUR orange clair,
+   plus un bouton plein — il ne mène nulle part de nouveau, et le seul bouton orange plein de
+   l'écran reste celui du formulaire (« Continuer », « Demander mon essai gratuit ») ; relecture
+   du 27/09, cahier § 0. Texte clair sur nuit, bord orange clair (6,9:1). */
+.menu .btn[aria-current="page"]{background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
+.menu .btn[aria-current="page"]:hover{background:rgba(255,138,76,.10);box-shadow:none}
+/* V3 (28/09) — ORDINATEUR : jamais deux boutons orange pleins à l'écran. Tant qu'un autre bouton
+   orange plein de la page (<main> .btn-o : haut de l'accueil, bloc final « Essai »…) est visible,
+   site.js pose .essai-cache sur l'en-tête (le même signal qui efface le bouton de la barre du
+   téléphone) : le bouton du menu passe en CONTOUR orange clair, comme celui de la page 4. Il
+   redevient plein dès que l'autre bouton sort de l'écran. Sans JS : pas de .essai-cache, plein. */
+@media(min-width:920px){
+  .menu > .btn-o{transition:transform .18s ease,box-shadow .25s ease,border-color .25s,color .25s}
+  .entete.essai-cache .menu > .btn-o:not([aria-current]){background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
+  .entete.essai-cache .menu > .btn-o:not([aria-current]):hover{background:rgba(255,138,76,.10);box-shadow:none}
+  /* sans JavaScript (28/09) : site.js ne peut pas poser .essai-cache — le bouton du menu reste en
+     contour, et le seul bouton orange plein est celui de la page (héros, bloc final « Essai »…) */
+  html:not(.js) .menu > .btn-o{background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
+  html:not(.js) .menu > .btn-o:hover{background:rgba(255,138,76,.10);box-shadow:none}
+}
 .menu-bouton{display:none;align-items:center;gap:9px;min-height:48px;min-width:48px;padding:0 16px 0 14px;border-radius:999px;
   border:1.5px solid rgba(255,255,255,.24);background:transparent;color:var(--texte);cursor:pointer;
   font-family:var(--texte-ff);font-size:16px;font-weight:600;transition:border-color .2s,background .2s}
@@ -169,9 +225,28 @@ section{position:relative;z-index:1}
 .entete.ouvert .menu-bouton .trait-3{transform:translateY(-6px) rotate(-45deg)}
 @keyframes menu-entre{from{opacity:0;transform:translateY(-8px)}}
 
+/* 27/09 — le bouton d'essai DANS LA BARRE du téléphone (étude comparée du 27/09 : un bouton
+   d'essai toujours en haut de l'écran, sur toutes les pages). site.js le pose à gauche de
+   « Menu » (.entete-essai) sur toutes les pages sauf la page 4 (son bouton porte
+   aria-current) ; rien à écrire dans le HTML. Il vit dans l'en-tête collant : toujours à
+   portée, il ne masque jamais un contenu ni le pied de page. Sans JS : pas de bouton ajouté
+   (les liens et le bouton du menu passent déjà sous le logo). Grand écran : caché. */
+.entete-essai{display:none}
+
 @media(max-width:919.98px){
   /* avec JavaScript : le bouton « Menu » ouvre un panneau sous l'en-tête */
   .js .menu-bouton{display:inline-flex}
+  /* 16 px (cahier § 0 : texte ≥ 16 px sur téléphone) — tient sur une ligne de 360 à 919 px */
+  .js .entete-essai{display:inline-flex;flex:none;gap:0;min-height:48px;padding:11px 18px;font-size:16px;
+    transition:transform .18s ease,box-shadow .25s ease,opacity .25s ease,visibility 0s}
+  /* un seul bouton orange plein à l'écran : site.js pose .essai-cache sur l'en-tête tant qu'un
+     autre bouton orange plein de la page (haut de l'accueil, bloc final « Essai »…) est à
+     l'écran. visibility et non display : le bouton garde sa place (rien ne bouge dans la barre)
+     et, caché, il ne reçoit ni clic ni focus. Fondu de 0,25 s dans les deux sens. */
+  .js .entete.essai-cache .entete-essai{visibility:hidden;opacity:0;
+    transition:transform .18s ease,box-shadow .25s ease,opacity .25s ease,visibility 0s linear .25s}
+  /* le panneau ouvert ne répète pas le bouton orange déjà visible dans la barre */
+  .js .entete.a-essai .menu > .btn{display:none}
   .js .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
     padding:6px var(--gutter) 22px;background:var(--nuit);border-bottom:1px solid var(--ligne);
     box-shadow:0 30px 50px -24px rgba(0,0,0,.7)}
@@ -188,13 +263,31 @@ section{position:relative;z-index:1}
   html:not(.js) .menu{flex-wrap:wrap;gap:4px 18px;width:100%}
   html:not(.js) .menu-liens{flex-wrap:wrap;gap:0 18px}
 }
+/* sous 480 px, le bouton de la barre dit « Essai gratuit » (« 14 jours » reste lu par les
+   lecteurs d'écran) ; sous 400 px la barre se resserre (logo + bouton + « Menu » tiennent
+   dès 360 px) ; sous 360 px, pas la place : le bouton reste dans le panneau du menu. */
+@media(max-width:479.98px){
+  .entete-essai-plus{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+}
+@media(max-width:399.98px){
+  .entete-barre{gap:10px}
+  .js .entete-essai{padding:11px 15px}
+}
+@media(max-width:359.98px){
+  .js .entete-essai{display:none}
+  .js .entete.a-essai .menu > .btn{display:inline-flex}
+}
 
 /* ── 6. Effet 1 — le MARQUEUR (modèle « text-highlight ») ─
    <span class="marque">mot</span> : une barre orange sous le bas des lettres,
    derrière le texte, qui se dessine de gauche à droite quand le titre apparaît.
    Un seul par page. Sans JS : la barre est déjà là. */
 .marque{position:relative;display:inline-block;isolation:isolate;white-space:nowrap}
-.marque::before{content:"";position:absolute;z-index:-1;left:-.05em;right:-.05em;bottom:.04em;height:.32em;border-radius:3px;
+/* 28/09 (contrôle V3) : la barre passait DERRIÈRE le bas des lettres blanches (2,6:1, sous le seuil de
+   3:1 des grands titres). Elle descend et s'affine : son haut affleure la ligne de base, elle court
+   SOUS les lettres ; seuls les jambages (p, q) la traversent, leur haut reste sur la nuit. */
+.marque::before{content:"";position:absolute;z-index:-1;left:-.05em;right:-.05em;bottom:-.06em;height:.2em;border-radius:3px;
   background:var(--orange);transform-origin:left center}
 .blanc .marque::before,.creme .marque::before{background:var(--orange-clair);opacity:.45}
 .site-pret .marque:not(.trace)::before{transform:scaleX(0)}
@@ -209,8 +302,10 @@ section{position:relative;z-index:1}
    Tous les mots sont empilés dans la même case de grille : la largeur réservée est
    celle du plus long (rien ne bouge autour), seul le premier est visible sans JS.
    site.js ajoute la fenêtre qui défile (.defile-fenetre) et pose .defile-actif. */
+/* V3 (28/09) : le mot est de la couleur du texte (blanc sur la nuit, nuit sur blanc) ; seul son
+   cadre à quatre coins reste orange — l'orange est réservé aux boutons */
 .defile{position:relative;display:inline-grid;vertical-align:baseline;font-family:var(--titre);font-weight:800;
-  color:var(--accent);white-space:nowrap;letter-spacing:-.01em}
+  color:var(--texte);white-space:nowrap;letter-spacing:-.01em}
 .defile-mots{display:grid}
 .defile-mots > span,.defile-liste > span{padding:0 .3em;line-height:1.3}
 .defile-mots > span{grid-area:1/1;justify-self:start}
@@ -236,7 +331,7 @@ section{position:relative;z-index:1}
     linear-gradient(var(--c),var(--c)) 0 100%/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 0 100%/var(--e) var(--l),
     linear-gradient(var(--c),var(--c)) 100% 100%/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 100% 100%/var(--e) var(--l);
   background-repeat:no-repeat;transition:width .5s var(--sortie)}
-.blanc .defile,.creme .defile{color:var(--orange-texte)}
+.blanc .defile,.creme .defile{color:var(--encre)}
 
 /* ── 8. Effet 4 — le COMPTEUR QUI ROULE ───────────────────
    <b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b> : la valeur finale est écrite
@@ -265,6 +360,9 @@ section{position:relative;z-index:1}
 .liste{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
 .liste li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;margin:0}
 .liste svg{flex:none;margin-top:5px}
+/* V3 : sur blanc ou crème, les coches SVG écrites en orange clair (#FF8A4C, 2,3:1 sur blanc)
+   passent en orange texte (#C2410C) — le CSS l'emporte sur l'attribut stroke */
+.blanc .liste svg path[stroke="#FF8A4C"],.creme .liste svg path[stroke="#FF8A4C"]{stroke:var(--orange-texte)}
 /* variante sans SVG à recopier : la coche est dessinée par la feuille */
 .coches li::before{content:"";flex:none;width:16px;height:16px;margin-top:.28em;background:var(--accent);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
@@ -290,7 +388,8 @@ section{position:relative;z-index:1}
 .suite-lien{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(34px,6vw,64px) 0;
   text-decoration:none;color:var(--texte);font-family:var(--titre);font-weight:800;letter-spacing:-.02em;line-height:1.1;
   font-size:clamp(26px,4.4vw,48px)}
-.suite-mot{color:var(--accent)}
+/* V3 (28/09) : « Suite : » en gris clair (plus d'orange), la destination reste en blanc */
+.suite-mot{color:var(--texte-doux)}
 /* 26/09 — pas de mot seul sur la 2e ligne du lien « Suite » ni d'une question, pas de coupure au trait d'union */
 .suite-lien > span:first-child,.faq summary{text-wrap:balance}
 .insecable{white-space:nowrap}
@@ -306,6 +405,10 @@ section{position:relative;z-index:1}
 .faq summary{list-style:none;cursor:pointer;min-height:48px;padding:20px 44px 20px 0;position:relative;font-family:var(--titre);
   font-size:clamp(17.5px,2vw,20px);font-weight:700;line-height:1.3}
 .faq summary::-webkit-details-marker{display:none}
+/* 27/09 — la question survolée passe en orange clair (orange texte sur blanc) : on voit ce qui s'ouvre */
+.faq summary{transition:color .2s}
+.faq summary:hover{color:var(--accent)}
+.blanc .faq summary:hover,.creme .faq summary:hover{color:var(--orange-texte)}
 .faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:var(--texte-ff);font-size:26px;
   line-height:1;color:var(--accent);transition:transform .25s}
 .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
@@ -335,7 +438,8 @@ section{position:relative;z-index:1}
 .champ-aide{margin:0;font-size:15px;line-height:1.45;color:var(--texte-doux)}
 .champ-erreur{margin:0;font-size:15px;line-height:1.45;font-weight:600;color:var(--accent)}
 .champ-erreur[hidden]{display:none}
-@media(max-width:600px){.champ > label,.champ > legend,.champ-aide,.champ-erreur{font-size:16px}}
+/* téléphone ET tablette (28/09 : à 768 px, ces textes étaient plus petits que sur téléphone) : 16 px */
+@media(max-width:919.98px){.champ > label,.champ > legend,.champ-aide,.champ-erreur{font-size:16px}}
 .blanc .champ > label,.blanc .champ > legend,.creme .champ > label,.creme .champ > legend{color:var(--encre)}
 .blanc .champ input:not([type="radio"]):not([type="checkbox"]),.blanc .champ select,.blanc .champ textarea,
 .creme .champ input:not([type="radio"]):not([type="checkbox"]),.creme .champ select,.creme .champ textarea{
@@ -368,8 +472,9 @@ section{position:relative;z-index:1}
 .direct svg{flex:none}
 .blanc .direct a,.creme .direct a{color:var(--encre);border-color:rgba(27,31,59,.22)}
 .blanc .direct a:hover,.creme .direct a:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
-/* téléphone : 16 px minimum pour les listes, les pastilles et les contacts (cahier § 0) */
-@media(max-width:600px){.liste li,.pastilles span,.direct{font-size:16px}}
+/* téléphone et tablette : 16 px minimum pour les listes, les pastilles et les contacts (cahier § 0 ;
+   jusqu'à 919 px depuis le 28/09 — à 768 px, ils retombaient à 15,5 px) */
+@media(max-width:919.98px){.liste li,.pastilles span,.direct{font-size:16px}}
 
 /* ── 16. pied de page ──────────────────────────────────── */
 .pied{position:relative;z-index:1;border-top:1px solid var(--ligne);padding:38px 0 46px;color:var(--texte-doux);font-size:14.5px}
@@ -377,35 +482,86 @@ section{position:relative;z-index:1}
 .pied-logo{height:22px;width:auto;opacity:.9}
 .pied-copie{margin:0}
 .pied-liens{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px}
-.pied-liens a{display:inline-flex;align-items:center;min-height:48px;color:var(--texte-doux);text-decoration:underline;
+/* min-width 48 px (28/09) : « Aide », le plus court, ne faisait que 31 px de large — cible de 48 px comme les autres */
+.pied-liens a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:48px;color:var(--texte-doux);text-decoration:underline;
   text-decoration-color:rgba(255,138,76,.45);text-underline-offset:5px;text-decoration-thickness:1px}
 .pied-liens a:hover{color:var(--accent)}
 .pied-liens span[aria-hidden]{color:rgba(196,200,222,.55)}
-/* Sous 920 px, les liens passent à la ligne : un point « · » resterait seul en bout de ligne.
-   On retire les points, l'espace seul sépare les liens (au-dessus, ils tiennent sur une ligne). */
-@media(max-width:919.98px){
+/* Sous 960 px, les liens passent à la ligne : un point « · » resterait seul en bout de ligne.
+   On retire les points, l'espace seul sépare les liens (au-dessus, ils tiennent sur une ligne).
+   960 et non plus 920 (28/09) : avec le 7e lien « Faites le calcul », la ligne ne tient plus
+   entre 920 et 929 px, et un point restait seul après « Mentions légales ». */
+@media(max-width:959.98px){
   .pied-liens{column-gap:20px}
   .pied-liens span[aria-hidden]{display:none}
 }
-/* téléphone : 16 px minimum (cahier § 0) */
-@media(max-width:600px){.pied{font-size:16px}}
+/* téléphone et tablette : 16 px minimum (cahier § 0 ; jusqu'à 919 px depuis le 28/09) */
+@media(max-width:919.98px){.pied{font-size:16px}}
 
-/* ── 17. apparitions au défilement ─────────────────────── */
-.js .rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+/* ── 17. apparitions au défilement ─────────────────────────
+   27/09 (étude comparée du 27/09) : tout apparaissait de la même façon, rien ne
+   ressortait. Désormais trois gestes, dans la cascade de site.js (70 ms, 280 ms au plus) :
+   - titres, cartes, blocs : fondu + montée de 16 px (au lieu de 22) ;
+   - texte (p.rev, .eti.rev) : simple fondu, plus court (0,5 s), il ne bouge pas ;
+   - visuels (.visu.rev, .hero-visu.rev) : fondu + léger zoom (95 % → 100 %). */
+.js .rev{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
 .js .rev.vu{opacity:1;transform:none}
+.js p.rev:not(.vu),.js .eti.rev:not(.vu){transform:none}
+.js p.rev,.js .eti.rev{transition:opacity .5s ease}
+.js .hero-visu.rev:not(.vu),.js .visu.rev:not(.vu){transform:scale(.95) translateY(10px)}
+.js .hero-visu.rev,.js .visu.rev{transition:opacity .8s ease,transform 1s var(--sortie)}
 /* FILET : la ligne du <head> a posé .js mais site.js n'a jamais démarré → tout apparaît au bout de 3 s */
 .js:not(.site-pret) .rev{animation:rev-filet .6s ease 3s forwards}
 @keyframes rev-filet{to{opacity:1;transform:none}}
 
-/* ── 18. mouvement réduit : aucune animation, valeurs finales, bandes figées ── */
+/* ── 18. cartes qui réagissent au survol (souris seulement) ──
+   27/09 (étude comparée) : jusque-là, seuls les boutons réagissaient au survol.
+   Une carte survolée monte de 4 px et prend une ombre. Automatique pour les cartes des pages
+   1 et 2 (.bento-bloc, .pilier, .etape, .nombre) ; ailleurs, ajoutez la classe « survol » à
+   une carte. Les sélecteurs « .js ….vu:hover » sont nécessaires : sans eux, la fin
+   d'apparition (.js .rev.vu{transform:none}) l'emporte et le survol ne fait rien. Une page
+   peut donner son propre survol à ses cartes avec les MÊMES sélecteurs (sa feuille passe
+   après celle-ci). Téléphone et tablette tactile : rien (pas de survol). */
+@media (hover:hover) and (pointer:fine){
+  .survol,.bento-bloc,.etape,.pilier,.nombre{transition:transform .3s var(--sortie),box-shadow .3s ease,border-color .3s ease}
+  .js .survol.vu,.js .bento-bloc.vu,.js .etape.vu,.js .pilier.vu,.js .nombre.vu{
+    transition:opacity .7s ease,transform .3s var(--sortie),box-shadow .3s ease,border-color .3s ease}
+  .survol:hover,.js .survol.vu:hover,.bento-bloc:hover,.js .bento-bloc.vu:hover,.etape:hover,.js .etape.vu:hover,
+  .pilier:hover,.js .pilier.vu:hover,.nombre:hover,.js .nombre.vu:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(0,0,0,.7)}
+  /* sur fond blanc ou crème, une ombre nuit plus légère (le noir à 70 % y ferait une tache) */
+  .blanc :is(.survol,.pilier,.bento-bloc):hover,.creme :is(.survol,.pilier,.bento-bloc):hover,
+  .js .blanc :is(.survol,.pilier,.bento-bloc).vu:hover,.js .creme :is(.survol,.pilier,.bento-bloc).vu:hover{box-shadow:0 22px 44px -26px rgba(27,31,59,.42)}
+  .etape:hover,.nombre:hover,.survol:hover{border-color:rgba(255,138,76,.38)}
+}
+
+/* ── 19. économie : ce qui tourne en boucle s'arrête hors de l'écran ──
+   site.js pose .hors-ecran sur la bande des métiers, les bordures lumineuses et tout élément
+   [data-boucle] (ex. le disque GPS de la page 3) quand ils sont à plus de 120 px de l'écran,
+   et la retire quand ils reviennent. Rien n'est caché, seule l'animation se met en pause. */
+.bande.hors-ecran .bande-piste,.btn-lumiere.hors-ecran,.btn-lumiere.hors-ecran::before{animation-play-state:paused}
+/* !important : une feuille de page qui écrit « animation: … » sur un enfant (même précision,
+   chargée après) remettrait sinon l'animation en marche. C'est un état, pas un style. */
+[data-boucle].hors-ecran,[data-boucle].hors-ecran *,[data-boucle].hors-ecran::before,[data-boucle].hors-ecran::after,
+[data-boucle].hors-ecran *::before,[data-boucle].hors-ecran *::after{animation-play-state:paused !important}
+
+/* ── 20. mouvement réduit : aucune animation, valeurs finales, bandes figées ── */
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .js .rev{opacity:1;transform:none;transition:none;animation:none}
+  .js p.rev,.js .eti.rev,.js .hero-visu.rev,.js .visu.rev{transition:none}
+  .js .hero-visu.rev:not(.vu),.js .visu.rev:not(.vu){transform:none}
+  .survol,.bento-bloc,.etape,.pilier,.nombre,
+  .js .survol.vu,.js .bento-bloc.vu,.js .etape.vu,.js .pilier.vu,.js .nombre.vu{transition:none}
+  .survol:hover,.js .survol.vu:hover,.bento-bloc:hover,.js .bento-bloc.vu:hover,.etape:hover,.js .etape.vu:hover,
+  .pilier:hover,.js .pilier.vu:hover,.nombre:hover,.js .nombre.vu:hover{transform:none}
+  .lien-fleche,.lien-fleche svg,.faq summary{transition:none}
+  .lien-fleche:hover svg{transform:none}
   .btn,.btn-lumiere,.menu-liens a,.menu-bouton,.menu-bouton svg path,.direct a,.pastilles span,
   .champ input:not([type="radio"]):not([type="checkbox"]),.champ textarea,.champ select{transition:none}
   .btn-o:hover,.btn-lumiere:hover{transform:none}
   .btn-lumiere,.btn-lumiere::before{animation:none}
   .js .entete.ouvert .menu{animation:none}
+  .js .entete-essai,.js .entete.essai-cache .entete-essai,.menu > .btn-o{transition:none}
   .marque::before,.site-pret .marque:not(.trace)::before,.marque.trace::before{transform:none;transition:none}
   .defile-liste,.defile::after{transition:none}
   .bande-piste{animation:none}

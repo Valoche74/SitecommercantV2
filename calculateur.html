@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Faites le calcul — Perify</title>
+<meta name="description" content="Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte : le calcul avec vos chiffres à vous. Un calcul, pas une promesse.">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="canonical" href="https://perify.app/calculateur">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:title" content="Faites le calcul — Perify">
+<meta property="og:description" content="Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte : le calcul avec vos chiffres à vous. Un calcul, pas une promesse.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://perify.app/calculateur">
+<meta property="og:image" content="https://perify.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="calculateur.css">
+<script src="site.js" defer></script>
+<script src="calcul.js" defer></script>
+</head>
+<body>
+
+<!-- V3 (28/09, décision de Valentin) : « Faites le calcul » quitte la page « Comment ça marche »
+     (« ça gâche la page ») et a sa propre page, /calculateur. Textes et calcul inchangés (calcul.js) :
+     l'étiquette, le titre et la phrase d'introduction montent dans le chapeau de page (le titre
+     devient le h1). Liens discrets : la carte de l'accueil et le pied de page de toutes les pages ;
+     PAS dans le menu du haut (aucun lien du menu ne porte donc aria-current ici). -->
+<header class="entete">
+  <div class="wrap entete-barre">
+    <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
+    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
+      <span>Menu</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+      <ul class="menu-liens">
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+      </ul>
+      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ CHAPEAU DE PAGE ══ -->
+  <section class="page-tete">
+    <div class="wrap">
+      <p class="eti rev">Faites le calcul</p>
+      <h1 class="rev" id="titre-calcul">Ce qu'un tampon vous coûte, ce qu'une visite vous <span class="insecable"><span class="marque">rapporte</span>.</span></h1>
+      <p class="lead rev">Avec vos chiffres à vous. Les valeurs de départ ne sont qu'un exemple&nbsp;: <span class="sans-coupure">remplacez-les.</span></p>
+    </div>
+  </section>
+
+  <!-- ══ LE CALCUL — un calcul, pas une promesse (calcul.js, inchangé).
+       Sans JavaScript : l'exemple de départ et ses trois résultats, déjà justes. ══ -->
+  <section class="bloc blanc calcul-bloc" id="calcul" aria-labelledby="titre-calcul">
+    <div class="wrap calcul">
+      <form class="calcul-champs rev" id="calcul-formulaire" action="#" novalidate>
+        <div class="champ">
+          <label for="calcul-panier">Panier moyen (€)</label>
+          <input id="calcul-panier" type="text" inputmode="decimal" autocomplete="off" value="9">
+        </div>
+        <div class="champ">
+          <label for="calcul-marge">Votre marge sur ce panier (%)</label>
+          <input id="calcul-marge" type="text" inputmode="decimal" autocomplete="off" value="60">
+        </div>
+        <div class="champ">
+          <label for="calcul-revient">Prix de revient du cadeau (€)</label>
+          <input id="calcul-revient" type="text" inputmode="decimal" autocomplete="off" value="1,50" aria-describedby="calcul-revient-aide">
+          <p class="champ-aide" id="calcul-revient-aide">Le prix de revient, pas le prix de vente&nbsp;: ce que le cadeau vous coûte vraiment.</p>
+        </div>
+        <div class="champ">
+          <label for="calcul-tampons">Tampons pour l'obtenir</label>
+          <input id="calcul-tampons" type="text" inputmode="decimal" autocomplete="off" value="10">
+        </div>
+      </form>
+
+      <div class="calcul-resultats rev">
+        <dl class="resultats">
+          <div class="resultat">
+            <dt>Un tampon vous coûte</dt>
+            <dd><b id="res-tampon" data-compte="0,15" data-decimales="2" data-suffixe="&nbsp;€">0,15&nbsp;€</b></dd>
+          </div>
+          <div class="resultat">
+            <dt>Une visite vous rapporte</dt>
+            <dd><b id="res-visite" data-compte="5,40" data-decimales="2" data-suffixe="&nbsp;€">5,40&nbsp;€</b></dd>
+          </div>
+          <div class="resultat resultat-cle">
+            <dt>Une visite de plus paie</dt>
+            <dd><b id="res-paie" data-compte="36">36</b> <span class="res-unite" id="res-paie-unite">tampons</span></dd>
+          </div>
+        </dl>
+        <p class="calcul-conclusion" id="calcul-conclusion" aria-live="polite">Autrement dit&nbsp;: si le programme fait revenir un client une fois de plus, cette visite paie <strong id="calcul-conclusion-nombre">36&nbsp;tampons</strong>.</p>
+        <p class="calcul-note">Un calcul, pas une promesse&nbsp;: le nombre de visites en plus dépend de votre commerce.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BLOC FINAL « ESSAI » ══ -->
+  <section class="essai-final" aria-labelledby="titre-essai">
+    <div class="wrap">
+      <div class="essai-carte rev">
+        <p class="eti">Essai gratuit</p>
+        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
+        <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
+        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SUITE ══ -->
+  <div class="suite">
+    <div class="wrap">
+      <a class="suite-lien" href="/essai-gratuit"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> l'essai gratuit</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+    <p class="pied-copie">© 2026 Perify — programme de fidélité pour commerces de proximité.</p>
+    <nav class="pied-liens" aria-label="Pied de page">
+      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
+      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/calculateur" aria-current="page">Faites le calcul</a><span aria-hidden="true">·</span>
+      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
+      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
+      <a href="/mentions-legales#donnees">Données personnelles</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

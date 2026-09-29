@@ -6,9 +6,19 @@ reliées par le menu (« comme TheGiftsClub ») :
 | page | fichier | adresse |
 |---|---|---|
 | 1 — Accueil | `index.html` (+ `accueil.css`, `accueil.js`) | `/` |
-| 2 — Comment ça marche | `comment-ca-marche.html` (+ `comment.css`, `calcul.js`) | `/comment-ca-marche` |
+| 2 — Comment ça marche | `comment-ca-marche.html` (+ `comment.css`) | `/comment-ca-marche` |
 | 3 — Ce que vous pilotez | `ce-que-vous-pilotez.html` (+ `pilotez.css`) | `/ce-que-vous-pilotez` |
 | 4 — Essai gratuit (+ « Qui est derrière », FAQ) | `essai-gratuit.html` (+ `essai.css`, `essai.js`) | `/essai-gratuit` |
+| Faites le calcul (28/09, hors menu) | `calculateur.html` (+ `calculateur.css`, `calcul.js`) | `/calculateur` |
+
+**V3 (28/09, décisions de Valentin)** : « Faites le calcul » a quitté la page 2 pour sa propre page, reliée
+discrètement (carte de l'accueil + ligne du pied de page de toutes les pages, **pas** dans le menu du haut).
+**L'orange est réservé aux boutons** (plus d'étiquette, de mot-clé, de mot qui défile ni de « Suite : » en
+orange ; seul le marqueur d'un mot par page reste). **Rythme des fonds** : la nuit ne garde que le haut de page
+(héros / chapeau), le bloc final « Essai » et le pied ; les autres sections alternent **blanc** et **crème**
+(textes nuit) ; les scènes illustrées, les visuels des étapes, le disque GPS et le panneau des résultats
+gardent leur fond sombre dans leur propre bloc. Sur ordinateur, le bouton du menu passe en contour quand un autre bouton orange
+plein est à l'écran. Détail : `_GABARIT.md` § 13.
 
 Plus `aide.html` et `mentions-legales.html` (feuille `doc.css`), et `img/`. HTML / CSS / JS simple, sans
 framework ni build. Hébergé sur Vercel (`cleanUrls` : liens internes sans `.html`), déploiement à chaque
@@ -52,6 +62,8 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
 - Les captures d'écran avec des chiffres portent « Données de démonstration. ».
 - Les badges Apple / Google ne servent jamais de décoration ; dans « Ça marche avec », les noms sont écrits
   en texte, aucun logo de marque tierce.
+- **Un seul bouton orange plein à l'écran**, en-tête compris (téléphone : le bouton de la barre s'efface ;
+  ordinateur : celui du menu passe en contour — site.js pose `.essai-cache` sur l'en-tête).
 - Aucun script externe (ni CDN, ni GSAP, ni React) : seules ressources externes, les polices Google.
   Les effets des composants modèles (`IMAGE/ressources/composants-tsx/`) sont refaits à la main.
 - Lisibilité : contraste ≥ 4,5:1, 16 px minimum sur téléphone (champs 16 px), cibles ≥ 48 px,

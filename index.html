@@ -51,7 +51,9 @@
 
 <main>
 
-  <!-- ══ HÉROS (cahier § 4) : texte à gauche, la carte en main à droite ══ -->
+  <!-- ══ HÉROS (cahier § 4) : texte à gauche, la carte en main à droite.
+       V3 (28/09) : sur téléphone et tablette, l'image monte sous « Pensée pour les… », plus grande,
+       dans le premier écran (accueil.css, sans changer l'ordre du HTML). ══ -->
   <section class="hero">
     <div class="wrap">
       <div class="hero-texte">
@@ -63,7 +65,7 @@
           et laissent un avis Google au passage.</p>
         <div class="actions rev">
           <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
-          <a class="btn btn-ghost" href="/comment-ca-marche">Voir comment ça marche</a>
+          <a class="lien-fleche" href="/comment-ca-marche">Voir comment ça marche<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <p class="hero-note rev"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
           14 jours pour essayer, présentoir et mise en place compris.</p>
@@ -84,54 +86,18 @@
     </div>
   </div>
 
-  <!-- ══ LE PARCOURS : le visuel composite de Valentin, dans un bloc blanc (fond transparent) ══ -->
-  <section class="bloc parcours" aria-labelledby="titre-parcours">
-    <div class="wrap centre">
-      <p class="eti rev">Le parcours</p>
-      <h2 class="titre-bloc rev" id="titre-parcours">Du présentoir à la carte, en quelques secondes.</h2>
-      <figure class="parcours-visu rev">
-        <img src="img/parcours.webp" width="1600" height="1117" loading="lazy"
-             alt="Le parcours d'un client : le présentoir du comptoir, la roue de bienvenue, la carte ajoutée à Apple Wallet et la carte de fidélité avec ses tampons">
-        <figcaption class="legende">Données de démonstration.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ══ CE QUE ÇA CHANGE POUR VOUS : trois piliers (bloc blanc, icônes de l'ancienne page) ══ -->
-  <section class="bloc blanc" aria-labelledby="titre-piliers">
-    <div class="wrap">
-      <p class="eti rev">Ce que ça change pour vous</p>
-      <h2 class="titre-bloc piliers-titre rev" id="titre-piliers">Boostez votre référencement, et créez votre système de fidélisation.</h2>
-      <div class="piliers">
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
-          <h3>Plus d'avis Google, sans les quémander</h3>
-          <p>Le client satisfait laisse son avis depuis sa carte, et gagne un tampon pour ça. Plus d'avis, plus récents&nbsp;: c'est ce que Google regarde pour vous classer.</p>
-          <p class="citation">« Plus vous obtenez d'avis et de notes positives, plus votre établissement grimpe dans le
-            classement local. » <a href="https://support.google.com/business/answer/7091?hl=fr" rel="noopener">Google, conseils pour le classement local</a></p>
-        </article>
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M12 9v11.5M3.5 13.5h17M12 9c-1.4-2.8-5.5-3.2-5.5-1.2S10.2 9 12 9zm0 0c1.4-2.8 5.5-3.2 5.5-1.2S13.8 9 12 9z"/></svg></span>
-          <h3>Votre programme de fidélité, à vos couleurs</h3>
-          <p>La carte en carton finit à la poubelle, l'appli, personne ne l'installe. La vôtre vit dans leur téléphone, à côté de leur carte bancaire.</p>
-        </article>
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10v4a1.5 1.5 0 001.5 1.5h2.5l6.5 4.5v-16L7.5 8.5H5A1.5 1.5 0 003.5 10z"/><path d="M17.5 9.2a4 4 0 010 5.6M8.5 15.5l1.3 4.5"/></svg></span>
-          <h3>Vos offres arrivent directement sur la carte</h3>
-          <p>Vous écrivez l'offre&nbsp;: elle s'affiche sur la carte de chaque client, et part par <span class="insecable">e-mail</span> à ceux qui l'ont accepté.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ LE PRÉSENTOIR (effet 6, fond nuit) — l'éventail est animé par eventail.css / eventail.js
-       (autre fichier) : ce balisage suit le contrat à la lettre. Les photos du comptoir
-       (presentoir-1..3.webp) ne sont plus affichées, les fichiers restent. ══ -->
-  <section class="bloc presentoir" aria-labelledby="titre-presentoir">
+  <!-- ══ LE PRÉSENTOIR (effet 6, fond nuit) — cahier V2 § 1.3 : l'éventail prend la place de l'ancienne
+       section « Le parcours » (img/parcours.webp n'est plus affichée, le fichier reste dans img/).
+       L'éventail est animé par eventail.css / eventail.js. Les photos du comptoir (presentoir-1..3.webp)
+       ne sont plus affichées, les fichiers restent.
+       V3 (28/09) : rythme des fonds — après le héros (nuit), les sections alternent BLANC / CRÈME :
+       présentoir (blanc) → chiffres (crème) → ce que ça change (blanc) → tout est compris (crème) →
+       ça marche avec (blanc) → essai (nuit). ══ -->
+  <section class="bloc presentoir blanc" aria-labelledby="titre-presentoir">
     <div class="wrap">
       <div class="centre">
         <p class="eti rev">Le présentoir</p>
-        <h2 class="titre-bloc rev" id="titre-presentoir">Un présentoir à vos couleurs, posé sur le comptoir.</h2>
+        <h2 class="titre-bloc rev" id="titre-presentoir">Un présentoir <span class="mot-cle">à vos couleurs</span>, posé sur le comptoir.</h2>
         <p class="intro-bloc rev">Le présentoir est fourni et installé. Le client le voit, le scanne, et tout le reste se passe sur son téléphone.</p>
       </div>
       <div class="presentoir-scene">
@@ -153,68 +119,337 @@
     </div>
   </section>
 
-  <!-- ══ TOUT EST COMPRIS (effet 7) : grille « bento » de blocs blancs sur la nuit.
-       Pictos de la charte de Valentin (24 px, trait 1,75) ; le bouclier, absent de la
-       charte, est dessiné dans le même trait. ══ -->
-  <section class="bloc fonctions" aria-labelledby="titre-fonctions">
+  <!-- ══ EN CHIFFRES (cahier V2 § 1.4) — trois vrais chiffres, en BLANC, chacun sourcé en bas du bloc.
+       Jamais un chiffre inventé, jamais un résultat « Perify ». Mêmes libellés et mêmes sources que la
+       page 2 (comment-ca-marche.html), mot pour mot. Vérifiés sur la page de l'étude le 27/09 :
+       « En 2023, ce chiffre grimpait à 92% » et « 54% des Français sont prêts à payer plus cher si la note
+       et le volume d'avis Google sont conséquents » (IFOP pour Guest Suite, janvier 2026, 1 003 Français
+       représentatifs de 18 ans et plus). Le 82 % (« achat ou réservation grâce à des avis très positifs »)
+       est RETIRÉ : sur la page de l'étude, la population n'est pas « les Français » (liste qui suit
+       « 81% des lecteurs »). La source 1 n'a plus « 75 % le font sur Google » : ce chiffre n'est ni sur la
+       page liée, ni dans le PDF de l'étude 2023 (75 % y est le chiffre 2021 de la consultation des avis).
+       Compteurs qui roulent (site.js) : la valeur finale est écrite ici.
+       V3 (28/09) : sur CRÈME, chiffres en nuit (textes nuit sur fond clair). ══ -->
+  <section class="bloc trio-chiffres creme" aria-labelledby="titre-trio">
     <div class="wrap">
-      <p class="eti rev">Tout est compris</p>
-      <h2 class="titre-bloc rev" id="titre-fonctions">Tout ce qu'il faut, rien de plus.</h2>
-      <ul class="bento">
-        <li class="bento-bloc bento-large rev">
-          <div class="bento-texte">
-            <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5" stroke-dasharray="3 2.5"/><path d="M8.5 12.2l2.3 2.3 4.7-4.8"/></svg></span>
-            <div>
-              <h3>Vos récompenses</h3>
-              <p>Vos paliers, vos cadeaux. Un message suffit pour les changer.</p>
-            </div>
-          </div>
-          <div class="bento-visu">
-            <img src="img/tampons.webp" width="900" height="537" loading="lazy"
-                 alt="Le compteur de la carte : sept tampons, plus que trois pour le prochain cadeau">
-          </div>
-        </li>
-        <li class="bento-bloc bento-petit rev">
-          <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20.5 14v3.5M14 20.5h3.5M20.5 20.5h.01"/></svg></span>
-          <h3>Vérification en caisse</h3>
-          <p>Le client montre son code, l'écran dit oui ou non.</p>
-        </li>
-        <li class="bento-bloc bento-petit rev">
-          <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
-          <h3>Les avis Google</h3>
-          <p>Le client laisse son avis depuis sa carte, et gagne un tampon.</p>
-        </li>
-        <li class="bento-bloc bento-large bento-roue rev">
-          <div class="bento-texte">
-            <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18"/><path d="M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></svg></span>
-            <div>
-              <h3>La roue de bienvenue</h3>
-              <p>Une fois par carte, un produit offert à venir chercher.</p>
-            </div>
-          </div>
-          <div class="bento-visu">
-            <img src="img/cadeau-gagne.webp" width="800" height="559" loading="lazy"
-                 alt="Le cadeau gagné à la roue, affiché sur la carte : une boisson, produit à présenter en caisse">
-          </div>
-        </li>
-        <li class="bento-bloc bento-petit rev">
-          <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19M6 15h4"/></svg></span>
-          <h3>La carte se met à jour seule</h3>
-          <p>Tampons, cadeaux, offres&nbsp;: la carte Wallet suit, sans rien ouvrir.</p>
-        </li>
-        <li class="bento-bloc bento-petit rev">
-          <span class="bento-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l7 2.8v5.3c0 4.4-2.9 8-7 9.5-4.1-1.5-7-5.1-7-9.5V6z"/><path d="M9.3 12.1l1.9 1.9 3.6-3.8"/></svg></span>
-          <h3>Vos données restent les vôtres</h3>
-          <p>Chaque commerce a sa base. Personne ne voit vos clients.</p>
-        </li>
+      <p class="eti rev" id="titre-trio">En chiffres</p>
+      <ul class="trio">
+        <li class="rev"><b data-compte="0">0</b><span>appli à installer</span></li>
+        <li class="rev"><b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b><span>des Français lisent les avis avant d'acheter<sup><a href="#src-trio-1" aria-label="source 1">1</a></sup></span></li>
+        <li class="rev"><b data-compte="54" data-suffixe="&nbsp;%">54&nbsp;%</b><span>des Français se disent prêts à payer plus cher quand la note et le nombre d'avis Google sont élevés<sup><a href="#src-trio-2" aria-label="source 2">2</a></sup></span></li>
       </ul>
+      <div class="trio-sources rev">
+        <p id="src-trio-1">1. IFOP pour Guest Suite, « Les Français et les avis clients », 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir l'étude</a>.</p>
+        <p id="src-trio-2">2. IFOP pour Guest Suite, «&nbsp;Statistiques avis clients &amp; IA&nbsp;», janvier 2026, 1&nbsp;003 Français de 18&nbsp;ans et plus. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients" rel="noopener">Voir&nbsp;l'étude</a>.</p>
+      </div>
     </div>
   </section>
 
-  <!-- ══ ÇA MARCHE AVEC (effet 8) : des NOMS en texte, jamais un logo ══ -->
-  <section class="bloc avec" aria-labelledby="titre-avec">
+  <!-- ══ CE QUE ÇA CHANGE POUR VOUS : trois piliers (bloc blanc, icônes de l'ancienne page) ══ -->
+  <section class="bloc blanc" aria-labelledby="titre-piliers">
     <div class="wrap">
-      <h2 class="avec-titre rev" id="titre-avec">Ça marche avec ce que vos clients ont déjà.</h2>
+      <p class="eti rev">Ce que ça change pour vous</p>
+      <h2 class="titre-bloc piliers-titre rev" id="titre-piliers">Boostez votre <span class="mot-cle">référencement</span>, et créez votre système de fidélisation.</h2>
+      <div class="piliers">
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
+          <h3>Plus d'avis Google, sans les quémander</h3>
+          <p>Au premier scan, votre client est invité à laisser son avis Google. Vous n'avez rien à demander. Plus d'avis et de bonnes notes&nbsp;: c'est ce que Google dit regarder pour vous classer.</p>
+          <p class="citation">« Plus vous obtenez d'avis et de notes positives, plus votre établissement grimpe dans le
+            classement local. » <a href="https://support.google.com/business/answer/7091?hl=fr" rel="noopener">Google, conseils pour le classement local</a></p>
+        </article>
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M12 9v11.5M3.5 13.5h17M12 9c-1.4-2.8-5.5-3.2-5.5-1.2S10.2 9 12 9zm0 0c1.4-2.8 5.5-3.2 5.5-1.2S13.8 9 12 9z"/></svg></span>
+          <h3>Votre programme de fidélité, à vos couleurs</h3>
+          <p>La carte en carton finit à la poubelle, l'appli, personne ne l'installe. La vôtre vit dans leur téléphone, à côté de leur carte bancaire.</p>
+        </article>
+        <article class="pilier rev">
+          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10v4a1.5 1.5 0 001.5 1.5h2.5l6.5 4.5v-16L7.5 8.5H5A1.5 1.5 0 003.5 10z"/><path d="M17.5 9.2a4 4 0 010 5.6M8.5 15.5l1.3 4.5"/></svg></span>
+          <h3>Vos offres arrivent directement sur la carte</h3>
+          <p>Vous écrivez l'offre&nbsp;: elle s'affiche sur la carte de chaque client, et part par <span class="insecable">e-mail</span> à ceux qui l'ont accepté.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TOUT EST COMPRIS (effet 7) : grille « bento » de blocs blancs sur la nuit.
+       Cahier V2 § 1.2 : plus aucune photo ni capture. Chaque bloc porte EN HAUT une petite scène
+       dessinée (SVG écrit ici, décoratif : aria-hidden), aux couleurs Perify, dans l'esprit du modèle
+       « features 8 » (anneaux, courbes, grandes illustrations). Exception assumée à la règle « jamais
+       de maquette dessinée », pour ce bloc seulement (demande de Valentin, 27/09).
+       Aucune scène n'affiche un chiffre de résultat. Animation : à l'apparition (une fois, classe .vu
+       posée par site.js) et au survol (accueil.js rejoue la scène) ; mouvement réduit ou sans
+       JavaScript : la scène est affichée directement dans son état final (règles dans accueil.css).
+       Règle technique : un élément animé en CSS (classes sc-…) ne porte JAMAIS d'attribut transform
+       (le CSS le remplacerait) ; sa position est donnée par le <g> qui l'entoure.
+       V3 (28/09) : la section passe sur CRÈME ; les cartes restent blanches et chaque scène garde son
+       panneau sombre. ══ -->
+  <section class="bloc fonctions creme" aria-labelledby="titre-fonctions">
+    <div class="wrap">
+      <p class="eti rev">Tout est compris</p>
+      <h2 class="titre-bloc rev" id="titre-fonctions"><span class="insecable">Tout ce qu'il faut,</span> <span class="mot-cle">rien de plus</span>.</h2>
+      <ul class="bento">
+
+        <!-- 1. Vos récompenses : une carte dont la rangée de tampons se remplit ; les deux paliers
+             (5e et 10e case) sont des cadeaux ; un anneau se dessine autour de la carte. -->
+        <li class="bento-bloc bento-large rev" data-duree="1900">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 440 180" aria-hidden="true" focusable="false">
+              <path class="sc-trace" style="--t:.15s" pathLength="1" d="M20 90A200 78 0 1 1 420 90A200 78 0 1 1 20 90" transform="rotate(-3 220 90)" fill="none" stroke="#FF8A4C" stroke-opacity=".5" stroke-width="1.75" stroke-linecap="round"/>
+              <rect x="70" y="28" width="300" height="124" rx="16" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".12"/>
+              <circle cx="94" cy="52" r="9" fill="#FF6B2C"/>
+              <rect x="110" y="45" width="74" height="6" rx="3" fill="#FFFFFF" fill-opacity=".85"/>
+              <rect x="110" y="56" width="46" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".35"/>
+              <rect x="316" y="44" width="34" height="14" rx="7" fill="#FF8A4C" fill-opacity=".18" stroke="#FF8A4C" stroke-opacity=".6"/>
+              <g fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5">
+                <circle cx="103" cy="102" r="10.5"/><circle cx="129" cy="102" r="10.5"/><circle cx="155" cy="102" r="10.5"/><circle cx="181" cy="102" r="10.5"/><circle cx="207" cy="102" r="10.5"/>
+                <circle cx="233" cy="102" r="10.5"/><circle cx="259" cy="102" r="10.5"/><circle cx="285" cy="102" r="10.5"/><circle cx="311" cy="102" r="10.5"/><circle cx="337" cy="102" r="10.5"/>
+              </g>
+              <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(103 102)"><g class="sc-pop" style="--t:.35s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(129 102)"><g class="sc-pop" style="--t:.46s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(155 102)"><g class="sc-pop" style="--t:.57s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(181 102)"><g class="sc-pop" style="--t:.68s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(233 102)"><g class="sc-pop" style="--t:.9s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(259 102)"><g class="sc-pop" style="--t:1.01s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(285 102)"><g class="sc-pop" style="--t:1.12s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+                <g transform="translate(311 102)"><g class="sc-pop" style="--t:1.23s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
+              </g>
+              <!-- les deux paliers : un cadeau blanc, et un anneau qui s'élargit quand il est atteint -->
+              <g transform="translate(207 102)">
+                <circle class="sc-pulse" style="--t:.86s" r="10.5" fill="none" stroke="#FF8A4C" stroke-width="2"/>
+                <g class="sc-pop" style="--t:.79s"><circle r="10.5" fill="#FFFFFF"/><g transform="translate(-6.6 -7.2) scale(.55)" fill="none" stroke="#FF6B2C" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g></g>
+              </g>
+              <g transform="translate(337 102)">
+                <circle class="sc-pulse" style="--t:1.41s" r="10.5" fill="none" stroke="#FF8A4C" stroke-width="2"/>
+                <g class="sc-pop" style="--t:1.34s"><circle r="10.5" fill="#FFFFFF"/><g transform="translate(-6.6 -7.2) scale(.55)" fill="none" stroke="#FF6B2C" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g></g>
+              </g>
+              <rect x="103" y="128" width="234" height="4" rx="2" fill="#FFFFFF" fill-opacity=".1"/>
+              <rect class="sc-barre" style="--t:.35s" x="103" y="128" width="234" height="4" rx="2" fill="#FF8A4C"/>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>Vos récompenses</h3>
+            <p>Vos paliers, vos cadeaux. Un message suffit pour les changer.</p>
+          </div>
+        </li>
+
+        <!-- 2. Vérification en caisse : le code se saisit, les cases passent au vert, « Code valide ✓ ».
+             V3 (28/09) : pastille élargie (texte à 12 unités, ~13,6 px à 1440 px). Sous 1024 px la scène
+             est trop petite pour un texte lisible (7 px sur téléphone) : la pastille ne montre plus
+             qu'une grande coche (.sc-code-texte / .sc-code-coche, accueil.css). -->
+        <li class="bento-bloc bento-petit rev" data-duree="1500">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
+              <rect x="54" y="10" width="92" height="140" rx="16" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="1.5"/>
+              <rect x="87" y="17" width="26" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".22"/>
+              <rect x="66" y="34" width="50" height="6" rx="3" fill="#FFFFFF" fill-opacity=".8"/>
+              <rect x="66" y="44" width="32" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".32"/>
+              <g fill="#FFFFFF" fill-opacity=".04" stroke="#22C55E" stroke-width="1.5">
+                <rect class="sc-case" style="--t:.95s" x="65" y="59" width="15" height="22" rx="4"/>
+                <rect class="sc-case" style="--t:.95s" x="83" y="59" width="15" height="22" rx="4"/>
+                <rect class="sc-case" style="--t:.95s" x="101" y="59" width="15" height="22" rx="4"/>
+                <rect class="sc-case" style="--t:.95s" x="119" y="59" width="15" height="22" rx="4"/>
+              </g>
+              <g fill="#FFFFFF">
+                <g transform="translate(72.5 70)"><circle class="sc-pop" style="--t:.35s" r="3.4"/></g>
+                <g transform="translate(90.5 70)"><circle class="sc-pop" style="--t:.5s" r="3.4"/></g>
+                <g transform="translate(108.5 70)"><circle class="sc-pop" style="--t:.65s" r="3.4"/></g>
+                <g transform="translate(126.5 70)"><circle class="sc-pop" style="--t:.8s" r="3.4"/></g>
+              </g>
+              <g transform="translate(100 104)">
+                <g class="sc-pop" style="--t:1.05s">
+                  <g class="sc-code-texte">
+                    <rect x="-53" y="-13" width="106" height="26" rx="13" fill="#22C55E"/>
+                    <text x="-44" y="4.3" font-size="12" font-weight="700" fill="#1B1F3B" textLength="70" lengthAdjust="spacingAndGlyphs">Code valide</text>
+                    <path d="M32.5 .4l2.8 2.8 5.4-5.7" fill="none" stroke="#1B1F3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <g class="sc-code-coche">
+                    <rect x="-30" y="-14" width="60" height="28" rx="14" fill="#22C55E"/>
+                    <path d="M-8.5 .6l5.6 5.6 11-11.6" fill="none" stroke="#1B1F3B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                </g>
+              </g>
+              <rect x="82" y="138" width="36" height="4" rx="2" fill="#FFFFFF" fill-opacity=".25"/>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>Vérification en caisse</h3>
+            <p>Le client montre son code, l'écran dit oui ou non.</p>
+          </div>
+        </li>
+
+        <!-- 3. Les avis Google : les étoiles s'allument une à une, puis une coche (l'avis est publié).
+             Pas de tampon : un avis Google n'en donne pas (ACTIONS_RECOMPENSEES, 27/09).
+             Aucun logo ni couleur de Google : des étoiles génériques, en orange clair. -->
+        <li class="bento-bloc bento-petit rev" data-duree="1600">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
+              <rect x="24" y="30" width="152" height="100" rx="14" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".12"/>
+              <g transform="translate(46 54)"><circle r="11" fill="#FF8A4C"/><circle cy="-3" r="3.6" fill="#1B1F3B"/><path d="M-6.5 7.5c.9-3.4 3.5-5 6.5-5s5.6 1.6 6.5 5z" fill="#1B1F3B"/></g>
+              <rect x="64" y="47" width="58" height="6" rx="3" fill="#FFFFFF" fill-opacity=".85"/>
+              <rect x="64" y="57" width="36" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".32"/>
+              <g stroke-linejoin="round">
+                <g transform="translate(56 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.35s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
+                <g transform="translate(78 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.48s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
+                <g transform="translate(100 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.61s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
+                <g transform="translate(122 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.74s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
+                <g transform="translate(144 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.87s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
+              </g>
+              <rect x="40" y="104" width="120" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".26"/>
+              <rect x="40" y="114" width="84" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".18"/>
+              <g transform="translate(172 32)">
+                <circle class="sc-pulse" style="--t:1.15s" r="13" fill="none" stroke="#FF8A4C" stroke-width="2"/>
+                <g class="sc-pop" style="--t:1.08s"><circle r="13" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="3"/><path d="M-5 .4l3.2 3.2 6.6-6.8" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+              </g>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>Les avis Google</h3>
+            <p>Au premier scan, le client est invité à laisser son avis Google.</p>
+          </div>
+        </li>
+
+        <!-- 4. La roue de bienvenue : la roue fait un tour, puis le bon du cadeau glisse à côté. -->
+        <li class="bento-bloc bento-large bento-roue rev" data-duree="2600">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 440 180" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#FFFFFF"><circle cx="140" cy="92" r="86" stroke-opacity=".07"/><circle cx="140" cy="92" r="102" stroke-opacity=".045"/></g>
+              <g transform="translate(140 92)">
+                <g class="sc-roue" style="--t:.3s">
+                  <circle r="77" fill="#232849" stroke="#FF8A4C" stroke-opacity=".7" stroke-width="2"/>
+                  <g stroke="#232849" stroke-width="1.5" stroke-linejoin="round">
+                    <path fill="#FF6B2C" d="M0 0L-26.79-64.67A70 70 0 0 1 26.79-64.67Z"/>
+                    <path fill="#FFFFFF" d="M0 0L26.79-64.67A70 70 0 0 1 64.67-26.79Z"/>
+                    <path fill="#FF6B2C" d="M0 0L64.67-26.79A70 70 0 0 1 64.67 26.79Z"/>
+                    <path fill="#FFFFFF" d="M0 0L64.67 26.79A70 70 0 0 1 26.79 64.67Z"/>
+                    <path fill="#FF6B2C" d="M0 0L26.79 64.67A70 70 0 0 1-26.79 64.67Z"/>
+                    <path fill="#FFFFFF" d="M0 0L-26.79 64.67A70 70 0 0 1-64.67 26.79Z"/>
+                    <path fill="#FF6B2C" d="M0 0L-64.67 26.79A70 70 0 0 1-64.67-26.79Z"/>
+                    <path fill="#FFFFFF" d="M0 0L-64.67-26.79A70 70 0 0 1-26.79-64.67Z"/>
+                  </g>
+                  <g fill="#FFFFFF"><circle cy="-46" r="5"/><circle cx="46" r="5"/><circle cy="46" r="5"/><circle cx="-46" r="5"/></g>
+                  <g fill="#FF6B2C"><circle cx="32.53" cy="-32.53" r="5"/><circle cx="32.53" cy="32.53" r="5"/><circle cx="-32.53" cy="32.53" r="5"/><circle cx="-32.53" cy="-32.53" r="5"/></g>
+                  <g fill="#FFFFFF"><circle cx="28.13" cy="-67.91" r="2.4"/><circle cx="67.91" cy="-28.13" r="2.4"/><circle cx="67.91" cy="28.13" r="2.4"/><circle cx="28.13" cy="67.91" r="2.4"/><circle cx="-28.13" cy="67.91" r="2.4"/><circle cx="-67.91" cy="28.13" r="2.4"/><circle cx="-67.91" cy="-28.13" r="2.4"/><circle cx="-28.13" cy="-67.91" r="2.4"/></g>
+                  <circle r="14" fill="#1B1F3B" stroke="#FF8A4C" stroke-width="2.5"/>
+                  <circle r="4" fill="#FF8A4C"/>
+                </g>
+                <path d="M-9-88H9L0-68Z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/>
+              </g>
+              <g class="sc-glisse" style="--t:1.75s">
+                <path d="M262 50H398A12 12 0 0 1 410 62V84A8 8 0 0 0 410 100V122A12 12 0 0 1 398 134H262A12 12 0 0 1 250 122V100A8 8 0 0 0 250 84V62A12 12 0 0 1 262 50Z" fill="#FFFFFF"/>
+                <path d="M292 60V124" stroke="#1B1F3B" stroke-opacity=".2" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round"/>
+                <g transform="translate(259 80)" fill="none" stroke="#FF6B2C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g>
+                <rect x="306" y="68" width="80" height="8" rx="4" fill="#1B1F3B"/>
+                <rect x="306" y="84" width="54" height="6" rx="3" fill="#3F4460" fill-opacity=".45"/>
+                <rect x="306" y="100" width="62" height="18" rx="9" fill="#FF6B2C"/>
+                <rect x="318" y="107" width="38" height="4" rx="2" fill="#1B1F3B" fill-opacity=".55"/>
+              </g>
+              <g fill="#FF8A4C">
+                <g transform="translate(418 44)"><path class="sc-pop" style="--t:2.1s" d="M0-7C.8-2 2-.8 7 0C2 .8.8 2 0 7C-.8 2-2 .8-7 0C-2-.8-.8-2 0-7Z"/></g>
+                <g transform="translate(240 140) scale(.7)"><path class="sc-pop" style="--t:2.25s" d="M0-7C.8-2 2-.8 7 0C2 .8.8 2 0 7C-.8 2-2 .8-7 0C-2-.8-.8-2 0-7Z"/></g>
+              </g>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>La roue de bienvenue</h3>
+            <p>Une fois par carte, un produit offert à venir chercher.</p>
+          </div>
+        </li>
+
+        <!-- 5. La carte se met à jour seule : une pastille de notification, puis le nouveau tampon. -->
+        <li class="bento-bloc bento-petit rev" data-duree="1600">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
+              <rect x="48" y="22" width="104" height="120" rx="12" fill="#FFFFFF"/>
+              <path d="M60 22H140A12 12 0 0 1 152 34V50H48V34A12 12 0 0 1 60 22Z" fill="#FF6B2C"/>
+              <circle cx="62" cy="36" r="6.5" fill="#FFFFFF"/>
+              <rect x="74" y="31" width="38" height="5" rx="2.5" fill="#1B1F3B" fill-opacity=".8"/>
+              <rect x="74" y="39" width="22" height="4" rx="2" fill="#1B1F3B" fill-opacity=".45"/>
+              <rect x="60" y="60" width="40" height="5" rx="2.5" fill="#3F4460" fill-opacity=".55"/>
+              <g fill="#FF6B2C"><circle cx="64" cy="80" r="6.5"/><circle cx="82" cy="80" r="6.5"/><circle cx="100" cy="80" r="6.5"/><circle cx="118" cy="80" r="6.5"/><circle cx="136" cy="80" r="6.5"/><circle cx="64" cy="98" r="6.5"/></g>
+              <g fill="none" stroke="#C9CCDA" stroke-width="1.5"><circle cx="82" cy="98" r="6.5"/><circle cx="100" cy="98" r="6.5"/><circle cx="118" cy="98" r="6.5"/><circle cx="136" cy="98" r="6.5"/></g>
+              <g transform="translate(82 98)">
+                <circle class="sc-pulse" style="--t:.95s" r="6.5" fill="none" stroke="#FF6B2C" stroke-width="2"/>
+                <circle class="sc-pop" style="--t:.85s" r="6.5" fill="#FF6B2C"/>
+              </g>
+              <rect x="60" y="116" width="56" height="5" rx="2.5" fill="#3F4460" fill-opacity=".35"/>
+              <rect x="60" y="126" width="36" height="5" rx="2.5" fill="#3F4460" fill-opacity=".25"/>
+              <g transform="translate(152 22)">
+                <circle class="sc-pulse" style="--t:.42s" r="9" fill="none" stroke="#FF8A4C" stroke-width="2"/>
+                <g class="sc-pop" style="--t:.3s"><circle r="9" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="3"/><circle r="2.6" fill="#FFFFFF"/></g>
+              </g>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>La carte se met à jour seule</h3>
+            <p>Tampons, cadeaux, offres&nbsp;: la carte Wallet suit, sans rien ouvrir.</p>
+          </div>
+        </li>
+
+        <!-- 6. Vos données restent les vôtres : les clients autour, le bouclier au centre, le cadenas
+             qui se ferme, l'anneau pointillé qui fait un quart de tour. -->
+        <li class="bento-bloc bento-petit rev" data-duree="1600">
+          <div class="bento-scene">
+            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="64" stroke-opacity=".09"/><circle cx="100" cy="80" r="80" stroke-opacity=".05"/></g>
+              <g fill="#FFFFFF" fill-opacity=".6">
+                <circle class="sc-fade" style="--t:.3s" cx="160.14" cy="101.89" r="3.4"/>
+                <circle class="sc-fade" style="--t:.38s" cx="111.11" cy="143.03" r="3.4"/>
+                <circle class="sc-fade" style="--t:.46s" cx="50.97" cy="121.14" r="3.4"/>
+                <circle class="sc-fade" style="--t:.54s" cx="39.86" cy="58.11" r="3.4"/>
+                <circle class="sc-fade" style="--t:.62s" cx="88.89" cy="16.97" r="3.4"/>
+                <circle class="sc-fade" style="--t:.7s" cx="149.03" cy="38.86" r="3.4"/>
+              </g>
+              <g transform="translate(100 80)">
+                <circle class="sc-tourne" style="--t:.3s" r="48" fill="none" stroke="#FF8A4C" stroke-opacity=".55" stroke-width="1.75" stroke-dasharray="4 6" stroke-linecap="round"/>
+                <circle r="34" fill="#FF6B2C" fill-opacity=".12"/>
+                <circle class="sc-pulse" style="--t:1.05s" r="34" fill="none" stroke="#FF8A4C" stroke-width="2"/>
+              </g>
+              <path d="M100 56.8L118.2 64.1V77.9C118.2 89.3 110.7 98.7 100 102.6C89.3 98.7 81.8 89.3 81.8 77.9V64.1Z" fill="#FF6B2C"/>
+              <path class="sc-anse" style="--t:.8s" d="M95.5 77V73.5a4.5 4.5 0 0 1 9 0V77" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+              <rect x="92" y="76.5" width="16" height="13" rx="3" fill="#FFFFFF"/>
+              <circle cx="100" cy="82" r="1.9" fill="#FF6B2C"/>
+              <rect x="99.2" y="82.5" width="1.6" height="3.8" rx=".8" fill="#FF6B2C"/>
+            </svg>
+          </div>
+          <div class="bento-corps">
+            <h3>Vos données restent les vôtres</h3>
+            <p>Chaque commerce a sa base. Aucun autre commerçant ne voit vos clients.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Vers le calculateur (textes déjà dans le cahier, § 5). V3 (28/09) : il a sa propre page,
+           /calculateur. Une carte blanche, pas un bouton orange : le seul bouton orange de l'écran
+           reste celui de l'essai. -->
+      <a class="vers-calcul rev" href="/calculateur">
+        <span class="vers-calcul-texte">
+          <span class="eti">Faites le calcul</span>
+          <span class="vers-calcul-titre">Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte.</span>
+        </span>
+        <span class="vers-calcul-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ ÇA MARCHE AVEC (effet 8), sur fond BLANC (alternance avec la nuit, et place prête pour des logos
+       qui imposent leurs couleurs). Cahier V2 § 1.1 : des LOGOS OFFICIELS seulement, jamais redessinés.
+       Au 27/09, aucun fichier de marque n'est utilisable dans le projet (les packs ne contiennent que les
+       badges « Ajouter à… », qui ne servent jamais de décoration) : chaque marque garde son NOM en texte en
+       attendant que Valentin dépose les fichiers officiels dans IMAGE/ressources/.
+       Quand ils arrivent : fichier dans img/logos/, puis dans la case, à gauche du nom :
+         <li><img class="avec-logo" src="img/logos/instagram.svg" alt="" width="28" height="28" loading="lazy">Instagram</li>
+       (alt="" : le nom reste écrit à côté). « Apple Wallet » et « iPhone » restent en texte (Apple
+       interdit l'icône seule). L'enveloppe de l'e-mail (img/logos/e-mail.svg, notre propre icône, dans
+       une pastille nuit : <span class="avec-pastille"><img …></span>) revient EN MÊME TEMPS que les
+       logos : seule, elle faisait une grille inachevée. ══ -->
+  <section class="bloc avec blanc" aria-labelledby="titre-avec">
+    <div class="wrap">
+      <h2 class="avec-titre rev" id="titre-avec">Ça marche avec ce que vos clients <span class="mot-cle">ont déjà</span>.</h2>
     </div>
     <div class="avec-cadre">
       <div class="wrap">
@@ -224,7 +459,7 @@
           <li>Avis Google</li>
           <li>Instagram</li>
           <li>Facebook</li>
-          <li>TripAdvisor</li>
+          <li>Tripadvisor</li>
           <li>iPhone et Android</li>
           <li>E-mail</li>
         </ul>
@@ -237,7 +472,7 @@
     <div class="wrap">
       <div class="essai-carte rev">
         <p class="eti">Essai gratuit</p>
-        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
+        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
         <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
         <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
       </div>
@@ -259,6 +494,7 @@
     <nav class="pied-liens" aria-label="Pied de page">
       <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
       <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
       <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
       <a href="/aide">Aide</a><span aria-hidden="true">·</span>
       <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
