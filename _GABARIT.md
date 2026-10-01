@@ -57,6 +57,7 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="⟨accueil|comment|pilotez|essai⟩.css">
 <script src="site.js" defer></script>
+<script src="consentement.js" defer></script>
 <script src="⟨accueil|calcul|essai⟩.js" defer></script>
 </head>
 <body>
@@ -418,3 +419,28 @@ formulaire.
   « Données de démonstration. » sous la capture de l'offre ; accueil : sur ordinateur, l'image du héros descend
   jusqu'au bas de la section (le bras sort par le bord) ; sur écran peu haut, sa largeur suit la hauteur de
   l'écran ; calcul : plus d'air sous le panneau sombre ; 16 px minimum jusqu'à 919 px (tablette comprise).
+
+## 14. Le 01/10 — décisions de Valentin (rien d'autre ne change : boutons, marqueur et animations restent)
+
+- **Mot qui défile** (« Pensée pour les… ») : un mot toutes les **1,4 s** (3,2 s puis 2,2 s avant), ressort de **0,55 s**
+  (1,1 s avant) — environ un tiers plus vite. Réglage : `RYTHME_DEFILE` / `RETOUR_DEFILE` (site.js, § 5) et
+  `transition` de `.defile-liste` (site.css, § 7). Mouvement réduit : toujours immobile.
+- **Lien « Voir comment ça marche » du héros** : agrandi dans `accueil.css` seulement (`.hero .lien-fleche`) —
+  Plus Jakarta Sans 800, 18 à 20 px, flèche dans un rond cerclé d'orange clair de 40 px, cible de 52 px.
+  Toujours un lien (aucun fond). Le `.lien-fleche` du socle (page 4) ne change pas.
+- **Page 2, « En chiffres »** : une seconde rangée, « Études menées aux États-Unis » (4 chiffres pris dans la
+  liste vérifiée à la source le 01/10 : Toast 2026, Columbia 2006, BrightLocal 2026, Harvard 2011 ; renvois 4 à
+  7, liens en nouvel onglet). Aucun autre chiffre étranger sans verdict « confirmé ». Classes : `.nombres-titre`,
+  `.nombre-fourchette` (comment.css).
+- **Mesure d'audience Microsoft Clarity** : `consentement.js`, chargé par TOUTES les pages juste après site.js
+  (§ 1). Tant que `CLARITY_ID` (en tête du fichier) est vide, il ne fait rien. Rempli : bandeau en bas d'écran
+  (« Refuser » / « Accepter » identiques, « En savoir plus » → `/mentions-legales#cookies`), Clarity chargé
+  seulement après « Accepter », choix gardé 6 mois (localStorage `perify-consentement`), lien « Gérer les
+  cookies » ajouté par le script au bout du pied de page (sous 1120 px, les points « · » du pied sont alors
+  retirés : 8 liens ne tiennent sur une ligne qu'à partir de 1100 px). Le style du bandeau est dans le script
+  (une source pour site.css ET doc.css). Plan (z-index) du bandeau : **45**, sous l'en-tête (50) — à 70, sur un
+  téléphone de 320 px, il recouvrait le menu ouvert (relecture du 01/10). Aperçu pour les captures : `?apercu-consentement=1` (Clarity jamais
+  chargé, rien d'enregistré). Une nouvelle page doit charger `consentement.js` comme les autres.
+- **Formulaire d'essai** : `#essai-demande` porte `data-clarity-mask="true"` (Clarity masque tout le bloc, y
+  compris le lien e-mail de l'écran d'échec, qui contient la demande) ; essai.js signale la réussite par
+  `PerifyConsentement.evenement('demande_essai_envoyee')` (un nom, aucune donnée). Le piège `site_web` n'a pas bougé.

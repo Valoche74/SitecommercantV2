@@ -333,9 +333,15 @@
          <span class="defile-mots" aria-hidden="true"><span>boulangeries</span><span>restaurants</span>…</span>
        </span>
      Sans JS (ou mouvement réduit) : le premier mot, immobile, dans son cadre.
-     Avec JS : toutes les 3,2 s le mot suivant monte (ressort, 1,1 s) et le cadre
-     prend sa largeur (0,5 s). Une copie du premier mot en fin de liste permet de
-     boucler sans saut. Aucun aria-live (ça parlerait toutes les 3 s). */
+     Avec JS : toutes les 1,4 s le mot suivant monte (ressort, 0,55 s : site.css) et le
+     cadre prend sa largeur (0,5 s). Une copie du premier mot en fin de liste permet de
+     boucler sans saut. Aucun aria-live (ça parlerait toutes les 2 s).
+     01/10 (Valentin : « trop lent ») : 3,2 s → 2,2 s et ressort 1,1 s → 0,8 s, environ
+     un tiers plus vite. Chaque mot reste posé et lisible environ 1,4 s.
+     01/10, second retour (Valentin : « diminue à 1,4 s ») : un mot toutes les 1,4 s, ressort
+     0,55 s ; chaque mot reste posé environ 0,85 s. */
+  var RYTHME_DEFILE = 1400;     // ms entre deux mots
+  var RETOUR_DEFILE = 650;      // ms : un peu plus que le ressort (0,55 s), avant le retour sans transition
   isoler('mot qui défile', function(){
     tous('[data-defile]').forEach(function(bloc){
       var mots = bloc.querySelector('.defile-mots');
@@ -376,7 +382,7 @@
       bloc.classList.add('defile-actif');
 
       function avancer(){
-        if (document.hidden) { setTimeout(avancer, 3200); return; }
+        if (document.hidden) { setTimeout(avancer, RYTHME_DEFILE); return; }
         i++;
         liste.style.transform = 'translateY(' + (-100 * i / (n + 1)).toFixed(4) + '%)';
         ajusterCadre();
@@ -388,11 +394,11 @@
             liste.style.transform = 'translateY(0)';
             void liste.offsetHeight;
             liste.classList.remove('sans-transition');
-          }, 1200);
+          }, RETOUR_DEFILE);
         }
-        setTimeout(avancer, 3200);
+        setTimeout(avancer, RYTHME_DEFILE);
       }
-      setTimeout(avancer, 3200);
+      setTimeout(avancer, RYTHME_DEFILE);
     });
   });
 

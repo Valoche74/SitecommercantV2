@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="comment.css">
 <script src="site.js" defer></script>
+<script src="consentement.js" defer></script>
 </head>
 <body>
 
@@ -140,6 +141,41 @@
           <small class="nombre-src">Enquête SumUp, avril&nbsp;2026, 1&nbsp;500&nbsp;Français</small>
         </div>
       </div>
+
+      <!-- 01/10 (Valentin : « des études faites aux États-Unis ») — quatre études étrangères prises dans la
+           liste VÉRIFIÉE À LA SOURCE le 01/10 (verdict « confirmé » : chiffre, sens et population relus sur la
+           page ou le PDF d'origine) : la fidélité qui fait revenir (Toast 2026, Columbia 2006), les avis qui
+           font choisir un commerce (BrightLocal 2026, Harvard 2011). Le chiffre et son sens sont ceux de
+           l'étude, avec ses limites : Toast = étude interne d'un vendeur de caisses, on écrit « les clients
+           inscrits reviennent environ 4 fois plus », jamais « le programme multiplie les retours par 4 » ;
+           BrightLocal = ce que les gens déclarent, et seulement ceux à qui on a demandé un avis ; Harvard =
+           document de travail, « 5 à 9 % » reste une fourchette. Rien sur la carte dans le téléphone : aucune
+           étude vérifiée ne mesure la carte Wallet. Square 2026 et Berkeley 2012 (première version de ce bloc)
+           sont retirés : ils ne figurent pas dans la liste vérifiée. Liens : nouvel onglet. -->
+      <p class="eti nombres-titre rev" id="titre-etranger">Études menées aux États-Unis</p>
+      <div class="nombres" aria-labelledby="titre-etranger" role="group">
+        <div class="nombre rev">
+          <b data-compte="4" data-suffixe="&nbsp;fois">4&nbsp;fois</b>
+          <span>plus de retours, environ&nbsp;: les clients inscrits au programme de fidélité d'un restaurant reviennent dans près de 30&nbsp;% des cas, contre 7&nbsp;% pour les nouveaux clients qui ne reçoivent aucune relance<sup><a href="#src-4" aria-label="source 4">4</a></sup></span>
+          <small class="nombre-src">Toast, <span class="insecable">États-Unis</span>, 2026</small>
+        </div>
+        <div class="nombre rev">
+          <b data-compte="20" data-suffixe="&nbsp;%">20&nbsp;%</b>
+          <span>de temps en moins entre deux achats, en moyenne, du premier au dernier tampon d'une carte «&nbsp;10&nbsp;cafés achetés, 1&nbsp;offert&nbsp;»&nbsp;: plus le café offert approche, plus le client revient vite<sup><a href="#src-5" aria-label="source 5">5</a></sup></span>
+          <small class="nombre-src">Université Columbia, <span class="insecable">États-Unis</span>, 2006</small>
+        </div>
+        <div class="nombre rev">
+          <b data-compte="83" data-suffixe="&nbsp;%">83&nbsp;%</b>
+          <span>des clients à qui on a demandé un avis en ont laissé un, d'après leurs propres réponses<sup><a href="#src-6" aria-label="source 6">6</a></sup></span>
+          <small class="nombre-src">BrightLocal, <span class="insecable">États-Unis</span>, 2026</small>
+        </div>
+        <div class="nombre rev">
+          <b class="nombre-fourchette">5&nbsp;à&nbsp;9&nbsp;%</b>
+          <span>de chiffre d'affaires en plus pour une étoile de plus sur Yelp, chez les restaurants indépendants (aucun effet pour les chaînes)<sup><a href="#src-7" aria-label="source 7">7</a></sup></span>
+          <small class="nombre-src">Harvard Business School, <span class="insecable">États-Unis</span>, 2011</small>
+        </div>
+      </div>
+
       <div class="sources rev">
         <p class="source" id="src-1">1. IFOP pour Guest Suite, «&nbsp;Les Français et les avis clients&nbsp;», 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat.
           <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir&nbsp;l'étude</a>.</p>
@@ -147,6 +183,14 @@
           <a href="https://www.guest-suite.com/blog/statistiques-avis-clients" rel="noopener">Voir&nbsp;l'étude</a>.</p>
         <p class="source" id="src-3">3. SumUp, enquête «&nbsp;Programmes de fidélité en France&nbsp;», avril 2026, 1&nbsp;500 Français.
           <a href="https://www.sumup.com/fr-fr/business-guide/sondage-sur-les-programmes-de-fidelite-en-france/" rel="noopener">Voir&nbsp;la&nbsp;source</a>.</p>
+        <p class="source" id="src-4">4. Toast (logiciel de caisse pour restaurants), «&nbsp;Data by Toast&nbsp;», États-Unis, juillet 2026&nbsp;: étude interne sur ses propres données de caisse, du 13&nbsp;janvier au 13&nbsp;avril 2026 (nombre de restaurants non publié)&nbsp;; les 7&nbsp;% sont les clients venus pour la première fois qui reviennent sans aucune relance.
+          <a href="https://pos.toasttab.com/blog/data/restaurant-loyalty-program-return-rate" target="_blank" rel="noopener">Voir&nbsp;la&nbsp;source</a>.</p>
+        <p class="source" id="src-5">5. R.&nbsp;Kivetz et O.&nbsp;Urminsky (université Columbia), Y.&nbsp;Zheng (université Fordham), Journal of Marketing Research, États-Unis, février 2006&nbsp;: 949 cartes de 10&nbsp;tampons remplies dans un café du campus d'une grande université de la côte Est.
+          <a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/1200/goalgradient.pdf" target="_blank" rel="noopener">Voir&nbsp;l'étude</a>.</p>
+        <p class="source" id="src-6">6. BrightLocal, «&nbsp;Local Consumer Review Survey 2026&nbsp;», États-Unis, février 2026&nbsp;: 1&nbsp;002 adultes américains (panel représentatif, SurveyMonkey)&nbsp;; ce sont leurs réponses, pas des achats mesurés, et le chiffre ne porte que sur les personnes à qui on a demandé un avis.
+          <a href="https://www.brightlocal.com/research/local-consumer-review-survey/" target="_blank" rel="noopener">Voir&nbsp;l'étude</a>.</p>
+        <p class="source" id="src-7">7. Michael Luca, Harvard Business School, document de travail 12-016, États-Unis, 2011&nbsp;: chiffre d'affaires de tous les restaurants de Seattle, de 2003 à 2009, comparé à leur note Yelp.
+          <a href="https://www.hbs.edu/ris/Publication%20Files/12-016_a7e4a5a2-03f9-490d-b093-8f951238dba2.pdf" target="_blank" rel="noopener">Voir&nbsp;l'étude</a>.</p>
       </div>
     </div>
   </section>

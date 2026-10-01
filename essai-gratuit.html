@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="essai.css">
 <script src="site.js" defer></script>
+<script src="consentement.js" defer></script>
 <script src="essai.js" defer></script>
 </head>
 <body>
@@ -89,8 +90,11 @@
       <!-- colonne droite : le formulaire en 3 étapes (essai.js).
            Sans JavaScript : les trois étapes s'affichent l'une sous l'autre, les boutons
            « Continuer / Retour » et l'indicateur restent cachés, et à la place du bouton
-           d'envoi une phrase dit d'appeler (voir essai.css, .envoi-sans-js). -->
-      <div class="essai-demande" id="essai-demande">
+           d'envoi une phrase dit d'appeler (voir essai.css, .envoi-sans-js).
+           01/10 — data-clarity-mask : si le visiteur accepte la mesure d'audience (consentement.js),
+           Microsoft Clarity masque TOUT ce bloc (textes et liens compris : le lien e-mail de l'écran
+           d'échec contient la demande). Les champs sont déjà masqués par Clarity dans tous ses modes. -->
+      <div class="essai-demande" id="essai-demande" data-clarity-mask="true">
         <form id="formulaire" class="formulaire rev" method="post" action="/essai-gratuit">
 
           <div class="progression" hidden>

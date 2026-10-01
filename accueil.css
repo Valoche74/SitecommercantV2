@@ -27,6 +27,16 @@
 .hero .lead{margin-top:18px}
 /* un seul bouton orange, suivi d'un simple lien fléché (.lien-fleche : socle), sur la même ligne */
 .hero .actions{margin-top:30px;align-items:center;column-gap:22px}
+/* 01/10 (Valentin : « il faudrait l'agrandir ») — le lien « Voir comment ça marche » du héros, nettement
+   plus grand : police des titres en 800, 18 à 20 px (16,5 px avant), souligné plus épais, et la flèche
+   dans un rond cerclé d'orange clair de 40 px (comme « Suite » et la carte du calculateur). Cible de
+   52 px de haut. Ça reste un LIEN (texte souligné, aucun fond) : le seul bouton orange plein du héros
+   est celui de l'essai. Seulement ici : le .lien-fleche du socle (page 4) ne change pas. */
+.hero .lien-fleche{gap:12px;min-height:52px;font-family:var(--titre);font-weight:800;font-size:clamp(18px,1.7vw,20px);
+  letter-spacing:-.01em;text-decoration-thickness:2.5px;text-underline-offset:.24em}
+.hero .lien-fleche svg{box-sizing:content-box;width:22px;height:22px;padding:8px;border:1.5px solid rgba(255,138,76,.6);border-radius:50%;
+  transition:transform .25s var(--sortie),border-color .2s,background .2s}
+.hero .lien-fleche:hover svg{border-color:var(--accent);background:rgba(255,138,76,.12)}
 /* petite ligne sous les boutons : coche orange, pas de pastille verte */
 .hero-note{display:flex;align-items:flex-start;gap:10px;margin:22px 0 0;font-size:16px;line-height:1.5;color:var(--texte-doux);max-width:36em}
 .hero-note svg{flex:none;margin-top:4px}
@@ -291,7 +301,7 @@
 /* ── 8. mouvement réduit : rien ne bouge (les scènes restent dans leur état final :
    leurs règles de départ et de mouvement ne s'appliquent qu'en « no-preference ») ── */
 @media(prefers-reduced-motion:reduce){
-  .avec-grille li,.bento-scene::before,.vers-calcul-fleche{transition:none}
+  .avec-grille li,.bento-scene::before,.vers-calcul-fleche,.hero .lien-fleche svg{transition:none}
   .trio li::before{transition:none;transform:none}
   .vers-calcul:hover .vers-calcul-fleche{transform:none}
 }

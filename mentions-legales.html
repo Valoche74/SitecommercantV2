@@ -25,6 +25,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="doc.css">
 <script src="site.js" defer></script>
+<script src="consentement.js" defer></script>
 </head>
 <body>
 
@@ -78,28 +79,61 @@
   <h2 id="donnees">Données personnelles</h2>
 
   <h3>Sur ce site</h3>
-  <p>Ce site ne dépose <strong>aucun cookie</strong>, n'utilise <strong>aucun outil de mesure d'audience</strong>
-    et ne suit pas ses visiteurs. Si vous remplissez le formulaire d'essai gratuit, vos coordonnées sont
-    transmises au serveur de Perify (hébergé par Vercel), qui nous les envoie par e-mail via Brevo, notre
-    prestataire d'envoi&nbsp;; elles ne sont enregistrées dans aucune base de données et servent
-    <strong>uniquement à vous répondre</strong>. Si cet envoi échoue, le formulaire vous propose d'ouvrir
-    votre messagerie avec votre demande déjà écrite.
-    Elles sont conservées le temps de l'échange commercial, puis supprimées si aucune suite n'est donnée.</p>
+  <p>Sans votre accord, ce site ne dépose <strong>aucun cookie</strong> et ne mesure pas votre visite (voir
+    «&nbsp;Cookies et mesure d'audience&nbsp;» ci-dessous). Si vous remplissez le formulaire d'essai gratuit, vos coordonnées sont
+    transmises au serveur de Perify (hébergé par Vercel), qui les <strong>enregistre</strong> dans sa base de
+    données (hébergée dans l'Union européenne) et me les envoie par e-mail via Brevo, mon prestataire
+    d'envoi. Elles servent <strong>uniquement à vous répondre</strong>. Si cet envoi échoue, le formulaire vous
+    propose d'ouvrir votre messagerie avec votre demande déjà écrite.
+    Elles sont conservées <strong>3 ans au plus</strong> après votre demande, puis effacées automatiquement
+    (30 jours pour un envoi repéré comme automatique).</p>
+
+  <!-- 01/10 — TEXTE À FAIRE VALIDER PAR VALENTIN. Sources vérifiées le 01/10/2026 : documentation Microsoft
+       (learn.microsoft.com/clarity : cookies, consentement « consentv2 », masquage, FAQ « Privacy ») ; durées de
+       _clck (1 an) et _clsk (1 jour) : code source officiel de Clarity (github.com/microsoft/clarity, types/data.d.ts),
+       la documentation ne les donne pas ; CNIL : choix gardé 6 mois, refus et retrait aussi simples que l'accord.
+       Vrai que Clarity soit branché ou non : tant que CLARITY_ID est vide (consentement.js), aucun bandeau, rien
+       n'est chargé. -->
+  <h3 id="cookies">Cookies et mesure d'audience</h3>
+  <p>Avec votre accord seulement, ce site peut utiliser <strong>Microsoft Clarity</strong>, un outil de mesure
+    d'audience de Microsoft, pour comprendre comment ses pages sont parcourues et les améliorer&nbsp;: cartes des
+    clics, profondeur de défilement et enregistrement de la visite (mouvements, clics, défilement). Ce que vous
+    tapez dans le formulaire d'essai est masqué et n'est pas envoyé à Clarity&nbsp;; quand une demande d'essai part,
+    le site le signale à Clarity, sans rien de son contenu. Tant que vous n'avez pas cliqué sur «&nbsp;Accepter&nbsp;»,
+    Clarity n'est pas chargé&nbsp;: aucun cookie n'est déposé et rien n'est envoyé à Microsoft.</p>
+  <p><strong>Les cookies.</strong> Si vous acceptez, Clarity dépose deux cookies sur perify.app&nbsp;:
+    <code>_clck</code>, qui reconnaît votre navigateur d'une visite à l'autre (1&nbsp;an), et <code>_clsk</code>, qui
+    relie les pages d'une même visite (1&nbsp;jour). Microsoft peut aussi utiliser ses propres cookies, sur ses
+    domaines (<code>MUID</code>, <code>CLID</code>, <code>ANONCHK</code>, <code>MR</code>, <code>SM</code>), dont la
+    durée est fixée par Microsoft. Votre accord ne vaut que pour la mesure d'audience&nbsp;: le site indique à
+    Clarity que le stockage lié à la publicité est refusé.</p>
+  <p><strong>Où vont les données.</strong> Elles sont hébergées par Microsoft, sur son service Azure. Comme je suis
+    établi dans l'Union européenne, mon contrat Clarity est passé avec Microsoft Ireland Operations Limited, qui a
+    signé avec Microsoft Corporation, aux États-Unis, des clauses contractuelles types («&nbsp;SCC&nbsp;») permettant
+    le transfert des données. Microsoft indique agir pour Clarity en tant que responsable de traitement et avoir
+    accès à ces données. Les enregistrements sont gardés 30&nbsp;jours (jusqu'à 9&nbsp;mois pour ceux que je mets en
+    favori et pour un échantillon tiré au hasard). Pour en savoir plus&nbsp;: les
+    <a href="https://clarity.microsoft.com/terms" rel="noopener">conditions d'utilisation de Clarity</a> et la
+    <a href="https://www.microsoft.com/privacy/privacystatement" rel="noopener">déclaration de confidentialité de Microsoft</a>.</p>
+  <p><strong>Votre choix.</strong> Il est gardé six mois dans votre navigateur (une petite mémoire locale, pas un
+    cookie), puis la question vous est reposée. Vous pouvez le changer à tout moment avec le lien «&nbsp;Gérer les
+    cookies&nbsp;», en bas de chaque page&nbsp;: si vous retirez votre accord, les cookies de Clarity sont effacés et la
+    mesure s'arrête.</p>
 
   <h3>Dans le programme de fidélité</h3>
   <p>Quand vous prenez une carte de fidélité chez un commerçant, <strong>c'est ce commerçant qui décide</strong>
     de ce programme et de l'usage fait de vos données&nbsp;: il en est le responsable de traitement.
-    <strong>Perify est son sous-traitant</strong> au sens de l'article 28 du RGPD&nbsp;: nous traitons ces données
-    uniquement sur ses instructions, pour faire fonctionner le programme, et nous n'en faisons aucun usage
-    propre — ni revente, ni réutilisation pour un autre commerce, ni prospection pour notre compte.</p>
+    <strong>Perify est son sous-traitant</strong> au sens de l'article 28 du RGPD&nbsp;: je traite ces données
+    uniquement sur ses instructions, pour faire fonctionner le programme, et je n'en fais aucun usage
+    propre — ni revente, ni réutilisation pour un autre commerce, ni prospection pour mon compte.</p>
   <p>Un contrat de sous-traitance est signé avec chaque commerçant. Les données de chaque commerce sont
     cloisonnées&nbsp;: aucun commerçant n'accède aux clients d'un autre. Si un commerçant quitte Perify, il repart
-    avec son fichier et ses données sont supprimées de nos serveurs.</p>
+    avec son fichier et ses données sont supprimées des serveurs de Perify.</p>
 
   <h3>Vos droits</h3>
   <p>Vous pouvez demander l'accès à vos données, leur correction, leur effacement, leur portabilité, la limitation
-    de leur traitement, ou vous opposer à leur usage. Adressez votre demande au commerce concerné, ou écrivez-nous&nbsp;:
-    nous la transmettons et l'exécutons. Réponse <strong>sous un mois</strong>.</p>
+    de leur traitement, ou vous opposer à leur usage. Adressez votre demande au commerce concerné, ou écrivez-moi&nbsp;:
+    je la transmets et l'exécute. Réponse <strong>sous un mois</strong>.</p>
   <p>Chaque e-mail envoyé dans le cadre du programme contient un lien de désinscription, effectif
     immédiatement, sans effet sur votre carte.</p>
   <p>Si une réponse ne vous satisfait pas, vous pouvez saisir la <strong>CNIL</strong> —

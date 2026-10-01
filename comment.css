@@ -147,6 +147,16 @@
 .nombre sup{line-height:0;white-space:nowrap}
 .nombre sup a{position:relative;display:inline;margin-left:3px;padding:0 3px;color:var(--orange-texte);text-decoration:none;font-size:12px;font-weight:700;line-height:1}
 .nombre sup a::after{content:"";position:absolute;left:50%;top:50%;width:48px;height:48px;transform:translate(-50%,-50%)}
+/* 01/10 — la seconde rangée : « Études menées aux États-Unis » (quatre chiffres, même dessin que la
+   première). L'étiquette prend l'air qui sépare les deux rangées. « 5 à 9 % » est une fourchette sans
+   compteur : jamais coupée sur deux lignes. */
+.nombres-titre{margin-top:clamp(48px,6vw,72px)}
+/* un peu plus petite que les autres chiffres (62 px au plus au lieu de 68) : à 1440 px, en 68 px, elle
+   remplissait sa colonne au pixel près */
+.nombre .nombre-fourchette{white-space:nowrap;font-size:clamp(40px,4.9vw,62px);
+  /* relecture du 01/10 : sa boîte garde la hauteur des autres chiffres (même clamp que .nombre b), pour
+     que sa ligne de texte démarre à la même hauteur que celles de la rangée (6 px plus haut sinon) */
+  line-height:clamp(44px,5.4vw,68px)}
 /* les sources, numérotées, sous les chiffres */
 .sources{margin-top:clamp(40px,5vw,56px);padding-top:18px;border-top:1px solid var(--ligne-claire);display:grid;gap:8px;max-width:84ch}
 .source{font-size:14px;line-height:1.55;color:var(--gris);margin:0}

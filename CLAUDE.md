@@ -36,7 +36,8 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
 ## Ce qui ne se discute pas
 - **Aucun chiffre inventé** (pas de « +30 % de fidélité », pas de « 1 000 commerces »), **aucun prix**
   (les tarifs se donnent de vive voix), aucun commerce nommé sans son accord, aucun faux avis, aucun
-  témoignage, aucun compte à rebours. Seuls nombres permis : ceux du cahier. La ligne « En service
+  témoignage, aucun compte à rebours. Seuls nombres permis : ceux du cahier, et (01/10, demande de Valentin)
+  les quatre études américaines de « Comment ça marche » (sources 4 à 7), chacune vérifiée à sa source. La ligne « En service
   aujourd'hui dans une boulangerie à Cruseilles et un restaurant à Annecy » est **supprimée** (décision
   du 26/09) : ne pas la remettre.
 - **Les textes sont validés par Valentin** : on peut resserrer une phrase, pas changer le sens ni le ton
@@ -56,15 +57,21 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
   éléments de la vraie carte) ; jamais de maquette de téléphone dessinée en HTML/CSS, jamais de police à
   empattements « style IA ». Sources hors dépôt (`IMAGE/ressources/valentin-24-09/`,
   `IMAGE/ressources-valentin/`), préparées avec `sharp` hors du dépôt.
-- **QR** : celui d'un **présentoir** peut rester net (décision de Valentin, 26/09). Le QR ou le numéro d'une
+- **QR** : celui d'un **présentoir** pouvait rester net (décision de Valentin, 26/09) — **01/10 : flouté sur
+  les 8 images** (site ca1118b) parce que ces QR menaient à baps.perify.app et falman.perify.app (un visiteur créait
+  une vraie carte chez eux). Un QR de démo (commerce « Perify · démo ») ou du site pourra rester net ; jamais celui
+  d'un vrai commerce. Décoder toute image de présentoir avant de pousser. Le QR ou le numéro d'une
   **carte client** (pass Wallet) se floute TOUJOURS — y compris dans `img/parcours.webp`, où le QR du pass
-  (téléphone du haut) est flouté et celui du présentoir laissé net (26/09, validé par Valentin).
+  (téléphone du haut) est flouté (26/09) — et celui du présentoir aussi depuis le 01/10.
 - Les captures d'écran avec des chiffres portent « Données de démonstration. ».
 - Les badges Apple / Google ne servent jamais de décoration ; dans « Ça marche avec », les noms sont écrits
   en texte, aucun logo de marque tierce.
 - **Un seul bouton orange plein à l'écran**, en-tête compris (téléphone : le bouton de la barre s'efface ;
   ordinateur : celui du menu passe en contour — site.js pose `.essai-cache` sur l'en-tête).
 - Aucun script externe (ni CDN, ni GSAP, ni React) : seules ressources externes, les polices Google.
+  **Exception (01/10, demande de Valentin)** : Microsoft Clarity, chargé par `consentement.js` SEULEMENT si
+  `CLARITY_ID` est rempli ET après « Accepter » (bandeau CNIL : « Refuser » aussi simple qu'« Accepter », choix
+  gardé 6 mois, « Gérer les cookies » au pied de chaque page). Aucune donnée du formulaire n'y va.
   Les effets des composants modèles (`IMAGE/ressources/composants-tsx/`) sont refaits à la main.
 - Lisibilité : contraste ≥ 4,5:1, 16 px minimum sur téléphone (champs 16 px), cibles ≥ 48 px,
   `:focus-visible`, un seul `<h1>` par page, quatre largeurs (375, 768, 1024, 1440) sans défilement

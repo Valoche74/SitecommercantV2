@@ -274,7 +274,12 @@
     }
   }
 
-  function afficherReussite(){ montrerResultat(reussite); }
+  function afficherReussite(){
+    montrerResultat(reussite);
+    // 01/10 — mesure d'audience (consentement.js) : un simple nom d'événement, AUCUNE donnée du
+    // formulaire ; sans effet si le visiteur n'a pas accepté, ou si Clarity n'est pas configuré.
+    try { if (window.PerifyConsentement) window.PerifyConsentement.evenement('demande_essai_envoyee'); } catch (e) {}
+  }
 
   function afficherEchec(d){
     // Le lien ne doit jamais empêcher l'écran d'échec de s'afficher (le téléphone y est aussi).

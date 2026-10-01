@@ -313,8 +313,10 @@ section{position:relative;z-index:1}
 .defile-fenetre{position:absolute;left:0;right:0;top:-.2em;bottom:-.2em;overflow:hidden;pointer-events:none;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 .26em,#000 calc(100% - .26em),transparent 100%);
           mask-image:linear-gradient(180deg,transparent 0,#000 .26em,#000 calc(100% - .26em),transparent 100%)}
+/* 01/10 (Valentin : « trop lent », puis « diminue à 1,4 s ») : un mot toutes les 1,4 s (site.js,
+   RYTHME_DEFILE), ressort de 0,55 s au lieu de 1,1 s — chaque mot reste posé environ 0,85 s */
 .defile-liste{position:absolute;left:0;top:.2em;display:block;will-change:transform;
-  transition:transform 1.1s cubic-bezier(.34,1.56,.64,1)}
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
 /* ressort amorti (dépasse de 9 %, revient, se pose) quand le navigateur connaît linear() */
 @supports (transition-timing-function:linear(0,1)){
   .defile-liste{transition-timing-function:linear(0,.088,.285,.513,.722,.887,1,1.065,1.092,1.093,1.078,1.057,1.036,1.018,1.005,.996,.992,.991,.992,.994,.996,.997,.999,1,1.001,1.001,1)}
