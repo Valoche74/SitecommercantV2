@@ -43,7 +43,7 @@
      https://clarity.microsoft.com/projects/view/<identifiant>/ — c'est aussi ce qui
      suit « clarity.ms/tag/ » dans le code de suivi proposé par Clarity.
      Forme attendue : lettres et chiffres seulement (sinon, rien ne se charge). */
-  var CLARITY_ID = '';
+  var CLARITY_ID = 'yr0fanyf0l';   // 01/10 — projet Clarity « perify.app » de Valentin (identifiant public, pas un secret)
 
   var CLE = 'perify-consentement';            // localStorage : {"choix":"accepte"|"refuse","date":"…","v":1}
   var VERSION = 1;                            // à augmenter si l'usage change : le choix est redemandé
