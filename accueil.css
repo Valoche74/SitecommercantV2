@@ -37,6 +37,9 @@
 .hero .lien-fleche svg{box-sizing:content-box;width:22px;height:22px;padding:8px;border:1.5px solid rgba(255,138,76,.6);border-radius:50%;
   transition:transform .25s var(--sortie),border-color .2s,background .2s}
 .hero .lien-fleche:hover svg{border-color:var(--accent);background:rgba(255,138,76,.12)}
+/* 01/10 (Valentin) — deux liens fléchés empilés, à droite du bouton d'essai : « Voir comment ça marche » et « Les outils
+   à votre disposition » (page 3). Sur téléphone, la rangée passe à la ligne : ils s'empilent sous le bouton. */
+.hero .hero-liens{display:flex;flex-direction:column;align-items:flex-start;row-gap:2px}
 /* petite ligne sous les boutons : coche orange, pas de pastille verte */
 .hero-note{display:flex;align-items:flex-start;gap:10px;margin:22px 0 0;font-size:16px;line-height:1.5;color:var(--texte-doux);max-width:36em}
 .hero-note svg{flex:none;margin-top:4px}
