@@ -59,8 +59,9 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
   `IMAGE/ressources-valentin/`), préparées avec `sharp` hors du dépôt.
 - **QR** : celui d'un **présentoir** pouvait rester net (décision de Valentin, 26/09) — **01/10 : flouté sur
   les 8 images** (site ca1118b) parce que ces QR menaient à baps.perify.app et falman.perify.app (un visiteur créait
-  une vraie carte chez eux). Un QR de démo (commerce « Perify · démo ») ou du site pourra rester net ; jamais celui
-  d'un vrai commerce. Décoder toute image de présentoir avant de pousser. Le QR ou le numéro d'une
+  une vraie carte chez eux) ; le flou « rendait trop mal » → **remplacé le soir même par un QR NET vers perify.app**
+  (site 0fd912a, qr-site-perify.png posé au même angle). Règle : sur le site, un QR de présentoir mène à perify.app ou à
+  un commerce de démo, jamais à un vrai commerce. Décoder toute image de présentoir avant de pousser. Le QR ou le numéro d'une
   **carte client** (pass Wallet) se floute TOUJOURS — y compris dans `img/parcours.webp`, où le QR du pass
   (téléphone du haut) est flouté (26/09) — et celui du présentoir aussi depuis le 01/10.
 - Les captures d'écran avec des chiffres portent « Données de démonstration. ».
