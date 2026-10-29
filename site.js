@@ -359,8 +359,9 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajusterCadre);
       window.addEventListener('resize', ajusterCadre);
       window.addEventListener('load', ajusterCadre);
-      // La feuille Google Fonts arrive en différé (preload puis onload) : fonts.ready et « load »
-      // peuvent passer AVANT Plus Jakarta Sans, et le cadre garderait la largeur de la police de
+      // La police arrive après le premier affichage (07/10/2026 : servie par perify.app, déclarée
+      // dans site.css avec font-display: swap ; avant, la feuille Google Fonts arrivait en différé) :
+      // fonts.ready et « load » peuvent passer AVANT Plus Jakarta Sans, et le cadre garderait la largeur de la police de
       // secours (13 à 16 px de trop). La liste des mots change de largeur quand la vraie police
       // arrive : on le surveille, et on écoute aussi la fin de chaque chargement de police.
       if ('ResizeObserver' in window) { try { new ResizeObserver(ajusterCadre).observe(mots); } catch (e) {} }

@@ -69,7 +69,13 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
   en texte, aucun logo de marque tierce.
 - **Un seul bouton orange plein à l'écran**, en-tête compris (téléphone : le bouton de la barre s'efface ;
   ordinateur : celui du menu passe en contour — site.js pose `.essai-cache` sur l'en-tête).
-- Aucun script externe (ni CDN, ni GSAP, ni React) : seules ressources externes, les polices Google.
+- Aucun script externe (ni CDN, ni GSAP, ni React), aucune ressource externe. **Polices (07/10/2026, audit
+  légal point 10)** : servies par perify.app (`polices/`, mêmes fichiers que Google Fonts : Inter v20,
+  Plus Jakarta Sans v12, latin + latin-ext, licence SIL OFL dans `polices/OFL-*.txt`), déclarées en tête de
+  `site.css` et recopiées dans `doc.css` ; ne jamais remettre de lien vers fonts.googleapis.com ou
+  fonts.gstatic.com (l'adresse IP du visiteur partait chez Google). Cache d'un an « immutable » sur
+  `/polices/` (vercel.json) : un fichier n'est jamais remplacé sous le même nom, une nouvelle version prend
+  un nouveau nom.
   **Exception (01/10, demande de Valentin)** : Microsoft Clarity, chargé par `consentement.js` SEULEMENT si
   `CLARITY_ID` est rempli ET après « Accepter » (bandeau CNIL : « Refuser » aussi simple qu'« Accepter », choix
   gardé 6 mois, « Gérer les cookies » au pied de chaque page). Aucune donnée du formulaire n'y va.
@@ -83,7 +89,10 @@ L'en-tête, le menu et le pied sont **recopiés dans `doc.css`** (aide, mentions
 ## Vérifier
 - `node _outils/tests/lancer-tous.mjs --seulement "des pages"` (depuis `EN-COURS`) : syntaxe des scripts
   en ligne des pages ET des `.js` du site (`site.js`, `accueil.js`, `eventail.js`, `calcul.js`, `essai.js`), plus les
-  `.catch` fautifs. Capture téléphone réelle : `node _outils/apercu-mobile.mjs <page> <sortie.png>`.
+  `.catch` fautifs, plus (07/10/2026) `verif-ressources-externes.mjs` : aucune ressource chargée depuis un autre site,
+  aucune adresse de Google Fonts, `@font-face` identiques dans `site.css` et `doc.css`, fichiers et licences présents
+  dans `polices/` (sous-dossiers compris ; ⚠️ tant qu'un fichier de `polices/` n'est pas dans git : Vercel publie
+  ce qui est dans git, un commit sans `polices/` mettrait le site en ligne sans ses polices). Capture téléphone réelle : `node _outils/apercu-mobile.mjs <page> <sortie.png>`.
 - Le regard final (captures ordinateur + téléphone) se fait sur la machine de Valentin. Une PR doit rester
   petite et décrire ce qu'il faut regarder.
 
