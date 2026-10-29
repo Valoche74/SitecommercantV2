@@ -5,7 +5,7 @@ reliées par le menu (« comme TheGiftsClub ») :
 
 | page | fichier | adresse |
 |---|---|---|
-| 1 — Accueil | `index.html` (+ `accueil.css`, `accueil.js`) | `/` |
+| 1 — Accueil | `index.html` (+ `accueil.css`, `parcours.css`, `accueil.js`) | `/` |
 | 2 — Comment ça marche | `comment-ca-marche.html` (+ `comment.css`) | `/comment-ca-marche` |
 | 3 — Ce que vous pilotez | `ce-que-vous-pilotez.html` (+ `pilotez.css`) | `/ce-que-vous-pilotez` |
 | 4 — Essai gratuit (+ « Qui est derrière », FAQ) | `essai-gratuit.html` (+ `essai.css`, `essai.js`) | `/essai-gratuit` |
@@ -19,6 +19,14 @@ orange ; seul le marqueur d'un mot par page reste). **Rythme des fonds** : la nu
 (textes nuit) ; les scènes illustrées, les visuels des étapes, le disque GPS et le panneau des résultats
 gardent leur fond sombre dans leur propre bloc. Sur ordinateur, le bouton du menu passe en contour quand un autre bouton orange
 plein est à l'écran. Détail : `_GABARIT.md` § 13.
+
+**Accueil simplifié (29/10, choix de Valentin)** : « En chiffres », les trois piliers et la grille des six fonctions sont
+remplacés par **« Le parcours »** (4 scènes, crème) et **« Les jeux »** (roue, carte à gratter, cadeau mystère, blanc), livrés
+par la session Design (`IMAGE/livraisons/2026-10-29-parcours-illustre/`, générateur `sources/fabrique.mjs` : on corrige le
+générateur puis on relivre, jamais les SVG à la main). Exception à la règle des scènes sombres : ces scènes sont sur
+**panneau clair** (variante B). Rythme : présentoir blanc → parcours crème → jeux blanc → « Ça marche avec » crème → essai nuit.
+Les trois jeux sont présentés au même niveau, sans badge (décision du 29/10 : faits sur mesure ; au 29/10 seule la roue
+existe dans le produit).
 
 Plus `aide.html` et `mentions-legales.html` (feuille `doc.css`), et `img/`. HTML / CSS / JS simple, sans
 framework ni build. Hébergé sur Vercel (`cleanUrls` : liens internes sans `.html`), déploiement à chaque

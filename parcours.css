@@ -1,0 +1,62 @@
+/* parcours.css — session Design, 29/10/2026 : « Le parcours » + « Les jeux », version retenue par Valentin
+   (variante B, fond clair). À fusionner dans accueil.css par la dev : les règles sc-… reprennent celles du bento,
+   étendues à .scene-bloc. La palette « nuit » (variante A, non retenue) reste dans sources/fabrique.mjs. */
+
+/* ── la palette de dessin (toutes les couleurs des scènes passent par ces variables) ── */
+.parcours[data-illu="clair"],.jeux[data-illu="clair"]{--sc-panneau:radial-gradient(70% 80% at 50% 30%,rgba(255,138,76,.18),transparent 72%),#FFF4EA;--sc-trait:#1B1F3B;--sc-trait2:rgba(27,31,59,.28);--sc-papier:#FFFFFF;--sc-papier2:#FFF8F0;--sc-ombre:#EFEAE3;--sc-ombre2:#E3DDD4;--sc-ecran:#1B1F3B;--sc-accent:#FF6B2C;--sc-accent2:#FF8A4C;--sc-verre:rgba(27,31,59,.05);--sc-sol:rgba(27,31,59,.22);--sc-peau:#FFE9DA;--sc-cheveux:#1B1F3B;--sc-bas:#1B1F3B}
+
+/* ── le parcours : 1 colonne, 2 dès 680 px, 4 dès 1024 px ── */
+.parcours .titre-bloc{max-width:24ch}
+.etapes-illu{list-style:none;margin:clamp(30px,5vw,50px) 0 0;padding:0;display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:680px){.etapes-illu{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(min-width:1024px){.etapes-illu{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}}
+.scene-bloc{position:relative;margin:0;min-width:0;display:flex;flex-direction:column;background:var(--blanc);color:var(--encre);
+  border:1px solid var(--ligne-claire);border-radius:18px;overflow:hidden;box-shadow:0 16px 36px -26px rgba(27,31,59,.3)}
+.etape-illu-visu,.jeu-visu{position:relative;flex:none;margin:10px 10px 0;border-radius:13px;overflow:hidden;background:var(--sc-panneau)}
+.etape-illu-visu{aspect-ratio:4/3}
+.jeu-visu{aspect-ratio:15/11}
+.parcours[data-illu="clair"] .etape-illu-visu,.jeux[data-illu="clair"] .jeu-visu{box-shadow:inset 0 0 0 1px rgba(27,31,59,.06)}
+.etape-illu-visu .scene,.jeu-visu .scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.etape-illu-texte,.jeu-texte{padding:18px 22px 24px}
+.etape-illu .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--nuit);color:#FFFFFF;font-family:var(--titre);font-weight:800;font-size:14px;margin-bottom:10px}
+.scene-bloc h3{margin:0 0 6px;font-family:var(--titre);font-weight:800;font-size:clamp(19px,1.9vw,21px);line-height:1.25;letter-spacing:-.015em;color:var(--encre)}
+.scene-bloc p{margin:0;font-size:16px;line-height:1.55;color:var(--gris)}
+/* téléphone : la scène garde toute la largeur (les dessins méritent la place), le texte dessous */
+@media(max-width:679.98px){.etape-illu-texte,.jeu-texte{padding:16px 18px 20px}}
+
+/* ── les jeux : 1 colonne, 3 dès 680 px (grilles en minmax(0,1fr) + .scene-bloc en min-width:0 : règle Safari iPhone du 29/10) ── */
+.jeux .titre-bloc{max-width:24ch}
+.jeux-liste{list-style:none;margin:clamp(30px,5vw,50px) 0 0;padding:0;display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:680px){.jeux-liste{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+.jeux .vers-calcul{margin-top:clamp(28px,4vw,44px)}
+
+/* ── ce qui bouge (mêmes classes que le bento, étendues à .scene-bloc ; nouvelles : sc-scan, sc-couvercle, sc-gratte) ── */
+.scene text{font-family:var(--texte-ff)}
+.sc-pop,.sc-pulse,.sc-glisse,.sc-roue,.sc-tourne,.sc-scan{transform-box:fill-box;transform-origin:center}
+.sc-barre{transform-box:fill-box;transform-origin:0 50%}
+.sc-couvercle{transform-box:fill-box;transform-origin:50% 100%;transform:translateY(-12px) rotate(-12deg)}
+.sc-trace,.sc-gratte{stroke-dasharray:1 1;stroke-dashoffset:0}
+.sc-pulse{opacity:0}
+@media(prefers-reduced-motion:no-preference){
+  .site-pret .scene-bloc:not(.vu) .sc-pop,.scene-bloc.vu.rejoue .sc-pop{transform:scale(0);opacity:0}
+  .site-pret .scene-bloc:not(.vu) .sc-glisse,.scene-bloc.vu.rejoue .sc-glisse{transform:translateX(28px);opacity:0}
+  .site-pret .scene-bloc:not(.vu) .sc-roue,.scene-bloc.vu.rejoue .sc-roue{transform:rotate(-382.5deg)}
+  .site-pret .scene-bloc:not(.vu) .sc-tourne,.scene-bloc.vu.rejoue .sc-tourne{transform:rotate(-90deg)}
+  .site-pret .scene-bloc:not(.vu) .sc-barre,.scene-bloc.vu.rejoue .sc-barre{transform:scaleX(0)}
+  .site-pret .scene-bloc:not(.vu) .sc-trace,.scene-bloc.vu.rejoue .sc-trace,.site-pret .scene-bloc:not(.vu) .sc-gratte,.scene-bloc.vu.rejoue .sc-gratte{stroke-dashoffset:1}
+  .site-pret .scene-bloc:not(.vu) .sc-fade,.scene-bloc.vu.rejoue .sc-fade{opacity:0}
+  .site-pret .scene-bloc:not(.vu) .sc-scan,.scene-bloc.vu.rejoue .sc-scan{transform:translateY(-50px)}
+  .site-pret .scene-bloc:not(.vu) .sc-couvercle,.scene-bloc.vu.rejoue .sc-couvercle{transform:none}
+  .scene-bloc.vu.rejoue .scene *{transition:none !important;animation:none !important}
+  .scene-bloc.vu .sc-pop{transition:transform .5s cubic-bezier(.34,1.56,.64,1) var(--t,0s),opacity .2s ease var(--t,0s)}
+  .scene-bloc.vu .sc-pulse{animation:sc-pulse .9s var(--sortie) var(--t,0s) both}
+  .scene-bloc.vu .sc-glisse{transition:transform .6s var(--sortie) var(--t,0s),opacity .4s ease var(--t,0s)}
+  .scene-bloc.vu .sc-roue{transition:transform 2.2s cubic-bezier(.12,.8,.2,1) var(--t,.2s)}
+  .scene-bloc.vu .sc-tourne{transition:transform 2.2s cubic-bezier(.12,.8,.2,1) var(--t,.2s)}
+  .scene-bloc.vu .sc-barre{transition:transform 1s var(--sortie) var(--t,0s)}
+  .scene-bloc.vu .sc-trace{transition:stroke-dashoffset 1.1s ease-out var(--t,0s)}
+  .scene-bloc.vu .sc-gratte{transition:stroke-dashoffset 1.6s ease-in-out var(--t,.5s)}
+  .scene-bloc.vu .sc-fade{transition:opacity .8s ease var(--t,0s)}
+  .scene-bloc.vu .sc-scan{transition:transform 1.2s ease-in-out var(--t,.3s)}
+  .scene-bloc.vu .sc-couvercle{transition:transform .9s cubic-bezier(.34,1.56,.64,1) var(--t,.9s)}
+}

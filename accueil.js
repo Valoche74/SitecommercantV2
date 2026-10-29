@@ -39,7 +39,7 @@
     try { souris = window.matchMedia('(hover: hover) and (pointer: fine)').matches; } catch (e) {}
     if (!souris) return;
 
-    var blocs = [].slice.call(document.querySelectorAll('.bento-bloc'));
+    var blocs = [].slice.call(document.querySelectorAll('.bento-bloc, .scene-bloc'));
     if (!blocs.length) return;
 
     blocs.forEach(function(bloc){

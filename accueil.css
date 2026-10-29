@@ -300,6 +300,14 @@
   .avec-grille li:nth-child(1),.avec-grille li:nth-child(3),.avec-grille li:nth-child(6),.avec-grille li:nth-child(8){background:#F5F6FA}
   .avec-grille li:nth-child(1)::after,.avec-grille li:nth-child(2)::after,.avec-grille li:nth-child(3)::after{display:block}
 }
+/* 29/10/2026 — « Ça marche avec » passe sur CRÈME (les jeux, juste avant, sont sur blanc) : le gris bleuté #F5F6FA du
+   damier, pensé pour un fond blanc, paraissait froid sur la crème chaude. Sur crème, les cases du damier sont BLANCHES. */
+@media(max-width:767.98px){
+  .creme .avec-grille li:nth-child(1),.creme .avec-grille li:nth-child(4),.creme .avec-grille li:nth-child(5),.creme .avec-grille li:nth-child(8){background:var(--blanc)}
+}
+@media(min-width:768px){
+  .creme .avec-grille li:nth-child(1),.creme .avec-grille li:nth-child(3),.creme .avec-grille li:nth-child(6),.creme .avec-grille li:nth-child(8){background:var(--blanc)}
+}
 
 /* ── 8. mouvement réduit : rien ne bouge (les scènes restent dans leur état final :
    leurs règles de départ et de mouvement ne s'appliquent qu'en « no-preference ») ── */

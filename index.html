@@ -22,12 +22,15 @@
 <!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de site.css) : plus aucune requête vers Google -->
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="accueil.css">
+<link rel="stylesheet" href="parcours.css">
 <link rel="stylesheet" href="eventail.css">
 <script src="site.js" defer></script>
 <script src="consentement.js" defer></script>
 <script src="accueil.js" defer></script>
 </head>
 <body>
+<!-- 29/10/2026 : les dessins du parcours et des jeux réutilisent ces symboles (session Design, sources/fabrique.mjs) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="sc-qr" viewBox="-2 -2 29 29"><rect x="-2" y="-2" width="29" height="29" rx="1.2" fill="#FFFFFF"/><path fill-rule="evenodd" fill="#1B1F3B" d="M0 0h7v7h-7z M1 1v5h5v-5z M2 2h3v3h-3zM18 0h7v7h-7z M19 1v5h5v-5z M20 2h3v3h-3zM0 18h7v7h-7z M1 19v5h5v-5z M2 20h3v3h-3z M8 6h1v1h-1z M6 8h1v1h-1z M10 6h1v1h-1z M6 10h1v1h-1z M12 6h1v1h-1z M6 12h1v1h-1z M14 6h1v1h-1z M6 14h1v1h-1z M16 6h1v1h-1z M6 16h1v1h-1z M8 0h1v1h-1z M9 0h1v1h-1z M13 0h1v1h-1z M15 0h1v1h-1z M9 1h1v1h-1z M10 1h1v1h-1z M13 1h1v1h-1z M14 1h1v1h-1z M15 1h1v1h-1z M8 2h1v1h-1z M10 2h1v1h-1z M12 2h1v1h-1z M13 2h1v1h-1z M14 2h1v1h-1z M15 2h1v1h-1z M9 3h1v1h-1z M9 4h1v1h-1z M10 4h1v1h-1z M11 4h1v1h-1z M12 4h1v1h-1z M13 4h1v1h-1z M14 4h1v1h-1z M16 4h1v1h-1z M8 5h1v1h-1z M13 5h1v1h-1z M14 5h1v1h-1z M15 5h1v1h-1z M16 5h1v1h-1z M9 7h1v1h-1z M10 7h1v1h-1z M12 7h1v1h-1z M13 7h1v1h-1z M3 8h1v1h-1z M15 8h1v1h-1z M17 8h1v1h-1z M24 8h1v1h-1z M3 9h1v1h-1z M4 9h1v1h-1z M5 9h1v1h-1z M7 9h1v1h-1z M11 9h1v1h-1z M16 9h1v1h-1z M22 9h1v1h-1z M1 10h1v1h-1z M2 10h1v1h-1z M3 10h1v1h-1z M14 10h1v1h-1z M18 10h1v1h-1z M22 10h1v1h-1z M23 10h1v1h-1z M24 10h1v1h-1z M1 11h1v1h-1z M2 11h1v1h-1z M3 11h1v1h-1z M4 11h1v1h-1z M5 11h1v1h-1z M9 11h1v1h-1z M10 11h1v1h-1z M11 11h1v1h-1z M14 11h1v1h-1z M15 11h1v1h-1z M21 11h1v1h-1z M23 11h1v1h-1z M1 12h1v1h-1z M2 12h1v1h-1z M7 12h1v1h-1z M8 12h1v1h-1z M10 12h1v1h-1z M11 12h1v1h-1z M14 12h1v1h-1z M17 12h1v1h-1z M18 12h1v1h-1z M20 12h1v1h-1z M1 13h1v1h-1z M7 13h1v1h-1z M9 13h1v1h-1z M12 13h1v1h-1z M13 13h1v1h-1z M14 13h1v1h-1z M18 13h1v1h-1z M19 13h1v1h-1z M20 13h1v1h-1z M1 14h1v1h-1z M3 14h1v1h-1z M5 14h1v1h-1z M13 14h1v1h-1z M16 14h1v1h-1z M23 14h1v1h-1z M24 14h1v1h-1z M0 15h1v1h-1z M2 15h1v1h-1z M8 15h1v1h-1z M13 15h1v1h-1z M17 15h1v1h-1z M18 15h1v1h-1z M20 15h1v1h-1z M21 15h1v1h-1z M23 15h1v1h-1z M0 16h1v1h-1z M3 16h1v1h-1z M4 16h1v1h-1z M7 16h1v1h-1z M8 16h1v1h-1z M9 16h1v1h-1z M12 16h1v1h-1z M14 16h1v1h-1z M16 16h1v1h-1z M18 16h1v1h-1z M20 16h1v1h-1z M23 16h1v1h-1z M24 16h1v1h-1z M10 17h1v1h-1z M13 17h1v1h-1z M14 17h1v1h-1z M15 17h1v1h-1z M18 17h1v1h-1z M20 17h1v1h-1z M22 17h1v1h-1z M24 17h1v1h-1z M9 18h1v1h-1z M10 18h1v1h-1z M11 18h1v1h-1z M13 18h1v1h-1z M14 18h1v1h-1z M20 18h1v1h-1z M22 18h1v1h-1z M9 19h1v1h-1z M11 19h1v1h-1z M12 19h1v1h-1z M14 19h1v1h-1z M15 19h1v1h-1z M16 19h1v1h-1z M17 19h1v1h-1z M10 20h1v1h-1z M11 20h1v1h-1z M13 20h1v1h-1z M14 20h1v1h-1z M18 20h1v1h-1z M20 20h1v1h-1z M23 20h1v1h-1z M24 20h1v1h-1z M9 21h1v1h-1z M14 21h1v1h-1z M15 21h1v1h-1z M20 21h1v1h-1z M22 21h1v1h-1z M24 21h1v1h-1z M8 22h1v1h-1z M10 22h1v1h-1z M15 22h1v1h-1z M17 22h1v1h-1z M18 22h1v1h-1z M21 22h1v1h-1z M22 22h1v1h-1z M8 23h1v1h-1z M11 23h1v1h-1z M14 23h1v1h-1z M15 23h1v1h-1z M17 23h1v1h-1z M19 23h1v1h-1z M20 24h1v1h-1z M21 24h1v1h-1z M23 24h1v1h-1z"/></symbol><symbol id="sc-roue" viewBox="-60 -60 120 120"><circle r="58" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="52" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="-52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="-26" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="-52" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="-26" r="2.4" fill="#FFFFFF"/><g class="sc-roue"><path d="M0 0L-23 -39.84A46 46 0 0 1 23 -39.84z" fill="#FF6B2C"/><path d="M0 0L23 -39.84A46 46 0 0 1 46 0z" fill="#FFF8F0"/><path d="M0 0L46 0A46 46 0 0 1 23 39.84z" fill="#FF6B2C"/><path d="M0 0L23 39.84A46 46 0 0 1 -23 39.84z" fill="#FFF8F0"/><path d="M0 0L-23 39.84A46 46 0 0 1 -46 0z" fill="#FF6B2C"/><path d="M0 0L-46 0A46 46 0 0 1 -23 -39.84z" fill="#FFF8F0"/></g><path d="M0 -21C7 -13 11 -7 11 0A11 11 0 1 1 -11 0C-11 -7 -7 -13 0 -21z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2"/></symbol><symbol id="sc-roue-g" viewBox="-60 -60 120 120"><circle r="58" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="52" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="-52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="-26" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="-52" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="-26" r="2.4" fill="#FFFFFF"/><g class="sc-roue"><path d="M0 0L-23 -39.84A46 46 0 0 1 23 -39.84z" fill="#FF6B2C"/><circle cx="0" cy="-29" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L23 -39.84A46 46 0 0 1 46 0z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="18.11" y="-21.5" width="14" height="14"/><path d="M0 0L46 0A46 46 0 0 1 23 39.84z" fill="#FF6B2C"/><circle cx="25.11" cy="14.5" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L23 39.84A46 46 0 0 1 -23 39.84z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="-7" y="22" width="14" height="14"/><path d="M0 0L-23 39.84A46 46 0 0 1 -46 0z" fill="#FF6B2C"/><circle cx="-25.11" cy="14.5" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L-46 0A46 46 0 0 1 -23 -39.84z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="-32.11" y="-21.5" width="14" height="14"/></g><path d="M0 -21C7 -13 11 -7 11 0A11 11 0 1 1 -11 0C-11 -7 -7 -13 0 -21z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2"/></symbol><symbol id="sc-cadeau-mini" viewBox="-10 -11 20 22"><rect x="-8" y="-3" width="16" height="12" rx="2" fill="#FF6B2C"/><rect x="-10" y="-8" width="20" height="6" rx="2" fill="#FF8A4C"/><rect x="-1.6" y="-8" width="3.2" height="17" fill="#FFFFFF"/><path d="M0 -8c-3 -5 -8 -4 -6 0zM0 -8c3 -5 8 -4 6 0z" fill="#FF8A4C"/></symbol><symbol id="sc-cadeau" viewBox="-24 -27 48 54"><rect x="-19" y="-5" width="38" height="30" rx="4" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="1.6"/><rect x="-22" y="-15" width="44" height="12" rx="4" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="1.6"/><rect x="-3.5" y="-15" width="7" height="40" fill="#FFFFFF"/><path d="M0 -15c-6 -11 -18 -9 -12 -1c3 3 9 2 12 1zM0 -15c6 -11 18 -9 12 -1c-3 3 -9 2 -12 1z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="1.4" stroke-linejoin="round"/></symbol><linearGradient id="sc-grad-gratte" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6B2C"/><stop offset="1" stop-color="#FF8A4C"/></linearGradient><pattern id="sc-hachures" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="10" fill="#FFFFFF" opacity=".22"/></pattern></defs></svg>
 
 <header class="entete">
   <div class="wrap entete-barre">
@@ -144,324 +147,98 @@
     </div>
   </section>
 
-  <!-- ══ EN CHIFFRES (cahier V2 § 1.4) — trois vrais chiffres, en BLANC, chacun sourcé en bas du bloc.
-       Jamais un chiffre inventé, jamais un résultat « Perify ». Mêmes libellés et mêmes sources que la
-       page 2 (comment-ca-marche.html), mot pour mot. Vérifiés sur la page de l'étude le 27/09 :
-       « En 2023, ce chiffre grimpait à 92% » et « 54% des Français sont prêts à payer plus cher si la note
-       et le volume d'avis Google sont conséquents » (IFOP pour Guest Suite, janvier 2026, 1 003 Français
-       représentatifs de 18 ans et plus). Le 82 % (« achat ou réservation grâce à des avis très positifs »)
-       est RETIRÉ : sur la page de l'étude, la population n'est pas « les Français » (liste qui suit
-       « 81% des lecteurs »). La source 1 n'a plus « 75 % le font sur Google » : ce chiffre n'est ni sur la
-       page liée, ni dans le PDF de l'étude 2023 (75 % y est le chiffre 2021 de la consultation des avis).
-       Compteurs qui roulent (site.js) : la valeur finale est écrite ici.
-       V3 (28/09) : sur CRÈME, chiffres en nuit (textes nuit sur fond clair). ══ -->
-  <section class="bloc trio-chiffres creme" aria-labelledby="titre-trio">
+
+  <!-- ══ LE PARCOURS (session Design, 29/10/2026, version retenue par Valentin le soir même : variante B fond clair, textes validés) —
+       remplace « En chiffres » + « Ce que ça change pour vous ».
+       Quatre scènes dessinées (SVG dans la page, décoratives : aria-hidden), mêmes conventions que le bento :
+       état final = attributs ; départ et mouvement = classes sc-… (parcours.css), avec .vu posé par site.js.
+       Aucun chiffre, aucun commerce nommé, QR dessiné (faux modules), roue = celle du produit (6 cases, moyeu en goutte). ══ -->
+  <section class="bloc parcours creme" data-illu="clair" aria-labelledby="titre-parcours">
     <div class="wrap">
-      <p class="eti rev" id="titre-trio">En chiffres</p>
-      <ul class="trio">
-        <li class="rev"><b data-compte="0">0</b><span>appli à installer</span></li>
-        <li class="rev"><b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b><span>des Français lisent les avis avant d'acheter<sup><a href="#src-trio-1" aria-label="source 1">1</a></sup></span></li>
-        <li class="rev"><b data-compte="54" data-suffixe="&nbsp;%">54&nbsp;%</b><span>des Français se disent prêts à payer plus cher quand la note et le nombre d'avis Google sont élevés<sup><a href="#src-trio-2" aria-label="source 2">2</a></sup></span></li>
-      </ul>
-      <div class="trio-sources rev">
-        <p id="src-trio-1">1. IFOP pour Guest Suite, « Les Français et les avis clients », 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir l'étude</a>.</p>
-        <p id="src-trio-2">2. IFOP pour Guest Suite, «&nbsp;Statistiques avis clients &amp; IA&nbsp;», janvier 2026, 1&nbsp;003 Français de 18&nbsp;ans et plus. <a href="https://www.guest-suite.com/blog/statistiques-avis-clients" rel="noopener">Voir&nbsp;l'étude</a>.</p>
-      </div>
+      <p class="eti rev">Le parcours</p>
+      <h2 class="titre-bloc rev" id="titre-parcours">De la porte au cadeau, <span class="mot-cle">sans rien installer</span>.</h2>
+      <p class="intro-bloc rev">Ce que vit votre client, la première fois qu’il pousse la porte. Et les suivantes.</p>
+      <ol class="etapes-illu">
+        <li class="etape-illu scene-bloc rev" data-duree="2200">
+          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><line x1="14" y1="256" x2="386" y2="256" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><path d="M196 94h178a6 6 0 0 1 6 6v156h-190v-156a6 6 0 0 1 6 -6z" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><path d="M178 94l10 -30h188l10 30z" fill="#FF6B2C"/><path d="M188 64h188l3 9h-194z" fill="#FF8A4C"/><path d="M178 94 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 z" fill="#FF6B2C"/><rect x="226" y="34" width="116" height="22" rx="7" fill="#FFFFFF"/><rect x="250" y="42" width="68" height="6" rx="3" fill="#1B1F3B" opacity=".55"/><rect x="200" y="108" width="50" height="148" rx="3" fill="#E3DDD4"/><g transform="translate(236 118)"><path d="M-6 2a6 6 0 0 1 12 0v6h-12z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="1.5" stroke-linejoin="round"/><circle cy="10.5" r="2" fill="#1B1F3B"/><g class="sc-pop" style="--t:1.1s" fill="none" stroke="#1B1F3B" stroke-width="1.5" stroke-linecap="round"><path d="M11 -2a12 12 0 0 1 0 16"/><path d="M-11 -2a12 12 0 0 0 0 16"/></g></g><path d="M200 108l-28 16v146l28 -12z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><circle cx="178" cy="190" r="2.6" fill="#1B1F3B"/><rect x="266" y="108" width="100" height="92" rx="7" fill="rgba(27,31,59,.05)" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="274" y="166" width="84" height="9" rx="3" fill="#FFFFFF"/><rect x="278" y="175" width="76" height="25" fill="#E3DDD4"/><g transform="translate(294 120) rotate(-4)"><rect width="32" height="46" rx="3" fill="#FFFFFF"/><path d="M0 3a3 3 0 0 1 3 -3h26a3 3 0 0 1 3 3v6h-32z" fill="#FF6B2C"/><use href="#sc-roue" x="6" y="11" width="20" height="20"/><use href="#sc-qr" x="9" y="32" width="14" height="14"/></g><circle class="sc-pulse" style="--t:1.4s" cx="310" cy="142" r="13" fill="none" stroke="#FF8A4C" stroke-width="2"/><g transform="translate(344 150)"><path d="M-7 0h14l-2 16h-10z" fill="#FF8A4C"/><path d="M0 0c-10 -4 -14 -14 -10 -22c8 2 12 12 10 22zM0 0c10 -4 14 -14 10 -22c-8 2 -12 12 -10 22zM0 -2c-2 -10 2 -20 6 -24c4 6 2 18 -6 24z" fill="#FFFFFF"/></g><rect x="196" y="254" width="58" height="5" rx="2.5" fill="#FF8A4C"/><path class="sc-pop" style="--t:.3s" transform="translate(214 44)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FFFFFF"/><path class="sc-pop" style="--t:.55s" transform="translate(354 28)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FF8A4C"/><g transform="translate(110 256)"><rect x="-14" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(14 -8 -48)"/><rect x="-20" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(18 -14 -96)"/><rect x="2" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(-16 8 -48)"/><rect x="-18" y="-104" width="36" height="60" rx="15" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><circle cx="2" cy="-121" r="15" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><path d="M-13 -121A15 15 0 0 1 17 -121L11 -121A9 9 0 0 0 -7 -121Z" fill="#1B1F3B"/><rect x="6" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(-58 11 -96)"/><rect x="37" y="-94" width="15" height="25" rx="3.5" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2"/><rect x="40" y="-90" width="9" height="15" rx="1.5" fill="#FF8A4C" opacity=".9"/></g></svg></div>
+          <div class="etape-illu-texte">
+            <span class="num" aria-hidden="true">1</span>
+            <h3>Il entre</h3>
+            <p>Le présentoir est posé sur votre comptoir, à vos couleurs. Il le voit en arrivant.</p>
+          </div>
+        </li>
+        <li class="etape-illu scene-bloc rev" data-duree="2200">
+          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><rect x="22" y="200" width="356" height="16" rx="6" fill="#FFFFFF"/><rect x="32" y="216" width="336" height="66" rx="4" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><line x1="48" y1="246" x2="352" y2="246" stroke="rgba(27,31,59,.28)" stroke-width="1"/><path d="M100 200l10 -16h92l10 16z" fill="#E3DDD4"/><g transform="translate(106 48) rotate(-4 50 75)"><rect width="100" height="150" rx="6" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><path d="M0 6a6 6 0 0 1 6 -6h88a6 6 0 0 1 6 6v20h-100z" fill="#FF6B2C"/><rect x="24" y="10" width="52" height="6" rx="3" fill="#FFFFFF" opacity=".92"/><use href="#sc-roue" x="24" y="31" width="52" height="52"/><use href="#sc-qr" x="28" y="90" width="44" height="44"/><rect x="26" y="139" width="48" height="5" rx="2.5" fill="#1B1F3B" opacity=".35"/></g><path d="M258 108L166 142L166 176L258 152z" fill="#FF6B2C" opacity=".10"/><circle class="sc-pulse" style="--t:.9s" cx="157" cy="160" r="28" fill="none" stroke="#FF8A4C" stroke-width="2"/><g transform="translate(296 150) rotate(7)"><path d="M-30 46q-10 70 6 112h86q10 -46 -4 -112z" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><rect x="-38" y="-84" width="76" height="160" rx="14" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2.5"/><rect x="-31" y="-74" width="62" height="140" rx="8" fill="#E3DDD4"/><rect x="-10" y="-80" width="20" height="4" rx="2" fill="rgba(27,31,59,.28)"/><use href="#sc-qr" x="-17" y="-22" width="34" height="34"/><g fill="none" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M-24 -20v-10h10"/><path d="M14 -30h10v10"/><path d="M-24 10v10h10"/><path d="M24 10v10h-10"/></g><rect class="sc-scan" x="-24" y="18" width="48" height="3" rx="1.5" fill="#FF8A4C"/><circle cx="0" cy="54" r="9" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="2"/><rect x="-52" y="-4" width="22" height="48" rx="11" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="26" y="-30" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="28" y="-8" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="28" y="14" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/></g><g class="sc-pop" style="--t:1.5s" transform="translate(344 62)"><circle r="13" fill="#FF6B2C"/><path d="M-5.5 .5l3.8 3.8 7.6 -8" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g><path class="sc-pop" style="--t:.5s" transform="translate(62 70)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:.8s" transform="translate(236 40)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
+          <div class="etape-illu-texte">
+            <span class="num" aria-hidden="true">2</span>
+            <h3>Il scanne</h3>
+            <p>Avec l’appareil photo de son téléphone. Pas d’appli à installer, pas de compte à créer. Au premier scan, il est invité à laisser son avis Google.</p>
+          </div>
+        </li>
+        <li class="etape-illu scene-bloc rev" data-duree="2800">
+          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><g transform="translate(150 150)"><rect x="-64" y="-136" width="128" height="272" rx="22" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2.5"/><rect x="-24" y="-130" width="48" height="6" rx="3" fill="rgba(27,31,59,.28)"/><circle cx="-40" cy="-104" r="7" fill="#FF6B2C"/><rect x="-28" y="-108" width="44" height="5" rx="2.5" fill="#FFFFFF" opacity=".85"/><rect x="-28" y="-99" width="28" height="4" rx="2" fill="#FFFFFF" opacity=".35"/><use href="#sc-roue-g" x="-50" y="-86" width="100" height="100"/><g class="sc-glisse" style="--t:1.5s"><rect x="-50" y="26" width="100" height="58" rx="10" fill="#FFFFFF"/><use href="#sc-cadeau" x="-44" y="36" width="32" height="38"/><rect x="-6" y="42" width="48" height="6" rx="3" fill="#1B1F3B" opacity=".85"/><rect x="-6" y="55" width="32" height="5" rx="2.5" fill="#1B1F3B" opacity=".35"/></g><rect x="-50" y="96" width="100" height="22" rx="11" fill="#FF6B2C"/><rect x="-22" y="104.5" width="44" height="5" rx="2.5" fill="#1B1F3B" opacity=".75"/></g><g class="sc-pop" style="--t:1.17s" transform="translate(53.72 86.07)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.59s" transform="translate(356.42 69.18)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(95)"/></g><g class="sc-pop" style="--t:1.03s" transform="translate(78.23 196.03)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(152)"/></g><g class="sc-pop" style="--t:1.25s" transform="translate(48.04 105.15)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.94s" transform="translate(250.21 40.37)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(68)"/></g><g class="sc-pop" style="--t:1.16s" transform="translate(77.48 170.2)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(104)"/></g><g class="sc-pop" style="--t:1.39s" transform="translate(47.94 128.82)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:0.78s" transform="translate(272.18 78.54)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(10)"/></g><g class="sc-pop" style="--t:0.83s" transform="translate(82.23 238.21)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(26)"/></g><g class="sc-pop" style="--t:1.11s" transform="translate(68.1 61.22)"><circle r="3.2" fill="#FFF8F0"/></g><g class="sc-pop" style="--t:1.43s" transform="translate(355.59 25.75)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF6B2C" transform="rotate(148)"/></g><g class="sc-pop" style="--t:0.58s" transform="translate(71.54 162.03)"><path d="M-4 3h8l-4 -7z" fill="#FF8A4C" transform="rotate(151)"/></g><g class="sc-pop" style="--t:0.8s" transform="translate(52.83 85.55)"><circle r="3.2" fill="#FFFFFF"/></g><g class="sc-pop" style="--t:1.21s" transform="translate(338.01 19.78)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF6B2C" transform="rotate(8)"/></g><g class="sc-pop" style="--t:1.58s" transform="translate(73.34 210.78)"><path d="M-4 3h8l-4 -7z" fill="#FFF8F0" transform="rotate(77)"/></g><g class="sc-pop" style="--t:0.55s" transform="translate(50.9 62)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.83s" transform="translate(288.27 93.54)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(100)"/></g><g class="sc-pop" style="--t:0.68s" transform="translate(70.43 227.39)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(21)"/></g><path class="sc-trace" style="--t:1.7s" pathLength="1" d="M212 70q62 -46 92 48" fill="none" stroke="#FF8A4C" stroke-width="2" stroke-dasharray="1 1" opacity=".7"/><g transform="translate(306 182)"><use href="#sc-cadeau" x="-48" y="-56" width="96" height="108"/></g><path class="sc-pop" style="--t:1.9s" transform="translate(258 170)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:2.1s" transform="translate(352 126)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2.3s" transform="translate(338 236)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
+          <div class="etape-illu-texte">
+            <span class="num" aria-hidden="true">3</span>
+            <h3>Il joue, il gagne</h3>
+            <p>La roue tourne une fois par carte : un produit offert, à venir chercher chez vous.</p>
+          </div>
+        </li>
+        <li class="etape-illu scene-bloc rev" data-duree="2400">
+          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><line x1="14" y1="256" x2="386" y2="256" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><g transform="translate(30 66) rotate(-5 110 62)"><rect width="220" height="124" rx="16" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="26" cy="28" r="10" fill="#FF6B2C"/><rect x="44" y="21" width="80" height="6" rx="3" fill="#FFFFFF" opacity=".9"/><rect x="44" y="33" width="52" height="5" rx="2.5" fill="#FFFFFF" opacity=".35"/><rect x="160" y="18" width="40" height="18" rx="9" fill="#FF8A4C" fill-opacity=".18" stroke="#FF8A4C" stroke-opacity=".6"/><circle cx="22" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(22 78)"><g class="sc-pop" style="--t:0.4s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="41.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(41.5 78)"><g class="sc-pop" style="--t:0.54s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="61" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(61 78)"><g class="sc-pop" style="--t:0.68s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="80.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(80.5 78)"><g class="sc-pop" style="--t:0.82s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="100" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(100 78)"><circle r="7.5" fill="#FFFFFF"/><use href="#sc-cadeau-mini" x="-5" y="-5.5" width="10" height="11"/></g><circle cx="119.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="139" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="158.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="178" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="197.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(197.5 78)"><circle r="7.5" fill="#FFFFFF"/><use href="#sc-cadeau-mini" x="-5" y="-5.5" width="10" height="11"/></g><rect x="22" y="98" width="176" height="4" rx="2" fill="#FFFFFF" opacity=".1"/><rect class="sc-barre" style="--t:.4s" x="22" y="98" width="70" height="4" rx="2" fill="#FF8A4C"/><rect x="22" y="109" width="64" height="5" rx="2.5" fill="#FFFFFF" opacity=".25"/><g class="sc-pop" style="--t:1.5s" transform="translate(172 -10)"><rect x="-6" y="-12" width="76" height="24" rx="12" fill="#FF6B2C"/><path d="M4 2a5 5 0 0 1 10 0v4h-10z" fill="#FFFFFF"/><circle cx="9" cy="7.5" r="1.3" fill="#FFFFFF"/><rect x="20" y="-2.5" width="40" height="5" rx="2.5" fill="#FFFFFF" opacity=".92"/></g></g><path d="M350 256v-146a6 6 0 0 1 6 -6h30v152" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="3"/><rect x="356" y="110" width="28" height="146" fill="rgba(27,31,59,.05)"/><g transform="translate(296 256)"><rect x="-14" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(14 -8 -48)"/><rect x="-20" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(18 -14 -96)"/><path d="M-42 -50h28l3 34h-34z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><path d="M-35 -50q7 -14 14 0" fill="none" stroke="#1B1F3B" stroke-width="2"/><circle cx="-28" cy="-34" r="4" fill="#FFFFFF"/><rect x="2" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(-16 8 -48)"/><rect x="-18" y="-104" width="36" height="60" rx="15" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><circle cx="2" cy="-121" r="15" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><path d="M-13 -121A15 15 0 0 1 17 -121L11 -121A9 9 0 0 0 -7 -121Z" fill="#1B1F3B"/><rect x="6" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(-58 11 -96)"/><rect x="37" y="-94" width="15" height="25" rx="3.5" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2"/><rect x="40" y="-90" width="9" height="15" rx="1.5" fill="#FF8A4C" opacity=".9"/></g><path class="sc-pop" style="--t:1.8s" transform="translate(262 60)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2s" transform="translate(60 226)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
+          <div class="etape-illu-texte">
+            <span class="num" aria-hidden="true">4</span>
+            <h3>Il repart avec sa carte</h3>
+            <p>Dans Apple Wallet ou Google Wallet, à côté de sa carte bancaire. Un tampon à chaque passage.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ══ CE QUE ÇA CHANGE POUR VOUS : trois piliers (bloc blanc, icônes de l'ancienne page) ══ -->
-  <section class="bloc blanc" aria-labelledby="titre-piliers">
+  <!-- ══ LES JEUX (session Design, 29/10/2026, version retenue) — remplace la grille « Tout ce qu'il faut, rien de plus ».
+       Décision de Valentin (29/10 soir) : les trois jeux au même niveau, sans mention de disponibilité, parce qu'ils se
+       font sur mesure. Au 29/10 seule la roue est codée (perify-api : une roue par carte, 6 secteurs = 3 lots × 2) :
+       la carte à gratter et le cadeau mystère doivent être constructibles dès qu'un commerçant les demande (tâche
+       « jeux-nouveaux » de la dev). La carte « Faites le calcul » est reprise telle quelle. ══ -->
+  <section class="bloc jeux blanc" data-illu="clair" aria-labelledby="titre-jeux">
     <div class="wrap">
-      <p class="eti rev">Ce que ça change pour vous</p>
-      <h2 class="titre-bloc piliers-titre rev" id="titre-piliers">Boostez votre <span class="mot-cle">référencement</span>, et créez votre système de fidélisation.</h2>
-      <div class="piliers">
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9l-5.2 2.8 1-5.9L3.5 9.7l5.9-.8z"/></svg></span>
-          <h3>Plus d'avis Google, sans les quémander</h3>
-          <p>Au premier scan, votre client est invité à laisser son avis Google. Vous n'avez rien à demander. Plus d'avis et de bonnes notes&nbsp;: c'est ce que Google dit regarder pour vous classer.</p>
-          <p class="citation">« Plus vous obtenez d'avis et de notes positives, plus votre établissement grimpe dans le
-            classement local. » <a href="https://support.google.com/business/answer/7091?hl=fr" rel="noopener">Google, conseils pour le classement local</a></p>
-        </article>
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M12 9v11.5M3.5 13.5h17M12 9c-1.4-2.8-5.5-3.2-5.5-1.2S10.2 9 12 9zm0 0c1.4-2.8 5.5-3.2 5.5-1.2S13.8 9 12 9z"/></svg></span>
-          <h3>Votre programme de fidélité, à vos couleurs</h3>
-          <p>La carte en carton finit à la poubelle, l'appli, personne ne l'installe. La vôtre vit dans leur téléphone, à côté de leur carte bancaire.</p>
-        </article>
-        <article class="pilier rev">
-          <span class="pilier-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10v4a1.5 1.5 0 001.5 1.5h2.5l6.5 4.5v-16L7.5 8.5H5A1.5 1.5 0 003.5 10z"/><path d="M17.5 9.2a4 4 0 010 5.6M8.5 15.5l1.3 4.5"/></svg></span>
-          <h3>Vos offres arrivent directement sur la carte</h3>
-          <p>Vous écrivez l'offre&nbsp;: elle s'affiche sur la carte de chaque client, et part par <span class="insecable">e-mail</span> à ceux qui l'ont accepté.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ TOUT EST COMPRIS (effet 7) : grille « bento » de blocs blancs sur la nuit.
-       Cahier V2 § 1.2 : plus aucune photo ni capture. Chaque bloc porte EN HAUT une petite scène
-       dessinée (SVG écrit ici, décoratif : aria-hidden), aux couleurs Perify, dans l'esprit du modèle
-       « features 8 » (anneaux, courbes, grandes illustrations). Exception assumée à la règle « jamais
-       de maquette dessinée », pour ce bloc seulement (demande de Valentin, 27/09).
-       Aucune scène n'affiche un chiffre de résultat. Animation : à l'apparition (une fois, classe .vu
-       posée par site.js) et au survol (accueil.js rejoue la scène) ; mouvement réduit ou sans
-       JavaScript : la scène est affichée directement dans son état final (règles dans accueil.css).
-       Règle technique : un élément animé en CSS (classes sc-…) ne porte JAMAIS d'attribut transform
-       (le CSS le remplacerait) ; sa position est donnée par le <g> qui l'entoure.
-       V3 (28/09) : la section passe sur CRÈME ; les cartes restent blanches et chaque scène garde son
-       panneau sombre. ══ -->
-  <section class="bloc fonctions creme" aria-labelledby="titre-fonctions">
-    <div class="wrap">
-      <p class="eti rev">Tout est compris</p>
-      <h2 class="titre-bloc rev" id="titre-fonctions"><span class="insecable">Tout ce qu'il faut,</span> <span class="mot-cle">rien de plus</span>.</h2>
-      <ul class="bento">
-
-        <!-- 1. Vos récompenses : une carte dont la rangée de tampons se remplit ; les deux paliers
-             (5e et 10e case) sont des cadeaux ; un anneau se dessine autour de la carte. -->
-        <li class="bento-bloc bento-large rev" data-duree="1900">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 440 180" aria-hidden="true" focusable="false">
-              <path class="sc-trace" style="--t:.15s" pathLength="1" d="M20 90A200 78 0 1 1 420 90A200 78 0 1 1 20 90" transform="rotate(-3 220 90)" fill="none" stroke="#FF8A4C" stroke-opacity=".5" stroke-width="1.75" stroke-linecap="round"/>
-              <rect x="70" y="28" width="300" height="124" rx="16" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".12"/>
-              <circle cx="94" cy="52" r="9" fill="#FF6B2C"/>
-              <rect x="110" y="45" width="74" height="6" rx="3" fill="#FFFFFF" fill-opacity=".85"/>
-              <rect x="110" y="56" width="46" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".35"/>
-              <rect x="316" y="44" width="34" height="14" rx="7" fill="#FF8A4C" fill-opacity=".18" stroke="#FF8A4C" stroke-opacity=".6"/>
-              <g fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5">
-                <circle cx="103" cy="102" r="10.5"/><circle cx="129" cy="102" r="10.5"/><circle cx="155" cy="102" r="10.5"/><circle cx="181" cy="102" r="10.5"/><circle cx="207" cy="102" r="10.5"/>
-                <circle cx="233" cy="102" r="10.5"/><circle cx="259" cy="102" r="10.5"/><circle cx="285" cy="102" r="10.5"/><circle cx="311" cy="102" r="10.5"/><circle cx="337" cy="102" r="10.5"/>
-              </g>
-              <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <g transform="translate(103 102)"><g class="sc-pop" style="--t:.35s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(129 102)"><g class="sc-pop" style="--t:.46s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(155 102)"><g class="sc-pop" style="--t:.57s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(181 102)"><g class="sc-pop" style="--t:.68s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(233 102)"><g class="sc-pop" style="--t:.9s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(259 102)"><g class="sc-pop" style="--t:1.01s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(285 102)"><g class="sc-pop" style="--t:1.12s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-                <g transform="translate(311 102)"><g class="sc-pop" style="--t:1.23s"><circle r="10.5" fill="#FF6B2C" stroke="none"/><path d="M-4.2.3l2.7 2.7 5.6-5.8"/></g></g>
-              </g>
-              <!-- les deux paliers : un cadeau blanc, et un anneau qui s'élargit quand il est atteint -->
-              <g transform="translate(207 102)">
-                <circle class="sc-pulse" style="--t:.86s" r="10.5" fill="none" stroke="#FF8A4C" stroke-width="2"/>
-                <g class="sc-pop" style="--t:.79s"><circle r="10.5" fill="#FFFFFF"/><g transform="translate(-6.6 -7.2) scale(.55)" fill="none" stroke="#FF6B2C" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g></g>
-              </g>
-              <g transform="translate(337 102)">
-                <circle class="sc-pulse" style="--t:1.41s" r="10.5" fill="none" stroke="#FF8A4C" stroke-width="2"/>
-                <g class="sc-pop" style="--t:1.34s"><circle r="10.5" fill="#FFFFFF"/><g transform="translate(-6.6 -7.2) scale(.55)" fill="none" stroke="#FF6B2C" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g></g>
-              </g>
-              <rect x="103" y="128" width="234" height="4" rx="2" fill="#FFFFFF" fill-opacity=".1"/>
-              <rect class="sc-barre" style="--t:.35s" x="103" y="128" width="234" height="4" rx="2" fill="#FF8A4C"/>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>Vos récompenses</h3>
-            <p>Vos paliers, vos cadeaux. Un message suffit pour les changer.</p>
+      <p class="eti rev">Les jeux</p>
+      <h2 class="titre-bloc rev" id="titre-jeux">Un jeu à l’arrivée, <span class="mot-cle">un cadeau à la clé</span>.</h2>
+      <p class="intro-bloc rev">Le jeu de votre choix, sur demande.</p>
+      <ul class="jeux-liste">
+        <li class="jeu scene-bloc rev" data-duree="2600">
+          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><g transform="translate(150 112)"><circle class="sc-tourne" r="98" fill="none" stroke="#FF8A4C" stroke-opacity=".45" stroke-width="1.75" stroke-dasharray="3 7"/><use href="#sc-roue-g" x="-84" y="-84" width="168" height="168"/></g><g class="sc-pop" style="--t:1.64s" transform="translate(38.83 74.09)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.19s" transform="translate(253.24 61.45)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(82)"/></g><g class="sc-pop" style="--t:2.26s" transform="translate(46.6 161.47)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(133)"/></g><g class="sc-pop" style="--t:1.91s" transform="translate(275.1 140.83)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.23s" transform="translate(46.28 40.17)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(130)"/></g><g class="sc-pop" style="--t:2.27s" transform="translate(259.64 21.33)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(37)"/></g><g class="sc-pop" style="--t:1.92s" transform="translate(23.81 156.16)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:2.33s" transform="translate(259.33 144.86)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(57)"/></g><path class="sc-pop" style="--t:1.6s" transform="translate(44 36)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:1.8s" transform="translate(262 190)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/></svg></div>
+          <div class="jeu-texte">
+            <h3>La roue</h3>
+            <p>Six cases, un tour par carte. Les lots, c’est vous qui les choisissez.</p>
           </div>
         </li>
-
-        <!-- 2. Vérification en caisse : le code se saisit, les cases passent au vert, « Code valide ✓ ».
-             V3 (28/09) : pastille élargie (texte à 12 unités, ~13,6 px à 1440 px). Sous 1024 px la scène
-             est trop petite pour un texte lisible (7 px sur téléphone) : la pastille ne montre plus
-             qu'une grande coche (.sc-code-texte / .sc-code-coche, accueil.css). -->
-        <li class="bento-bloc bento-petit rev" data-duree="1500">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
-              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
-              <rect x="54" y="10" width="92" height="140" rx="16" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="1.5"/>
-              <rect x="87" y="17" width="26" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".22"/>
-              <rect x="66" y="34" width="50" height="6" rx="3" fill="#FFFFFF" fill-opacity=".8"/>
-              <rect x="66" y="44" width="32" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".32"/>
-              <g fill="#FFFFFF" fill-opacity=".04" stroke="#22C55E" stroke-width="1.5">
-                <rect class="sc-case" style="--t:.95s" x="65" y="59" width="15" height="22" rx="4"/>
-                <rect class="sc-case" style="--t:.95s" x="83" y="59" width="15" height="22" rx="4"/>
-                <rect class="sc-case" style="--t:.95s" x="101" y="59" width="15" height="22" rx="4"/>
-                <rect class="sc-case" style="--t:.95s" x="119" y="59" width="15" height="22" rx="4"/>
-              </g>
-              <g fill="#FFFFFF">
-                <g transform="translate(72.5 70)"><circle class="sc-pop" style="--t:.35s" r="3.4"/></g>
-                <g transform="translate(90.5 70)"><circle class="sc-pop" style="--t:.5s" r="3.4"/></g>
-                <g transform="translate(108.5 70)"><circle class="sc-pop" style="--t:.65s" r="3.4"/></g>
-                <g transform="translate(126.5 70)"><circle class="sc-pop" style="--t:.8s" r="3.4"/></g>
-              </g>
-              <g transform="translate(100 104)">
-                <g class="sc-pop" style="--t:1.05s">
-                  <g class="sc-code-texte">
-                    <rect x="-53" y="-13" width="106" height="26" rx="13" fill="#22C55E"/>
-                    <text x="-44" y="4.3" font-size="12" font-weight="700" fill="#1B1F3B" textLength="70" lengthAdjust="spacingAndGlyphs">Code valide</text>
-                    <path d="M32.5 .4l2.8 2.8 5.4-5.7" fill="none" stroke="#1B1F3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                  <g class="sc-code-coche">
-                    <rect x="-30" y="-14" width="60" height="28" rx="14" fill="#22C55E"/>
-                    <path d="M-8.5 .6l5.6 5.6 11-11.6" fill="none" stroke="#1B1F3B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                </g>
-              </g>
-              <rect x="82" y="138" width="36" height="4" rx="2" fill="#FFFFFF" fill-opacity=".25"/>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>Vérification en caisse</h3>
-            <p>Le client montre son code, l'écran dit oui ou non.</p>
+        <li class="jeu scene-bloc rev" data-duree="2400">
+          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><g transform="translate(150 112) rotate(-6)"><rect x="-100" y="-62" width="200" height="124" rx="14" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><use href="#sc-cadeau" x="-80" y="-32" width="50" height="58"/><rect x="-20" y="-20" width="88" height="8" rx="4" fill="#1B1F3B" opacity=".85"/><rect x="-20" y="-4" width="60" height="6" rx="3" fill="#1B1F3B" opacity=".35"/><rect x="-20" y="12" width="44" height="14" rx="7" fill="#FF6B2C"/><mask id="sc-m-gratte" maskUnits="userSpaceOnUse" x="-110" y="-72" width="220" height="144"><rect x="-110" y="-72" width="220" height="144" fill="#FFFFFF"/><path class="sc-gratte" pathLength="1" d="M-82 -42L58 -42L-62 -12L82 -8L-72 24L54 32" fill="none" stroke="#000000" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/></mask><g mask="url(#sc-m-gratte)"><rect x="-100" y="-62" width="200" height="124" rx="14" fill="url(#sc-grad-gratte)"/><rect x="-100" y="-62" width="200" height="124" rx="14" fill="url(#sc-hachures)"/><rect x="-84" y="-46" width="168" height="92" rx="10" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 4"/></g><g transform="translate(64 36)"><circle r="16" fill="#FFF8F0" stroke="#1B1F3B" stroke-width="2"/><circle r="10" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="2"/></g><g class="sc-pop" style="--t:1.51s" transform="translate(-84.76 -65.48)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.16s" transform="translate(79.07 -60.38)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(62)"/></g><g class="sc-pop" style="--t:1.41s" transform="translate(-88.49 63.29)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(61)"/></g><g class="sc-pop" style="--t:1.31s" transform="translate(97.17 54.84)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.11s" transform="translate(-90.63 -62.48)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(9)"/></g><g class="sc-pop" style="--t:1.8s" transform="translate(79.55 -74.92)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(84)"/></g><g class="sc-pop" style="--t:2.08s" transform="translate(-97.46 60.06)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:1.4s" transform="translate(98.17 61.32)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(60)"/></g></g></svg></div>
+          <div class="jeu-texte">
+            <h3>La carte à gratter</h3>
+            <p>Il frotte l’écran du doigt, le lot apparaît.</p>
           </div>
         </li>
-
-        <!-- 3. Les avis Google : les étoiles s'allument une à une, puis une coche (l'avis est publié).
-             Pas de tampon : un avis Google n'en donne pas (ACTIONS_RECOMPENSEES, 27/09).
-             Aucun logo ni couleur de Google : des étoiles génériques, en orange clair. -->
-        <li class="bento-bloc bento-petit rev" data-duree="1600">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
-              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
-              <rect x="24" y="30" width="152" height="100" rx="14" fill="#2A3057" stroke="#FFFFFF" stroke-opacity=".12"/>
-              <g transform="translate(46 54)"><circle r="11" fill="#FF8A4C"/><circle cy="-3" r="3.6" fill="#1B1F3B"/><path d="M-6.5 7.5c.9-3.4 3.5-5 6.5-5s5.6 1.6 6.5 5z" fill="#1B1F3B"/></g>
-              <rect x="64" y="47" width="58" height="6" rx="3" fill="#FFFFFF" fill-opacity=".85"/>
-              <rect x="64" y="57" width="36" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".32"/>
-              <g stroke-linejoin="round">
-                <g transform="translate(56 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.35s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
-                <g transform="translate(78 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.48s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
-                <g transform="translate(100 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.61s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
-                <g transform="translate(122 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.74s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
-                <g transform="translate(144 86) scale(1.1)"><path d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="none" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.4"/><path class="sc-pop" style="--t:.87s" d="M0-8L2-2.75 7.61-2.47 3.23 1.05 4.7 6.47 0 3.4-4.7 6.47-3.23 1.05-7.61-2.47-2-2.75Z" fill="#FF8A4C" stroke="#FF8A4C" stroke-width="1.4"/></g>
-              </g>
-              <rect x="40" y="104" width="120" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".26"/>
-              <rect x="40" y="114" width="84" height="5" rx="2.5" fill="#FFFFFF" fill-opacity=".18"/>
-              <g transform="translate(172 32)">
-                <circle class="sc-pulse" style="--t:1.15s" r="13" fill="none" stroke="#FF8A4C" stroke-width="2"/>
-                <g class="sc-pop" style="--t:1.08s"><circle r="13" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="3"/><path d="M-5 .4l3.2 3.2 6.6-6.8" fill="none" stroke="#FFFFFF" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></g>
-              </g>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>Les avis Google</h3>
-            <p>Au premier scan, le client est invité à laisser son avis Google.</p>
-          </div>
-        </li>
-
-        <!-- 4. La roue de bienvenue : la roue fait un tour, puis le bon du cadeau glisse à côté. -->
-        <li class="bento-bloc bento-large bento-roue rev" data-duree="2600">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 440 180" aria-hidden="true" focusable="false">
-              <g fill="none" stroke="#FFFFFF"><circle cx="140" cy="92" r="86" stroke-opacity=".07"/><circle cx="140" cy="92" r="102" stroke-opacity=".045"/></g>
-              <g transform="translate(140 92)">
-                <g class="sc-roue" style="--t:.3s">
-                  <circle r="77" fill="#232849" stroke="#FF8A4C" stroke-opacity=".7" stroke-width="2"/>
-                  <g stroke="#232849" stroke-width="1.5" stroke-linejoin="round">
-                    <path fill="#FF6B2C" d="M0 0L-26.79-64.67A70 70 0 0 1 26.79-64.67Z"/>
-                    <path fill="#FFFFFF" d="M0 0L26.79-64.67A70 70 0 0 1 64.67-26.79Z"/>
-                    <path fill="#FF6B2C" d="M0 0L64.67-26.79A70 70 0 0 1 64.67 26.79Z"/>
-                    <path fill="#FFFFFF" d="M0 0L64.67 26.79A70 70 0 0 1 26.79 64.67Z"/>
-                    <path fill="#FF6B2C" d="M0 0L26.79 64.67A70 70 0 0 1-26.79 64.67Z"/>
-                    <path fill="#FFFFFF" d="M0 0L-26.79 64.67A70 70 0 0 1-64.67 26.79Z"/>
-                    <path fill="#FF6B2C" d="M0 0L-64.67 26.79A70 70 0 0 1-64.67-26.79Z"/>
-                    <path fill="#FFFFFF" d="M0 0L-64.67-26.79A70 70 0 0 1-26.79-64.67Z"/>
-                  </g>
-                  <g fill="#FFFFFF"><circle cy="-46" r="5"/><circle cx="46" r="5"/><circle cy="46" r="5"/><circle cx="-46" r="5"/></g>
-                  <g fill="#FF6B2C"><circle cx="32.53" cy="-32.53" r="5"/><circle cx="32.53" cy="32.53" r="5"/><circle cx="-32.53" cy="32.53" r="5"/><circle cx="-32.53" cy="-32.53" r="5"/></g>
-                  <g fill="#FFFFFF"><circle cx="28.13" cy="-67.91" r="2.4"/><circle cx="67.91" cy="-28.13" r="2.4"/><circle cx="67.91" cy="28.13" r="2.4"/><circle cx="28.13" cy="67.91" r="2.4"/><circle cx="-28.13" cy="67.91" r="2.4"/><circle cx="-67.91" cy="28.13" r="2.4"/><circle cx="-67.91" cy="-28.13" r="2.4"/><circle cx="-28.13" cy="-67.91" r="2.4"/></g>
-                  <circle r="14" fill="#1B1F3B" stroke="#FF8A4C" stroke-width="2.5"/>
-                  <circle r="4" fill="#FF8A4C"/>
-                </g>
-                <path d="M-9-88H9L0-68Z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/>
-              </g>
-              <g class="sc-glisse" style="--t:1.75s">
-                <path d="M262 50H398A12 12 0 0 1 410 62V84A8 8 0 0 0 410 100V122A12 12 0 0 1 398 134H262A12 12 0 0 1 250 122V100A8 8 0 0 0 250 84V62A12 12 0 0 1 262 50Z" fill="#FFFFFF"/>
-                <path d="M292 60V124" stroke="#1B1F3B" stroke-opacity=".2" stroke-width="1.5" stroke-dasharray="3 4" stroke-linecap="round"/>
-                <g transform="translate(259 80)" fill="none" stroke="#FF6B2C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M3 13.5h18M12 9c-2.5 0-5-.5-5-2.5 0-1.5 1.2-2 2.3-1.7 1.4.4 2.4 2.4 2.7 4.2zm0 0c2.5 0 5-.5 5-2.5 0-1.5-1.2-2-2.3-1.7-1.4.4-2.4 2.4-2.7 4.2z"/></g>
-                <rect x="306" y="68" width="80" height="8" rx="4" fill="#1B1F3B"/>
-                <rect x="306" y="84" width="54" height="6" rx="3" fill="#3F4460" fill-opacity=".45"/>
-                <rect x="306" y="100" width="62" height="18" rx="9" fill="#FF6B2C"/>
-                <rect x="318" y="107" width="38" height="4" rx="2" fill="#1B1F3B" fill-opacity=".55"/>
-              </g>
-              <g fill="#FF8A4C">
-                <g transform="translate(418 44)"><path class="sc-pop" style="--t:2.1s" d="M0-7C.8-2 2-.8 7 0C2 .8.8 2 0 7C-.8 2-2 .8-7 0C-2-.8-.8-2 0-7Z"/></g>
-                <g transform="translate(240 140) scale(.7)"><path class="sc-pop" style="--t:2.25s" d="M0-7C.8-2 2-.8 7 0C2 .8.8 2 0 7C-.8 2-2 .8-7 0C-2-.8-.8-2 0-7Z"/></g>
-              </g>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>La roue de bienvenue</h3>
-            <p>Une fois par carte, un produit offert à venir chercher.</p>
-          </div>
-        </li>
-
-        <!-- 5. La carte se met à jour seule : une pastille de notification, puis le nouveau tampon. -->
-        <li class="bento-bloc bento-petit rev" data-duree="1600">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
-              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="62" stroke-opacity=".07"/><circle cx="100" cy="80" r="80" stroke-opacity=".045"/></g>
-              <rect x="48" y="22" width="104" height="120" rx="12" fill="#FFFFFF"/>
-              <path d="M60 22H140A12 12 0 0 1 152 34V50H48V34A12 12 0 0 1 60 22Z" fill="#FF6B2C"/>
-              <circle cx="62" cy="36" r="6.5" fill="#FFFFFF"/>
-              <rect x="74" y="31" width="38" height="5" rx="2.5" fill="#1B1F3B" fill-opacity=".8"/>
-              <rect x="74" y="39" width="22" height="4" rx="2" fill="#1B1F3B" fill-opacity=".45"/>
-              <rect x="60" y="60" width="40" height="5" rx="2.5" fill="#3F4460" fill-opacity=".55"/>
-              <g fill="#FF6B2C"><circle cx="64" cy="80" r="6.5"/><circle cx="82" cy="80" r="6.5"/><circle cx="100" cy="80" r="6.5"/><circle cx="118" cy="80" r="6.5"/><circle cx="136" cy="80" r="6.5"/><circle cx="64" cy="98" r="6.5"/></g>
-              <g fill="none" stroke="#C9CCDA" stroke-width="1.5"><circle cx="82" cy="98" r="6.5"/><circle cx="100" cy="98" r="6.5"/><circle cx="118" cy="98" r="6.5"/><circle cx="136" cy="98" r="6.5"/></g>
-              <g transform="translate(82 98)">
-                <circle class="sc-pulse" style="--t:.95s" r="6.5" fill="none" stroke="#FF6B2C" stroke-width="2"/>
-                <circle class="sc-pop" style="--t:.85s" r="6.5" fill="#FF6B2C"/>
-              </g>
-              <rect x="60" y="116" width="56" height="5" rx="2.5" fill="#3F4460" fill-opacity=".35"/>
-              <rect x="60" y="126" width="36" height="5" rx="2.5" fill="#3F4460" fill-opacity=".25"/>
-              <g transform="translate(152 22)">
-                <circle class="sc-pulse" style="--t:.42s" r="9" fill="none" stroke="#FF8A4C" stroke-width="2"/>
-                <g class="sc-pop" style="--t:.3s"><circle r="9" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="3"/><circle r="2.6" fill="#FFFFFF"/></g>
-              </g>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>La carte se met à jour seule</h3>
-            <p>Tampons, cadeaux, offres&nbsp;: la carte Wallet suit, sans rien ouvrir.</p>
-          </div>
-        </li>
-
-        <!-- 6. Vos données restent les vôtres : les clients autour, le bouclier au centre, le cadenas
-             qui se ferme, l'anneau pointillé qui fait un quart de tour. -->
-        <li class="bento-bloc bento-petit rev" data-duree="1600">
-          <div class="bento-scene">
-            <svg class="scene" viewBox="0 0 200 160" aria-hidden="true" focusable="false">
-              <g fill="none" stroke="#FFFFFF"><circle cx="100" cy="80" r="64" stroke-opacity=".09"/><circle cx="100" cy="80" r="80" stroke-opacity=".05"/></g>
-              <g fill="#FFFFFF" fill-opacity=".6">
-                <circle class="sc-fade" style="--t:.3s" cx="160.14" cy="101.89" r="3.4"/>
-                <circle class="sc-fade" style="--t:.38s" cx="111.11" cy="143.03" r="3.4"/>
-                <circle class="sc-fade" style="--t:.46s" cx="50.97" cy="121.14" r="3.4"/>
-                <circle class="sc-fade" style="--t:.54s" cx="39.86" cy="58.11" r="3.4"/>
-                <circle class="sc-fade" style="--t:.62s" cx="88.89" cy="16.97" r="3.4"/>
-                <circle class="sc-fade" style="--t:.7s" cx="149.03" cy="38.86" r="3.4"/>
-              </g>
-              <g transform="translate(100 80)">
-                <circle class="sc-tourne" style="--t:.3s" r="48" fill="none" stroke="#FF8A4C" stroke-opacity=".55" stroke-width="1.75" stroke-dasharray="4 6" stroke-linecap="round"/>
-                <circle r="34" fill="#FF6B2C" fill-opacity=".12"/>
-                <circle class="sc-pulse" style="--t:1.05s" r="34" fill="none" stroke="#FF8A4C" stroke-width="2"/>
-              </g>
-              <path d="M100 56.8L118.2 64.1V77.9C118.2 89.3 110.7 98.7 100 102.6C89.3 98.7 81.8 89.3 81.8 77.9V64.1Z" fill="#FF6B2C"/>
-              <path class="sc-anse" style="--t:.8s" d="M95.5 77V73.5a4.5 4.5 0 0 1 9 0V77" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
-              <rect x="92" y="76.5" width="16" height="13" rx="3" fill="#FFFFFF"/>
-              <circle cx="100" cy="82" r="1.9" fill="#FF6B2C"/>
-              <rect x="99.2" y="82.5" width="1.6" height="3.8" rx=".8" fill="#FF6B2C"/>
-            </svg>
-          </div>
-          <div class="bento-corps">
-            <h3>Vos données restent les vôtres</h3>
-            <p>Chaque commerce a sa base. Aucun autre commerçant ne voit vos clients.</p>
+        <li class="jeu scene-bloc rev" data-duree="2400">
+          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><line x1="26" y1="178" x2="274" y2="178" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><g class="sc-fade" style="--t:1.1s" opacity=".3" fill="#FFFFFF"><path d="M150 100l-44 -72h18z"/><path d="M150 100l-7 -88h14z"/><path d="M150 100l44 -72h-18z"/></g><g transform="translate(60 178)"><rect x="-26" y="-48" width="52" height="48" rx="5" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-29" y="-60" width="58" height="14" rx="4" fill="#E3DDD4" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-4" y="-60" width="8" height="60" fill="#FF8A4C" opacity=".85"/><circle cy="-22" r="11.5" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><text y="-15" text-anchor="middle" font-family="var(--titre),'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="19" fill="#FF6B2C">?</text></g><g transform="translate(240 178)"><rect x="-26" y="-48" width="52" height="48" rx="5" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-29" y="-60" width="58" height="14" rx="4" fill="#E3DDD4" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-4" y="-60" width="8" height="60" fill="#FF8A4C" opacity=".85"/><circle cy="-22" r="11.5" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><text y="-15" text-anchor="middle" font-family="var(--titre),'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="19" fill="#FF6B2C">?</text></g><rect x="108" y="104" width="84" height="74" rx="6" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><rect x="144" y="104" width="12" height="74" fill="#FFFFFF"/><g transform="translate(150 104)"><g class="sc-couvercle"><rect x="-48" y="-22" width="96" height="22" rx="6" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2"/><rect x="-6" y="-22" width="12" height="22" fill="#FFFFFF"/></g></g><g class="sc-pop" style="--t:1.5s" transform="translate(150 58)"><rect x="-34" y="-13" width="68" height="26" rx="13" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><use href="#sc-cadeau-mini" x="-27" y="-8" width="14" height="16"/><rect x="-8" y="-3" width="34" height="6" rx="3" fill="#1B1F3B" opacity=".8"/></g><path class="sc-pop" style="--t:1.7s" transform="translate(104 70)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:1.9s" transform="translate(200 60)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2.1s" transform="translate(214 96)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
+          <div class="jeu-texte">
+            <h3>Le cadeau mystère</h3>
+            <p>Une boîte à ouvrir : le lot est tiré au sort parmi les vôtres.</p>
           </div>
         </li>
       </ul>
-
-      <!-- Vers le calculateur (textes déjà dans le cahier, § 5). V3 (28/09) : il a sa propre page,
-           /calculateur. Une carte blanche, pas un bouton orange : le seul bouton orange de l'écran
-           reste celui de l'essai. -->
       <a class="vers-calcul rev" href="/calculateur">
         <span class="vers-calcul-texte">
           <span class="eti">Faites le calcul</span>
-          <span class="vers-calcul-titre">Ce qu'un tampon vous coûte, ce qu'une visite vous rapporte.</span>
+          <span class="vers-calcul-titre">Ce qu’un tampon vous coûte, ce qu’une visite vous rapporte.</span>
         </span>
         <span class="vers-calcul-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
   </section>
 
-  <!-- ══ ÇA MARCHE AVEC (effet 8), sur fond BLANC (alternance avec la nuit, et place prête pour des logos
+  <!-- ══ ÇA MARCHE AVEC (effet 8), sur fond CRÈME depuis le 29/10 (les jeux, juste avant, sont sur blanc ; avant : BLANC, alternance avec la nuit, et place prête pour des logos
        qui imposent leurs couleurs). Cahier V2 § 1.1 : des LOGOS OFFICIELS seulement, jamais redessinés.
        30/09 : Instagram, Facebook et Tripadvisor ont leur logo (fichiers fournis par Valentin dans IMAGE/Logo,
        réduits par scratchpad/imgtools/logos-site.mjs) ; Apple et Google restent en texte (Apple interdit l'usage
@@ -472,7 +249,7 @@
        interdit l'icône seule). L'enveloppe de l'e-mail (img/logos/e-mail.svg, notre propre icône, dans
        une pastille nuit : <span class="avec-pastille"><img …></span>) revient EN MÊME TEMPS que les
        logos : seule, elle faisait une grille inachevée. ══ -->
-  <section class="bloc avec blanc" aria-labelledby="titre-avec">
+  <section class="bloc avec creme" aria-labelledby="titre-avec">
     <div class="wrap">
       <h2 class="avec-titre rev" id="titre-avec">Ça marche avec ce que vos clients <span class="mot-cle">ont déjà</span>.</h2>
     </div>
