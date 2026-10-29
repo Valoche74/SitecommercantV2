@@ -64,6 +64,10 @@
 /* ── 1. base ───────────────────────────────────────────── */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--entete) + 16px)}
+/* 29/10/2026 — filet : Safari sur iPhone ne tient pas compte du « overflow-x:hidden » de body pour la page ; un bloc
+   trop large faisait rétrécir TOUTE la page (le « zoom tout seul » du 29/10, cause : comment.css › .etapes).
+   clip (et non hidden) : ne crée pas de zone de défilement, l'en-tête collant reste collant. */
+html{overflow-x:clip}
 body{margin:0;background:var(--nuit);color:var(--texte);font-family:var(--texte-ff);font-size:17px;line-height:1.62;
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 /* grain + halos, comme sur la carte */

@@ -23,13 +23,17 @@
 .page-tete{padding-bottom:clamp(24px,3.4vw,40px)}
 .etapes-bloc{padding:clamp(24px,2.6vw,36px) 0 clamp(44px,6vw,80px)}
 /* 52 px entre deux étapes empilées : la place de la flèche pointillée (40 px) */
-.etapes{display:grid;gap:52px}
+/* 29/10/2026 — UNE colonne qui ne dépasse JAMAIS la largeur de l'écran (minmax(0,1fr)), comme .bento et .nombres.
+   Sans elle, la colonne implicite « auto » laissait Safari sur iPhone élargir la carte de l'étape 1 bien au-delà de
+   l'écran (image carrée géante, texte coupé à droite), puis rétrécir toute la page pour la faire tenir : le « zoom
+   tout seul » filmé par Valentin le 29/10. Chrome ne le fait pas (non reproductible au téléphone simulé). */
+.etapes{display:grid;gap:52px;grid-template-columns:minmax(0,1fr)}
 @media(min-width:840px){.etapes{grid-template-columns:repeat(3,minmax(0,1fr));gap:56px}}
 /* overflow visible : la flèche (::after) sort de la carte ; c'est l'image qui garde les coins arrondis */
 /* V3 : carte BLANCHE sur la crème ; le visuel garde un panneau nuit au halo orange, posé à 10 px
    des bords comme les scènes de l'accueil (les images sont faites pour un fond sombre) */
 .etape{position:relative;background:var(--blanc);border:1px solid var(--ligne-claire);border-radius:var(--rayon);padding:0 0 26px;overflow:visible;
-  display:flex;flex-direction:column;margin:0;box-shadow:0 16px 36px -26px rgba(27,31,59,.32)}
+  display:flex;flex-direction:column;margin:0;min-width:0;box-shadow:0 16px 36px -26px rgba(27,31,59,.32)}
 .etape-visu{position:relative;aspect-ratio:1/1;overflow:hidden;margin:10px 10px 0;border-radius:14px;
   background:radial-gradient(60% 55% at 50% 40%,rgba(255,107,44,.22),transparent 72%),var(--nuit)}
 /* ordinateur : image en 5/4 (et non plus carrée) — les titres des étapes restent dans le premier écran,
