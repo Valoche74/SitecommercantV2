@@ -61,7 +61,8 @@
   --color-ink-2:#3F4460;     /* texte courant secondaire */
   --color-muted:#636780;     /* légendes, notes */
   --color-rule:#DFE1E9;      /* filets */
-  --color-rule-2:#CED0DD;    /* bordures des champs et des pastilles */
+  --color-rule-2:#CED0DD;    /* filets décoratifs (contacts en pilules, flèche « Suite », pastilles d'indication) */
+  --color-champ:#868A9F;     /* contour des champs et des pastilles à choisir : 3,4:1 sur la carte (WCAG 1.4.11 : 3:1) */
   --color-accent:#FF6B2C;    /* réservé au bouton principal */
   --color-accent-hover:#FF8A4C;
   --color-accent-ink:#1B1F3B;/* texte nuit sur orange, 5,7:1 */
@@ -86,10 +87,12 @@
 
 /* ── 3. socle ──────────────────────────────────────────────
    overflow-x:clip (et non hidden) sur html ET body : Safari iPhone ne tient pas compte de
-   body seul et rétrécit toute la page s'il y a un débord (JOURNAL-BUGS, 29/10). */
+   body seul et rétrécit toute la page s'il y a un débord (JOURNAL-BUGS, 29/10).
+   « hidden » est écrit juste avant : un navigateur qui ignore « clip » (Safari avant la
+   version 16) garde ce filet ; les autres prennent « clip » (la seconde déclaration). */
 *,*::before,*::after{box-sizing:border-box}
-html{overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:var(--space-lg)}
-body{margin:0;overflow-x:clip;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);
+html{overflow-x:hidden;overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:var(--space-lg)}
+body{margin:0;overflow-x:hidden;overflow-x:clip;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);
   line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none}
 ::selection{background:var(--color-anneau-2);color:var(--color-ink)}
 :focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
@@ -147,7 +150,8 @@ strong{font-weight:700}
 .entete{position:relative;z-index:var(--z-entete);background:var(--color-ink);color:var(--color-on-nuit)}
 .entete :focus-visible,.pied :focus-visible{outline-color:var(--color-focus-nuit)}
 .entete-barre{display:flex;align-items:center;gap:var(--space-lg);min-height:72px}
-.entete-logo{display:block;flex-shrink:0;margin-right:auto;border-radius:var(--space-2xs)}
+/* le lien du logo (retour à l'accueil) : une cible de 48 px de haut, l'image garde sa taille */
+.entete-logo{display:inline-flex;align-items:center;min-height:48px;flex-shrink:0;margin-right:auto;border-radius:var(--space-2xs)}
 .entete-logo img{width:auto;height:34px}
 .entete-nav{display:flex;align-items:center}
 .nav-liens{display:flex;gap:var(--space-lg)}
@@ -249,11 +253,11 @@ strong{font-weight:700}
 .champ > label,.champ > legend{display:block;padding:0;font-weight:600;font-size:var(--text-md);line-height:1.35;color:var(--color-ink)}
 .champ > legend{margin-bottom:var(--space-sm)}
 .champ input:not([type="radio"]):not([type="checkbox"]),.champ textarea{width:100%;min-height:52px;margin:0;padding:12px 14px;
-  border:1.5px solid var(--color-rule-2);border-radius:var(--radius-control);background:var(--color-paper-3);color:var(--color-ink);
+  border:1.5px solid var(--color-champ);border-radius:var(--radius-control);background:var(--color-paper-3);color:var(--color-ink);
   font:inherit;font-size:var(--text-md);line-height:1.4;transition:border-color var(--dur-micro) var(--ease-out),box-shadow var(--dur-micro) var(--ease-out)}
 .champ textarea{min-height:120px;resize:vertical}
 .champ ::placeholder{color:var(--color-muted);opacity:1}
-.champ input:hover,.champ textarea:hover{border-color:var(--color-muted)}
+.champ input:hover,.champ textarea:hover{border-color:var(--color-ink-2)}
 .champ input:focus,.champ textarea:focus{outline:none;border-color:var(--color-ink);box-shadow:0 0 0 3px var(--color-anneau)}
 .champ input:focus-visible,.champ textarea:focus-visible{outline:none}
 .champ [aria-invalid="true"]{border-color:var(--color-orange-texte) !important;background:#FFF6F1 !important}
@@ -264,7 +268,7 @@ strong{font-weight:700}
 .pastilles{display:flex;flex-wrap:wrap;gap:10px}
 .pastilles label{position:relative;display:inline-flex}
 .pastilles input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-.pastilles span{display:inline-flex;align-items:center;min-height:48px;padding:10px 18px;border:1.5px solid var(--color-rule-2);border-radius:var(--radius-pill);
+.pastilles span{display:inline-flex;align-items:center;min-height:48px;padding:10px 18px;border:1.5px solid var(--color-champ);border-radius:var(--radius-pill);
   background:var(--color-paper-3);color:var(--color-ink);font-size:var(--text-md);font-weight:600;line-height:1.2;cursor:pointer;
   transition:border-color var(--dur-micro) var(--ease-out),background-color var(--dur-micro) var(--ease-out)}
 .pastilles span:hover{border-color:var(--color-ink)}
@@ -286,8 +290,10 @@ strong{font-weight:700}
 .pied-marque img{width:auto;height:36px}
 .pied-marque p{margin-top:var(--space-md);max-width:30ch;color:var(--color-on-nuit-2)}
 .pied-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap-columns)}
-.pied-nav a{display:inline-flex;align-items:center;min-height:48px;color:var(--color-on-nuit);text-decoration:none;transition:color var(--dur-micro) var(--ease-out)}
+.pied-nav a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;color:var(--color-on-nuit);text-decoration:none;transition:color var(--dur-micro) var(--ease-out)}
 .pied-nav a:hover{color:var(--color-on-nuit-2);text-decoration:underline}
+/* la page courante, quand elle n'est que dans le pied (calculateur, aide, mentions légales) */
+.pied-nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--color-on-nuit-2);text-underline-offset:.3em}
 .pied-legal{margin-top:var(--space-2xl);padding-top:var(--space-lg);border-top:1px solid var(--color-rule-nuit);font-size:var(--text-sm);color:var(--color-on-nuit-2)}
 
 /* ── 12. pages de texte (aide, mentions légales) ───────────
@@ -328,9 +334,10 @@ strong{font-weight:700}
   .faq-grille h2{max-width:none}
   .pied-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
 }
-/* téléphone et tablette : 16 px au minimum partout */
+/* téléphone et tablette : 16 px au minimum partout (y compris les codes des pages de texte) */
 @media (max-width:48rem){
   :root{--text-sm:1rem}
+  .page-texte code{font-size:1em}
 }
 @media (max-width:40rem){
   :root{--gutter:16px;--section-gap-s:64px;--section-gap:72px;--gap-columns:16px}

@@ -3,11 +3,13 @@
    Chargée après site.css (jetons, en-tête, boutons, sections, questions, pied) et avant
    eventail.css (les présentoirs). Reprend la maquette A validée par Valentin, avec deux
    corrections :
-   1. ordinateur (1440 × 900) : le premier écran montre le titre, la phrase, le bouton ET
-      tout le visuel (le téléphone, QR compris, et ses quatre morceaux) — marges resserrées,
-      téléphone dont la largeur suit la hauteur de la fenêtre (§ 2), morceaux placés par rapport à lui ;
-   2. téléphone : plus aucun morceau sur les deux cartes du Wallet. La roue et le cadeau se
-      posent au pied du téléphone (sur la zone du QR), la barre de tampons dessous, entière.
+   1. ordinateur : le premier écran montre le titre, la phrase, le bouton ET tout le visuel (le
+      téléphone, QR compris, et ses quatre morceaux), y compris dans une fenêtre réelle de 650 à
+      950 px de haut — héros resserré, téléphone dont la largeur suit la hauteur de la fenêtre,
+      morceaux proportionnels à lui (§ 2) ;
+   2. tablette et téléphone (moins de 64rem) : plus aucun morceau ni légende sur les deux cartes du
+      Wallet. La roue et le cadeau se posent au pied du téléphone (sur la zone du QR), la barre de
+      tampons dessous, entière (§ 10).
    Les morceaux sont posés d'emblée (l'entrée animée de la maquette est retirée : à la capture,
    le dernier morceau pouvait rester invisible ; rien ne doit dépendre d'une animation).
 
@@ -24,34 +26,59 @@
 .heros-note{margin-top:var(--space-sm);font-size:var(--text-sm);color:var(--color-muted)}
 
 /* ── 2. la carte et ses morceaux ─────────────────────────────
-   Le téléphone (--tel de large) au centre ; chaque morceau est placé par rapport à ses bords
-   (calc(50% ± --tel / 2)), en débordant un peu dessus. Les hauteurs sont en % du téléphone.
-   Grand écran : la largeur du téléphone suit la HAUTEUR de la fenêtre (le téléphone est 1,89 fois
-   plus haut que large, et le texte du héros prend ~420 px avec la barre) : à 1440 × 900, il tient
-   en entier dans le premier écran, QR compris ; jamais moins de 224 px, jamais plus de 272 px. */
+   Ordinateur (64rem et plus) : le téléphone (--tel de large) au centre, les quatre morceaux autour.
+   TOUT est proportionnel à --tel : la taille des morceaux et leur place (calc(50% ± k × --tel)),
+   avec les rapports de la maquette validée (téléphone de 272 px : tampons 330 px posés 290 px à
+   gauche, roue 160 px, cadeau 220 px, avis 320 px). Quand le téléphone rapetisse, la composition
+   rapetisse avec lui, sans changer de dessin. Les hauteurs sont en % du téléphone. Les légendes en
+   nuit (taille de texte fixe) sont placées depuis les bords du TÉLÉPHONE : jamais dessus.
+   La largeur du téléphone suit la HAUTEUR de la fenêtre (il est 1,89 fois plus haut que large) :
+   - fenêtre de 950 px de haut ou plus : héros normal, --tel = (100vh − 440 px) × 0,53 ;
+   - fenêtre moins haute (la plupart des ordinateurs : un écran « 1440 × 900 » laisse ~790 px au
+     navigateur, un portable 1366 × 768 ~657 px) : héros resserré (titre un peu plus petit, la note
+     à côté du bouton, marges de 16 px) et --tel = (100vh − 360 px) × 0,53.
+   Le téléphone entier (QR compris) et ses quatre morceaux tiennent dans le premier écran dès
+   ~650 px de haut (mesuré : 1440 × 900, 1440 × 789, 1536 × 730, 1280 × 720, 1366 × 657, 1024 × 768).
+   En dessous, le téléphone garde 150 px de large au minimum et son bas passe sous la ligne. */
 .scene{margin-top:var(--space-xl);padding-inline:var(--gutter)}
 .scene-plateau{--tel:272px;position:relative;max-width:1040px;margin-inline:auto}
 @media (min-width:64rem){
   .heros{padding-top:var(--space-lg)}
   .heros .btn{margin-top:var(--space-lg)}
   .scene{margin-top:var(--space-lg)}
-  .scene-plateau{--tel:clamp(224px,calc((100vh - 420px) * .5),272px)}
+  .scene-plateau{--tel:clamp(200px,calc((100vh - 440px) * .53),272px)}
+}
+/* ordinateur peu haut (hauteurs en px : elles se lisent comme la fenêtre) */
+@media (min-width:64rem) and (max-height:949px){
+  .heros{padding-top:var(--space-md)}
+  /* le titre et la phrase prennent chacun toute une ligne (flex-basis 100 %, sans max-width : sinon la
+     phrase remonte à côté du bouton) ; la phrase garde ses 40rem de large par ses marges intérieures ;
+     le bouton et la note se partagent la ligne du dessous, centrés */
+  .heros-texte{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:var(--space-lg)}
+  .heros h1{flex-basis:100%;max-width:none;font-size:clamp(2.25rem,1.6vw + 1.3rem,3rem)}
+  .heros-phrase{flex-basis:100%;max-width:none;padding-inline:max(0px,calc((100% - 40rem) / 2));margin-top:var(--space-sm)}
+  .heros .btn,.heros-note{margin-top:var(--space-md)}
+  .scene{margin-top:var(--space-md)}
+  .scene-plateau{--tel:clamp(150px,calc((100vh - 360px) * .53),272px)}
 }
 .scene-tel{width:var(--tel);margin-inline:auto;filter:drop-shadow(0 28px 36px var(--color-ombre-2))}
 .morceau{position:absolute;z-index:var(--z-raised);background:var(--color-paper-3);border:6px solid var(--color-anneau);border-radius:var(--radius-card);
   box-shadow:0 18px 40px -18px var(--color-ombre)}
 .morceau img{width:100%;border-radius:calc(var(--radius-card) - 6px)}
-.morceau-tampons{width:330px;left:calc(50% - var(--tel) / 2 - 290px);top:12%}
-.morceau-cadeau{width:220px;left:calc(50% + var(--tel) / 2 - 36px);top:2%;border-color:var(--color-anneau-2)}
-.morceau-roue{width:160px;left:calc(50% - var(--tel) / 2 - 142px);top:46%;border-radius:50%;border-color:var(--color-anneau-2)}
+.morceau-tampons{width:calc(var(--tel) * 1.213);left:calc(50% - var(--tel) * 1.566);top:12%}
+.morceau-cadeau{width:calc(var(--tel) * .809);left:calc(50% + var(--tel) * .368);top:2%;border-color:var(--color-anneau-2)}
+.morceau-roue{width:calc(var(--tel) * .588);left:calc(50% - var(--tel) * 1.022);top:46%;border-radius:50%;border-color:var(--color-anneau-2)}
 .morceau-roue img{border-radius:50%}
-.morceau-avis{width:320px;left:calc(50% + var(--tel) / 2 - 16px);top:42%}
-/* les courtes légendes en nuit, accrochées à leur morceau */
+.morceau-avis{width:calc(var(--tel) * 1.176);left:calc(50% + var(--tel) * .441);top:42%}
+/* les courtes légendes en nuit, accrochées à leur morceau mais placées hors du téléphone :
+   tampons, son bord droit 18 px avant le bord gauche du téléphone (le morceau déborde de 0,147 × --tel
+   sur le téléphone) ; avis, son bord gauche 0,25 × --tel après l'endroit où le morceau quitte le
+   téléphone ; roue, à gauche de la roue. */
 .etiquette{position:absolute;top:calc(100% + var(--space-sm));padding:var(--space-xs) var(--space-md);border-radius:var(--radius-pill);
   background:var(--color-ink);color:var(--color-on-nuit);font-size:var(--text-sm);font-weight:600;line-height:1.3;white-space:nowrap;
   box-shadow:0 8px 18px -8px var(--color-ombre)}
-.morceau-tampons .etiquette{left:var(--space-lg)}
-.morceau-avis .etiquette{right:var(--space-lg)}
+.morceau-tampons .etiquette{right:calc(var(--tel) * .147 + var(--space-sm))}
+.morceau-avis .etiquette{left:calc(var(--tel) * .25)}
 .morceau-roue .etiquette{top:50%;right:calc(100% + var(--space-sm));transform:translateY(-50%)}
 .scene-legende{margin-top:var(--space-lg);text-align:center;font-size:var(--text-sm);color:var(--color-muted)}
 
@@ -121,28 +148,13 @@
 .photo-b{margin-top:var(--space-3xl)}
 
 /* ── 10. tailles d'écran ─────────────────────────────────── */
-/* tablette : téléphone de 220 px, morceaux plus petits, la légende de la roue sous la roue (alignée à droite) */
+/* tablette et téléphone (moins de 64rem) : le téléphone au centre, ses deux cartes entièrement
+   visibles ; la roue (à gauche) et le cadeau (à droite) posés au pied, sur la zone du QR ; la barre
+   de tampons dessous. Le plateau a sa propre hauteur (aspect-ratio) : les positions sont en % de
+   cette hauteur. Les légendes en nuit et l'invitation à l'avis (déjà dans le titre) sont retirées.
+   Relecture du 30/10 : à 768-1023 px, l'ancienne disposition « morceaux sur les côtés » posait les
+   légendes sur les cartes (« ucun pour l'instant ») ; la disposition téléphone vaut donc jusqu'à 64rem. */
 @media (max-width:63.99rem){
-  .scene-plateau{--tel:220px}
-  .morceau-tampons{width:260px;left:calc(50% - var(--tel) / 2 - 240px)}
-  .morceau-cadeau{width:180px;left:calc(50% + var(--tel) / 2 - 30px)}
-  .morceau-roue{width:130px;left:calc(50% - var(--tel) / 2 - 118px)}
-  .morceau-avis{width:250px;left:calc(50% + var(--tel) / 2 - 14px)}
-  .morceau-roue .etiquette{top:calc(100% + var(--space-sm));right:0;transform:none}
-  .morceau-tampons .etiquette{left:0}
-}
-@media (max-width:60rem){
-  .etapes{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-2xl)}
-  .pilotez-grille{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pilotez-texte{grid-column:1 / -1;grid-row:1}
-  .essai-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-2xl)}
-  .essai-texte{padding-inline-end:0}
-}
-/* téléphone : le téléphone au centre, ses deux cartes entièrement visibles ; la roue (à gauche)
-   et le cadeau (à droite) posés au pied, sur la zone du QR ; la barre de tampons dessous.
-   Le plateau a sa propre hauteur (aspect-ratio) : les positions sont en % de cette hauteur.
-   Les légendes en nuit et l'invitation à l'avis (déjà dans le titre) sont retirées. */
-@media (max-width:47.99rem){
   .scene{margin-top:var(--space-lg);padding-inline:var(--gutter)}
   .scene-plateau{max-width:420px;aspect-ratio:100 / 132}
   .scene-tel{position:absolute;top:0;left:22%;width:56%}
@@ -153,6 +165,24 @@
   .morceau-roue{width:30%;left:0;top:61.7%}
   .morceau-cadeau{width:40%;left:auto;right:0;top:62.4%}
   .morceau-tampons{width:92%;left:4%;top:83.3%;z-index:calc(var(--z-raised) + 1)}
+}
+/* repli pour un navigateur sans aspect-ratio (Safari avant 15) : sans lui le plateau, dont tous les
+   enfants sont posés en absolu, n'aurait aucune hauteur et la carte glisserait sur la suite. Le
+   pseudo-élément donne la hauteur (132 % de la largeur du plateau). */
+@supports not (aspect-ratio:1){
+  @media (max-width:63.99rem){
+    .scene-plateau::before{content:"";display:block;padding-top:132%}
+  }
+}
+@media (max-width:60rem){
+  .etapes{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-2xl)}
+  .pilotez-grille{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pilotez-texte{grid-column:1 / -1;grid-row:1}
+  .essai-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-2xl)}
+  .essai-texte{padding-inline-end:0}
+}
+/* téléphone : la vidéo verticale */
+@media (max-width:47.99rem){
   .film-paysage{display:none}
   .film-vertical{display:block;max-width:340px;margin-inline:auto}
 }
@@ -175,7 +205,10 @@
   .jeu p{margin-inline:0;align-self:start}
   .vers-calcul{flex-direction:column;align-items:stretch}
   .vers-calcul .btn{white-space:normal}
-  .pilotez-grille{gap:var(--space-md)}
+  /* une seule capture, lisible (côte à côte, les deux ne faisaient que ~165 px de large) : le tableau de bord */
+  .pilotez-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+  .pilotez-tel-a{display:none}
+  .pilotez-tel-b img{width:min(70%,260px)}
   .essai-texte > .btn{width:100%;white-space:normal}
   .essai-photos{gap:var(--space-md)}
   .photo-b{margin-top:var(--space-2xl)}

@@ -108,7 +108,8 @@
   .qui-tete h2{max-width:none}
 }
 @media (max-width:40rem){
-  .essai-demande{padding:var(--space-lg) var(--space-md);margin-inline:calc(var(--space-xs) * -1)}
+  /* la carte s'arrête à la gouttière de 16 px, comme celle du calculateur et les plaques */
+  .essai-demande{padding:var(--space-lg) var(--space-md)}
   /* boutons pleine largeur, le principal au-dessus */
   .etape-actions{flex-direction:column;align-items:stretch}
   .etape-actions > .btn,.etape-actions > .envoi-js,.envoi-js > .btn{width:100%}

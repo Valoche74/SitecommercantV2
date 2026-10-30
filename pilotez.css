@@ -35,7 +35,7 @@
 /* ── 3. la carte qui se montre près de la boutique : une icône, pas une maquette ── */
 .visu-gps{place-items:center !important;padding:var(--space-xl) !important;aspect-ratio:5 / 4;overflow:hidden}
 .gps-disque{display:grid;place-items:center;width:min(46%,240px);aspect-ratio:1;border-radius:50%;background:var(--color-paper-3);
-  box-shadow:0 0 0 18px rgba(27,31,59,.04),0 0 0 36px rgba(27,31,59,.03),0 24px 40px -24px var(--color-ombre);color:var(--color-ink)}
+  box-shadow:0 24px 40px -24px var(--color-ombre);color:var(--color-ink)}
 .gps-disque svg{width:46%;height:auto}
 
 /* ── 4. en option : les invendus ─────────────────────────── */
@@ -52,6 +52,9 @@
   .module-inverse .module-texte{order:0}
   .module-texte{max-width:40rem}
   .option{grid-template-columns:minmax(0,1fr);padding:var(--space-xl)}
+  /* une seule colonne : la plaque de l'icône prend la hauteur de l'icône (pas un grand bloc vide) */
+  .visu-gps{aspect-ratio:auto}
+  .gps-disque{width:min(40vw,200px)}
 }
 @media (max-width:40rem){
   .module-visu .cadre-visuel{padding:var(--space-lg)}

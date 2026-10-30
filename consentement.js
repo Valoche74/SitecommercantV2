@@ -136,45 +136,40 @@
     apercu: 'Aperçu : aucun choix n’est enregistré, Clarity n’est pas chargé.'
   };
 
-  // Le style du bandeau vit ici (une seule source pour les pages du site ET les pages de texte,
-  // qui n'ont pas la même feuille). Direction B : nuit, orange clair en accent, Inter / Plus Jakarta Sans.
+  // Le style du bandeau vit ici (une seule source pour les pages du site ET les pages de texte).
+  // Refonte A (30/10/2026) : les jetons de site.css — la nuit #1B1F3B, filet #363B55, texte clair
+  // #F3F5FB et #BFC3D5, 16 px partout, titre en Plus Jakarta Sans sans resserrement des lettres ;
+  // l'orange clair #FF8A4C ne sert qu'au survol et au focus (comme dans la barre du haut).
   // Les deux boutons sont IDENTIQUES (contour clair) : aucun n'est mis en avant, et aucun n'est un
   // bouton orange plein (le seul bouton orange plein de l'écran reste celui de l'essai).
-  // Plan 45 : au-dessus de tout le contenu (sections : 1, cartes de l'éventail : enfermées dans leur
-  // section), mais SOUS l'en-tête (50). Relecture du 01/10 : à 70, sur un téléphone de 320 px, le bandeau
-  // recouvrait 3 des 4 liens du menu ouvert ; le menu ouvert passe maintenant devant, et le bandeau
-  // réapparaît quand on le referme.
+  // Plan 45 : au-dessus de tout le contenu (cartes de l'éventail : enfermées dans leur section), mais
+  // SOUS l'en-tête (plan 100, site.css) : le menu téléphone ouvert passe devant le bandeau (relecture du
+  // 01/10 : à 320 px, le bandeau recouvrait 3 des 4 liens du menu), qui réapparaît quand on le referme.
   var CSS = [
     '.consentement{position:fixed;z-index:45;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));',
     '  max-width:760px;margin:0 auto;box-sizing:border-box;padding:20px 22px;border-radius:18px;',
-    '  background:#232849;color:#F4F5FB;border:1px solid rgba(255,138,76,.32);box-shadow:0 24px 60px -18px rgba(0,0,0,.75);',
-    '  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15.5px;line-height:1.55;',
+    '  background:#1B1F3B;color:#F3F5FB;border:1px solid #363B55;box-shadow:0 24px 60px -18px rgba(6,8,24,.6);',
+    '  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;',
     '  animation:consentement-entre .3s cubic-bezier(.16,1,.3,1)}',
     '.consentement *{box-sizing:border-box}',
-    '.consentement-titre{margin:0 0 6px;font-family:"Plus Jakarta Sans",Inter,-apple-system,sans-serif;font-weight:800;font-size:17px;line-height:1.3;color:#FFFFFF;letter-spacing:-.01em}',
-    '.consentement-texte{margin:0;color:#C4C8DE}',
-    '.consentement-etat{margin:8px 0 0;color:#F4F5FB;font-weight:600}',
+    '.consentement-titre{margin:0 0 6px;font-family:"Plus Jakarta Sans",Inter,-apple-system,sans-serif;font-weight:800;font-size:18px;line-height:1.3;color:#F3F5FB;letter-spacing:0}',
+    '.consentement-texte{margin:0;color:#BFC3D5}',
+    '.consentement-etat{margin:8px 0 0;color:#F3F5FB;font-weight:600}',
     '.consentement-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:16px}',
-    '.consentement-btn{flex:0 0 auto;min-width:132px;min-height:48px;margin:0;padding:11px 24px;border-radius:999px;cursor:pointer;',
-    '  background:transparent;color:#FFFFFF;border:1.5px solid rgba(255,255,255,.5);font:700 16px/1.2 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;',
+    '.consentement-btn{flex:0 0 auto;min-width:132px;min-height:48px;margin:0;padding:11px 24px;border-radius:12px;cursor:pointer;',
+    '  background:transparent;color:#F3F5FB;border:2px solid #BFC3D5;font:600 16px/1.2 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;',
     '  transition:border-color .2s,background .2s}',
-    '.consentement-btn:hover{border-color:#FF8A4C;background:rgba(255,138,76,.12)}',
-    '.consentement-plus{display:inline-flex;align-items:center;min-height:48px;padding:0 4px;color:#F4F5FB;font-weight:600;',
-    '  text-decoration:underline;text-decoration-color:rgba(255,138,76,.6);text-decoration-thickness:2px;text-underline-offset:.22em}',
+    '.consentement-btn:hover{border-color:#FF8A4C;background:#282C4B}',
+    '.consentement-plus{display:inline-flex;align-items:center;min-height:48px;padding:0 4px;color:#F3F5FB;font-weight:600;',
+    '  text-decoration:underline;text-decoration-color:#BFC3D5;text-decoration-thickness:1px;text-underline-offset:.22em}',
     '.consentement-plus:hover{text-decoration-color:#FF8A4C}',
-    '.consentement :focus-visible{outline:2px solid #FF8A4C;outline-offset:3px}',
-    '.consentement-apercu{margin:12px 0 0;font-size:13px;color:#C4C8DE;opacity:.85}',
+    '.consentement :focus-visible{outline:3px solid #FF8A4C;outline-offset:3px}',
+    '.consentement-apercu{margin:12px 0 0;font-size:16px;color:#BFC3D5}',
     '@keyframes consentement-entre{from{opacity:0;transform:translateY(12px)}}',
-    // téléphone et tablette : 16 px minimum, les deux boutons côte à côte, de même largeur
-    '@media(max-width:919.98px){.consentement{font-size:16px}}',
+    // téléphone : les deux boutons côte à côte, de même largeur
     '@media(max-width:559.98px){.consentement{padding:18px 18px 16px}.consentement-btn{flex:1 1 0;min-width:0;padding:11px 12px}',
     '  .consentement-plus{flex:1 0 100%;justify-content:center}}',
-    '@media(prefers-reduced-motion:reduce){.consentement{animation:none}.consentement-btn{transition:none}}',
-    // Le pied de page avec son 8e lien (« Gérer les cookies ») ne tient sur une ligne qu'à partir de
-    // 1100 px (mesuré le 01/10, accueil et pages de texte). En dessous, les liens passent à la ligne :
-    // comme le socle le fait sous 960 px pour 7 liens, on retire les points « · » (aucun ne reste seul
-    // en bout de ligne) et l'espace sépare les liens.
-    '@media(max-width:1119.98px){.pied-liens.avec-cookies{column-gap:20px}.pied-liens.avec-cookies span[aria-hidden]{display:none}}'
+    '@media(prefers-reduced-motion:reduce){.consentement{animation:none}.consentement-btn{transition:none}}'
   ].join('\n');
 
   function poserStyle(){

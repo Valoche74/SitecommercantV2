@@ -18,7 +18,8 @@
 - Aucun script externe, aucun jaune, aucune crème en fond, aucun chiffre / prix / texte hors de ceux validés, aucun
   logo de marque tierce.
 - Essais : `node _outils/tests/lancer-tous.mjs --seulement "des pages" > fichier 2>&1`, puis le code de sortie.
-  Captures : `SANS_BANDEAU=1 node _outils/captures-vitrine.mjs` (les 7 pages, 1440 et 390 px, sans le bandeau cookies).
+  Captures : `SANS_BANDEAU=1 node _outils/captures-vitrine.mjs` (les 7 pages, 1440 et 390 px, sans le bandeau cookies ;
+  depuis le 30/10 l'écran garde sa vraie hauteur, 900 / 844 px, pendant la capture : le héros y est celui d'un vrai écran).
 
 ## 1. Le `<head>` type (remplacer les ⟨…⟩)
 
@@ -56,7 +57,14 @@ Plus de `<script>document.documentElement.classList.add('js')</script>` : plus r
 ## 2. L'en-tête (identique sur toutes les pages)
 
 Poser `aria-current="page"` sur le lien de la page courante (le logo sur l'accueil, « Comment ça marche »,
-« Ce que vous pilotez », ou les deux boutons « Essai gratuit » sur la page 4).
+« Ce que vous pilotez », ou les deux boutons « Essai gratuit » sur la page 4). Le calculateur, l'aide et les mentions
+légales ne sont pas dans le menu du haut : chez eux, `aria-current="page"` se pose **dans le pied** (§ 7), sur
+« Faites le calcul », « Aide » ou « Mentions légales ».
+
+**Page 4 (essai-gratuit.html) seulement** : les trois liens d'essai — le bouton de la barre, celui du menu téléphone
+et « Essai gratuit » du pied — visent **`#essai-demande`** et non `/essai-gratuit` (sinon un clic recharge la page et
+vide ce que le visiteur a déjà tapé dans le formulaire ; défaut corrigé le 26/09, d0ea3ae, réintroduit puis
+re-corrigé le 30/10). Les deux boutons gardent `aria-current="page"`.
 
 ```html
 <header class="entete">
@@ -135,7 +143,7 @@ Poser `aria-current="page"` sur le lien de la page courante (le logo sur l'accue
 | `.liste` | liste cochée (coche dessinée par la feuille, en nuit) — `<ul class="liste"><li>…</li></ul>` |
 | `.pastille` | courte indication en casse normale : « Nouveau », « Sur iPhone », « En option » |
 | `.legende` | « Données de démonstration. » sous une capture chiffrée |
-| `.champ`, `.champ-aide`, `.champ-erreur`, `.pastilles` | champs de formulaire, aide, erreur, choix en pastilles (cibles 48 px) |
+| `.champ`, `.champ-aide`, `.champ-erreur`, `.pastilles` | champs de formulaire, aide, erreur, choix en pastilles (cibles 48 px) ; contour `--color-champ` `#868A9F` (3,4:1 sur la carte : une case à remplir se voit au soleil), jamais le filet `#CED0DD` (1,5:1) |
 | `.direct` | contacts directs en pilules (téléphone, e-mail, aide) |
 | `.faq-grille` + `.faq-liste` | questions : titre à gauche, `<details>` à droite (flèche SVG dans le `<summary>`) |
 | `.insecable`, `.visually-hidden` | pas de coupure ; lu par les lecteurs d'écran seulement |
@@ -193,7 +201,27 @@ Poser `aria-current="page"` sur le lien de la page courante (le logo sur l'accue
 </footer>
 ```
 
-`consentement.js` ajoute « Gérer les cookies » en dernier `<li>` de `.pied-liens` (quand Clarity est configuré).
+- `consentement.js` ajoute « Gérer les cookies » en dernier `<li>` de `.pied-liens` (quand Clarity est configuré).
+- Page 4 : « Essai gratuit » vise `#essai-demande` (§ 2). Calculateur, aide, mentions : `aria-current="page"` sur leur
+  lien du pied (souligné par `site.css`).
+- Chaque lien du pied fait au moins 48 × 48 px (`min-height` et `min-width` : « Aide » est court).
+
+### Le bandeau de consentement et Clarity (consentement.js)
+
+- `consentement.js` est chargé par TOUTES les pages juste après `site.js` (§ 1) ; une nouvelle page le charge aussi.
+  Tant que `CLARITY_ID` (en tête du fichier) est vide, il ne fait rien. Rempli : bandeau en bas d'écran (« Refuser » /
+  « Accepter » identiques, « En savoir plus » → `/mentions-legales#cookies`), Clarity chargé seulement après
+  « Accepter », choix gardé 6 mois (localStorage `perify-consentement`), lien « Gérer les cookies » au bout du pied.
+- Le **style du bandeau est dans le script** (une seule source pour toutes les pages) : depuis la refonte A, la nuit
+  `#1B1F3B`, filet `#363B55`, textes `#F3F5FB` / `#BFC3D5`, 16 px partout, orange clair au survol et au focus seulement.
+- **Plan (z-index) du bandeau : 45, sous l'en-tête (100, `--z-entete`)** : le menu téléphone ouvert passe devant (à 70,
+  sur un téléphone de 320 px, le bandeau recouvrait le menu ouvert — relecture du 01/10).
+- **Aperçu** pour les captures : ajouter `?apercu-consentement=1` à l'adresse (bandeau et lien affichés, Clarity jamais
+  chargé, rien d'enregistré). Les captures pleine page se font SANS bandeau : `SANS_BANDEAU=1`.
+- **Formulaire d'essai : `#essai-demande` porte `data-clarity-mask="true"`** (Clarity masque tout le bloc, y compris le
+  lien e-mail de l'écran d'échec, qui contient la demande). À garder si le formulaire est refait : sans lui, la demande
+  partirait en clair chez Clarity pour les visiteurs qui ont accepté. `essai.js` signale la réussite par
+  `PerifyConsentement.evenement('demande_essai_envoyee')` (un nom, aucune donnée).
 
 ## 8. Le script commun (site.js)
 
@@ -215,14 +243,29 @@ pas au contenu de `<main>` des mentions légales (validé le 30/10, cd72817) : s
 
 - `.heros` : titre (`--text-display`), `.heros-phrase`, le bouton, `.heros-note`, puis `.scene` : `.scene-plateau`
   (variable `--tel`, la largeur du téléphone) avec `img.scene-tel` et quatre `figure.morceau` (`-tampons`, `-cadeau`,
-  `-roue`, `-avis`), chacun avec sa `.etiquette` nuit. Les positions sont calculées depuis les bords du téléphone.
-  Au-delà de 64rem, `--tel` suit la hauteur de la fenêtre (`clamp(224px, calc((100vh - 420px) * .5), 272px)`) pour
-  que le téléphone tienne en entier dans le premier écran à 1440 × 900 (les marges du héros y sont resserrées à 24 px) ;
-  si le texte du héros s'allonge, revoir les 420 px. Entre 48 et 64rem, `--tel` vaut 220 px. Sous 48rem, le plateau
-  prend sa hauteur (`aspect-ratio`) et la roue et le cadeau se posent au pied du téléphone, la barre de tampons dessous.
+  `-roue`, `-avis`), chacun avec sa `.etiquette` nuit.
+- **Ordinateur (64rem et plus)** : taille ET place des morceaux sont des multiples de `--tel` (rapports de la maquette,
+  téléphone de 272 px) ; les légendes sont placées depuis les bords du téléphone, jamais dessus. `--tel` suit la HAUTEUR
+  de la fenêtre :
+  - 950 px de haut ou plus : héros normal, `--tel: clamp(200px, calc((100vh - 440px) * .53), 272px)` ;
+  - moins de 950 px (`@media (min-width:64rem) and (max-height:949px)` : la plupart des ordinateurs, un écran
+    1440 × 900 laissant ~790 px au navigateur) : héros resserré (titre jusqu'à 3rem, la note à côté du bouton, marges de
+    16 px) et `--tel: clamp(150px, calc((100vh - 360px) * .53), 272px)`.
+  Garanti (mesuré le 30/10, fenêtre réelle) : titre, phrase, bouton, téléphone entier (QR compris) et ses quatre
+  morceaux dans le premier écran à 1440 × 900, 1440 × 789, 1536 × 730, 1280 × 720, 1366 × 657, 1024 × 768, 1920 × 969.
+  Sous ~650 px de haut, le téléphone garde 150 px et son bas passe sous la ligne. Si le texte du héros s'allonge
+  (une ligne de plus), revoir les 360 / 440 px.
+- **Tablette et téléphone (moins de 64rem)** : le plateau prend sa hauteur (`aspect-ratio: 100 / 132`, repli
+  `::before` à 132 % sans `aspect-ratio`), la roue et le cadeau se posent au pied du téléphone (zone du QR), la barre de
+  tampons dessous ; légendes et invitation à l'avis retirées. (Entre 48 et 64rem, l'ancienne disposition « morceaux sur
+  les côtés » posait les légendes sur les cartes : retirée le 30/10.)
 - `.avec` (noms en texte entre deux filets), `.presentoirs` (l'éventail), `.film` (deux vidéos : paysage / verticale
-  sous 48rem), `.parcours` + `.etapes` (4 dessins numérotés), `.jeux` (bande teintée) + `.vers-calcul`, `.pilotez`,
-  `.essai-accueil` (texte + `.qui-court` + `.essai-photos`), questions (`.faq-grille`).
+  sous 48rem, `preload="none"` : rien n'est téléchargé avant le clic), `.parcours` + `.etapes` (4 dessins numérotés),
+  `.jeux` (bande teintée) + `.vers-calcul`, `.pilotez` (sous 40rem : une seule capture, le tableau de bord, à
+  `min(70%, 260px)` ; l'offre est retirée, côte à côte elles étaient illisibles), `.essai-accueil` (texte + `.qui-court`
+  + `.essai-photos`), questions (`.faq-grille`).
+- Apostrophes : `’` (typographique) dans tout le texte des pages, depuis le 30/10 (aide et mentions exceptées : contenu
+  figé). Jamais dans un `value`, un identifiant ou du code.
 
 ## 11. Les images ajoutées le 30/10/2026
 

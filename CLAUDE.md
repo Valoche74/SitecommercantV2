@@ -39,11 +39,15 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   morceaux de la carte autour (`img/carte-*.webp`) → « Ça marche avec » (noms en texte) → **les présentoirs (éventail)
   AVANT la vidéo** (demande de Valentin) → vidéo → parcours (4 dessins `img/scenes/`) → jeux + « Faites le calcul »
   (bande teintée) → ce que vous pilotez → l'essai avec les photos du présentoir et « Une seule personne… » → questions.
-  Ordinateur 1440 × 900 : le premier écran montre titre, phrase, bouton ET le téléphone en entier (QR compris) avec ses
-  quatre morceaux. Au-delà de 64rem, la largeur du téléphone suit la HAUTEUR de la fenêtre
-  (`--tel: clamp(224px, (100vh - 420px) * .5, 272px)` : 240 px à 1440 × 900, 272 px à 1920 × 1080) ; les morceaux sont
-  placés par rapport à ses bords. Téléphone : la roue et le cadeau se posent au pied du téléphone (sur la zone du QR),
-  la barre de tampons dessous, entière ; rien ne recouvre les deux cartes ; l'invitation à l'avis est retirée.
+  **Ordinateur (64rem et plus)** : le premier écran montre titre, phrase, bouton ET le téléphone en entier (QR compris)
+  avec ses quatre morceaux, **dans une fenêtre réelle de 650 px de haut ou plus** (mesuré le 30/10 : 1440 × 900,
+  1440 × 789 — ce qu'un écran « 1440 × 900 » laisse au navigateur —, 1536 × 730, 1280 × 720, 1366 × 657, 1024 × 768).
+  La largeur du téléphone `--tel` suit la HAUTEUR de la fenêtre ; sous 950 px de haut, le héros se resserre (titre
+  jusqu'à 3rem, la note à côté du bouton) ; taille et place des morceaux sont des multiples de `--tel`, les légendes
+  ne touchent jamais le téléphone (formules : `_GABARIT.md` § 10). Sous ~650 px de haut, le bas du téléphone passe
+  sous la ligne (150 px de large au minimum). **Tablette et téléphone (moins de 64rem)** : la roue et le cadeau se
+  posent au pied du téléphone (sur la zone du QR), la barre de tampons dessous, entière ; rien ne recouvre les deux
+  cartes ; légendes et invitation à l'avis retirées.
 - **Rythme des fonds, page par page** : accueil = fond clair partout, sauf les jeux + « Faites le calcul » (bande
   teintée) ; « Ça marche avec » entre deux filets ; l'essai et les questions séparés par un filet. Page 2 = chapeau,
   étapes (plaques teintées), « En chiffres » (bande teintée), bloc Essai, Suite. Page 3 = chapeau, quatre modules
@@ -86,6 +90,10 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   dans le HTML (`#lienMail`, `[data-mail]`, `PerifyMail`). Garder les identifiants des champs
   (`nom`, `commerce`, `ville`, `tel`, `email`, `message`, + `metier`, `creneau`, piège `site_web`) et les classes
   lues par `essai.js` (`.etape-form`, `.progression…`, `.etape-titre`, `.champ`, `.par-etapes`, `.entre`).
+  **`#essai-demande` porte `data-clarity-mask="true"`** (obligatoire : Clarity masque tout le bloc, y compris le lien
+  e-mail de l'écran d'échec qui contient la demande ; sans lui, la demande partirait chez Clarity pour les visiteurs
+  qui ont accepté). Sur la page 4, les liens « Essai gratuit » (barre, menu, pied) visent `#essai-demande`, jamais
+  `/essai-gratuit` (un rechargement vide ce qui est tapé). Contour des champs `#868A9F` (3:1 au moins).
   Aucun autre service tiers sans accord.
 - **Couleurs** : nuit `#1B1F3B`, orange `#FF6B2C` (boutons), orange clair `#FF8A4C` (survol, focus sur la nuit),
   orange texte `#C2410C` (erreurs, focus sur le clair), fond `#F8F9FE`, bande `#F0F2FC`, cartes `#FDFDFF`. **Plus de
@@ -123,7 +131,10 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   page, aucun défilement horizontal à 320, 375, 768, 1024 et 1440 px, `prefers-reduced-motion` respecté (aucune
   animation, valeurs finales). Rien ne reste invisible si le JavaScript ne tourne pas. Pas d'emoji en guise d'icône.
 - **Grilles** : toujours `minmax(0, 1fr)`, jamais une colonne `auto` ou `1fr` seule (Safari iPhone fait zoomer toute la
-  page, invisible au Chrome simulé — JOURNAL-BUGS, 29/10) ; `overflow-x: clip` (et non hidden) sur `html` ET `body`.
+  page, invisible au Chrome simulé — JOURNAL-BUGS, 29/10) ; `overflow-x: clip` (et non hidden) sur `html` ET `body`,
+  précédé d'un `overflow-x: hidden` de repli (lu seulement par un Safari d'avant la version 16, qui ignore `clip`).
+  Un bloc dont tous les enfants sont en absolu et qui tient sa hauteur d'`aspect-ratio` a un repli sans lui (le
+  plateau du héros : `::before` à 132 %).
 - Commentaires en **français**. Fins de ligne : LF partout (y compris aide et mentions).
 
 ## Vérifier
@@ -137,8 +148,11 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
 - Captures pleine page de **chaque** page (7 pages + étape 2 et réussite de l'essai, 1440 et 390 px) :
   `SANS_BANDEAU=1 node _outils/captures-vitrine.mjs` (sans le réglage, le bandeau cookies d'un premier visiteur
   recouvre le bas des captures) → `IMAGE/apercus/vitrine-4-pages/final/` ; celles de la refonte A sont recopiées
-  dans `IMAGE/livraisons/2026-10-30-refonte-perify/site-complet/`. Capture téléphone réelle d'une page :
-  `node _outils/apercu-mobile.mjs <page> <sortie.png>`.
+  dans `IMAGE/livraisons/2026-10-30-refonte-perify/site-complet/`. Depuis le 30/10, l'outil garde la vraie hauteur
+  d'écran (900 / 844 px) pendant la capture (`captureBeyondViewport`) : avant, `100vh` y valait la hauteur de la page
+  et le héros de l'accueil n'avait pas sa taille réelle. Capture téléphone réelle d'une page :
+  `node _outils/apercu-mobile.mjs <page> <sortie.png>`. Le premier écran se vérifie aussi aux hauteurs RÉELLES d'un
+  navigateur (1440 × 789, 1536 × 730, 1366 × 657, 1280 × 720), pas seulement à 1440 × 900.
 - **Débordement horizontal** : avec `overflow-x: clip` sur `html` et `body`, `scrollWidth` ne montre plus rien ; il faut
   mesurer les bords des éléments (aucun ne doit sortir de l'écran hors d'un bloc qui se rogne lui-même, comme
   l'éventail) à 320, 375, 768, 1024 et 1440 px.

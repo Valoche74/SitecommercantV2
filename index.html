@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Perify — la carte de fidélité qui vit dans le téléphone de vos clients</title>
-<meta name="description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet ou Google Wallet sans installer d'appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
+<meta name="description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet ou Google Wallet sans installer d’appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
 <meta name="theme-color" content="#1B1F3B">
 <link rel="canonical" href="https://perify.app/">
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta property="og:title" content="Perify — la carte de fidélité qui vit dans le téléphone de vos clients">
-<meta property="og:description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet ou Google Wallet sans installer d'appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
+<meta property="og:description" content="Un seul QR sur votre comptoir : vos clients ajoutent leur carte de fidélité à Apple Wallet ou Google Wallet sans installer d’appli, cumulent leurs tampons, reçoivent vos offres et laissent un avis Google au passage.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://perify.app/">
 <meta property="og:image" content="https://perify.app/img/og.png">
@@ -119,9 +119,9 @@
       <div class="presentoir-scene">
         <div class="eventail" data-eventail tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Les présentoirs, en version digitale">
           <ul class="eventail-cartes">
-            <li class="eventail-carte"><img src="img/presentoir-digital-1.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
-            <li class="eventail-carte"><img src="img/presentoir-digital-2.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
-            <li class="eventail-carte"><img src="img/presentoir-digital-3.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="img/presentoir-digital-1.webp" width="600" height="900" alt="Présentoir aux couleurs d’un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="img/presentoir-digital-2.webp" width="600" height="900" alt="Présentoir aux couleurs d’un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="img/presentoir-digital-3.webp" width="600" height="900" alt="Présentoir aux couleurs d’un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
             <li class="eventail-carte"><img src="img/presentoir-digital-4.webp" width="600" height="900" alt="Présentoir aux couleurs de Perify : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
             <li class="eventail-carte"><img src="img/presentoir-digital-5.webp" width="600" height="900" alt="Présentoir aux couleurs d’un fleuriste : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
           </ul>
@@ -136,17 +136,18 @@
     </div>
   </section>
 
-  <!-- LA VIDÉO de 49 s, servie par le site, lecture au clic seulement (preload="metadata").
-       Paysage sur ordinateur, verticale sur téléphone (accueil.css). -->
+  <!-- LA VIDÉO de 49 s, servie par le site, lecture au clic seulement (preload="none" : rien de la vidéo
+       n'est téléchargé avant le clic, seule l'affiche se charge). Paysage sur ordinateur, verticale sur
+       téléphone (accueil.css). -->
   <section class="section film" aria-labelledby="titre-film">
     <div class="container">
       <h2 id="titre-film">Perify en vidéo, en 49 secondes.</h2>
       <div class="film-cadre">
-        <video class="film-paysage" controls playsinline preload="metadata" poster="video/perify-promo-affiche-9s-16x9.jpg" width="1280" height="720">
+        <video class="film-paysage" controls playsinline preload="none" poster="video/perify-promo-affiche-9s-16x9.jpg" width="1280" height="720">
           <source src="video/perify-promo-16x9-2026-10-07-720p.mp4" type="video/mp4">
           Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-16x9-2026-10-07-720p.mp4">la télécharger</a>.
         </video>
-        <video class="film-vertical" controls playsinline preload="metadata" poster="video/perify-promo-affiche-9s-9x16.jpg" width="720" height="1280">
+        <video class="film-vertical" controls playsinline preload="none" poster="video/perify-promo-affiche-9s-9x16.jpg" width="720" height="1280">
           <source src="video/perify-promo-9x16-2026-10-07-720p.mp4" type="video/mp4">
           Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-9x16-2026-10-07-720p.mp4">la télécharger</a>.
         </video>
@@ -255,7 +256,7 @@
         <a class="btn btn-plein" href="/essai-gratuit">Essai gratuit 14 jours</a>
         <div class="qui-court">
           <h3>Une seule personne, que vous aurez au téléphone.</h3>
-          <p>Je m'appelle Valentin Carrillo. J'ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C'est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
+          <p>Je m’appelle Valentin Carrillo. J’ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C’est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
           <a class="lien-fleche" href="tel:+33667835956"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>06 67 83 59 56</a>
         </div>
       </div>
@@ -271,15 +272,15 @@
   <!-- QUESTIONS : celles de la page Essai, ouvertes au clic (sans script). -->
   <section class="section filet" aria-labelledby="titre-faq">
     <div class="container faq-grille">
-      <h2 id="titre-faq">Ce qu'on me demande le plus souvent.</h2>
+      <h2 id="titre-faq">Ce qu’on me demande le plus souvent.</h2>
       <div class="faq-liste">
         <details>
           <summary>Mes clients doivent installer une application&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>Non, jamais. Ils scannent le QR du présentoir, la carte s'ouvre dans leur navigateur, et ils peuvent l'ajouter à Apple Wallet ou Google Wallet en un geste. Rien à télécharger, pas de mot de passe.</p>
+          <p>Non, jamais. Ils scannent le QR du présentoir, la carte s’ouvre dans leur navigateur, et ils peuvent l’ajouter à Apple Wallet ou Google Wallet en un geste. Rien à télécharger, pas de mot de passe.</p>
         </details>
         <details>
-          <summary>Et ceux qui n'ont pas d'iPhone&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>La carte fonctionne sur tous les téléphones&nbsp;: c'est une page web. Sur iPhone, elle s'ajoute à Apple Wallet&nbsp;; sur Android, à Google Wallet. Dans les deux cas en un geste, sans appli.</p>
+          <summary>Et ceux qui n’ont pas d’iPhone&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>La carte fonctionne sur tous les téléphones&nbsp;: c’est une page web. Sur iPhone, elle s’ajoute à Apple Wallet&nbsp;; sur Android, à Google Wallet. Dans les deux cas en un geste, sans appli.</p>
         </details>
         <details>
           <summary>Il faut brancher quelque chose sur ma caisse&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
@@ -287,23 +288,23 @@
         </details>
         <details>
           <summary>Qui paie les cadeaux&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>Vous, et c'est vous qui les choisissez&nbsp;: un café, un croissant, une remise. Vous fixez aussi le nombre de passages pour y arriver. Perify ne décide pas à votre place.</p>
+          <p>Vous, et c’est vous qui les choisissez&nbsp;: un café, un croissant, une remise. Vous fixez aussi le nombre de passages pour y arriver. Perify ne décide pas à votre place.</p>
         </details>
         <details>
           <summary>Combien ça coûte&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>Il y a des frais d'installation — mise en service, réglage de vos récompenses, présentoir de comptoir qui devient le vôtre — puis un abonnement mensuel. Les chiffres, je préfère vous les donner de vive voix, en regardant votre commerce. Et vous commencez par quatorze jours d'essai gratuit.</p>
+          <p>Il y a des frais d’installation — mise en service, réglage de vos récompenses, présentoir de comptoir qui devient le vôtre — puis un abonnement mensuel. Les chiffres, je préfère vous les donner de vive voix, en regardant votre commerce. Et vous commencez par quatorze jours d’essai gratuit.</p>
         </details>
         <details>
           <summary>Et après les 14 jours&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>Si vous continuez, l'abonnement court douze mois, sans reconduction automatique&nbsp;: à l'échéance, rien ne se renouvelle sans votre accord. Si vous arrêtez pendant l'essai, rien n'est dû, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
+          <p>Si vous continuez, l’abonnement court douze mois, sans reconduction automatique&nbsp;: à l’échéance, rien ne se renouvelle sans votre accord. Si vous arrêtez pendant l’essai, rien n’est dû, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
         </details>
         <details>
           <summary>Et mes données clients, dans tout ça&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Elles vous appartiennent. Perify les traite pour votre compte, jamais pour le sien&nbsp;: pas de revente, pas de réutilisation pour un autre commerce. Si vous partez, vous repartez avec votre fichier, et vos données sont supprimées des serveurs de Perify. Un contrat RGPD est signé avec chaque commerçant.</p>
         </details>
         <details>
-          <summary>En combien de temps c'est en service&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
-          <p>Sous quinze jours après la signature, souvent moins. Je viens sur place installer le présentoir, régler vos récompenses et vos couleurs, et vous montrer le geste en caisse — il prend cinq secondes. L'essai de quatorze jours démarre ce jour-là.</p>
+          <summary>En combien de temps c’est en service&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Sous quinze jours après la signature, souvent moins. Je viens sur place installer le présentoir, régler vos récompenses et vos couleurs, et vous montrer le geste en caisse — il prend cinq secondes. L’essai de quatorze jours démarre ce jour-là.</p>
         </details>
       </div>
     </div>
