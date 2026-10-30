@@ -4,8 +4,8 @@
    eventail.css (les présentoirs). Reprend la maquette A validée par Valentin, avec deux
    corrections :
    1. ordinateur (1440 × 900) : le premier écran montre le titre, la phrase, le bouton ET
-      l'essentiel du visuel (le téléphone et ses quatre morceaux) — titre un peu moins grand,
-      marges resserrées, téléphone de 272 px, morceaux placés par rapport au téléphone ;
+      tout le visuel (le téléphone, QR compris, et ses quatre morceaux) — marges resserrées,
+      téléphone dont la largeur suit la hauteur de la fenêtre (§ 2), morceaux placés par rapport à lui ;
    2. téléphone : plus aucun morceau sur les deux cartes du Wallet. La roue et le cadeau se
       posent au pied du téléphone (sur la zone du QR), la barre de tampons dessous, entière.
    Les morceaux sont posés d'emblée (l'entrée animée de la maquette est retirée : à la capture,
@@ -25,9 +25,18 @@
 
 /* ── 2. la carte et ses morceaux ─────────────────────────────
    Le téléphone (--tel de large) au centre ; chaque morceau est placé par rapport à ses bords
-   (calc(50% ± --tel / 2)), en débordant un peu dessus. Les hauteurs sont en % du téléphone. */
+   (calc(50% ± --tel / 2)), en débordant un peu dessus. Les hauteurs sont en % du téléphone.
+   Grand écran : la largeur du téléphone suit la HAUTEUR de la fenêtre (le téléphone est 1,89 fois
+   plus haut que large, et le texte du héros prend ~420 px avec la barre) : à 1440 × 900, il tient
+   en entier dans le premier écran, QR compris ; jamais moins de 224 px, jamais plus de 272 px. */
 .scene{margin-top:var(--space-xl);padding-inline:var(--gutter)}
 .scene-plateau{--tel:272px;position:relative;max-width:1040px;margin-inline:auto}
+@media (min-width:64rem){
+  .heros{padding-top:var(--space-lg)}
+  .heros .btn{margin-top:var(--space-lg)}
+  .scene{margin-top:var(--space-lg)}
+  .scene-plateau{--tel:clamp(224px,calc((100vh - 420px) * .5),272px)}
+}
 .scene-tel{width:var(--tel);margin-inline:auto;filter:drop-shadow(0 28px 36px var(--color-ombre-2))}
 .morceau{position:absolute;z-index:var(--z-raised);background:var(--color-paper-3);border:6px solid var(--color-anneau);border-radius:var(--radius-card);
   box-shadow:0 18px 40px -18px var(--color-ombre)}

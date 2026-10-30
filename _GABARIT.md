@@ -18,7 +18,7 @@
 - Aucun script externe, aucun jaune, aucune crème en fond, aucun chiffre / prix / texte hors de ceux validés, aucun
   logo de marque tierce.
 - Essais : `node _outils/tests/lancer-tous.mjs --seulement "des pages" > fichier 2>&1`, puis le code de sortie.
-  Captures : `node _outils/captures-vitrine.mjs` (les 7 pages, 1440 et 390 px).
+  Captures : `SANS_BANDEAU=1 node _outils/captures-vitrine.mjs` (les 7 pages, 1440 et 390 px, sans le bandeau cookies).
 
 ## 1. Le `<head>` type (remplacer les ⟨…⟩)
 
@@ -215,8 +215,11 @@ pas au contenu de `<main>` des mentions légales (validé le 30/10, cd72817) : s
 
 - `.heros` : titre (`--text-display`), `.heros-phrase`, le bouton, `.heros-note`, puis `.scene` : `.scene-plateau`
   (variable `--tel`, la largeur du téléphone) avec `img.scene-tel` et quatre `figure.morceau` (`-tampons`, `-cadeau`,
-  `-roue`, `-avis`), chacun avec sa `.etiquette` nuit. Les positions sont calculées depuis les bords du téléphone ;
-  sous 48rem, le plateau prend sa hauteur (`aspect-ratio`) et la roue et le cadeau se posent au pied du téléphone.
+  `-roue`, `-avis`), chacun avec sa `.etiquette` nuit. Les positions sont calculées depuis les bords du téléphone.
+  Au-delà de 64rem, `--tel` suit la hauteur de la fenêtre (`clamp(224px, calc((100vh - 420px) * .5), 272px)`) pour
+  que le téléphone tienne en entier dans le premier écran à 1440 × 900 (les marges du héros y sont resserrées à 24 px) ;
+  si le texte du héros s'allonge, revoir les 420 px. Entre 48 et 64rem, `--tel` vaut 220 px. Sous 48rem, le plateau
+  prend sa hauteur (`aspect-ratio`) et la roue et le cadeau se posent au pied du téléphone, la barre de tampons dessous.
 - `.avec` (noms en texte entre deux filets), `.presentoirs` (l'éventail), `.film` (deux vidéos : paysage / verticale
   sous 48rem), `.parcours` + `.etapes` (4 dessins numérotés), `.jeux` (bande teintée) + `.vers-calcul`, `.pilotez`,
   `.essai-accueil` (texte + `.qui-court` + `.essai-photos`), questions (`.faq-grille`).

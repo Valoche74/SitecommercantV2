@@ -39,9 +39,18 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   morceaux de la carte autour (`img/carte-*.webp`) → « Ça marche avec » (noms en texte) → **les présentoirs (éventail)
   AVANT la vidéo** (demande de Valentin) → vidéo → parcours (4 dessins `img/scenes/`) → jeux + « Faites le calcul »
   (bande teintée) → ce que vous pilotez → l'essai avec les photos du présentoir et « Une seule personne… » → questions.
-  Ordinateur 1440 × 900 : le premier écran montre titre, phrase, bouton ET le téléphone avec ses morceaux (téléphone de
-  272 px, morceaux placés par rapport à ses bords). Téléphone : la roue et le cadeau se posent au pied du téléphone
-  (sur la zone du QR), la barre de tampons dessous ; rien ne recouvre les deux cartes ; l'invitation à l'avis est retirée.
+  Ordinateur 1440 × 900 : le premier écran montre titre, phrase, bouton ET le téléphone en entier (QR compris) avec ses
+  quatre morceaux. Au-delà de 64rem, la largeur du téléphone suit la HAUTEUR de la fenêtre
+  (`--tel: clamp(224px, (100vh - 420px) * .5, 272px)` : 240 px à 1440 × 900, 272 px à 1920 × 1080) ; les morceaux sont
+  placés par rapport à ses bords. Téléphone : la roue et le cadeau se posent au pied du téléphone (sur la zone du QR),
+  la barre de tampons dessous, entière ; rien ne recouvre les deux cartes ; l'invitation à l'avis est retirée.
+- **Rythme des fonds, page par page** : accueil = fond clair partout, sauf les jeux + « Faites le calcul » (bande
+  teintée) ; « Ça marche avec » entre deux filets ; l'essai et les questions séparés par un filet. Page 2 = chapeau,
+  étapes (plaques teintées), « En chiffres » (bande teintée), bloc Essai, Suite. Page 3 = chapeau, quatre modules
+  séparés par des filets (captures sur plaques), « En option » en carte blanche, bloc Essai, Suite. Page 4 = chapeau,
+  texte + formulaire (carte blanche), « Qui est derrière » (bande teintée), questions, « Retour à l'accueil ».
+  Calculateur = chapeau, la carte blanche du calcul (résultats sur sa partie teintée), bloc Essai, Suite. Aide et
+  mentions = une colonne de lecture, leurs `.bloc` en cartes blanches.
 - Les dessins `img/scenes/*.svg` viennent de la session Design (`IMAGE/livraisons/2026-10-29-parcours-illustre/`,
   générateur `sources/fabrique.mjs`) : on corrige le générateur puis on relivre, jamais les SVG à la main. Les trois jeux
   sont au même niveau, sans badge (faits sur mesure ; au 29/10 seule la roue existe dans le produit).
@@ -126,8 +135,13 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   fichiers et licences présents dans `polices/` (⚠️ tant qu'un fichier de `polices/` n'est pas dans git : Vercel publie
   ce qui est dans git).
 - Captures pleine page de **chaque** page (7 pages + étape 2 et réussite de l'essai, 1440 et 390 px) :
-  `node _outils/captures-vitrine.mjs` → `IMAGE/apercus/vitrine-4-pages/final/`. Capture téléphone réelle d'une page :
+  `SANS_BANDEAU=1 node _outils/captures-vitrine.mjs` (sans le réglage, le bandeau cookies d'un premier visiteur
+  recouvre le bas des captures) → `IMAGE/apercus/vitrine-4-pages/final/` ; celles de la refonte A sont recopiées
+  dans `IMAGE/livraisons/2026-10-30-refonte-perify/site-complet/`. Capture téléphone réelle d'une page :
   `node _outils/apercu-mobile.mjs <page> <sortie.png>`.
+- **Débordement horizontal** : avec `overflow-x: clip` sur `html` et `body`, `scrollWidth` ne montre plus rien ; il faut
+  mesurer les bords des éléments (aucun ne doit sortir de l'écran hors d'un bloc qui se rogne lui-même, comme
+  l'éventail) à 320, 375, 768, 1024 et 1440 px.
 - Le regard final (captures ordinateur + téléphone) se fait sur la machine de Valentin, et sur un vrai iPhone (Safari).
   Une PR doit rester petite et décrire ce qu'il faut regarder.
 
