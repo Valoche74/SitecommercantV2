@@ -289,3 +289,11 @@ h3 { font-size: var(--text-title); line-height: 1.25; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .morceau { animation: none; }
 }
+
+/* 30/10/2026 — les présentoirs en démo avant la vidéo (éventail du site, /eventail.css) : ses variables, sur fond clair */
+.presentoirs { --accent:#FF8A4C; --encre:#1B1F3B; --nuit-2:#232849; --orange:#FF6B2C; --texte:#1B1F3B; --sortie:cubic-bezier(.16,1,.3,1);
+  padding-block: var(--section-gap-s) 0; text-align: center; }
+.presentoirs h2 { margin-bottom: var(--space-sm); }
+.presentoirs-intro { max-width: 60ch; margin: 0 auto var(--space-xl); color: var(--color-muted); }
+.presentoirs .presentoir-scene { max-width: 1104px; margin-inline: auto; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

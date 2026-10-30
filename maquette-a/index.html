@@ -11,7 +11,9 @@
 <link rel="icon" href="/maquette-a/img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/maquette-a/img/apple-touch-icon.png">
 <!-- Prototype A « clair, façon TheGiftsClub » (30/10/2026). Tout est servi par ce dossier : aucune ressource externe, aucun script. -->
+<link rel="stylesheet" href="/eventail.css">
 <link rel="stylesheet" href="/maquette-a/styles.css">
+<script src="/eventail.js" defer></script>
 </head>
 <body>
 
@@ -92,6 +94,32 @@
         <li>E-mail</li>
       </ul>
      </div>
+    </div>
+  </section>
+
+  <!-- 30/10/2026 — demande de Valentin : les présentoirs (affiches) en démo AVANT la vidéo. L'éventail du site actuel
+       (/eventail.css, /eventail.js), textes déjà validés du bloc « Le présentoir ». -->
+  <section class="presentoirs blanc" aria-labelledby="titre-presentoirs">
+    <div class="container">
+      <h2 id="titre-presentoirs">Un présentoir à vos couleurs, posé sur le comptoir.</h2>
+      <p class="presentoirs-intro">Le présentoir est fourni et installé. Le client le voit, le scanne, et tout le reste se passe sur son téléphone.</p>
+      <div class="presentoir-scene">
+        <div class="eventail" data-eventail tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Les présentoirs, en version digitale">
+          <ul class="eventail-cartes">
+            <li class="eventail-carte"><img src="/img/presentoir-digital-1.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="/img/presentoir-digital-2.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="/img/presentoir-digital-3.webp" width="600" height="900" alt="Présentoir aux couleurs d'un restaurant : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="/img/presentoir-digital-4.webp" width="600" height="900" alt="Présentoir aux couleurs de Perify : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+            <li class="eventail-carte"><img src="/img/presentoir-digital-5.webp" width="600" height="900" alt="Présentoir aux couleurs d’un fleuriste : « Scannez et gagnez votre cadeau », la roue et le QR" loading="lazy"></li>
+          </ul>
+          <div class="eventail-nav">
+            <button type="button" class="eventail-prec" aria-label="Présentoir précédent"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5.5L8.5 12l6.5 6.5"/></svg></button>
+            <div class="eventail-points" aria-hidden="true"></div>
+            <button type="button" class="eventail-suiv" aria-label="Présentoir suivant"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5.5l6.5 6.5L9 18.5"/></svg></button>
+          </div>
+          <p class="eventail-etat visually-hidden" aria-live="polite"></p>
+        </div>
+      </div>
     </div>
   </section>
 
