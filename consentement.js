@@ -258,12 +258,16 @@
     fermerBandeau();
   }
 
-  /* ── Le lien « Gérer les cookies », au bout du pied de page ── */
+  /* ── Le lien « Gérer les cookies », au bout du pied de page ──
+     30/10/2026 (refonte A) : le pied range ses liens dans des listes ; .pied-liens est la
+     liste « Aide, Mentions légales, Données personnelles » : le lien y prend un <li> de plus.
+     Une ancienne page dont .pied-liens n'est pas une liste garde le point « · » d'avant. */
   function poserLienPied(){
     var nav = document.querySelector('.pied-liens');
     if (!nav || nav.querySelector('.pied-cookies')) return;
-    var point = element('span', '', '·');
-    point.setAttribute('aria-hidden', 'true');
+    var enListe = nav.tagName === 'UL' || nav.tagName === 'OL';
+    var point = element(enListe ? 'li' : 'span', '', enListe ? '' : '·');
+    if (!enListe) point.setAttribute('aria-hidden', 'true');
     var lien = element('a', 'pied-cookies', TEXTES.lien);
     lien.href = '/mentions-legales#cookies';          // sans effet du script : la page qui explique
     lien.setAttribute('role', 'button');
@@ -273,8 +277,8 @@
     });
     poserStyle();
     nav.classList.add('avec-cookies');
-    nav.appendChild(point);
-    nav.appendChild(lien);
+    if (enListe) { point.appendChild(lien); nav.appendChild(point); }
+    else { nav.appendChild(point); nav.appendChild(lien); }
   }
 
   /* ── API pour les autres scripts (essai.js) ───────────────── */

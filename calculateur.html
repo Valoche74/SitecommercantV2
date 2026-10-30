@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
-<script>document.documentElement.classList.add('js')</script>
-<!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de site.css) : plus aucune requête vers Google -->
+<!-- Refonte A (30/10/2026) : site.css est la feuille commune (polices servies par perify.app, déclarées en tête) -->
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="calculateur.css">
 <script src="site.js" defer></script>
@@ -28,26 +26,28 @@
 </head>
 <body>
 
-<!-- V3 (28/09, décision de Valentin) : « Faites le calcul » quitte la page « Comment ça marche »
-     (« ça gâche la page ») et a sa propre page, /calculateur. Textes et calcul inchangés (calcul.js) :
-     l'étiquette, le titre et la phrase d'introduction montent dans le chapeau de page (le titre
-     devient le h1). Liens discrets : la carte de l'accueil et le pied de page de toutes les pages ;
-     PAS dans le menu du haut (aucun lien du menu ne porte donc aria-current ici). -->
 <header class="entete">
-  <div class="wrap entete-barre">
+  <div class="container entete-barre">
     <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
-    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
-      <span>Menu</span>
-    </button>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <ul class="menu-liens">
+    <nav class="entete-nav" aria-label="Menu principal">
+      <ul class="nav-liens">
         <li><a href="/comment-ca-marche">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
     </nav>
+    <a class="btn btn-contour entete-essai" href="/essai-gratuit">Essai gratuit<span class="entete-essai-plus">&nbsp;14 jours</span></a>
+    <details class="nav-tel">
+      <summary><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="trait-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="trait-croix" d="M6 6l12 12M18 6L6 18"/></svg>Menu</summary>
+      <nav class="nav-tel-panneau" aria-label="Menu principal">
+        <ul class="nav-tel-liens">
+          <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+          <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+          <li><a class="btn btn-contour" href="/essai-gratuit">Essai gratuit 14 jours</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
@@ -55,18 +55,19 @@
 
   <!-- ══ CHAPEAU DE PAGE ══ -->
   <section class="page-tete">
-    <div class="wrap">
-      <p class="eti rev">Faites le calcul</p>
-      <h1 class="rev" id="titre-calcul">Ce qu'un tampon vous coûte, ce qu'une visite vous <span class="insecable"><span class="marque">rapporte</span>.</span></h1>
-      <p class="lead rev">Avec vos chiffres à vous. Les valeurs de départ ne sont qu'un exemple&nbsp;: <span class="sans-coupure">remplacez-les.</span></p>
+    <div class="container">
+      <p class="page-nom">Faites le calcul</p>
+      <h1 id="titre-calcul">Ce qu'un tampon vous coûte, ce qu'une visite vous <span class="insecable">rapporte.</span></h1>
+      <p class="chapo">Avec vos chiffres à vous. Les valeurs de départ ne sont qu'un exemple&nbsp;: <span class="sans-coupure">remplacez-les.</span></p>
     </div>
   </section>
 
-  <!-- ══ LE CALCUL — un calcul, pas une promesse (calcul.js, inchangé).
-       Sans JavaScript : l'exemple de départ et ses trois résultats, déjà justes. ══ -->
-  <section class="bloc blanc calcul-bloc" id="calcul" aria-labelledby="titre-calcul">
-    <div class="wrap calcul">
-      <form class="calcul-champs rev" id="calcul-formulaire" action="#" novalidate>
+  <!-- ══ LE CALCUL — un calcul, pas une promesse (calcul.js, inchangé). Vos chiffres en haut, ce qu'ils donnent
+       en dessous, sur la même carte. Sans JavaScript : l'exemple de départ et ses trois résultats, déjà justes. ══ -->
+  <section class="calcul-bloc" id="calcul" aria-labelledby="titre-calcul">
+    <div class="container">
+     <div class="calcul">
+      <form class="calcul-champs" id="calcul-formulaire" action="#" novalidate>
         <div class="champ">
           <label for="calcul-panier">Panier moyen (€)</label>
           <input id="calcul-panier" type="text" inputmode="decimal" autocomplete="off" value="9">
@@ -86,7 +87,7 @@
         </div>
       </form>
 
-      <div class="calcul-resultats rev">
+      <div class="calcul-resultats">
         <dl class="resultats">
           <div class="resultat">
             <dt>Un tampon vous coûte</dt>
@@ -104,42 +105,51 @@
         <p class="calcul-conclusion" id="calcul-conclusion" aria-live="polite">Autrement dit&nbsp;: si le programme fait revenir un client une fois de plus, cette visite paie <strong id="calcul-conclusion-nombre">36&nbsp;tampons</strong>.</p>
         <p class="calcul-note">Un calcul, pas une promesse&nbsp;: le nombre de visites en plus dépend de votre commerce.</p>
       </div>
+     </div>
     </div>
   </section>
 
   <!-- ══ BLOC FINAL « ESSAI » ══ -->
   <section class="essai-final" aria-labelledby="titre-essai">
-    <div class="wrap">
-      <div class="essai-carte rev">
-        <p class="eti">Essai gratuit</p>
-        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
+    <div class="container">
+      <div class="essai-final-cadre">
+        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
         <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
-        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+        <a class="btn btn-plein" href="/essai-gratuit">Essai gratuit 14 jours</a>
       </div>
     </div>
   </section>
 
   <!-- ══ SUITE ══ -->
   <div class="suite">
-    <div class="wrap">
+    <div class="container">
       <a class="suite-lien" href="/essai-gratuit"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> l'essai gratuit</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </main>
 
 <footer class="pied">
-  <div class="wrap">
-    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
-    <nav class="pied-liens" aria-label="Pied de page">
-      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
-      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/calculateur" aria-current="page">Faites le calcul</a><span aria-hidden="true">·</span>
-      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
-      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales#donnees">Données personnelles</a>
+  <div class="container pied-grille">
+    <div class="pied-marque">
+      <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+      <p>La carte de fidélité qui vit dans le téléphone de vos clients.</p>
+    </div>
+    <nav class="pied-nav" aria-label="Pied de page">
+      <ul>
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/calculateur">Faites le calcul</a></li>
+        <li><a href="/essai-gratuit">Essai gratuit</a></li>
+      </ul>
+      <ul class="pied-liens">
+        <li><a href="/aide">Aide</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/mentions-legales#donnees">Données personnelles</a></li>
+      </ul>
     </nav>
+  </div>
+  <div class="container">
+    <p class="pied-legal">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
   </div>
 </footer>
 

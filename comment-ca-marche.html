@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
-<script>document.documentElement.classList.add('js')</script>
-<!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de site.css) : plus aucune requête vers Google -->
+<!-- Refonte A (30/10/2026) : site.css est la feuille commune (polices servies par perify.app, déclarées en tête) -->
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="comment.css">
 <script src="site.js" defer></script>
@@ -28,152 +26,137 @@
 <body>
 
 <header class="entete">
-  <div class="wrap entete-barre">
+  <div class="container entete-barre">
     <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
-    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
-      <span>Menu</span>
-    </button>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <ul class="menu-liens">
+    <nav class="entete-nav" aria-label="Menu principal">
+      <ul class="nav-liens">
         <li><a href="/comment-ca-marche" aria-current="page">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
     </nav>
+    <a class="btn btn-contour entete-essai" href="/essai-gratuit">Essai gratuit<span class="entete-essai-plus">&nbsp;14 jours</span></a>
+    <details class="nav-tel">
+      <summary><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="trait-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="trait-croix" d="M6 6l12 12M18 6L6 18"/></svg>Menu</summary>
+      <nav class="nav-tel-panneau" aria-label="Menu principal">
+        <ul class="nav-tel-liens">
+          <li><a href="/comment-ca-marche" aria-current="page">Comment ça marche</a></li>
+          <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+          <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+          <li><a class="btn btn-contour" href="/essai-gratuit">Essai gratuit 14 jours</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
 <main>
 
-  <!-- ══ EN-TÊTE DE PAGE ══ -->
+  <!-- ══ CHAPEAU DE PAGE ══ -->
   <section class="page-tete">
-    <div class="wrap">
-      <p class="eti rev">Comment ça marche</p>
-      <h1 class="rev">Trois gestes, et le client est <span class="marque">fidélisé</span>.</h1>
-      <p class="lead rev">Rien à brancher sur votre caisse, rien à apprendre. Le présentoir est posé
+    <div class="container">
+      <p class="page-nom">Comment ça marche</p>
+      <h1>Trois gestes, et le client est fidélisé.</h1>
+      <p class="chapo">Rien à brancher sur votre caisse, rien à apprendre. Le présentoir est posé
         sur le comptoir, tout le reste se passe sur les téléphones.</p>
     </div>
   </section>
 
-  <!-- ══ LES TROIS ÉTAPES — reprises de l'ancienne page d'accueil (titres passés de h3 à h2 : le h2 d'origine est devenu le h1 de la page).
-       V3 (28/09) : sur CRÈME, puis les chiffres sur BLANC (la nuit ne garde que le chapeau, l'essai et le pied) ;
-       « Faites le calcul » est parti sur sa propre page, /calculateur. ══ -->
-  <section class="bloc etapes-bloc creme">
-    <div class="wrap">
-      <div class="etapes">
-        <article class="etape rev">
-          <div class="etape-visu">
+  <!-- ══ LES TROIS ÉTAPES : chaque capture sur sa plaque teintée, le numéro, qui agit, le titre, le texte. ══ -->
+  <section class="section etapes-bloc">
+    <div class="container">
+      <ol class="etapes">
+        <li class="etape">
+          <div class="cadre-visuel etape-visu">
             <img src="img/roue-iphone.webp" width="652" height="1239" decoding="async"
                  alt="La roue de la chance sur un iPhone : le client la tourne une fois et découvre son cadeau de bienvenue">
           </div>
-          <div class="texte">
-            <span class="num" aria-hidden="true">1</span>
-            <p class="qui">Le client</p>
-            <h2>Il scanne le présentoir</h2>
-            <p>Pas de compte à créer, pas d'appli à télécharger. Sa carte s'ouvre en deux secondes,
-              à vos couleurs. Et il tourne la roue&nbsp;: un cadeau de bienvenue, à chaque nouvelle carte.</p>
-          </div>
-        </article>
-        <article class="etape rev">
-          <div class="etape-visu">
-            <img class="bas" src="img/pass-main.webp" width="1200" height="1262" decoding="async"
+          <p class="etape-qui"><span class="etape-num" aria-hidden="true">1</span>Le client</p>
+          <h2>Il scanne le présentoir</h2>
+          <p>Pas de compte à créer, pas d'appli à télécharger. Sa carte s'ouvre en deux secondes,
+            à vos couleurs. Et il tourne la roue&nbsp;: un cadeau de bienvenue, à chaque nouvelle carte.</p>
+        </li>
+        <li class="etape">
+          <div class="cadre-visuel etape-visu etape-visu-bas">
+            <img src="img/pass-main.webp" width="1200" height="1262" decoding="async"
                  alt="Deux cartes de fidélité dans l'application Cartes d'un iPhone tenu en main">
           </div>
-          <div class="texte">
-            <span class="num" aria-hidden="true">2</span>
-            <p class="qui">Son téléphone</p>
-            <h2>Il l'ajoute à son Wallet</h2>
-            <p>La carte reste dans son iPhone, à côté de sa carte bancaire. Sur Android, elle s'ajoute
-              à Google Wallet.</p>
-          </div>
-        </article>
-        <article class="etape rev">
-          <div class="etape-visu large">
+          <p class="etape-qui"><span class="etape-num" aria-hidden="true">2</span>Son téléphone</p>
+          <h2>Il l'ajoute à son Wallet</h2>
+          <p>La carte reste dans son iPhone, à côté de sa carte bancaire. Sur Android, elle s'ajoute
+            à Google Wallet.</p>
+        </li>
+        <li class="etape">
+          <div class="cadre-visuel etape-visu etape-visu-large">
             <img src="img/tampons.webp" width="900" height="537" loading="lazy" decoding="async"
                  alt="Le compteur de la carte : sept tampons, plus que trois pour le prochain cadeau">
           </div>
-          <div class="texte">
-            <span class="num" aria-hidden="true">3</span>
-            <p class="qui">Votre comptoir</p>
-            <h2>Il revient, il est récompensé</h2>
-            <p>Chaque passage ajoute un tampon. Au palier, le cadeau apparaît avec un code
-              que vous vérifiez en caisse.</p>
-          </div>
-        </article>
-      </div>
+          <p class="etape-qui"><span class="etape-num" aria-hidden="true">3</span>Votre comptoir</p>
+          <h2>Il revient, il est récompensé</h2>
+          <p>Chaque passage ajoute un tampon. Au palier, le cadeau apparaît avec un code
+            que vous vérifiez en caisse.</p>
+        </li>
+      </ol>
+      <p class="legende etapes-legende">Captures de la vraie carte, données de démonstration.</p>
     </div>
   </section>
 
-  <!-- ══ EN CHIFFRES (V2, 27/09) — que du vrai : un fait du produit (0 appli) et des études publiées,
-       VÉRIFIÉES À LA SOURCE le 27/09 (chiffre, population et mesure relus sur la page d'origine).
-       Quatre chiffres, sur une rangée à l'ordinateur : « 0 appli » en tête (comme sur l'accueil),
-       puis les avis, puis la fidélité. Chaque étude garde son organisme et son année juste dessous,
-       et un renvoi numéroté vers sa source en bas du bloc. Jamais un chiffre inventé, jamais une
-       étude présentée comme un résultat promis au commerçant (« vos ventes », « vos clients »).
-       Pas de chiffres de commerçant tant qu'aucun n'a accepté d'être cité (cahier V2 § 1.4).
-       Compteurs qui roulent (site.js) : la valeur finale est écrite ici, le JS part de 0 seulement s'il tourne. ══ -->
-  <section class="bloc chiffres blanc" aria-labelledby="titre-chiffres">
-    <div class="wrap">
-      <p class="eti rev" id="titre-chiffres">En chiffres</p>
+  <!-- ══ EN CHIFFRES — que du vrai : un fait du produit (0 appli) et des études publiées, vérifiées à la source
+       (le 27/09 pour les trois françaises, le 01/10 pour les quatre américaines). Chaque étude garde son organisme
+       et son année juste dessous, et un renvoi numéroté vers sa source en bas du bloc. Jamais un chiffre inventé,
+       jamais une étude présentée comme un résultat promis au commerçant. Chiffres fixes (plus de compteur qui roule). ══ -->
+  <section class="section teinte chiffres" aria-labelledby="titre-chiffres">
+    <div class="container">
+      <h2 id="titre-chiffres">En chiffres</h2>
       <div class="nombres">
-        <div class="nombre rev">
-          <b data-compte="0">0</b>
+        <div class="nombre">
+          <b>0</b>
           <span>appli à installer</span>
         </div>
-        <div class="nombre rev">
-          <b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b>
+        <div class="nombre">
+          <b>92&nbsp;%</b>
           <span>des Français lisent les avis avant d'acheter<sup><a href="#src-1" aria-label="source 1">1</a></sup></span>
           <small class="nombre-src">IFOP pour Guest Suite, 2023</small>
         </div>
-        <div class="nombre rev">
-          <b data-compte="54" data-suffixe="&nbsp;%">54&nbsp;%</b>
+        <div class="nombre">
+          <b>54&nbsp;%</b>
           <span>des Français se disent prêts à payer plus cher quand la note et le nombre d'avis Google sont élevés<sup><a href="#src-2" aria-label="source 2">2</a></sup></span>
           <small class="nombre-src">IFOP pour Guest Suite, janvier&nbsp;2026</small>
         </div>
-        <div class="nombre rev">
-          <b data-compte="55" data-suffixe="&nbsp;%">55&nbsp;%</b>
+        <div class="nombre">
+          <b>55&nbsp;%</b>
           <span>des Français interrogés changeraient de commerce de proximité si un concurrent proposait de meilleurs avantages de fidélité<sup><a href="#src-3" aria-label="source 3">3</a></sup></span>
           <small class="nombre-src">Enquête SumUp, avril&nbsp;2026, 1&nbsp;500&nbsp;Français</small>
         </div>
       </div>
 
-      <!-- 01/10 (Valentin : « des études faites aux États-Unis ») — quatre études étrangères prises dans la
-           liste VÉRIFIÉE À LA SOURCE le 01/10 (verdict « confirmé » : chiffre, sens et population relus sur la
-           page ou le PDF d'origine) : la fidélité qui fait revenir (Toast 2026, Columbia 2006), les avis qui
-           font choisir un commerce (BrightLocal 2026, Harvard 2011). Le chiffre et son sens sont ceux de
-           l'étude, avec ses limites : Toast = étude interne d'un vendeur de caisses, on écrit « les clients
-           inscrits reviennent environ 4 fois plus », jamais « le programme multiplie les retours par 4 » ;
-           BrightLocal = ce que les gens déclarent, et seulement ceux à qui on a demandé un avis ; Harvard =
-           document de travail, « 5 à 9 % » reste une fourchette. Rien sur la carte dans le téléphone : aucune
-           étude vérifiée ne mesure la carte Wallet. Square 2026 et Berkeley 2012 (première version de ce bloc)
-           sont retirés : ils ne figurent pas dans la liste vérifiée. Liens : nouvel onglet. -->
-      <p class="eti nombres-titre rev" id="titre-etranger">Études menées aux États-Unis</p>
+      <!-- Études étrangères (01/10, demande de Valentin), prises dans la liste vérifiée à la source : le chiffre et son
+           sens sont ceux de l'étude, avec ses limites (voir les sources numérotées). Liens : nouvel onglet. -->
+      <h3 class="nombres-titre" id="titre-etranger">Études menées aux États-Unis</h3>
       <div class="nombres" aria-labelledby="titre-etranger" role="group">
-        <div class="nombre rev">
-          <b data-compte="4" data-suffixe="&nbsp;fois">4&nbsp;fois</b>
+        <div class="nombre">
+          <b>4&nbsp;fois</b>
           <span>plus de retours, environ&nbsp;: les clients inscrits au programme de fidélité d'un restaurant reviennent dans près de 30&nbsp;% des cas, contre 7&nbsp;% pour les nouveaux clients qui ne reçoivent aucune relance<sup><a href="#src-4" aria-label="source 4">4</a></sup></span>
           <small class="nombre-src">Toast, <span class="insecable">États-Unis</span>, 2026</small>
         </div>
-        <div class="nombre rev">
-          <b data-compte="20" data-suffixe="&nbsp;%">20&nbsp;%</b>
+        <div class="nombre">
+          <b>20&nbsp;%</b>
           <span>de temps en moins entre deux achats, en moyenne, du premier au dernier tampon d'une carte «&nbsp;10&nbsp;cafés achetés, 1&nbsp;offert&nbsp;»&nbsp;: plus le café offert approche, plus le client revient vite<sup><a href="#src-5" aria-label="source 5">5</a></sup></span>
           <small class="nombre-src">Université Columbia, <span class="insecable">États-Unis</span>, 2006</small>
         </div>
-        <div class="nombre rev">
-          <b data-compte="83" data-suffixe="&nbsp;%">83&nbsp;%</b>
+        <div class="nombre">
+          <b>83&nbsp;%</b>
           <span>des clients à qui on a demandé un avis en ont laissé un, d'après leurs propres réponses<sup><a href="#src-6" aria-label="source 6">6</a></sup></span>
           <small class="nombre-src">BrightLocal, <span class="insecable">États-Unis</span>, 2026</small>
         </div>
-        <div class="nombre rev">
-          <b class="nombre-fourchette">5&nbsp;à&nbsp;9&nbsp;%</b>
+        <div class="nombre">
+          <b>5&nbsp;à&nbsp;9&nbsp;%</b>
           <span>de chiffre d'affaires en plus pour une étoile de plus sur Yelp, chez les restaurants indépendants (aucun effet pour les chaînes)<sup><a href="#src-7" aria-label="source 7">7</a></sup></span>
           <small class="nombre-src">Harvard Business School, <span class="insecable">États-Unis</span>, 2011</small>
         </div>
       </div>
 
-      <div class="sources rev">
+      <div class="sources">
         <p class="source" id="src-1">1. IFOP pour Guest Suite, «&nbsp;Les Français et les avis clients&nbsp;», 2023&nbsp;: 92&nbsp;% consultent des avis avant un achat.
           <a href="https://www.guest-suite.com/blog/statistiques-avis-clients-2023" rel="noopener">Voir&nbsp;l'étude</a>.</p>
         <p class="source" id="src-2">2. IFOP pour Guest Suite, «&nbsp;Statistiques avis clients &amp; IA&nbsp;», janvier 2026, 1&nbsp;003 Français de 18&nbsp;ans et plus.
@@ -194,37 +177,45 @@
 
   <!-- ══ BLOC FINAL « ESSAI » ══ -->
   <section class="essai-final" aria-labelledby="titre-essai">
-    <div class="wrap">
-      <div class="essai-carte rev">
-        <p class="eti">Essai gratuit</p>
-        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
+    <div class="container">
+      <div class="essai-final-cadre">
+        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
         <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
-        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+        <a class="btn btn-plein" href="/essai-gratuit">Essai gratuit 14 jours</a>
       </div>
     </div>
   </section>
 
   <!-- ══ SUITE ══ -->
   <div class="suite">
-    <div class="wrap">
+    <div class="container">
       <a class="suite-lien" href="/ce-que-vous-pilotez"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> ce que vous pilotez</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </main>
 
 <footer class="pied">
-  <div class="wrap">
-    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
-    <nav class="pied-liens" aria-label="Pied de page">
-      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
-      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
-      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
-      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales#donnees">Données personnelles</a>
+  <div class="container pied-grille">
+    <div class="pied-marque">
+      <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+      <p>La carte de fidélité qui vit dans le téléphone de vos clients.</p>
+    </div>
+    <nav class="pied-nav" aria-label="Pied de page">
+      <ul>
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/calculateur">Faites le calcul</a></li>
+        <li><a href="/essai-gratuit">Essai gratuit</a></li>
+      </ul>
+      <ul class="pied-liens">
+        <li><a href="/aide">Aide</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/mentions-legales#donnees">Données personnelles</a></li>
+      </ul>
     </nav>
+  </div>
+  <div class="container">
+    <p class="pied-legal">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
   </div>
 </footer>
 

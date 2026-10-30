@@ -18,29 +18,35 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<script>document.documentElement.classList.add('js')</script>
-<!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de doc.css) : plus aucune requête vers Google -->
-<link rel="stylesheet" href="doc.css">
+<!-- Refonte A (30/10/2026) : site.css est la feuille commune (polices servies par perify.app, déclarées en tête) -->
+<link rel="stylesheet" href="site.css">
 <script src="site.js" defer></script>
 <script src="consentement.js" defer></script>
 </head>
-<body>
+<body class="page-texte">
 
 <header class="entete">
-  <div class="wrap entete-barre">
+  <div class="container entete-barre">
     <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
-    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
-      <span>Menu</span>
-    </button>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <ul class="menu-liens">
+    <nav class="entete-nav" aria-label="Menu principal">
+      <ul class="nav-liens">
         <li><a href="/comment-ca-marche">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
     </nav>
+    <a class="btn btn-contour entete-essai" href="/essai-gratuit">Essai gratuit<span class="entete-essai-plus">&nbsp;14 jours</span></a>
+    <details class="nav-tel">
+      <summary><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="trait-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="trait-croix" d="M6 6l12 12M18 6L6 18"/></svg>Menu</summary>
+      <nav class="nav-tel-panneau" aria-label="Menu principal">
+        <ul class="nav-tel-liens">
+          <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+          <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+          <li><a class="btn btn-contour" href="/essai-gratuit">Essai gratuit 14 jours</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
@@ -290,18 +296,27 @@
 </main>
 
 <footer class="pied">
-  <div class="wrap">
-    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
-    <nav class="pied-liens" aria-label="Pied de page">
-      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
-      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
-      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
-      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales#donnees">Données personnelles</a>
+  <div class="container pied-grille">
+    <div class="pied-marque">
+      <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+      <p>La carte de fidélité qui vit dans le téléphone de vos clients.</p>
+    </div>
+    <nav class="pied-nav" aria-label="Pied de page">
+      <ul>
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/calculateur">Faites le calcul</a></li>
+        <li><a href="/essai-gratuit">Essai gratuit</a></li>
+      </ul>
+      <ul class="pied-liens">
+        <li><a href="/aide">Aide</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/mentions-legales#donnees">Données personnelles</a></li>
+      </ul>
     </nav>
+  </div>
+  <div class="container">
+    <p class="pied-legal">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
   </div>
 </footer>
 
@@ -320,5 +335,6 @@
   });
 })();
 </script>
+
 </body>
 </html>

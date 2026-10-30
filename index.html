@@ -17,118 +17,104 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
-<script>document.documentElement.classList.add('js')</script>
-<!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de site.css) : plus aucune requête vers Google -->
+<!-- Refonte A (30/10/2026) : site.css est la feuille commune (polices servies par perify.app, déclarées en tête) -->
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="accueil.css">
-<link rel="stylesheet" href="parcours.css">
 <link rel="stylesheet" href="eventail.css">
 <script src="site.js" defer></script>
 <script src="consentement.js" defer></script>
-<script src="accueil.js" defer></script>
+<script src="eventail.js" defer></script>
 </head>
 <body>
-<!-- 29/10/2026 : les dessins du parcours et des jeux réutilisent ces symboles (session Design, sources/fabrique.mjs) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="sc-qr" viewBox="-2 -2 29 29"><rect x="-2" y="-2" width="29" height="29" rx="1.2" fill="#FFFFFF"/><path fill-rule="evenodd" fill="#1B1F3B" d="M0 0h7v7h-7z M1 1v5h5v-5z M2 2h3v3h-3zM18 0h7v7h-7z M19 1v5h5v-5z M20 2h3v3h-3zM0 18h7v7h-7z M1 19v5h5v-5z M2 20h3v3h-3z M8 6h1v1h-1z M6 8h1v1h-1z M10 6h1v1h-1z M6 10h1v1h-1z M12 6h1v1h-1z M6 12h1v1h-1z M14 6h1v1h-1z M6 14h1v1h-1z M16 6h1v1h-1z M6 16h1v1h-1z M8 0h1v1h-1z M9 0h1v1h-1z M13 0h1v1h-1z M15 0h1v1h-1z M9 1h1v1h-1z M10 1h1v1h-1z M13 1h1v1h-1z M14 1h1v1h-1z M15 1h1v1h-1z M8 2h1v1h-1z M10 2h1v1h-1z M12 2h1v1h-1z M13 2h1v1h-1z M14 2h1v1h-1z M15 2h1v1h-1z M9 3h1v1h-1z M9 4h1v1h-1z M10 4h1v1h-1z M11 4h1v1h-1z M12 4h1v1h-1z M13 4h1v1h-1z M14 4h1v1h-1z M16 4h1v1h-1z M8 5h1v1h-1z M13 5h1v1h-1z M14 5h1v1h-1z M15 5h1v1h-1z M16 5h1v1h-1z M9 7h1v1h-1z M10 7h1v1h-1z M12 7h1v1h-1z M13 7h1v1h-1z M3 8h1v1h-1z M15 8h1v1h-1z M17 8h1v1h-1z M24 8h1v1h-1z M3 9h1v1h-1z M4 9h1v1h-1z M5 9h1v1h-1z M7 9h1v1h-1z M11 9h1v1h-1z M16 9h1v1h-1z M22 9h1v1h-1z M1 10h1v1h-1z M2 10h1v1h-1z M3 10h1v1h-1z M14 10h1v1h-1z M18 10h1v1h-1z M22 10h1v1h-1z M23 10h1v1h-1z M24 10h1v1h-1z M1 11h1v1h-1z M2 11h1v1h-1z M3 11h1v1h-1z M4 11h1v1h-1z M5 11h1v1h-1z M9 11h1v1h-1z M10 11h1v1h-1z M11 11h1v1h-1z M14 11h1v1h-1z M15 11h1v1h-1z M21 11h1v1h-1z M23 11h1v1h-1z M1 12h1v1h-1z M2 12h1v1h-1z M7 12h1v1h-1z M8 12h1v1h-1z M10 12h1v1h-1z M11 12h1v1h-1z M14 12h1v1h-1z M17 12h1v1h-1z M18 12h1v1h-1z M20 12h1v1h-1z M1 13h1v1h-1z M7 13h1v1h-1z M9 13h1v1h-1z M12 13h1v1h-1z M13 13h1v1h-1z M14 13h1v1h-1z M18 13h1v1h-1z M19 13h1v1h-1z M20 13h1v1h-1z M1 14h1v1h-1z M3 14h1v1h-1z M5 14h1v1h-1z M13 14h1v1h-1z M16 14h1v1h-1z M23 14h1v1h-1z M24 14h1v1h-1z M0 15h1v1h-1z M2 15h1v1h-1z M8 15h1v1h-1z M13 15h1v1h-1z M17 15h1v1h-1z M18 15h1v1h-1z M20 15h1v1h-1z M21 15h1v1h-1z M23 15h1v1h-1z M0 16h1v1h-1z M3 16h1v1h-1z M4 16h1v1h-1z M7 16h1v1h-1z M8 16h1v1h-1z M9 16h1v1h-1z M12 16h1v1h-1z M14 16h1v1h-1z M16 16h1v1h-1z M18 16h1v1h-1z M20 16h1v1h-1z M23 16h1v1h-1z M24 16h1v1h-1z M10 17h1v1h-1z M13 17h1v1h-1z M14 17h1v1h-1z M15 17h1v1h-1z M18 17h1v1h-1z M20 17h1v1h-1z M22 17h1v1h-1z M24 17h1v1h-1z M9 18h1v1h-1z M10 18h1v1h-1z M11 18h1v1h-1z M13 18h1v1h-1z M14 18h1v1h-1z M20 18h1v1h-1z M22 18h1v1h-1z M9 19h1v1h-1z M11 19h1v1h-1z M12 19h1v1h-1z M14 19h1v1h-1z M15 19h1v1h-1z M16 19h1v1h-1z M17 19h1v1h-1z M10 20h1v1h-1z M11 20h1v1h-1z M13 20h1v1h-1z M14 20h1v1h-1z M18 20h1v1h-1z M20 20h1v1h-1z M23 20h1v1h-1z M24 20h1v1h-1z M9 21h1v1h-1z M14 21h1v1h-1z M15 21h1v1h-1z M20 21h1v1h-1z M22 21h1v1h-1z M24 21h1v1h-1z M8 22h1v1h-1z M10 22h1v1h-1z M15 22h1v1h-1z M17 22h1v1h-1z M18 22h1v1h-1z M21 22h1v1h-1z M22 22h1v1h-1z M8 23h1v1h-1z M11 23h1v1h-1z M14 23h1v1h-1z M15 23h1v1h-1z M17 23h1v1h-1z M19 23h1v1h-1z M20 24h1v1h-1z M21 24h1v1h-1z M23 24h1v1h-1z"/></symbol><symbol id="sc-roue" viewBox="-60 -60 120 120"><circle r="58" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="52" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="-52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="-26" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="-52" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="-26" r="2.4" fill="#FFFFFF"/><g class="sc-roue"><path d="M0 0L-23 -39.84A46 46 0 0 1 23 -39.84z" fill="#FF6B2C"/><path d="M0 0L23 -39.84A46 46 0 0 1 46 0z" fill="#FFF8F0"/><path d="M0 0L46 0A46 46 0 0 1 23 39.84z" fill="#FF6B2C"/><path d="M0 0L23 39.84A46 46 0 0 1 -23 39.84z" fill="#FFF8F0"/><path d="M0 0L-23 39.84A46 46 0 0 1 -46 0z" fill="#FF6B2C"/><path d="M0 0L-46 0A46 46 0 0 1 -23 -39.84z" fill="#FFF8F0"/></g><path d="M0 -21C7 -13 11 -7 11 0A11 11 0 1 1 -11 0C-11 -7 -7 -13 0 -21z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2"/></symbol><symbol id="sc-roue-g" viewBox="-60 -60 120 120"><circle r="58" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="52" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="45.03" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="26" r="2.4" fill="#FFFFFF"/><circle cx="-52" cy="0" r="2.4" fill="#FFFFFF"/><circle cx="-45.03" cy="-26" r="2.4" fill="#FFFFFF"/><circle cx="-26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="0" cy="-52" r="2.4" fill="#FFFFFF"/><circle cx="26" cy="-45.03" r="2.4" fill="#FFFFFF"/><circle cx="45.03" cy="-26" r="2.4" fill="#FFFFFF"/><g class="sc-roue"><path d="M0 0L-23 -39.84A46 46 0 0 1 23 -39.84z" fill="#FF6B2C"/><circle cx="0" cy="-29" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L23 -39.84A46 46 0 0 1 46 0z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="18.11" y="-21.5" width="14" height="14"/><path d="M0 0L46 0A46 46 0 0 1 23 39.84z" fill="#FF6B2C"/><circle cx="25.11" cy="14.5" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L23 39.84A46 46 0 0 1 -23 39.84z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="-7" y="22" width="14" height="14"/><path d="M0 0L-23 39.84A46 46 0 0 1 -46 0z" fill="#FF6B2C"/><circle cx="-25.11" cy="14.5" r="3" fill="#FFFFFF" opacity=".92"/><path d="M0 0L-46 0A46 46 0 0 1 -23 -39.84z" fill="#FFF8F0"/><use href="#sc-cadeau-mini" x="-32.11" y="-21.5" width="14" height="14"/></g><path d="M0 -21C7 -13 11 -7 11 0A11 11 0 1 1 -11 0C-11 -7 -7 -13 0 -21z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="2"/></symbol><symbol id="sc-cadeau-mini" viewBox="-10 -11 20 22"><rect x="-8" y="-3" width="16" height="12" rx="2" fill="#FF6B2C"/><rect x="-10" y="-8" width="20" height="6" rx="2" fill="#FF8A4C"/><rect x="-1.6" y="-8" width="3.2" height="17" fill="#FFFFFF"/><path d="M0 -8c-3 -5 -8 -4 -6 0zM0 -8c3 -5 8 -4 6 0z" fill="#FF8A4C"/></symbol><symbol id="sc-cadeau" viewBox="-24 -27 48 54"><rect x="-19" y="-5" width="38" height="30" rx="4" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="1.6"/><rect x="-22" y="-15" width="44" height="12" rx="4" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="1.6"/><rect x="-3.5" y="-15" width="7" height="40" fill="#FFFFFF"/><path d="M0 -15c-6 -11 -18 -9 -12 -1c3 3 9 2 12 1zM0 -15c6 -11 18 -9 12 -1c-3 3 -9 2 -12 1z" fill="#FFFFFF" stroke="#1B1F3B" stroke-width="1.4" stroke-linejoin="round"/></symbol><linearGradient id="sc-grad-gratte" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF6B2C"/><stop offset="1" stop-color="#FF8A4C"/></linearGradient><pattern id="sc-hachures" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="10" fill="#FFFFFF" opacity=".22"/></pattern></defs></svg>
 
 <header class="entete">
-  <div class="wrap entete-barre">
+  <div class="container entete-barre">
     <a class="entete-logo" href="/" aria-current="page"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
-    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
-      <span>Menu</span>
-    </button>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <ul class="menu-liens">
+    <nav class="entete-nav" aria-label="Menu principal">
+      <ul class="nav-liens">
         <li><a href="/comment-ca-marche">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a>
     </nav>
+    <a class="btn btn-contour entete-essai" href="/essai-gratuit">Essai gratuit<span class="entete-essai-plus">&nbsp;14 jours</span></a>
+    <details class="nav-tel">
+      <summary><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="trait-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="trait-croix" d="M6 6l12 12M18 6L6 18"/></svg>Menu</summary>
+      <nav class="nav-tel-panneau" aria-label="Menu principal">
+        <ul class="nav-tel-liens">
+          <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+          <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+          <li><a class="btn btn-contour" href="/essai-gratuit">Essai gratuit 14 jours</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
 <main>
 
-  <!-- ══ HÉROS (cahier § 4) : texte à gauche, la carte en main à droite.
-       V3 (28/09) : sur téléphone et tablette, l'image monte sous « Pensée pour les… », plus grande,
-       dans le premier écran (accueil.css, sans changer l'ordre du HTML). ══ -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-texte">
-        <p class="eti rev">Commerces de proximité · Haute-Savoie</p>
-        <h1 class="rev">Vos clients <span class="marque">reviennent</span>. Vos avis Google montent.</h1>
-        <p class="hero-metiers rev">Pensée pour les <span class="defile" data-defile><span class="lecteur">boulangeries, restaurants, snacks, cafés, coiffeurs, fleuristes, primeurs, fromagers</span><span class="defile-mots" aria-hidden="true"><span>boulangeries</span><span>restaurants</span><span>snacks</span><span>cafés</span><span>coiffeurs</span><span>fleuristes</span><span>primeurs</span><span>fromagers</span></span></span></p>
-        <p class="lead rev">Un seul QR sur votre comptoir. Vos clients ajoutent leur carte à Apple Wallet ou Google Wallet
-          — sans installer la moindre appli —, cumulent leurs tampons, reçoivent vos offres,
-          et laissent un avis Google au passage.</p>
-        <div class="actions rev">
-          <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
-          <span class="hero-liens">
-          <a class="lien-fleche" href="/comment-ca-marche">Voir comment ça marche<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <!-- 01/10 (Valentin : « un bouton à côté de Comment ça marche pour les outils à votre disposition ») :
-               même lien fléché, vers la page 3. Toujours un LIEN : le seul bouton orange plein reste l'essai. -->
-          <a class="lien-fleche" href="/ce-que-vous-pilotez">Les outils à votre disposition<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </span>
-        </div>
-        <p class="hero-note rev"><svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#FF8A4C" stroke-width="2.4" stroke-linecap="round"/></svg>
-          14 jours pour essayer, présentoir et mise en place compris.</p>
-      </div>
+  <!-- HÉROS : un seul axe (titre, une phrase, un bouton, une ligne), puis la vraie carte Wallet
+       et quatre morceaux de la vraie carte autour (captures, données de démonstration). -->
+  <section class="heros" aria-labelledby="titre-heros">
+    <div class="container heros-texte">
+      <h1 id="titre-heros">Vos clients reviennent.<br> Vos avis Google montent.</h1>
+      <p class="heros-phrase">Un seul QR sur votre comptoir. Vos clients ajoutent leur carte à Apple Wallet ou Google Wallet, sans installer d’appli.</p>
+      <a class="btn btn-plein" href="/essai-gratuit">Essai gratuit 14 jours</a>
+      <p class="heros-note">14 jours pour essayer, présentoir et mise en place compris.</p>
+    </div>
 
-      <div class="hero-visu rev">
-        <!-- 30/10/2026 : visuel de Valentin (deux cartes dans l'app Cartes), fond détouré ; le QR de la carte du Bap's
-             (une vraie carte d'essai) est remplacé par le QR net de perify.app, jamais un QR de carte client publié. -->
-        <img src="img/carte-wallet-2026-10-30.webp" width="1200" height="1262" fetchpriority="high"
+    <figure class="scene">
+      <div class="scene-plateau">
+        <!-- Visuel de Valentin (deux cartes dans l'app Cartes) : le QR du bas est celui de perify.app, jamais celui d'une carte client. -->
+        <img class="scene-tel" src="img/carte-wallet.webp" width="680" height="1284" fetchpriority="high"
              alt="Deux cartes de fidélité dans l’app Cartes d’un iPhone : une carte Perify et celle du Bap’s, deux tampons sur six et une boisson à récupérer">
+        <figure class="morceau morceau-tampons">
+          <img src="img/carte-tampons.webp" width="720" height="145" alt="La barre de tampons de la carte : plus que 3 tampons pour des frites, 7 sur 10">
+          <figcaption class="etiquette">Un tampon à chaque passage</figcaption>
+        </figure>
+        <figure class="morceau morceau-roue">
+          <img src="img/carte-roue.webp" width="440" height="440" alt="La roue de la carte du Bap’s : tacos, frites et boisson à gagner">
+          <figcaption class="etiquette">Un tour de roue par carte</figcaption>
+        </figure>
+        <figure class="morceau morceau-cadeau">
+          <img src="img/carte-cadeau.webp" width="520" height="353" alt="L’écran « Vous avez gagné » de la carte : une boisson, produit à présenter en caisse">
+        </figure>
+        <figure class="morceau morceau-avis">
+          <img src="img/carte-avis.webp" width="600" height="239" alt="L’invitation de la carte : laissez votre avis Google et repartez avec un produit offert">
+          <figcaption class="etiquette">Un avis Google au passage</figcaption>
+        </figure>
+      </div>
+      <figcaption class="scene-legende">Captures de la vraie carte, données de démonstration.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ÇA MARCHE AVEC : les noms en texte, aucun logo de marque tierce. -->
+  <section class="avec" aria-labelledby="titre-avec">
+    <div class="container">
+      <div class="avec-cadre">
+        <h2 id="titre-avec">Ça marche avec ce que vos clients ont déjà.</h2>
+        <ul class="avec-liste">
+          <li>Apple Wallet</li>
+          <li>Google Wallet</li>
+          <li>Avis Google</li>
+          <li>Instagram</li>
+          <li>Facebook</li>
+          <li>Tripadvisor</li>
+          <li>iPhone et Android</li>
+          <li>E-mail</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ══ BANDE DES MÉTIERS (effet 5) : pleine largeur, juste sous le héros ══ -->
-  <div class="bande">
-    <div class="bande-piste">
-      <ul class="bande-liste"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
-      <ul class="bande-liste" aria-hidden="true"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
-    </div>
-  </div>
-
-  <!-- ══ LA VIDÉO (01/10) — livraison de la session Perify Design, validée par Valentin (« la v3 est bien ») :
-       49 s, carte de démo « Perify · démo », QR stylisé (vérifié illisible), voix de synthèse, aucune image
-       générée. Lecture AU CLIC seulement : affiche + preload="metadata" (07/10), la vidéo elle-même ne se charge qu'au clic. Fond crème : héros (nuit) → vidéo (crème) → présentoir (blanc) → chiffres (crème)…
-       Sources : EN-COURS/IMAGE/livraisons/2026-10-01-video-promo-motion/. Depuis le rendu « 2026-10-01b » (carte
-       avec le nouveau bloc e-mail), chaque rendu porte sa date dans son nom : /video/ est mis en cache un an (vercel.json). ══ -->
-  <section class="bloc video creme" aria-labelledby="titre-video">
-    <div class="wrap">
-      <h2 class="visually-hidden" id="titre-video">Perify en vidéo, en 49 secondes</h2>
-      <!-- Deux formats (demande de Valentin) : paysage sur ordinateur, vertical sur téléphone (bascule à 767 px,
-           accueil.css). 07/10 (« elle met beaucoup de temps à se lancer ») : preload="metadata" (seul l'index, environ 54 Ko par vidéo,
-           se charge à l'ouverture) et fichiers 720p deux fois plus légers (2,9 Mo vertical, 3,4 Mo paysage). -->
-      <video class="promo promo-pc" controls playsinline preload="metadata" poster="video/perify-promo-affiche-2026-10-01b.jpg" width="1920" height="1080">
-        <source src="video/perify-promo-16x9-2026-10-07-720p.mp4" type="video/mp4">
-        Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-16x9-2026-10-07-720p.mp4">la télécharger</a>.
-      </video>
-      <video class="promo promo-tel" controls playsinline preload="metadata" poster="video/perify-promo-affiche-9x16-2026-10-01b.jpg" width="1080" height="1920">
-        <source src="video/perify-promo-9x16-2026-10-07-720p.mp4" type="video/mp4">
-        Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-9x16-2026-10-07-720p.mp4">la télécharger</a>.
-      </video>
-    </div>
-  </section>
-
-  <!-- ══ LE PRÉSENTOIR (effet 6, fond nuit) — cahier V2 § 1.3 : l'éventail prend la place de l'ancienne
-       section « Le parcours » (img/parcours.webp n'est plus affichée, le fichier reste dans img/).
-       L'éventail est animé par eventail.css / eventail.js. Les photos du comptoir (presentoir-1..3.webp)
-       ne sont plus affichées, les fichiers restent.
-       V3 (28/09) : rythme des fonds — après le héros (nuit), les sections alternent BLANC / CRÈME :
-       présentoir (blanc) → chiffres (crème) → ce que ça change (blanc) → tout est compris (crème) →
-       ça marche avec (blanc) → essai (nuit). ══ -->
-  <section class="bloc presentoir blanc" aria-labelledby="titre-presentoir">
-    <div class="wrap">
-      <div class="centre">
-        <p class="eti rev">Le présentoir</p>
-        <h2 class="titre-bloc rev" id="titre-presentoir">Un présentoir <span class="mot-cle">à vos couleurs</span>, posé sur le comptoir.</h2>
-        <p class="intro-bloc rev">Le présentoir est fourni et installé. Le client le voit, le scanne, et tout le reste se passe sur son téléphone.</p>
+  <!-- LES PRÉSENTOIRS (demande de Valentin, 30/10 : en démo AVANT la vidéo) — l'éventail : eventail.css, eventail.js.
+       Sans script : les cinq visuels côte à côte, défilement dans le bloc. -->
+  <section class="section presentoirs" aria-labelledby="titre-presentoirs">
+    <div class="container">
+      <div class="section-tete centre">
+        <h2 id="titre-presentoirs">Un présentoir à vos couleurs, posé sur le comptoir.</h2>
+        <p class="chapo">Le présentoir est fourni et installé. Le client le voit, le scanne, et tout le reste se passe sur son téléphone.</p>
       </div>
       <div class="presentoir-scene">
         <div class="eventail" data-eventail tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Les présentoirs, en version digitale">
@@ -150,164 +136,205 @@
     </div>
   </section>
 
+  <!-- LA VIDÉO de 49 s, servie par le site, lecture au clic seulement (preload="metadata").
+       Paysage sur ordinateur, verticale sur téléphone (accueil.css). -->
+  <section class="section film" aria-labelledby="titre-film">
+    <div class="container">
+      <h2 id="titre-film">Perify en vidéo, en 49 secondes.</h2>
+      <div class="film-cadre">
+        <video class="film-paysage" controls playsinline preload="metadata" poster="video/perify-promo-affiche-9s-16x9.jpg" width="1280" height="720">
+          <source src="video/perify-promo-16x9-2026-10-07-720p.mp4" type="video/mp4">
+          Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-16x9-2026-10-07-720p.mp4">la télécharger</a>.
+        </video>
+        <video class="film-vertical" controls playsinline preload="metadata" poster="video/perify-promo-affiche-9s-9x16.jpg" width="720" height="1280">
+          <source src="video/perify-promo-9x16-2026-10-07-720p.mp4" type="video/mp4">
+          Votre navigateur ne lit pas la vidéo&nbsp;: <a href="video/perify-promo-9x16-2026-10-07-720p.mp4">la télécharger</a>.
+        </video>
+      </div>
+    </div>
+  </section>
 
-  <!-- ══ LE PARCOURS (session Design, 29/10/2026, version retenue par Valentin le soir même : variante B fond clair, textes validés) —
-       remplace « En chiffres » + « Ce que ça change pour vous ».
-       Quatre scènes dessinées (SVG dans la page, décoratives : aria-hidden), mêmes conventions que le bento :
-       état final = attributs ; départ et mouvement = classes sc-… (parcours.css), avec .vu posé par site.js.
-       Aucun chiffre, aucun commerce nommé, QR dessiné (faux modules), roue = celle du produit (6 cases, moyeu en goutte). ══ -->
-  <section class="bloc parcours creme" data-illu="clair" aria-labelledby="titre-parcours">
-    <div class="wrap">
-      <p class="eti rev">Le parcours</p>
-      <h2 class="titre-bloc rev" id="titre-parcours">De la porte au cadeau, <span class="mot-cle">sans rien installer</span>.</h2>
-      <p class="intro-bloc rev">Ce que vit votre client, la première fois qu’il pousse la porte. Et les suivantes.</p>
-      <ol class="etapes-illu">
-        <li class="etape-illu scene-bloc rev" data-duree="2200">
-          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><line x1="14" y1="256" x2="386" y2="256" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><path d="M196 94h178a6 6 0 0 1 6 6v156h-190v-156a6 6 0 0 1 6 -6z" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><path d="M178 94l10 -30h188l10 30z" fill="#FF6B2C"/><path d="M188 64h188l3 9h-194z" fill="#FF8A4C"/><path d="M178 94 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 a8 8 0 0 0 16 0 z" fill="#FF6B2C"/><rect x="226" y="34" width="116" height="22" rx="7" fill="#FFFFFF"/><rect x="250" y="42" width="68" height="6" rx="3" fill="#1B1F3B" opacity=".55"/><rect x="200" y="108" width="50" height="148" rx="3" fill="#E3DDD4"/><g transform="translate(236 118)"><path d="M-6 2a6 6 0 0 1 12 0v6h-12z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="1.5" stroke-linejoin="round"/><circle cy="10.5" r="2" fill="#1B1F3B"/><g class="sc-pop" style="--t:1.1s" fill="none" stroke="#1B1F3B" stroke-width="1.5" stroke-linecap="round"><path d="M11 -2a12 12 0 0 1 0 16"/><path d="M-11 -2a12 12 0 0 0 0 16"/></g></g><path d="M200 108l-28 16v146l28 -12z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><circle cx="178" cy="190" r="2.6" fill="#1B1F3B"/><rect x="266" y="108" width="100" height="92" rx="7" fill="rgba(27,31,59,.05)" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="274" y="166" width="84" height="9" rx="3" fill="#FFFFFF"/><rect x="278" y="175" width="76" height="25" fill="#E3DDD4"/><g transform="translate(294 120) rotate(-4)"><rect width="32" height="46" rx="3" fill="#FFFFFF"/><path d="M0 3a3 3 0 0 1 3 -3h26a3 3 0 0 1 3 3v6h-32z" fill="#FF6B2C"/><use href="#sc-roue" x="6" y="11" width="20" height="20"/><use href="#sc-qr" x="9" y="32" width="14" height="14"/></g><circle class="sc-pulse" style="--t:1.4s" cx="310" cy="142" r="13" fill="none" stroke="#FF8A4C" stroke-width="2"/><g transform="translate(344 150)"><path d="M-7 0h14l-2 16h-10z" fill="#FF8A4C"/><path d="M0 0c-10 -4 -14 -14 -10 -22c8 2 12 12 10 22zM0 0c10 -4 14 -14 10 -22c-8 2 -12 12 -10 22zM0 -2c-2 -10 2 -20 6 -24c4 6 2 18 -6 24z" fill="#FFFFFF"/></g><rect x="196" y="254" width="58" height="5" rx="2.5" fill="#FF8A4C"/><path class="sc-pop" style="--t:.3s" transform="translate(214 44)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FFFFFF"/><path class="sc-pop" style="--t:.55s" transform="translate(354 28)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FF8A4C"/><g transform="translate(110 256)"><rect x="-14" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(14 -8 -48)"/><rect x="-20" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(18 -14 -96)"/><rect x="2" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(-16 8 -48)"/><rect x="-18" y="-104" width="36" height="60" rx="15" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><circle cx="2" cy="-121" r="15" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><path d="M-13 -121A15 15 0 0 1 17 -121L11 -121A9 9 0 0 0 -7 -121Z" fill="#1B1F3B"/><rect x="6" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(-58 11 -96)"/><rect x="37" y="-94" width="15" height="25" rx="3.5" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2"/><rect x="40" y="-90" width="9" height="15" rx="1.5" fill="#FF8A4C" opacity=".9"/></g></svg></div>
-          <div class="etape-illu-texte">
-            <span class="num" aria-hidden="true">1</span>
-            <h3>Il entre</h3>
-            <p>Le présentoir est posé sur votre comptoir, à vos couleurs. Il le voit en arrivant.</p>
-          </div>
+  <!-- LE PARCOURS : les quatre dessins du 29/10 (session Design, img/scenes/ : on corrige le générateur, jamais les SVG à la main). -->
+  <section class="section parcours" aria-labelledby="titre-parcours">
+    <div class="container">
+      <div class="section-tete centre">
+        <h2 id="titre-parcours">De la porte au cadeau, sans rien installer.</h2>
+        <p class="chapo">Ce que vit votre client, la première fois qu’il pousse la porte. Et les suivantes.</p>
+      </div>
+      <ol class="etapes">
+        <li class="etape">
+          <img src="img/scenes/parcours-entree.svg" width="1200" height="900" alt="" loading="lazy">
+          <h3>Il entre</h3>
+          <p>Le présentoir est posé sur votre comptoir, à vos couleurs. Il le voit en arrivant.</p>
         </li>
-        <li class="etape-illu scene-bloc rev" data-duree="2200">
-          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><rect x="22" y="200" width="356" height="16" rx="6" fill="#FFFFFF"/><rect x="32" y="216" width="336" height="66" rx="4" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><line x1="48" y1="246" x2="352" y2="246" stroke="rgba(27,31,59,.28)" stroke-width="1"/><path d="M100 200l10 -16h92l10 16z" fill="#E3DDD4"/><g transform="translate(106 48) rotate(-4 50 75)"><rect width="100" height="150" rx="6" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><path d="M0 6a6 6 0 0 1 6 -6h88a6 6 0 0 1 6 6v20h-100z" fill="#FF6B2C"/><rect x="24" y="10" width="52" height="6" rx="3" fill="#FFFFFF" opacity=".92"/><use href="#sc-roue" x="24" y="31" width="52" height="52"/><use href="#sc-qr" x="28" y="90" width="44" height="44"/><rect x="26" y="139" width="48" height="5" rx="2.5" fill="#1B1F3B" opacity=".35"/></g><path d="M258 108L166 142L166 176L258 152z" fill="#FF6B2C" opacity=".10"/><circle class="sc-pulse" style="--t:.9s" cx="157" cy="160" r="28" fill="none" stroke="#FF8A4C" stroke-width="2"/><g transform="translate(296 150) rotate(7)"><path d="M-30 46q-10 70 6 112h86q10 -46 -4 -112z" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><rect x="-38" y="-84" width="76" height="160" rx="14" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2.5"/><rect x="-31" y="-74" width="62" height="140" rx="8" fill="#E3DDD4"/><rect x="-10" y="-80" width="20" height="4" rx="2" fill="rgba(27,31,59,.28)"/><use href="#sc-qr" x="-17" y="-22" width="34" height="34"/><g fill="none" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M-24 -20v-10h10"/><path d="M14 -30h10v10"/><path d="M-24 10v10h10"/><path d="M24 10v10h-10"/></g><rect class="sc-scan" x="-24" y="18" width="48" height="3" rx="1.5" fill="#FF8A4C"/><circle cx="0" cy="54" r="9" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="2"/><rect x="-52" y="-4" width="22" height="48" rx="11" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="26" y="-30" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="28" y="-8" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><rect x="28" y="14" width="30" height="17" rx="8.5" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/></g><g class="sc-pop" style="--t:1.5s" transform="translate(344 62)"><circle r="13" fill="#FF6B2C"/><path d="M-5.5 .5l3.8 3.8 7.6 -8" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g><path class="sc-pop" style="--t:.5s" transform="translate(62 70)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:.8s" transform="translate(236 40)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
-          <div class="etape-illu-texte">
-            <span class="num" aria-hidden="true">2</span>
-            <h3>Il scanne</h3>
-            <p>Avec l’appareil photo de son téléphone. Pas d’appli à installer, pas de compte à créer. Au premier scan, il est invité à laisser son avis Google.</p>
-          </div>
+        <li class="etape etape-scan">
+          <img src="img/scenes/parcours-scan.svg" width="1200" height="900" alt="" loading="lazy">
+          <h3>Il scanne</h3>
+          <p>Avec l’appareil photo de son téléphone. Pas d’appli à installer, pas de compte à créer. Au premier scan, il est invité à laisser son avis Google.</p>
         </li>
-        <li class="etape-illu scene-bloc rev" data-duree="2800">
-          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><g transform="translate(150 150)"><rect x="-64" y="-136" width="128" height="272" rx="22" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2.5"/><rect x="-24" y="-130" width="48" height="6" rx="3" fill="rgba(27,31,59,.28)"/><circle cx="-40" cy="-104" r="7" fill="#FF6B2C"/><rect x="-28" y="-108" width="44" height="5" rx="2.5" fill="#FFFFFF" opacity=".85"/><rect x="-28" y="-99" width="28" height="4" rx="2" fill="#FFFFFF" opacity=".35"/><use href="#sc-roue-g" x="-50" y="-86" width="100" height="100"/><g class="sc-glisse" style="--t:1.5s"><rect x="-50" y="26" width="100" height="58" rx="10" fill="#FFFFFF"/><use href="#sc-cadeau" x="-44" y="36" width="32" height="38"/><rect x="-6" y="42" width="48" height="6" rx="3" fill="#1B1F3B" opacity=".85"/><rect x="-6" y="55" width="32" height="5" rx="2.5" fill="#1B1F3B" opacity=".35"/></g><rect x="-50" y="96" width="100" height="22" rx="11" fill="#FF6B2C"/><rect x="-22" y="104.5" width="44" height="5" rx="2.5" fill="#1B1F3B" opacity=".75"/></g><g class="sc-pop" style="--t:1.17s" transform="translate(53.72 86.07)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.59s" transform="translate(356.42 69.18)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(95)"/></g><g class="sc-pop" style="--t:1.03s" transform="translate(78.23 196.03)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(152)"/></g><g class="sc-pop" style="--t:1.25s" transform="translate(48.04 105.15)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.94s" transform="translate(250.21 40.37)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(68)"/></g><g class="sc-pop" style="--t:1.16s" transform="translate(77.48 170.2)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(104)"/></g><g class="sc-pop" style="--t:1.39s" transform="translate(47.94 128.82)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:0.78s" transform="translate(272.18 78.54)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(10)"/></g><g class="sc-pop" style="--t:0.83s" transform="translate(82.23 238.21)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(26)"/></g><g class="sc-pop" style="--t:1.11s" transform="translate(68.1 61.22)"><circle r="3.2" fill="#FFF8F0"/></g><g class="sc-pop" style="--t:1.43s" transform="translate(355.59 25.75)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF6B2C" transform="rotate(148)"/></g><g class="sc-pop" style="--t:0.58s" transform="translate(71.54 162.03)"><path d="M-4 3h8l-4 -7z" fill="#FF8A4C" transform="rotate(151)"/></g><g class="sc-pop" style="--t:0.8s" transform="translate(52.83 85.55)"><circle r="3.2" fill="#FFFFFF"/></g><g class="sc-pop" style="--t:1.21s" transform="translate(338.01 19.78)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF6B2C" transform="rotate(8)"/></g><g class="sc-pop" style="--t:1.58s" transform="translate(73.34 210.78)"><path d="M-4 3h8l-4 -7z" fill="#FFF8F0" transform="rotate(77)"/></g><g class="sc-pop" style="--t:0.55s" transform="translate(50.9 62)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:0.83s" transform="translate(288.27 93.54)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(100)"/></g><g class="sc-pop" style="--t:0.68s" transform="translate(70.43 227.39)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(21)"/></g><path class="sc-trace" style="--t:1.7s" pathLength="1" d="M212 70q62 -46 92 48" fill="none" stroke="#FF8A4C" stroke-width="2" stroke-dasharray="1 1" opacity=".7"/><g transform="translate(306 182)"><use href="#sc-cadeau" x="-48" y="-56" width="96" height="108"/></g><path class="sc-pop" style="--t:1.9s" transform="translate(258 170)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:2.1s" transform="translate(352 126)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2.3s" transform="translate(338 236)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
-          <div class="etape-illu-texte">
-            <span class="num" aria-hidden="true">3</span>
-            <h3>Il joue, il gagne</h3>
-            <p>La roue tourne une fois par carte : un produit offert, à venir chercher chez vous.</p>
-          </div>
+        <li class="etape">
+          <img src="img/scenes/parcours-joue.svg" width="1200" height="900" alt="" loading="lazy">
+          <h3>Il joue, il gagne</h3>
+          <p>La roue tourne une fois par carte&nbsp;: un produit offert, à venir chercher chez vous.</p>
         </li>
-        <li class="etape-illu scene-bloc rev" data-duree="2400">
-          <div class="etape-illu-visu"><svg class="scene" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><line x1="14" y1="256" x2="386" y2="256" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><g transform="translate(30 66) rotate(-5 110 62)"><rect width="220" height="124" rx="16" fill="#1B1F3B" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><circle cx="26" cy="28" r="10" fill="#FF6B2C"/><rect x="44" y="21" width="80" height="6" rx="3" fill="#FFFFFF" opacity=".9"/><rect x="44" y="33" width="52" height="5" rx="2.5" fill="#FFFFFF" opacity=".35"/><rect x="160" y="18" width="40" height="18" rx="9" fill="#FF8A4C" fill-opacity=".18" stroke="#FF8A4C" stroke-opacity=".6"/><circle cx="22" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(22 78)"><g class="sc-pop" style="--t:0.4s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="41.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(41.5 78)"><g class="sc-pop" style="--t:0.54s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="61" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(61 78)"><g class="sc-pop" style="--t:0.68s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="80.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(80.5 78)"><g class="sc-pop" style="--t:0.82s"><circle r="7.5" fill="#FF6B2C"/><path d="M-3.2 .2l2 2 4.2 -4.4" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g></g><circle cx="100" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(100 78)"><circle r="7.5" fill="#FFFFFF"/><use href="#sc-cadeau-mini" x="-5" y="-5.5" width="10" height="11"/></g><circle cx="119.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="139" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="158.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="178" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><circle cx="197.5" cy="78" r="7.5" fill="#FFFFFF" fill-opacity=".05" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1.5" stroke-dasharray="2.5 2.5"/><g transform="translate(197.5 78)"><circle r="7.5" fill="#FFFFFF"/><use href="#sc-cadeau-mini" x="-5" y="-5.5" width="10" height="11"/></g><rect x="22" y="98" width="176" height="4" rx="2" fill="#FFFFFF" opacity=".1"/><rect class="sc-barre" style="--t:.4s" x="22" y="98" width="70" height="4" rx="2" fill="#FF8A4C"/><rect x="22" y="109" width="64" height="5" rx="2.5" fill="#FFFFFF" opacity=".25"/><g class="sc-pop" style="--t:1.5s" transform="translate(172 -10)"><rect x="-6" y="-12" width="76" height="24" rx="12" fill="#FF6B2C"/><path d="M4 2a5 5 0 0 1 10 0v4h-10z" fill="#FFFFFF"/><circle cx="9" cy="7.5" r="1.3" fill="#FFFFFF"/><rect x="20" y="-2.5" width="40" height="5" rx="2.5" fill="#FFFFFF" opacity=".92"/></g></g><path d="M350 256v-146a6 6 0 0 1 6 -6h30v152" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="3"/><rect x="356" y="110" width="28" height="146" fill="rgba(27,31,59,.05)"/><g transform="translate(296 256)"><rect x="-14" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(14 -8 -48)"/><rect x="-20" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(18 -14 -96)"/><path d="M-42 -50h28l3 34h-34z" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" stroke-linejoin="round"/><path d="M-35 -50q7 -14 14 0" fill="none" stroke="#1B1F3B" stroke-width="2"/><circle cx="-28" cy="-34" r="4" fill="#FFFFFF"/><rect x="2" y="-50" width="12" height="52" rx="6" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2" transform="rotate(-16 8 -48)"/><rect x="-18" y="-104" width="36" height="60" rx="15" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><circle cx="2" cy="-121" r="15" fill="#FFE9DA" stroke="#1B1F3B" stroke-width="2"/><path d="M-13 -121A15 15 0 0 1 17 -121L11 -121A9 9 0 0 0 -7 -121Z" fill="#1B1F3B"/><rect x="6" y="-98" width="11" height="40" rx="5.5" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2" transform="rotate(-58 11 -96)"/><rect x="37" y="-94" width="15" height="25" rx="3.5" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="2"/><rect x="40" y="-90" width="9" height="15" rx="1.5" fill="#FF8A4C" opacity=".9"/></g><path class="sc-pop" style="--t:1.8s" transform="translate(262 60)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2s" transform="translate(60 226)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
-          <div class="etape-illu-texte">
-            <span class="num" aria-hidden="true">4</span>
-            <h3>Il repart avec sa carte</h3>
-            <p>Dans Apple Wallet ou Google Wallet, à côté de sa carte bancaire. Un tampon à chaque passage.</p>
-          </div>
+        <li class="etape">
+          <img src="img/scenes/parcours-revient.svg" width="1200" height="900" alt="" loading="lazy">
+          <h3>Il repart avec sa carte</h3>
+          <p>Dans Apple Wallet ou Google Wallet, à côté de sa carte bancaire. Un tampon à chaque passage.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ══ LES JEUX (session Design, 29/10/2026, version retenue) — remplace la grille « Tout ce qu'il faut, rien de plus ».
-       Décision de Valentin (29/10 soir) : les trois jeux au même niveau, sans mention de disponibilité, parce qu'ils se
-       font sur mesure. Au 29/10 seule la roue est codée (perify-api : une roue par carte, 6 secteurs = 3 lots × 2) :
-       la carte à gratter et le cadeau mystère doivent être constructibles dès qu'un commerçant les demande (tâche
-       « jeux-nouveaux » de la dev). La carte « Faites le calcul » est reprise telle quelle. ══ -->
-  <section class="bloc jeux blanc" data-illu="clair" aria-labelledby="titre-jeux">
-    <div class="wrap">
-      <p class="eti rev">Les jeux</p>
-      <h2 class="titre-bloc rev" id="titre-jeux">Un jeu à l’arrivée, <span class="mot-cle">un cadeau à la clé</span>.</h2>
-      <p class="intro-bloc rev">Le jeu de votre choix, sur demande.</p>
+  <!-- LES JEUX : la bande teintée de la page. Trois jeux au même niveau, sans badge (faits sur mesure, décision du 29/10). -->
+  <section class="section teinte jeux" aria-labelledby="titre-jeux">
+    <div class="container">
+      <div class="section-tete centre">
+        <h2 id="titre-jeux">Un jeu à l’arrivée, un cadeau à la clé.</h2>
+        <p class="chapo">Le jeu de votre choix, sur demande.</p>
+      </div>
       <ul class="jeux-liste">
-        <li class="jeu scene-bloc rev" data-duree="2600">
-          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><g transform="translate(150 112)"><circle class="sc-tourne" r="98" fill="none" stroke="#FF8A4C" stroke-opacity=".45" stroke-width="1.75" stroke-dasharray="3 7"/><use href="#sc-roue-g" x="-84" y="-84" width="168" height="168"/></g><g class="sc-pop" style="--t:1.64s" transform="translate(38.83 74.09)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.19s" transform="translate(253.24 61.45)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(82)"/></g><g class="sc-pop" style="--t:2.26s" transform="translate(46.6 161.47)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(133)"/></g><g class="sc-pop" style="--t:1.91s" transform="translate(275.1 140.83)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.23s" transform="translate(46.28 40.17)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(130)"/></g><g class="sc-pop" style="--t:2.27s" transform="translate(259.64 21.33)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(37)"/></g><g class="sc-pop" style="--t:1.92s" transform="translate(23.81 156.16)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:2.33s" transform="translate(259.33 144.86)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(57)"/></g><path class="sc-pop" style="--t:1.6s" transform="translate(44 36)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:1.8s" transform="translate(262 190)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/></svg></div>
-          <div class="jeu-texte">
-            <h3>La roue</h3>
-            <p>Six cases, un tour par carte. Les lots, c’est vous qui les choisissez.</p>
-          </div>
+        <li class="jeu">
+          <img src="img/scenes/jeu-roue.svg" width="900" height="660" alt="" loading="lazy">
+          <h3>La roue</h3>
+          <p>Six cases, un tour par carte. Les lots, c’est vous qui les choisissez.</p>
         </li>
-        <li class="jeu scene-bloc rev" data-duree="2400">
-          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><g transform="translate(150 112) rotate(-6)"><rect x="-100" y="-62" width="200" height="124" rx="14" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><use href="#sc-cadeau" x="-80" y="-32" width="50" height="58"/><rect x="-20" y="-20" width="88" height="8" rx="4" fill="#1B1F3B" opacity=".85"/><rect x="-20" y="-4" width="60" height="6" rx="3" fill="#1B1F3B" opacity=".35"/><rect x="-20" y="12" width="44" height="14" rx="7" fill="#FF6B2C"/><mask id="sc-m-gratte" maskUnits="userSpaceOnUse" x="-110" y="-72" width="220" height="144"><rect x="-110" y="-72" width="220" height="144" fill="#FFFFFF"/><path class="sc-gratte" pathLength="1" d="M-82 -42L58 -42L-62 -12L82 -8L-72 24L54 32" fill="none" stroke="#000000" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/></mask><g mask="url(#sc-m-gratte)"><rect x="-100" y="-62" width="200" height="124" rx="14" fill="url(#sc-grad-gratte)"/><rect x="-100" y="-62" width="200" height="124" rx="14" fill="url(#sc-hachures)"/><rect x="-84" y="-46" width="168" height="92" rx="10" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="4 4"/></g><g transform="translate(64 36)"><circle r="16" fill="#FFF8F0" stroke="#1B1F3B" stroke-width="2"/><circle r="10" fill="none" stroke="rgba(27,31,59,.28)" stroke-width="2"/></g><g class="sc-pop" style="--t:1.51s" transform="translate(-84.76 -65.48)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.16s" transform="translate(79.07 -60.38)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FF8A4C" transform="rotate(62)"/></g><g class="sc-pop" style="--t:1.41s" transform="translate(-88.49 63.29)"><path d="M-4 3h8l-4 -7z" fill="#FFFFFF" transform="rotate(61)"/></g><g class="sc-pop" style="--t:1.31s" transform="translate(97.17 54.84)"><circle r="3.2" fill="#FF6B2C"/></g><g class="sc-pop" style="--t:2.11s" transform="translate(-90.63 -62.48)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFF8F0" transform="rotate(9)"/></g><g class="sc-pop" style="--t:1.8s" transform="translate(79.55 -74.92)"><path d="M-4 3h8l-4 -7z" fill="#FF6B2C" transform="rotate(84)"/></g><g class="sc-pop" style="--t:2.08s" transform="translate(-97.46 60.06)"><circle r="3.2" fill="#FF8A4C"/></g><g class="sc-pop" style="--t:1.4s" transform="translate(98.17 61.32)"><rect x="-5" y="-2.2" width="10" height="4.4" rx="1.5" fill="#FFFFFF" transform="rotate(60)"/></g></g></svg></div>
-          <div class="jeu-texte">
-            <h3>La carte à gratter</h3>
-            <p>Il frotte l’écran du doigt, le lot apparaît.</p>
-          </div>
+        <li class="jeu">
+          <img src="img/scenes/jeu-gratter.svg" width="900" height="660" alt="" loading="lazy">
+          <h3>La carte à gratter</h3>
+          <p>Il frotte l’écran du doigt, le lot apparaît.</p>
         </li>
-        <li class="jeu scene-bloc rev" data-duree="2400">
-          <div class="jeu-visu"><svg class="scene" viewBox="0 0 300 220" aria-hidden="true" focusable="false"><line x1="26" y1="178" x2="274" y2="178" stroke="rgba(27,31,59,.22)" stroke-width="2" stroke-linecap="round"/><g class="sc-fade" style="--t:1.1s" opacity=".3" fill="#FFFFFF"><path d="M150 100l-44 -72h18z"/><path d="M150 100l-7 -88h14z"/><path d="M150 100l44 -72h-18z"/></g><g transform="translate(60 178)"><rect x="-26" y="-48" width="52" height="48" rx="5" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-29" y="-60" width="58" height="14" rx="4" fill="#E3DDD4" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-4" y="-60" width="8" height="60" fill="#FF8A4C" opacity=".85"/><circle cy="-22" r="11.5" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><text y="-15" text-anchor="middle" font-family="var(--titre),'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="19" fill="#FF6B2C">?</text></g><g transform="translate(240 178)"><rect x="-26" y="-48" width="52" height="48" rx="5" fill="#EFEAE3" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-29" y="-60" width="58" height="14" rx="4" fill="#E3DDD4" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><rect x="-4" y="-60" width="8" height="60" fill="#FF8A4C" opacity=".85"/><circle cy="-22" r="11.5" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><text y="-15" text-anchor="middle" font-family="var(--titre),'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="19" fill="#FF6B2C">?</text></g><rect x="108" y="104" width="84" height="74" rx="6" fill="#FF6B2C" stroke="#1B1F3B" stroke-width="2"/><rect x="144" y="104" width="12" height="74" fill="#FFFFFF"/><g transform="translate(150 104)"><g class="sc-couvercle"><rect x="-48" y="-22" width="96" height="22" rx="6" fill="#FF8A4C" stroke="#1B1F3B" stroke-width="2"/><rect x="-6" y="-22" width="12" height="22" fill="#FFFFFF"/></g></g><g class="sc-pop" style="--t:1.5s" transform="translate(150 58)"><rect x="-34" y="-13" width="68" height="26" rx="13" fill="#FFFFFF" stroke="rgba(27,31,59,.28)" stroke-width="1.5"/><use href="#sc-cadeau-mini" x="-27" y="-8" width="14" height="16"/><rect x="-8" y="-3" width="34" height="6" rx="3" fill="#1B1F3B" opacity=".8"/></g><path class="sc-pop" style="--t:1.7s" transform="translate(104 70)" d="M0 -6L1.92 -1.92L6 0L1.92 1.92L0 6L-1.92 1.92L-6 0L-1.92 -1.92z" fill="#FFFFFF"/><path class="sc-pop" style="--t:1.9s" transform="translate(200 60)" d="M0 -5L1.6 -1.6L5 0L1.6 1.6L0 5L-1.6 1.6L-5 0L-1.6 -1.6z" fill="#FF8A4C"/><path class="sc-pop" style="--t:2.1s" transform="translate(214 96)" d="M0 -4L1.28 -1.28L4 0L1.28 1.28L0 4L-1.28 1.28L-4 0L-1.28 -1.28z" fill="#FFFFFF"/></svg></div>
-          <div class="jeu-texte">
-            <h3>Le cadeau mystère</h3>
-            <p>Une boîte à ouvrir : le lot est tiré au sort parmi les vôtres.</p>
-          </div>
+        <li class="jeu">
+          <img src="img/scenes/jeu-mystere.svg" width="900" height="660" alt="" loading="lazy">
+          <h3>Le cadeau mystère</h3>
+          <p>Une boîte à ouvrir&nbsp;: le lot est tiré au sort parmi les vôtres.</p>
         </li>
       </ul>
-      <a class="vers-calcul rev" href="/calculateur">
-        <span class="vers-calcul-texte">
-          <span class="eti">Faites le calcul</span>
-          <span class="vers-calcul-titre">Ce qu’un tampon vous coûte, ce qu’une visite vous rapporte.</span>
-        </span>
-        <span class="vers-calcul-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ══ ÇA MARCHE AVEC (effet 8), sur fond CRÈME depuis le 29/10 (les jeux, juste avant, sont sur blanc ; avant : BLANC, alternance avec la nuit, et place prête pour des logos
-       qui imposent leurs couleurs). Cahier V2 § 1.1 : des LOGOS OFFICIELS seulement, jamais redessinés.
-       30/09 : Instagram, Facebook et Tripadvisor ont leur logo (fichiers fournis par Valentin dans IMAGE/Logo,
-       réduits par scratchpad/imgtools/logos-site.mjs) ; Apple et Google restent en texte (Apple interdit l'usage
-       de sa pomme sans licence écrite, Google exige une autorisation préalable). Pour un nouveau logo :
-       fichier dans img/logos/, puis dans la case, à gauche du nom :
-         <li><img class="avec-logo" src="img/logos/instagram.svg" alt="" width="28" height="28" loading="lazy">Instagram</li>
-       (alt="" : le nom reste écrit à côté). « Apple Wallet » et « iPhone » restent en texte (Apple
-       interdit l'icône seule). L'enveloppe de l'e-mail (img/logos/e-mail.svg, notre propre icône, dans
-       une pastille nuit : <span class="avec-pastille"><img …></span>) revient EN MÊME TEMPS que les
-       logos : seule, elle faisait une grille inachevée. ══ -->
-  <section class="bloc avec creme" aria-labelledby="titre-avec">
-    <div class="wrap">
-      <h2 class="avec-titre rev" id="titre-avec">Ça marche avec ce que vos clients <span class="mot-cle">ont déjà</span>.</h2>
-    </div>
-    <div class="avec-cadre">
-      <div class="wrap">
-        <ul class="avec-grille rev">
-          <li>Apple Wallet</li>
-          <li>Google Wallet</li>
-          <li>Avis Google</li>
-          <li><img class="avec-logo" src="img/logos/instagram.png" alt="" width="28" height="28" loading="lazy">Instagram</li>
-          <li><img class="avec-logo" src="img/logos/facebook.png" alt="" width="28" height="28" loading="lazy">Facebook</li>
-          <li><img class="avec-logo" src="img/logos/tripadvisor.png" alt="" width="28" height="28" loading="lazy">Tripadvisor</li>
-          <li>iPhone et Android</li>
-          <li><span class="avec-pastille" aria-hidden="true"><img src="img/logos/e-mail.svg" alt="" width="20" height="20" loading="lazy"></span>E-mail</li>
-        </ul>
+      <div class="vers-calcul">
+        <p><strong>Faites le calcul.</strong> Ce qu’un tampon vous coûte, ce qu’une visite vous rapporte.</p>
+        <a class="btn btn-second" href="/calculateur">Ouvrir le calculateur</a>
       </div>
     </div>
   </section>
 
-  <!-- ══ BLOC FINAL « ESSAI » ══ -->
-  <section class="essai-final" aria-labelledby="titre-essai">
-    <div class="wrap">
-      <div class="essai-carte rev">
-        <p class="eti">Essai gratuit</p>
-        <h2 id="titre-essai">Essayez-le <span class="mot-cle">quatorze jours</span> sur votre comptoir.</h2>
+  <!-- CE QUE VOUS PILOTEZ : l'espace commerçant, en vraies captures (« Données de démonstration. »). -->
+  <section class="section pilotez" aria-labelledby="titre-pilotez">
+    <div class="container">
+      <div class="section-tete centre">
+        <h2 id="titre-pilotez">Tout se commande depuis votre téléphone, entre deux clients.</h2>
+      </div>
+      <div class="pilotez-grille">
+        <figure class="pilotez-tel pilotez-tel-a">
+          <img src="img/commercant-offre-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="L’espace commerçant sur un iPhone : l’offre du moment, son aperçu sur la carte Wallet et la notification reçue par le client">
+        </figure>
+        <div class="pilotez-texte">
+          <ul class="pilotez-liste">
+            <li>Votre offre s’affiche sur la carte de vos clients</li>
+            <li>La promo part avec son affiche, sans logiciel photo</li>
+            <li>Votre tableau de bord, en clair</li>
+            <li>Sur iPhone, près de votre boutique, la carte se montre toute seule</li>
+          </ul>
+          <a class="lien-fleche" href="/ce-que-vous-pilotez">Les outils à votre disposition<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <figure class="pilotez-tel pilotez-tel-b">
+          <img src="img/dashboard-iphone.webp" width="652" height="1239" loading="lazy"
+               alt="Le tableau de bord de l’espace commerçant sur un iPhone : passages, clients venus, scans du QR, cartes ouvertes et la courbe par jour">
+        </figure>
+      </div>
+      <p class="legende pilotez-legende">Données de démonstration.</p>
+    </div>
+  </section>
+
+  <!-- L'ESSAI, SUR LE COMPTOIR : les vraies photos du présentoir (QR vers perify.app) et la personne derrière. -->
+  <section class="section filet essai-accueil" aria-labelledby="titre-essai">
+    <div class="container essai-grille">
+      <div class="essai-texte">
+        <h2 id="titre-essai">Essayez-le quatorze jours sur votre comptoir.</h2>
         <p>Présentoir et mise en place compris. Si ça ne vous convient pas, vous arrêtez&nbsp;: rien à payer, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
-        <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
+        <a class="btn btn-plein" href="/essai-gratuit">Essai gratuit 14 jours</a>
+        <div class="qui-court">
+          <h3>Une seule personne, que vous aurez au téléphone.</h3>
+          <p>Je m'appelle Valentin Carrillo. J'ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C'est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
+          <a class="lien-fleche" href="tel:+33667835956"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>06 67 83 59 56</a>
+        </div>
+      </div>
+      <div class="essai-photos">
+        <img class="photo-a" src="img/presentoir-1.webp" width="642" height="856" loading="lazy"
+             alt="Le présentoir du Bap’s posé sur un comptoir en bois : « Scannez et gagnez votre cadeau », la roue et le QR">
+        <img class="photo-b" src="img/presentoir-2.webp" width="642" height="856" loading="lazy"
+             alt="Le même présentoir aux couleurs de Perify, sur le même comptoir">
       </div>
     </div>
   </section>
 
-  <div class="suite">
-    <div class="wrap">
-      <a class="suite-lien" href="/comment-ca-marche"><span class="suite-texte"><span class="suite-mot">Suite&nbsp;:</span> comment ça marche</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  <!-- QUESTIONS : celles de la page Essai, ouvertes au clic (sans script). -->
+  <section class="section filet" aria-labelledby="titre-faq">
+    <div class="container faq-grille">
+      <h2 id="titre-faq">Ce qu'on me demande le plus souvent.</h2>
+      <div class="faq-liste">
+        <details>
+          <summary>Mes clients doivent installer une application&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Non, jamais. Ils scannent le QR du présentoir, la carte s'ouvre dans leur navigateur, et ils peuvent l'ajouter à Apple Wallet ou Google Wallet en un geste. Rien à télécharger, pas de mot de passe.</p>
+        </details>
+        <details>
+          <summary>Et ceux qui n'ont pas d'iPhone&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>La carte fonctionne sur tous les téléphones&nbsp;: c'est une page web. Sur iPhone, elle s'ajoute à Apple Wallet&nbsp;; sur Android, à Google Wallet. Dans les deux cas en un geste, sans appli.</p>
+        </details>
+        <details>
+          <summary>Il faut brancher quelque chose sur ma caisse&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Non. Perify vit à côté de votre caisse, sur votre téléphone. Aucune installation, aucun logiciel à faire cohabiter avec le vôtre.</p>
+        </details>
+        <details>
+          <summary>Qui paie les cadeaux&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Vous, et c'est vous qui les choisissez&nbsp;: un café, un croissant, une remise. Vous fixez aussi le nombre de passages pour y arriver. Perify ne décide pas à votre place.</p>
+        </details>
+        <details>
+          <summary>Combien ça coûte&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Il y a des frais d'installation — mise en service, réglage de vos récompenses, présentoir de comptoir qui devient le vôtre — puis un abonnement mensuel. Les chiffres, je préfère vous les donner de vive voix, en regardant votre commerce. Et vous commencez par quatorze jours d'essai gratuit.</p>
+        </details>
+        <details>
+          <summary>Et après les 14 jours&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Si vous continuez, l'abonnement court douze mois, sans reconduction automatique&nbsp;: à l'échéance, rien ne se renouvelle sans votre accord. Si vous arrêtez pendant l'essai, rien n'est dû, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
+        </details>
+        <details>
+          <summary>Et mes données clients, dans tout ça&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Elles vous appartiennent. Perify les traite pour votre compte, jamais pour le sien&nbsp;: pas de revente, pas de réutilisation pour un autre commerce. Si vous partez, vous repartez avec votre fichier, et vos données sont supprimées des serveurs de Perify. Un contrat RGPD est signé avec chaque commerçant.</p>
+        </details>
+        <details>
+          <summary>En combien de temps c'est en service&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Sous quinze jours après la signature, souvent moins. Je viens sur place installer le présentoir, régler vos récompenses et vos couleurs, et vous montrer le geste en caisse — il prend cinq secondes. L'essai de quatorze jours démarre ce jour-là.</p>
+        </details>
+      </div>
     </div>
-  </div>
+  </section>
 
 </main>
 
 <footer class="pied">
-  <div class="wrap">
-    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
-    <nav class="pied-liens" aria-label="Pied de page">
-      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
-      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
-      <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
-      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales#donnees">Données personnelles</a>
+  <div class="container pied-grille">
+    <div class="pied-marque">
+      <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+      <p>La carte de fidélité qui vit dans le téléphone de vos clients.</p>
+    </div>
+    <nav class="pied-nav" aria-label="Pied de page">
+      <ul>
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/calculateur">Faites le calcul</a></li>
+        <li><a href="/essai-gratuit">Essai gratuit</a></li>
+      </ul>
+      <ul class="pied-liens">
+        <li><a href="/aide">Aide</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/mentions-legales#donnees">Données personnelles</a></li>
+      </ul>
     </nav>
+  </div>
+  <div class="container">
+    <p class="pied-legal">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
   </div>
 </footer>
 
-<script src="eventail.js" defer></script>
 </body>
 </html>

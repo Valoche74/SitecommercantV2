@@ -17,9 +17,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- .js dès le départ : les apparitions et le menu téléphone se préparent sans clignoter (le filet de site.css montre tout si site.js ne se charge pas) -->
-<script>document.documentElement.classList.add('js')</script>
-<!-- 07/10/2026 : polices servies par perify.app (dossier polices/, déclarées en tête de site.css) : plus aucune requête vers Google -->
+<!-- Refonte A (30/10/2026) : site.css est la feuille commune (polices servies par perify.app, déclarées en tête) -->
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="essai.css">
 <script src="site.js" defer></script>
@@ -29,55 +27,56 @@
 <body>
 
 <header class="entete">
-  <div class="wrap entete-barre">
+  <div class="container entete-barre">
     <a class="entete-logo" href="/"><img src="img/logo-perify-blanc.png" alt="Perify, accueil" width="359" height="156"></a>
-    <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path class="trait-1" d="M4 6h16"/><path class="trait-2" d="M4 12h16"/><path class="trait-3" d="M4 18h16"/></svg>
-      <span>Menu</span>
-    </button>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-      <ul class="menu-liens">
+    <nav class="entete-nav" aria-label="Menu principal">
+      <ul class="nav-liens">
         <li><a href="/comment-ca-marche">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
         <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
       </ul>
-      <!-- sur cette page, le bouton mène au formulaire SANS recharger la page (/essai-gratuit
-           rechargeait et vidait ce qui était déjà tapé) -->
-      <a class="btn btn-o" href="#essai-demande" aria-current="page">Essai gratuit 14 jours</a>
     </nav>
+    <a class="btn btn-contour entete-essai" href="/essai-gratuit" aria-current="page">Essai gratuit<span class="entete-essai-plus">&nbsp;14 jours</span></a>
+    <details class="nav-tel">
+      <summary><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path class="trait-menu" d="M4 7h16M4 12h16M4 17h16"/><path class="trait-croix" d="M6 6l12 12M18 6L6 18"/></svg>Menu</summary>
+      <nav class="nav-tel-panneau" aria-label="Menu principal">
+        <ul class="nav-tel-liens">
+          <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+          <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+          <li><a href="/essai-gratuit#qui">Qui est derrière</a></li>
+          <li><a class="btn btn-contour" href="/essai-gratuit" aria-current="page">Essai gratuit 14 jours</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
 <main>
-  <!-- ══ L'ESSAI (modèle « book a demo » : le texte à gauche, le formulaire à droite, un filet entre les deux) ══ -->
+  <!-- ══ L'ESSAI (modèle « book a demo » : le texte à gauche, le formulaire à droite, sur sa carte) ══ -->
   <section class="page-tete essai-tete">
-    <div class="wrap">
-      <p class="eti rev">Essai gratuit</p>
-      <h1 class="rev">Quatorze jours pour l'essayer sur votre <span class="marque">comptoir</span>.</h1>
-      <!-- téléphone seulement (essai.css) : le formulaire commence au 2e écran, ce lien y mène.
-           Il vise #essai-demande (le bloc qui entoure le formulaire, jamais animé) et non #formulaire :
-           au premier toucher, le formulaire (.rev) est encore 16 px plus bas, puis remonte, et
-           « Étape 1 sur 3 » finissait collé sous l'en-tête. Il apparaît avec le titre (.rev). -->
-      <a class="lien-fleche essai-aller rev" href="#essai-demande">Faire ma demande<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+    <div class="container">
+      <p class="page-nom">Essai gratuit</p>
+      <h1>Quatorze jours pour l'essayer sur votre comptoir.</h1>
+      <!-- téléphone et tablette seulement (essai.css) : le formulaire commence au 2e écran, ce lien y mène (#essai-demande). -->
+      <a class="lien-fleche essai-aller" href="#essai-demande">Faire ma demande<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
     </div>
   </section>
 
-  <!-- V3 (28/09, rythme des fonds) : chapeau sur la nuit, puis l'essai sur BLANC, « Qui est derrière » sur CRÈME,
-       les questions sur BLANC ; la nuit ne garde que le haut de page et le pied. -->
-  <section class="essai blanc">
-    <div class="wrap essai-grille">
+  <!-- Refonte A (30/10/2026) : tout sur le fond clair ; « Qui est derrière » est la bande teintée de la page. -->
+  <section class="essai">
+    <div class="container essai-grille">
 
       <!-- colonne gauche : ce que comprend l'essai, puis les contacts directs -->
       <div class="essai-offre">
-        <p class="essai-intro rev">Je viens installer le présentoir, je règle vos récompenses et vos couleurs, et vous voyez vos clients s'inscrire. Si ça ne vous convient pas, vous arrêtez.</p>
-        <ul class="liste coches essai-liste rev">
+        <p class="essai-intro">Je viens installer le présentoir, je règle vos récompenses et vos couleurs, et vous voyez vos clients s'inscrire. Si ça ne vous convient pas, vous arrêtez.</p>
+        <ul class="liste essai-liste">
           <li>Présentoir et mise en place compris</li>
           <li>Vos récompenses et vos couleurs, réglées avec&nbsp;vous</li>
           <li>Rien à payer si vous arrêtez pendant&nbsp;l'essai</li>
           <li>Je reprends le présentoir, et les données de vos clients sont supprimées</li>
           <li>Si vous continuez&nbsp;: douze mois, sans reconduction&nbsp;automatique</li>
         </ul>
-        <div class="direct rev">
+        <div class="direct">
           <a href="tel:+33667835956"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>06 67 83 59 56</a>
           <a id="lienMail" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 8l9 6 9-6"/></svg>Écrire un e-mail</a>
           <a href="/aide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.8-2.5 2-2.5 4M12 17h.01"/></svg>Page d'aide</a>
@@ -92,7 +91,7 @@
            Microsoft Clarity masque TOUT ce bloc (textes et liens compris : le lien e-mail de l'écran
            d'échec contient la demande). Les champs sont déjà masqués par Clarity dans tous ses modes. -->
       <div class="essai-demande" id="essai-demande" data-clarity-mask="true">
-        <form id="formulaire" class="formulaire rev" method="post" action="/essai-gratuit">
+        <form id="formulaire" class="formulaire" method="post" action="/essai-gratuit">
 
           <div class="progression" hidden>
             <p class="progression-libelle" aria-live="polite">Étape 1 sur 3</p>
@@ -130,7 +129,7 @@
               </div>
             </fieldset>
             <div class="etape-actions" hidden>
-              <button class="btn btn-o" type="button" data-suivant>Continuer</button>
+              <button class="btn btn-plein" type="button" data-suivant>Continuer</button>
             </div>
           </div>
 
@@ -153,8 +152,8 @@
               <p class="champ-erreur" id="email-erreur" hidden></p>
             </div>
             <div class="etape-actions" hidden>
-              <button class="btn btn-o" type="button" data-suivant>Continuer</button>
-              <button class="btn btn-ghost" type="button" data-precedent>Retour</button>
+              <button class="btn btn-plein" type="button" data-suivant>Continuer</button>
+              <button class="btn btn-second" type="button" data-precedent>Retour</button>
             </div>
           </div>
 
@@ -182,8 +181,8 @@
             <div class="envoi">
               <div class="etape-actions etape-actions-envoi">
                 <!-- disabled tant que essai.js ne tourne pas : sinon Entrée dans un champ enverrait le formulaire vers une page qui ne traite rien -->
-                <span class="btn-lumiere envoi-js"><button class="btn btn-o" type="submit" disabled>Demander mon essai gratuit</button></span>
-                <button class="btn btn-ghost" type="button" data-precedent hidden>Retour</button>
+                <span class="envoi-js"><button class="btn btn-plein" type="submit" disabled>Demander mon essai gratuit</button></span>
+                <button class="btn btn-second" type="button" data-precedent hidden>Retour</button>
               </div>
               <p class="envoi-sans-js">Pour envoyer votre demande, appelez-moi au <a href="tel:+33667835956">06 67 83 59 56</a>.</p>
               <!-- L'essentiel près du formulaire, le détail (destinataires, durée, droits) dans les mentions ; nouvel onglet pour ne pas perdre ce qui est déjà tapé -->
@@ -203,8 +202,8 @@
           <span class="resultat-icone" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5h.01"/></svg></span>
           <p><strong>L'envoi n'a pas marché.</strong> Appelez-moi au <a class="resultat-tel" href="tel:+33667835956">06 67 83 59 56</a>, ou envoyez-moi votre demande par <span class="insecable">e-mail&nbsp;:</span></p>
           <div class="resultat-actions">
-            <a class="btn btn-o" id="essai-mail" href="#">Envoyer par e-mail</a>
-            <button class="btn btn-ghost" type="button" id="essai-retour">Retour</button>
+            <a class="btn btn-plein" id="essai-mail" href="#">Envoyer par e-mail</a>
+            <button class="btn btn-second" type="button" id="essai-retour">Retour</button>
           </div>
         </div>
       </div>
@@ -213,56 +212,54 @@
   </section>
 
   <!-- ══ QUI EST DERRIÈRE ══ -->
-  <section class="bloc creme qui" id="qui" aria-labelledby="titre-qui">
-    <div class="wrap qui-grille">
+  <section class="section teinte qui" id="qui" aria-labelledby="titre-qui">
+    <div class="container qui-grille">
       <div class="qui-tete">
-        <p class="eti rev">Qui est derrière</p>
-        <h2 class="titre-bloc rev" id="titre-qui">Une seule personne, que vous aurez <span class="mot-cle">au téléphone</span>.</h2>
+        <h2 id="titre-qui">Une seule personne, que vous aurez au téléphone.</h2>
       </div>
       <div class="qui-texte">
-        <p class="rev">Je m'appelle Valentin Carrillo. J'ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C'est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
-        <p class="qui-accent rev">Vous parlez directement à la personne qui a construit l'outil — pas à un standard. Cinq minutes suffisent pour savoir si Perify a du sens chez vous.</p>
+        <p>Je m'appelle Valentin Carrillo. J'ai construit Perify <span class="insecable">moi-même</span>, depuis Cruseilles, en Haute-Savoie. C'est moi qui viens poser le présentoir, qui règle vos récompenses, et qui décroche quand vous appelez.</p>
+        <p class="qui-accent">Vous parlez directement à la personne qui a construit l'outil — pas à un standard. Cinq minutes suffisent pour savoir si Perify a du sens chez vous.</p>
       </div>
     </div>
   </section>
 
   <!-- ══ QUESTIONS FRÉQUENTES ══ -->
-  <section class="bloc blanc" id="questions" aria-labelledby="titre-questions">
-    <div class="wrap">
-      <p class="eti rev">Questions fréquentes</p>
-      <h2 class="titre-bloc rev" id="titre-questions">Ce qu'on me demande <span class="mot-cle">le plus souvent</span>.</h2>
+  <section class="section" id="questions" aria-labelledby="titre-questions">
+    <div class="container faq-grille">
+      <h2 id="titre-questions">Ce qu'on me demande le plus souvent.</h2>
 
-      <div class="faq rev">
+      <div class="faq-liste">
         <details>
-          <summary>Mes clients doivent installer une application&nbsp;?</summary>
+          <summary>Mes clients doivent installer une application&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Non, jamais. Ils scannent le QR du présentoir, la carte s'ouvre dans leur navigateur, et ils peuvent l'ajouter à Apple Wallet ou Google Wallet en un geste. Rien à télécharger, pas de mot de passe.</p>
         </details>
         <details>
-          <summary>Et ceux qui n'ont pas d'iPhone&nbsp;?</summary>
+          <summary>Et ceux qui n'ont pas d'iPhone&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>La carte fonctionne sur tous les téléphones&nbsp;: c'est une page web. Sur iPhone, elle s'ajoute à Apple Wallet&nbsp;; sur Android, à Google Wallet. Dans les deux cas en un geste, sans appli.</p>
         </details>
         <details>
-          <summary>Il faut brancher quelque chose sur ma caisse&nbsp;?</summary>
+          <summary>Il faut brancher quelque chose sur ma caisse&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Non. Perify vit à côté de votre caisse, sur votre téléphone. Aucune installation, aucun logiciel à faire cohabiter avec le vôtre.</p>
         </details>
         <details>
-          <summary>Qui paie les cadeaux&nbsp;?</summary>
+          <summary>Qui paie les cadeaux&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Vous, et c'est vous qui les choisissez&nbsp;: un café, un croissant, une remise. Vous fixez aussi le nombre de passages pour y arriver. Perify ne décide pas à votre place.</p>
         </details>
         <details>
-          <summary>Combien ça coûte&nbsp;?</summary>
+          <summary>Combien ça coûte&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Il y a des frais d'installation — mise en service, réglage de vos récompenses, présentoir de comptoir qui devient le vôtre — puis un abonnement mensuel. Les chiffres, je préfère vous les donner de vive voix, en regardant votre commerce. Et vous commencez par quatorze jours d'essai gratuit.</p>
         </details>
         <details>
-          <summary>Et après les 14 jours&nbsp;?</summary>
+          <summary>Et après les 14 jours&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Si vous continuez, l'abonnement court douze mois, sans reconduction automatique&nbsp;: à l'échéance, rien ne se renouvelle sans votre accord. Si vous arrêtez pendant l'essai, rien n'est dû, je reprends le présentoir, et les données de vos clients sont supprimées.</p>
         </details>
         <details>
-          <summary>Et mes données clients, dans tout ça&nbsp;?</summary>
+          <summary>Et mes données clients, dans tout ça&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Elles vous appartiennent. Perify les traite pour votre compte, jamais pour le sien&nbsp;: pas de revente, pas de réutilisation pour un autre commerce. Si vous partez, vous repartez avec votre fichier, et vos données sont supprimées des serveurs de Perify. Un contrat RGPD est signé avec chaque commerçant.</p>
         </details>
         <details>
-          <summary>En combien de temps c'est en service&nbsp;?</summary>
+          <summary>En combien de temps c'est en service&nbsp;?<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
           <p>Sous quinze jours après la signature, souvent moins. Je viens sur place installer le présentoir, régler vos récompenses et vos couleurs, et vous montrer le geste en caisse — il prend cinq secondes. L'essai de quatorze jours démarre ce jour-là.</p>
         </details>
       </div>
@@ -270,26 +267,36 @@
   </section>
 
   <div class="suite">
-    <div class="wrap">
+    <div class="container">
       <a class="suite-lien" href="/"><span class="suite-texte">Retour à l'accueil</span><span class="suite-fleche" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </main>
 
 <footer class="pied">
-  <div class="wrap">
-    <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
-    <nav class="pied-liens" aria-label="Pied de page">
-      <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
-      <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
-      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
-      <a href="#essai-demande">Essai gratuit</a><span aria-hidden="true">·</span>
-      <a href="/aide">Aide</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
-      <a href="/mentions-legales#donnees">Données personnelles</a>
+  <div class="container pied-grille">
+    <div class="pied-marque">
+      <img src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
+      <p>La carte de fidélité qui vit dans le téléphone de vos clients.</p>
+    </div>
+    <nav class="pied-nav" aria-label="Pied de page">
+      <ul>
+        <li><a href="/comment-ca-marche">Comment ça marche</a></li>
+        <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
+        <li><a href="/calculateur">Faites le calcul</a></li>
+        <li><a href="/essai-gratuit">Essai gratuit</a></li>
+      </ul>
+      <ul class="pied-liens">
+        <li><a href="/aide">Aide</a></li>
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/mentions-legales#donnees">Données personnelles</a></li>
+      </ul>
     </nav>
   </div>
+  <div class="container">
+    <p class="pied-legal">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
+  </div>
 </footer>
+
 </body>
 </html>

@@ -1,598 +1,361 @@
 /* ─────────────────────────────────────────────────────────────
-   PERIFY — site.css, le SOCLE COMMUN des quatre pages (26/09/2026)
-   Refonte en 4 pages (cahier IMAGE/design-kit/REFONTE-4-PAGES.md).
-   Base : le <style> de l'ancienne page d'accueil (direction B, 24/09).
+   PERIFY — site.css, LA feuille commune de perify.app
+   Refonte A du 30/10/2026 (direction choisie par Valentin : « clair, au plus près
+   de TheGiftsClub », maquette validée sur perify.app/maquette-a).
 
-   Nuit #1B1F3B · orange #FF6B2C · orange clair #FF8A4C en accent sur nuit ·
-   orange texte #C2410C sur blanc · blocs blancs. PLUS DE JAUNE.
-   Polices : Plus Jakarta Sans 700/800 (titres, chiffres), Inter (texte).
+   Toutes les pages chargent cette feuille, puis la leur s'il y en a une :
+     index.html               accueil.css
+     comment-ca-marche.html   comment.css
+     ce-que-vous-pilotez.html pilotez.css
+     essai-gratuit.html       essai.css
+     calculateur.html         calculateur.css
+     aide.html, mentions-legales.html : rien d'autre (§ 12 ci-dessous)
+   Mode d'emploi et HTML prêt à copier : _GABARIT.md.
 
-   Chaque page charge : site.css + sa feuille (accueil.css, comment.css,
-   pilotez.css, essai.css) + site.js (defer). Mode d'emploi : _GABARIT.md.
+   Le langage, en une phrase : une seule feuille claire (#F8F9FE), encadrée par la
+   nuit (#1B1F3B) en haut (la barre) et en bas (le pied) ; l'orange #FF6B2C ne sert
+   qu'au bouton principal, UN par écran, texte nuit (5,7:1). Pas de crème, pas de
+   halo, pas de grain, pas de mot surligné, pas d'étiquette en capitales espacées,
+   pas de mot qui défile, pas de bordure lumineuse. Titres en Plus Jakarta Sans 800,
+   texte en Inter, sans lettres serrées (les mots ne se collent pas).
 
-   ⚠️ L'en-tête, le menu téléphone et le pied de page sont COPIÉS dans
-   doc.css (aide, mentions légales) : toute retouche ici s'y reporte.
-
-   V3 (28/09, décisions de Valentin) : l'ORANGE EST RÉSERVÉ AUX BOUTONS —
-   étiquettes, mots-clés des titres, mot qui défile, « Suite : » et mots
-   forts ne sont plus orange (seul le marqueur d'un mot par page le reste) ;
-   les sections alternent BLANC / CRÈME, la nuit ne garde que le haut de
-   page, le bloc final « Essai » et le pied ; sur ordinateur, le bouton du
-   menu passe en contour quand un autre bouton orange plein est à l'écran.
-
-   Règle d'or : rien ne reste invisible si le JavaScript ne tourne pas.
-     html.js        posé par la ligne de script du <head> (voir _GABARIT.md)
-     html.site-pret posé par site.js quand il démarre
-   Sans .js : tout est visible d'emblée. Avec .js mais sans site.js
-   (fichier introuvable) : le « filet » montre tout au bout de 3 s.
+   Sommaire : 1 polices · 2 jetons · 3 socle · 4 boutons et liens · 5 en-tête et menu ·
+   6 sections et chapeau de page · 7 listes, pastilles, légendes · 8 bloc « Essai » et
+   « Suite » · 9 questions · 10 champs · 11 pied · 12 pages de texte · 13 tailles d'écran ·
+   14 mouvement réduit
    ───────────────────────────────────────────────────────────── */
 
-/* ── polices (07/10/2026) ──────────────────────────────────
-   Servies par perify.app, plus par Google : avant, chaque visite envoyait l'adresse IP du
-   visiteur à Google (audit légal du 07/10, point 10). Ce sont les MÊMES fichiers que Google
-   Fonts servait (Inter v20, Plus Jakarta Sans v12, polices variables, sous-ensembles latin
-   + latin-ext) et les MÊMES déclarations, dans le même ordre : seules les adresses changent,
-   l'aspect est identique. Licence SIL OFL 1.1 : polices/OFL-*.txt (à garder avec les fichiers).
-   Le nom de chaque fichier porte sa version et vercel.json les met en cache un an
-   (« immutable ») : ne jamais remplacer un fichier sous le même nom, une nouvelle version
-   prend un nouveau nom. Bloc RECOPIÉ dans doc.css (aide, mentions) : le reporter là-bas. */
-@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(polices/inter-v20-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(polices/inter-v20-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(polices/inter-v20-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(polices/inter-v20-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(polices/inter-v20-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(polices/inter-v20-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(polices/inter-v20-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(polices/inter-v20-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* ── 1. polices ────────────────────────────────────────────
+   Servies par perify.app (audit légal du 07/10/2026, point 10), jamais par Google : mêmes
+   fichiers que Google Fonts (Inter v20, Plus Jakarta Sans v12, polices variables, latin +
+   latin-ext), licence SIL OFL dans polices/OFL-*.txt. Le nom de chaque fichier porte sa
+   version (cache d'un an « immutable », vercel.json) : une nouvelle version prend un nouveau nom. */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(polices/inter-v20-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(polices/inter-v20-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700 800;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700 800;font-display:swap;src:url(polices/plus-jakarta-sans-v12-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
-/* ── 0. jetons ─────────────────────────────────────────── */
+/* ── 2. jetons ─────────────────────────────────────────────
+   Ceux de la maquette A, en hexadécimal (la maquette les écrivait en OKLCH : même rendu,
+   mais un téléphone ancien qui ne connaît pas OKLCH n'afficherait aucune couleur).
+   Contrastes mesurés : texte nuit 2 sur le fond 9,0:1 ; texte gris 5,3:1 (4,97:1 sur la
+   bande teintée) ; nuit sur orange 5,7:1 ; orange texte #C2410C 4,9:1 ; sur la nuit,
+   texte clair 2 9,2:1 et orange clair 6,9:1. */
 :root{
-  --nuit:#1B1F3B; --nuit-2:#232849; --nuit-3:#2A3057;
-  --orange:#FF6B2C; --orange-2:#E85A1B; --orange-clair:#FF8A4C; --accent:#FF8A4C; --orange-texte:#C2410C;
-  --blanc:#FFFFFF; --creme:#FFF8F0; --encre:#1B1F3B; --gris:#3F4460; --blanc-chaud:#FFE9DA;
-  --texte:#F4F5FB; --texte-doux:#C4C8DE; --ligne:rgba(255,255,255,.10); --ligne-claire:#E7E8F0; --vert:#22C55E;
-  --rayon:20px; --gutter:clamp(16px,4.6vw,20px); --max:1120px; --entete:68px;
-  --titre:'Plus Jakarta Sans',Inter,-apple-system,BlinkMacSystemFont,sans-serif;
-  --texte-ff:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --sortie:cubic-bezier(.16,1,.3,1);
+  --space-3xs:2px;--space-2xs:4px;--space-xs:8px;--space-sm:12px;--space-md:16px;--space-lg:24px;--space-xl:40px;--space-2xl:64px;--space-3xl:96px;
+  --text-sm:.875rem;--text-md:1rem;--text-lg:1.125rem;
+  --text-display:clamp(2.25rem,2.6vw + 1rem,3.75rem);   /* le titre de l'accueil */
+  --text-page:clamp(2rem,2vw + 1.1rem,3.125rem);       /* le titre des autres pages */
+  --text-section:clamp(1.75rem,1.4vw + 1.2rem,2.625rem);
+  --text-title:clamp(1.1875rem,.4vw + 1rem,1.375rem);
+  --text-lead:clamp(1.0625rem,.35vw + .95rem,1.25rem);
+  --ease-out:cubic-bezier(.16,1,.3,1);--ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-micro:120ms;--dur-short:220ms;
+  --container:1440px;--gutter:64px;--gap-columns:32px;--section-gap-s:96px;--section-gap:128px;
+  --z-raised:10;--z-entete:100;
+
+  --color-paper:#F8F9FE;     /* le fond unique des pages */
+  --color-paper-2:#F0F2FC;   /* la bande teintée (une par page au plus) et les cadres des visuels */
+  --color-paper-3:#FDFDFF;   /* les cartes posées sur le fond (formulaire, résultats, morceaux de carte) */
+  --color-ink:#1B1F3B;       /* la nuit : textes, barre du haut, pied */
+  --color-ink-2:#3F4460;     /* texte courant secondaire */
+  --color-muted:#636780;     /* légendes, notes */
+  --color-rule:#DFE1E9;      /* filets */
+  --color-rule-2:#CED0DD;    /* bordures des champs et des pastilles */
+  --color-accent:#FF6B2C;    /* réservé au bouton principal */
+  --color-accent-hover:#FF8A4C;
+  --color-accent-ink:#1B1F3B;/* texte nuit sur orange, 5,7:1 */
+  --color-orange-texte:#C2410C; /* erreurs, focus : 4,9:1 sur le fond */
+  --color-focus:#C2410C;
+  --color-focus-nuit:#FF8A4C;
+  --color-anneau:#E6E9F6;    /* liseré lavande des morceaux de carte */
+  --color-anneau-2:#FEE8DB;  /* liseré pêche (morceaux, anneau du bouton principal) */
+  --color-nuit-2:#282C4B;
+  --color-on-nuit:#F3F5FB;
+  --color-on-nuit-2:#BFC3D5;
+  --color-rule-nuit:#363B55;
+  --color-ombre:rgba(27,31,59,.22);
+  --color-ombre-2:rgba(27,31,59,.12);
+
+  --font-display:'Plus Jakarta Sans','Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --radius-control:12px;--radius-card:22px;--radius-media:20px;--radius-pill:999px;
+  /* titres : un très léger resserrement, compensé entre les mots (jamais de mots collés) */
+  --tracking-display:-.012em;--word-display:.05em;
 }
 
-/* ── 1. base ───────────────────────────────────────────── */
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--entete) + 16px)}
-/* 29/10/2026 — filet : Safari sur iPhone ne tient pas compte du « overflow-x:hidden » de body pour la page ; un bloc
-   trop large faisait rétrécir TOUTE la page (le « zoom tout seul » du 29/10, cause : comment.css › .etapes).
-   clip (et non hidden) : ne crée pas de zone de défilement, l'en-tête collant reste collant. */
-html{overflow-x:clip}
-body{margin:0;background:var(--nuit);color:var(--texte);font-family:var(--texte-ff);font-size:17px;line-height:1.62;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden}
-/* grain + halos, comme sur la carte */
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
-body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(52% 40% at 12% 0%,rgba(255,107,44,.30),transparent 70%),
-             radial-gradient(45% 38% at 100% 100%,rgba(255,138,76,.10),transparent 70%)}
-a{color:inherit}
-img{max-width:100%;height:auto;display:block}
-/* text-wrap:balance : jamais un mot seul sur la dernière ligne d'un titre (sans effet ailleurs) */
-h1,h2,h3{font-family:var(--titre);font-weight:800;letter-spacing:-.02em;line-height:1.06;margin:0;text-wrap:balance}
-h1{font-size:clamp(38px,5.8vw,62px)}
-h2{font-size:clamp(28px,4.2vw,46px)}
-h3{font-size:clamp(20px,2.3vw,25px);line-height:1.2;font-weight:700}
-p{margin:0 0 1em}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter);position:relative;z-index:1}
-main{display:block}
-section{position:relative;z-index:1}
-
-/* texte réservé aux lecteurs d'écran */
-.lecteur{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
-  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
-
-/* focus visible partout (2 px orange clair ; orange texte sur blanc) */
-:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.blanc :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible,
-.creme :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline-color:var(--orange-texte)}
-
-/* ── 2. étiquettes, titres, chapôs ─────────────────────── */
-/* V3 (28/09) : plus d'orange — gris clair sur la nuit (10:1), gris texte sur blanc/crème (9,6:1).
-   L'orange ne sert plus qu'aux boutons : l'œil va droit au bouton d'essai. */
-.eti{font-family:var(--texte-ff);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--texte-doux);margin:0 0 14px}
-.blanc .eti,.creme .eti{color:var(--gris)}
-/* téléphone : jamais sous 12 px pour des capitales (V3) ; l'espacement se resserre à la place */
-@media(max-width:430px){.eti{font-size:12px;letter-spacing:.1em}}
-.titre-bloc{max-width:26ch}
-.lead{font-size:clamp(17px,1.9vw,19.5px);color:var(--texte-doux);max-width:34em;margin-top:22px}
-.intro-bloc{color:var(--texte-doux);max-width:58ch;margin-top:16px;font-size:clamp(16.5px,1.7vw,18px)}
-.blanc .intro-bloc,.creme .intro-bloc,.blanc .lead,.creme .lead{color:var(--gris)}
-.doux{color:var(--texte-doux)}
-/* V3 (28/09) : le mot fort reste en gras, de la couleur du texte (plus d'orange) */
-.fort{color:var(--texte);font-weight:700}
-.blanc .fort,.creme .fort{color:var(--encre)}
-/* 27/09 — le MOT-CLÉ d'un titre de section : <h2>… <span class="mot-cle">quatorze jours</span> …</h2>.
-   V3 (28/09, décision de Valentin : l'orange est réservé aux boutons) : il n'est PLUS coloré, il
-   prend la couleur du titre. Les <span class="mot-cle"> restent dans les pages (rien à retirer) :
-   une seule ligne à changer ici pour les recolorer si on y revient.
-   Ce n'est PAS le marqueur (.marque : la barre orange, une seule par page, sur le h1, qui reste). */
-/* nowrap : le groupe n'est jamais coupé en deux lignes (« quatorze / jours ») — garder
-   des groupes courts (≤ 20 signes) : ils tiennent à 375 px même à la plus grande taille de h2 */
-.mot-cle{color:inherit;white-space:nowrap}
-.centre{text-align:center}
-.centre .titre-bloc,.centre .intro-bloc,.centre .lead{margin-left:auto;margin-right:auto}
-
-/* ── 3. sections ───────────────────────────────────────── */
-.bloc{padding:clamp(56px,8vw,104px) 0}
-.blanc{background:var(--blanc);color:var(--encre)}
-.creme{background:var(--creme);color:var(--encre)}
-.blanc h2,.blanc h3,.creme h2,.creme h3{color:var(--encre)}
-.blanc p,.creme p{color:var(--gris)}
-/* 28/09 (contrôle V3) : le crème et le blanc ne diffèrent que de 1,05:1 — sur beaucoup d'écrans, deux
-   bandes claires qui se suivent se fondaient l'une dans l'autre. Un filet gris clair marque la limite
-   (le crème n'est pas foncé : la teinte reste celle choisie par Valentin). */
-.blanc + .creme,.creme + .blanc{border-top:1px solid var(--ligne-claire)}
-
-/* chapeau des pages 2 à 4 : moins haut que le héros d'accueil, halo orange */
-.page-tete{position:relative;z-index:1;padding:clamp(44px,7vw,84px) 0 clamp(30px,5vw,56px);overflow:hidden}
-/* Le halo ne doit pas être tranché net au bas du chapeau (ligne visible quand le chapeau est
-   court) : on le laisse descendre derrière la section suivante. On ne coupe que sur les côtés
-   (aucun défilement horizontal) et au-dessus (rien sous l'en-tête). Vieux navigateurs sans
-   overflow:clip : on garde overflow:hidden ci-dessus. */
-@supports (overflow:clip){
-  .page-tete{overflow:visible;overflow-x:clip;clip-path:inset(0 0 -100vh 0)}
-}
-/* centre du halo à 0,22 (et non 0,30) : l'étiquette orange clair posée dessus reste ≥ 4,5:1,
-   même additionnée au halo fixe de body::after (mesuré à 1024-1920 px, pages 2 à 4) */
-.page-tete::before{content:"";position:absolute;z-index:0;pointer-events:none;left:-10%;top:-40%;
-  width:min(980px,130vw);height:min(620px,120vw);border-radius:50%;
-  background:radial-gradient(closest-side,rgba(255,107,44,.22),rgba(255,107,44,.08) 55%,transparent 72%);filter:blur(8px)}
-.page-tete h1{font-size:clamp(34px,5.2vw,56px);max-width:20ch}
-/* text-wrap:pretty (28/09) : pas de mot seul sur la dernière ligne d'un chapô (« remplacez-les. » du calculateur) */
-.page-tete .lead{max-width:40em;text-wrap:pretty}
-
-/* ── 4. boutons ────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 26px;border-radius:999px;
-  font-family:var(--texte-ff);font-weight:700;font-size:16px;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;
-  border:1.5px solid transparent;transition:transform .18s ease,box-shadow .25s ease,background .2s,border-color .2s}
-/* Texte nuit sur orange (le blanc ne fait que 2,84:1 — rapport d'accessibilité du 24/09) :
-   5,7:1 sur #FF6B2C, 4,5:1 au bout du dégradé (#E85A1B) ; sous le texte des boutons, jamais
-   moins de 4,79:1 (mesuré le 26/09 sur 26 boutons). Pour 5,7:1 partout : fond uni var(--orange). */
-.btn-o{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:var(--encre);
-  box-shadow:0 12px 30px -12px rgba(255,107,44,.75)}
-.btn-o:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(255,107,44,.95)}
-.btn-ghost{background:transparent;border-color:rgba(255,255,255,.28);color:var(--texte)}
-.btn-ghost:hover{border-color:var(--accent);background:rgba(255,138,76,.08)}
-.blanc .btn-ghost,.creme .btn-ghost{border-color:rgba(27,31,59,.25);color:var(--encre)}
-.blanc .btn-ghost:hover,.creme .btn-ghost:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
-.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;transform:none}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-
-/* 27/09 — le LIEN FLÉCHÉ : un lien texte en gras, souligné orange clair, avec sa flèche SVG
-   (<a class="lien-fleche" href="…">Texte<svg …></svg></a>). Cible de 48 px. La flèche glisse
-   de 4 px au survol (vers la droite ; une page peut la faire descendre pour une flèche ↓). */
-.lien-fleche{display:inline-flex;align-items:center;gap:8px;min-height:48px;font-weight:700;font-size:16.5px;line-height:1.3;
-  color:var(--texte);text-decoration:underline;text-decoration-color:rgba(255,138,76,.55);text-decoration-thickness:2px;text-underline-offset:.22em;
-  transition:color .2s,text-decoration-color .2s}
-.lien-fleche svg{flex:none;color:var(--accent);transition:transform .25s var(--sortie)}
-.lien-fleche:hover{text-decoration-color:var(--accent)}
-.lien-fleche:hover svg{transform:translateX(4px)}
-.blanc .lien-fleche,.creme .lien-fleche{color:var(--encre);text-decoration-color:rgba(194,65,12,.5)}
-.blanc .lien-fleche svg,.creme .lien-fleche svg{color:var(--orange-texte)}
-
-/* Effet 3 — BORDURE LUMINEUSE (modèle « moving border »), sur le bouton d'essai seulement :
-   <span class="btn-lumiere"><a class="btn btn-o" href="/essai-gratuit">Essai gratuit 14 jours</a></span>
-   Un liseré de 2 px où un reflet orange clair / blanc chaud fait le tour en 3,5 s.
-   Sans @property (vieux navigateur) : le liseré reste fixe, rien ne clignote. */
-@property --angle{syntax:'<angle>';inherits:false;initial-value:0deg}
-@keyframes lumiere-tourne{to{--angle:360deg}}
-.btn-lumiere{position:relative;display:inline-flex;vertical-align:middle;border-radius:999px;padding:2px;isolation:isolate;
-  transition:transform .18s ease}
-.btn-lumiere,.btn-lumiere::before{
-  background:conic-gradient(from var(--angle),rgba(255,138,76,.32) 0turn,rgba(255,138,76,.32) .56turn,
-    var(--orange-clair) .7turn,var(--blanc-chaud) .78turn,var(--orange-clair) .86turn,rgba(255,138,76,.32) 1turn);
-  animation:lumiere-tourne 3.5s linear infinite}
-/* le même dégradé, flouté : le reflet « rayonne » un peu autour du bouton */
-.btn-lumiere::before{content:"";position:absolute;inset:-3px;z-index:-1;border-radius:inherit;filter:blur(9px);opacity:.5;pointer-events:none}
-.btn-lumiere > .btn{flex:1 1 auto}
-.btn-lumiere > .btn-o{box-shadow:none}
-.btn-lumiere:hover{transform:translateY(-2px)}
-.btn-lumiere > .btn:hover{transform:none}
-.blanc .btn-lumiere::before,.creme .btn-lumiere::before{opacity:.35}
-
-/* ── 5. en-tête + menu téléphone (collant, flou) ──────── */
-.entete{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  /* V3 : 0,94 au lieu de 0,78 — au-dessus des sections blanches, l'en-tête virait au gris-bleu délavé */
-  background:rgba(27,31,59,.94);border-bottom:1px solid var(--ligne)}
-.entete-barre{display:flex;align-items:center;gap:20px;min-height:var(--entete)}
-.entete-logo{display:inline-flex;align-items:center;min-height:48px;margin-right:auto;flex:none}
-.entete-logo img{height:26px;width:auto}
-.menu{display:flex;align-items:center;gap:26px}
-.menu-liens{display:flex;align-items:center;gap:26px;list-style:none;margin:0;padding:0}
-.menu-liens li{margin:0}
-.menu-liens a{position:relative;display:inline-flex;align-items:center;min-height:48px;text-decoration:none;
-  color:var(--texte-doux);font-size:15px;font-weight:500;transition:color .2s}
-.menu-liens a:hover{color:var(--texte)}
-/* la page courante : souligné orange clair */
-.menu-liens a[aria-current="page"]{color:var(--texte)}
-.menu-liens a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:9px;height:2px;border-radius:2px;background:var(--accent)}
-.menu .btn{min-height:48px;padding:11px 22px;font-size:15px}
-/* la page courante (page 4 : le bouton d'essai porte aria-current) : un CONTOUR orange clair,
-   plus un bouton plein — il ne mène nulle part de nouveau, et le seul bouton orange plein de
-   l'écran reste celui du formulaire (« Continuer », « Demander mon essai gratuit ») ; relecture
-   du 27/09, cahier § 0. Texte clair sur nuit, bord orange clair (6,9:1). */
-.menu .btn[aria-current="page"]{background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
-.menu .btn[aria-current="page"]:hover{background:rgba(255,138,76,.10);box-shadow:none}
-/* V3 (28/09) — ORDINATEUR : jamais deux boutons orange pleins à l'écran. Tant qu'un autre bouton
-   orange plein de la page (<main> .btn-o : haut de l'accueil, bloc final « Essai »…) est visible,
-   site.js pose .essai-cache sur l'en-tête (le même signal qui efface le bouton de la barre du
-   téléphone) : le bouton du menu passe en CONTOUR orange clair, comme celui de la page 4. Il
-   redevient plein dès que l'autre bouton sort de l'écran. Sans JS : pas de .essai-cache, plein. */
-@media(min-width:920px){
-  .menu > .btn-o{transition:transform .18s ease,box-shadow .25s ease,border-color .25s,color .25s}
-  .entete.essai-cache .menu > .btn-o:not([aria-current]){background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
-  .entete.essai-cache .menu > .btn-o:not([aria-current]):hover{background:rgba(255,138,76,.10);box-shadow:none}
-  /* sans JavaScript (28/09) : site.js ne peut pas poser .essai-cache — le bouton du menu reste en
-     contour, et le seul bouton orange plein est celui de la page (héros, bloc final « Essai »…) */
-  html:not(.js) .menu > .btn-o{background:transparent;color:var(--texte);border-color:var(--accent);box-shadow:none}
-  html:not(.js) .menu > .btn-o:hover{background:rgba(255,138,76,.10);box-shadow:none}
-}
-.menu-bouton{display:none;align-items:center;gap:9px;min-height:48px;min-width:48px;padding:0 16px 0 14px;border-radius:999px;
-  border:1.5px solid rgba(255,255,255,.24);background:transparent;color:var(--texte);cursor:pointer;
-  font-family:var(--texte-ff);font-size:16px;font-weight:600;transition:border-color .2s,background .2s}
-.menu-bouton:hover{border-color:var(--accent)}
-.menu-bouton svg{width:20px;height:20px;flex:none;overflow:visible}
-.menu-bouton svg path{transform-box:fill-box;transform-origin:center;transition:transform .25s var(--sortie),opacity .2s}
-.entete.ouvert .menu-bouton{border-color:var(--accent);background:rgba(255,138,76,.10)}
-/* les trois traits deviennent une croix */
-.entete.ouvert .menu-bouton .trait-1{transform:translateY(6px) rotate(45deg)}
-.entete.ouvert .menu-bouton .trait-2{opacity:0}
-.entete.ouvert .menu-bouton .trait-3{transform:translateY(-6px) rotate(-45deg)}
-@keyframes menu-entre{from{opacity:0;transform:translateY(-8px)}}
-
-/* 27/09 — le bouton d'essai DANS LA BARRE du téléphone (étude comparée du 27/09 : un bouton
-   d'essai toujours en haut de l'écran, sur toutes les pages). site.js le pose à gauche de
-   « Menu » (.entete-essai) sur toutes les pages sauf la page 4 (son bouton porte
-   aria-current) ; rien à écrire dans le HTML. Il vit dans l'en-tête collant : toujours à
-   portée, il ne masque jamais un contenu ni le pied de page. Sans JS : pas de bouton ajouté
-   (les liens et le bouton du menu passent déjà sous le logo). Grand écran : caché. */
-.entete-essai{display:none}
-
-@media(max-width:919.98px){
-  /* avec JavaScript : le bouton « Menu » ouvre un panneau sous l'en-tête */
-  .js .menu-bouton{display:inline-flex}
-  /* 16 px (cahier § 0 : texte ≥ 16 px sur téléphone) — tient sur une ligne de 360 à 919 px */
-  .js .entete-essai{display:inline-flex;flex:none;gap:0;min-height:48px;padding:11px 18px;font-size:16px;
-    transition:transform .18s ease,box-shadow .25s ease,opacity .25s ease,visibility 0s}
-  /* un seul bouton orange plein à l'écran : site.js pose .essai-cache sur l'en-tête tant qu'un
-     autre bouton orange plein de la page (haut de l'accueil, bloc final « Essai »…) est à
-     l'écran. visibility et non display : le bouton garde sa place (rien ne bouge dans la barre)
-     et, caché, il ne reçoit ni clic ni focus. Fondu de 0,25 s dans les deux sens. */
-  .js .entete.essai-cache .entete-essai{visibility:hidden;opacity:0;
-    transition:transform .18s ease,box-shadow .25s ease,opacity .25s ease,visibility 0s linear .25s}
-  /* le panneau ouvert ne répète pas le bouton orange déjà visible dans la barre */
-  .js .entete.a-essai .menu > .btn{display:none}
-  .js .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
-    padding:6px var(--gutter) 22px;background:var(--nuit);border-bottom:1px solid var(--ligne);
-    box-shadow:0 30px 50px -24px rgba(0,0,0,.7)}
-  .js .entete.ouvert .menu{display:flex;animation:menu-entre .22s var(--sortie)}
-  .js .menu-liens{flex-direction:column;align-items:stretch;gap:0}
-  .js .menu-liens a{display:flex;min-height:56px;font-size:17px;font-weight:600;color:var(--texte);border-bottom:1px solid var(--ligne)}
-  .js .menu-liens a[aria-current="page"]{color:var(--accent)}
-  .js .menu-liens a[aria-current="page"]::after{display:none}
-  .js .menu .btn{margin-top:18px;min-height:52px;font-size:16px}
-  /* sans JavaScript : pas de bouton, les liens passent sous le logo (rien d'inaccessible) ;
-     l'en-tête, alors haut de trois lignes, ne suit plus le défilement (il masquerait un quart de l'écran) */
-  html:not(.js) .entete{position:relative}
-  html:not(.js) .entete-barre{flex-wrap:wrap;row-gap:0;padding-bottom:10px}
-  html:not(.js) .menu{flex-wrap:wrap;gap:4px 18px;width:100%}
-  html:not(.js) .menu-liens{flex-wrap:wrap;gap:0 18px}
-}
-/* sous 480 px, le bouton de la barre dit « Essai gratuit » (« 14 jours » reste lu par les
-   lecteurs d'écran) ; sous 400 px la barre se resserre (logo + bouton + « Menu » tiennent
-   dès 360 px) ; sous 360 px, pas la place : le bouton reste dans le panneau du menu. */
-@media(max-width:479.98px){
-  .entete-essai-plus{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
-    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
-}
-@media(max-width:399.98px){
-  .entete-barre{gap:10px}
-  .js .entete-essai{padding:11px 15px}
-}
-@media(max-width:359.98px){
-  .js .entete-essai{display:none}
-  .js .entete.a-essai .menu > .btn{display:inline-flex}
-}
-
-/* ── 6. Effet 1 — le MARQUEUR (modèle « text-highlight ») ─
-   <span class="marque">mot</span> : une barre orange sous le bas des lettres,
-   derrière le texte, qui se dessine de gauche à droite quand le titre apparaît.
-   Un seul par page. Sans JS : la barre est déjà là. */
-.marque{position:relative;display:inline-block;isolation:isolate;white-space:nowrap}
-/* 28/09 (contrôle V3) : la barre passait DERRIÈRE le bas des lettres blanches (2,6:1, sous le seuil de
-   3:1 des grands titres). Elle descend et s'affine : son haut affleure la ligne de base, elle court
-   SOUS les lettres ; seuls les jambages (p, q) la traversent, leur haut reste sur la nuit. */
-.marque::before{content:"";position:absolute;z-index:-1;left:-.05em;right:-.05em;bottom:-.06em;height:.2em;border-radius:3px;
-  background:var(--orange);transform-origin:left center}
-.blanc .marque::before,.creme .marque::before{background:var(--orange-clair);opacity:.45}
-.site-pret .marque:not(.trace)::before{transform:scaleX(0)}
-.marque.trace::before{transform:scaleX(1);transition:transform .6s var(--sortie) .35s}
-
-/* ── 7. Effet 2 — le MOT QUI DÉFILE (modèle « looping words », réécrit) ─
-   Structure (voir _GABARIT.md) :
-   <span class="defile" data-defile>
-     <span class="lecteur">boulangeries, restaurants, …</span>
-     <span class="defile-mots" aria-hidden="true"><span>boulangeries</span><span>restaurants</span>…</span>
-   </span>
-   Tous les mots sont empilés dans la même case de grille : la largeur réservée est
-   celle du plus long (rien ne bouge autour), seul le premier est visible sans JS.
-   site.js ajoute la fenêtre qui défile (.defile-fenetre) et pose .defile-actif. */
-/* V3 (28/09) : le mot est de la couleur du texte (blanc sur la nuit, nuit sur blanc) ; seul son
-   cadre à quatre coins reste orange — l'orange est réservé aux boutons */
-.defile{position:relative;display:inline-grid;vertical-align:baseline;font-family:var(--titre);font-weight:800;
-  color:var(--texte);white-space:nowrap;letter-spacing:-.01em}
-.defile-mots{display:grid}
-.defile-mots > span,.defile-liste > span{padding:0 .3em;line-height:1.3}
-.defile-mots > span{grid-area:1/1;justify-self:start}
-.defile-mots > span + span,.defile-actif .defile-mots > span{visibility:hidden}
-.defile-fenetre{position:absolute;left:0;right:0;top:-.2em;bottom:-.2em;overflow:hidden;pointer-events:none;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 .26em,#000 calc(100% - .26em),transparent 100%);
-          mask-image:linear-gradient(180deg,transparent 0,#000 .26em,#000 calc(100% - .26em),transparent 100%)}
-/* 01/10 (Valentin : « trop lent », puis « diminue à 1,4 s ») : un mot toutes les 1,4 s (site.js,
-   RYTHME_DEFILE), ressort de 0,55 s au lieu de 1,1 s — chaque mot reste posé environ 0,85 s */
-.defile-liste{position:absolute;left:0;top:.2em;display:block;will-change:transform;
-  transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
-/* ressort amorti (dépasse de 9 %, revient, se pose) quand le navigateur connaît linear() */
-@supports (transition-timing-function:linear(0,1)){
-  .defile-liste{transition-timing-function:linear(0,.088,.285,.513,.722,.887,1,1.065,1.092,1.093,1.078,1.057,1.036,1.018,1.005,.996,.992,.991,.992,.994,.996,.997,.999,1,1.001,1.001,1)}
-}
-.defile-liste.sans-transition{transition:none}
-/* 1,6 em par mot (texte sur 1,3 em + 0,3 em d'écart) : le mot voisin n'affleure jamais dans la fenêtre */
-.defile-liste > span{display:block;height:1.6em}
-/* le cadre à quatre coins orange (équerres 10 px, trait 2,5 px), qui suit la largeur du mot */
-.defile::after{content:"";position:absolute;z-index:1;left:0;top:-.1em;bottom:-.1em;width:var(--cadre,100%);pointer-events:none;
-  --c:var(--orange);--e:2.5px;--l:10px;
-  background:
-    linear-gradient(var(--c),var(--c)) 0 0/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 0 0/var(--e) var(--l),
-    linear-gradient(var(--c),var(--c)) 100% 0/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 100% 0/var(--e) var(--l),
-    linear-gradient(var(--c),var(--c)) 0 100%/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 0 100%/var(--e) var(--l),
-    linear-gradient(var(--c),var(--c)) 100% 100%/var(--l) var(--e),linear-gradient(var(--c),var(--c)) 100% 100%/var(--e) var(--l);
-  background-repeat:no-repeat;transition:width .5s var(--sortie)}
-.blanc .defile,.creme .defile{color:var(--encre)}
-
-/* ── 8. Effet 4 — le COMPTEUR QUI ROULE ───────────────────
-   <b data-compte="92" data-suffixe="&nbsp;%">92&nbsp;%</b> : la valeur finale est écrite
-   dans le HTML ; site.js la fait monter de 0 à l'entrée dans l'écran. Chiffres à chasse
-   fixe, largeur réservée pendant qu'il roule. */
-[data-compte],.compte-vu{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+/* ── 3. socle ──────────────────────────────────────────────
+   overflow-x:clip (et non hidden) sur html ET body : Safari iPhone ne tient pas compte de
+   body seul et rétrécit toute la page s'il y a un débord (JOURNAL-BUGS, 29/10). */
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:var(--space-lg)}
+body{margin:0;overflow-x:clip;background:var(--color-paper);color:var(--color-ink);font-family:var(--font-body);font-size:var(--text-md);
+  line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none}
+::selection{background:var(--color-anneau-2);color:var(--color-ink)}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.16em}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:800;letter-spacing:var(--tracking-display);word-spacing:var(--word-display);
+  overflow-wrap:break-word;min-width:0;text-wrap:balance}
+h2{font-size:var(--text-section);line-height:1.12}
+h3{font-size:var(--text-title);line-height:1.25}
+p{margin:0;text-wrap:pretty}
+ul,ol{margin:0;padding:0;list-style:none}
+figure{margin:0}
+img,video{max-width:100%;height:auto;display:block}
+svg{display:block}
+strong{font-weight:700}
+.container,.wrap{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
+.insecable{white-space:nowrap}
+/* lu par les lecteurs d'écran seulement */
+.visually-hidden,.lecteur{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+/* les nombres de calcul.js (PerifyCompteur) : chiffres de même largeur */
+[data-compte],.compte-vu{font-variant-numeric:tabular-nums}
 .compte-vu{display:inline-block;white-space:nowrap}
 
-/* ── 9. Effet 5 — la BANDE DES MÉTIERS ────────────────────
-   Deux copies de la liste (la seconde aria-hidden) qui défilent de droite à gauche,
-   fondu aux deux bords, pause au survol. Pure CSS : tourne aussi sans JS. */
-.bande{position:relative;z-index:1;overflow:hidden;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);padding:19px 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.bande-piste{display:flex;width:max-content;animation:bande-defile 30s linear infinite}
-.bande:hover .bande-piste{animation-play-state:paused}
-.bande-liste{display:flex;flex:none;align-items:center;list-style:none;margin:0;padding:0}
-.bande-liste li{display:flex;align-items:center;margin:0;white-space:nowrap;font-family:var(--texte-ff);font-weight:600;font-size:14px;line-height:1.2;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--texte-doux)}
-.bande-liste li::after{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--orange);margin:0 26px 0 calc(26px - .16em)}
-@keyframes bande-defile{to{transform:translateX(-50%)}}
-.blanc .bande,.creme .bande{border-color:var(--ligne-claire)}
-.blanc .bande-liste li,.creme .bande-liste li{color:var(--gris)}
+/* ── 4. boutons et liens ───────────────────────────────────
+   .btn-plein   le bouton principal, orange, texte nuit : UN SEUL à l'écran
+   .btn-contour sur la nuit (barre du haut) : contour orange, texte clair
+   .btn-second  sur le fond clair : contour nuit, texte nuit (Retour, calculateur…)
+   .lien        un lien souligné dans le texte */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);min-height:52px;padding:0 var(--space-lg);margin:0;
+  border:2px solid transparent;border-radius:var(--radius-control);background:none;font-family:var(--font-body);font-size:var(--text-lg);
+  font-weight:600;line-height:1.1;text-align:center;text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:background-color var(--dur-micro) var(--ease-out),border-color var(--dur-micro) var(--ease-out),transform var(--dur-micro) var(--ease-out)}
+.btn:active{transform:translateY(1px)}
+.btn-plein{background:var(--color-accent);color:var(--color-accent-ink);box-shadow:0 0 0 4px var(--color-anneau-2)}
+.btn-plein:hover{background:var(--color-accent-hover)}
+.btn-contour{min-height:48px;padding:0 var(--space-md);border-color:var(--color-accent);color:var(--color-on-nuit);font-size:var(--text-md)}
+.btn-contour:hover{background:var(--color-nuit-2)}
+.btn-second{border-color:var(--color-ink);color:var(--color-ink);background:transparent}
+.btn-second:hover{background:var(--color-paper-3)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.lien{font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;
+  transition:text-decoration-color var(--dur-micro) var(--ease-out)}
+.lien:hover{text-decoration-color:var(--color-focus)}
+.lien:active{color:var(--color-ink-2)}
+/* le lien fléché (« Les outils à votre disposition », « Faire ma demande »…) */
+.lien-fleche{display:inline-flex;align-items:center;gap:var(--space-xs);min-height:48px;font-weight:600;text-decoration:underline;
+  text-decoration-thickness:1px;text-underline-offset:.2em;transition:text-decoration-color var(--dur-micro) var(--ease-out)}
+.lien-fleche:hover{text-decoration-color:var(--color-focus)}
+.lien-fleche svg{flex:none}
 
-/* ── 10. listes à coches ───────────────────────────────── */
-.liste{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
-.liste li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;margin:0}
-.liste svg{flex:none;margin-top:5px}
-/* V3 : sur blanc ou crème, les coches SVG écrites en orange clair (#FF8A4C, 2,3:1 sur blanc)
-   passent en orange texte (#C2410C) — le CSS l'emporte sur l'attribut stroke */
-.blanc .liste svg path[stroke="#FF8A4C"],.creme .liste svg path[stroke="#FF8A4C"]{stroke:var(--orange-texte)}
-/* variante sans SVG à recopier : la coche est dessinée par la feuille */
-.coches li::before{content:"";flex:none;width:16px;height:16px;margin-top:.28em;background:var(--accent);
-  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
-          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.blanc .coches li::before,.creme .coches li::before{background:var(--orange-texte)}
+/* ── 5. en-tête et menu ────────────────────────────────────
+   La barre nuit, identique sur toutes les pages (HTML : _GABARIT.md § 2). Ordinateur : les
+   trois liens et « Essai gratuit 14 jours » en contour. Sous 60rem : le logo, « Essai gratuit »
+   (toujours visible, 27/09) et « Menu », un <details> qui s'ouvre SANS script ; site.js le
+   referme avec Échap, un clic dehors ou un lien. */
+.entete{position:relative;z-index:var(--z-entete);background:var(--color-ink);color:var(--color-on-nuit)}
+.entete :focus-visible,.pied :focus-visible{outline-color:var(--color-focus-nuit)}
+.entete-barre{display:flex;align-items:center;gap:var(--space-lg);min-height:72px}
+.entete-logo{display:block;flex-shrink:0;margin-right:auto;border-radius:var(--space-2xs)}
+.entete-logo img{width:auto;height:34px}
+.entete-nav{display:flex;align-items:center}
+.nav-liens{display:flex;gap:var(--space-lg)}
+.nav-liens a{position:relative;display:inline-flex;align-items:center;min-height:48px;color:var(--color-on-nuit-2);font-weight:600;
+  text-decoration:none;transition:color var(--dur-micro) var(--ease-out)}
+.nav-liens a:hover{color:var(--color-on-nuit)}
+.nav-liens a[aria-current="page"]{color:var(--color-on-nuit)}
+.nav-liens a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;border-radius:2px;background:var(--color-on-nuit-2)}
+.entete-essai{gap:0;margin-left:var(--space-md)}
+.entete-essai[aria-current="page"]{background:var(--color-nuit-2)}
+.nav-tel{display:none}
+.nav-tel summary{display:inline-flex;align-items:center;gap:var(--space-xs);min-height:48px;padding:0 var(--space-md);
+  border:1px solid var(--color-rule-nuit);border-radius:var(--radius-control);color:var(--color-on-nuit);font-weight:600;cursor:pointer;
+  list-style:none;transition:background-color var(--dur-micro) var(--ease-out)}
+.nav-tel summary::-webkit-details-marker{display:none}
+.nav-tel summary:hover,.nav-tel[open] summary{background:var(--color-nuit-2)}
+.nav-tel summary svg{flex:none}
+.nav-tel .trait-croix{display:none}
+.nav-tel[open] .trait-menu{display:none}
+.nav-tel[open] .trait-croix{display:inline}
+.nav-tel:not([open]) .nav-tel-panneau{display:none}
+.nav-tel-panneau{position:absolute;inset-inline:0;top:100%;padding:var(--space-xs) var(--gutter) var(--space-lg);background:var(--color-ink);
+  border-top:1px solid var(--color-rule-nuit);box-shadow:0 24px 40px -24px rgba(6,8,24,.6)}
+.nav-tel-liens{display:grid;gap:var(--space-2xs)}
+.nav-tel-liens a:not(.btn){display:flex;align-items:center;min-height:52px;color:var(--color-on-nuit);font-size:var(--text-lg);font-weight:600;
+  text-decoration:none;border-bottom:1px solid var(--color-rule-nuit)}
+.nav-tel-liens a[aria-current="page"]{text-decoration:underline;text-underline-offset:.3em;text-decoration-color:var(--color-on-nuit-2)}
+.nav-tel-liens .btn{margin-top:var(--space-md);width:100%;min-height:52px}
 
-/* ── 11. bloc final « Essai » (pages 1, 2, 3) ─────────── */
-.essai-final{padding:clamp(56px,8vw,100px) 0 clamp(44px,6vw,72px)}
-.essai-carte{position:relative;overflow:hidden;max-width:900px;margin:0 auto;text-align:center;
-  padding:clamp(36px,6vw,68px) clamp(22px,5vw,64px);border-radius:28px;border:1px solid rgba(255,138,76,.28);
-  background:radial-gradient(90% 120% at 50% 0%,rgba(255,107,44,.20),transparent 62%),var(--nuit-2);
-  box-shadow:0 40px 80px -50px rgba(0,0,0,.8)}
-/* le dégradé du haut est à 0,20 : l'étiquette orange clair posée dessus reste ≥ 4,5:1 */
-.essai-carte .eti{margin-bottom:16px}
-.essai-carte h2{max-width:20ch;margin:0 auto}
-/* :not(.eti) — l'étiquette « Essai gratuit » garde son allure d'étiquette (orange clair, petites
-   capitales) : sans lui, ce sélecteur, plus précis que « .eti », la repeignait en gris et en 18 px */
-.essai-carte p:not(.eti){color:var(--texte-doux);max-width:54ch;margin:18px auto 30px;font-size:clamp(16.5px,1.7vw,18px)}
-.essai-carte p:not(.eti):last-child{margin-bottom:0}
+/* ── 6. sections et chapeau de page ────────────────────────
+   .section          une bande de page (le fond reste le fond de la page)
+   .section.teinte   LA bande teintée de la page (une au plus par page)
+   .section.filet    un filet au-dessus, pour séparer deux sections sur le même fond
+   .page-tete        le haut des pages intérieures : .page-nom (le nom de la page, en petit,
+                     casse normale), h1, .chapo */
+.section{padding-block:var(--section-gap)}
+.section.teinte{background:var(--color-paper-2)}
+.section.filet{border-top:1px solid var(--color-rule)}
+.section-tete{max-width:46rem;margin-bottom:var(--space-2xl)}
+.section-tete.centre{margin-inline:auto;text-align:center}
+.section-tete .chapo{margin-top:var(--space-md)}
+.chapo{font-size:var(--text-lead);line-height:1.55;color:var(--color-ink-2)}
+.page-tete{padding-block:var(--space-2xl) var(--space-xl)}
+.page-nom,.mono{margin:0 0 var(--space-md);font-size:var(--text-md);font-weight:600;line-height:1.3;color:var(--color-muted)}
+.page-tete h1{max-width:22ch;font-size:var(--text-page);line-height:1.08}
+.page-tete .chapo{margin-top:var(--space-lg);max-width:44rem}
+/* le cadre des visuels : une plaque teintée aux coins ronds, le produit posé dessus */
+.cadre-visuel{display:grid;place-items:center;min-width:0;padding:var(--space-xl);border-radius:var(--radius-card);background:var(--color-paper-2)}
+.cadre-visuel img{filter:drop-shadow(0 24px 30px var(--color-ombre-2))}
 
-/* ── 12. lien « Suite » en bas de page ────────────────── */
-.suite{position:relative;z-index:1;border-top:1px solid var(--ligne)}
-.suite-lien{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(34px,6vw,64px) 0;
-  text-decoration:none;color:var(--texte);font-family:var(--titre);font-weight:800;letter-spacing:-.02em;line-height:1.1;
-  font-size:clamp(26px,4.4vw,48px)}
-/* V3 (28/09) : « Suite : » en gris clair (plus d'orange), la destination reste en blanc */
-.suite-mot{color:var(--texte-doux)}
-/* 26/09 — pas de mot seul sur la 2e ligne du lien « Suite » ni d'une question, pas de coupure au trait d'union */
-.suite-lien > span:first-child,.faq summary{text-wrap:balance}
-.insecable{white-space:nowrap}
-.suite-fleche{flex:none;display:grid;place-items:center;width:clamp(52px,7vw,76px);height:clamp(52px,7vw,76px);border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.26);transition:transform .25s var(--sortie),background .2s,border-color .2s,color .2s}
-.suite-fleche svg{width:42%;height:42%}
-.suite-lien:hover .suite-fleche{transform:translateX(6px);background:var(--orange);border-color:var(--orange);color:var(--encre)}
-.suite-lien:hover .suite-texte{text-decoration:underline;text-decoration-color:rgba(255,138,76,.55);text-decoration-thickness:2px;text-underline-offset:.16em}
+/* ── 7. listes, pastilles, légendes ────────────────────────
+   .liste       une liste cochée (la coche est dessinée par la feuille, en nuit)
+   .pastille    une courte indication en casse normale (« Nouveau », « Sur iPhone »…)
+   .legende     « Données de démonstration. » sous une capture chiffrée */
+.liste{display:grid;gap:var(--space-sm);margin-top:var(--space-lg)}
+.liste li{position:relative;padding-left:32px;color:var(--color-ink-2);line-height:1.5}
+.liste li::before{content:"";position:absolute;left:2px;top:.22em;width:20px;height:20px;border-radius:50%;background:var(--color-anneau)}
+.liste li::after{content:"";position:absolute;left:9px;top:calc(.22em + 5px);width:5px;height:9px;border:solid var(--color-ink);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.pastille{display:inline-flex;align-items:center;min-height:30px;padding:var(--space-2xs) var(--space-sm);border:1px solid var(--color-rule-2);
+  border-radius:var(--radius-pill);background:var(--color-paper-3);color:var(--color-ink-2);font-size:var(--text-sm);font-weight:600;line-height:1.2}
+.legende{margin-top:var(--space-md);font-size:var(--text-sm);color:var(--color-muted)}
 
-/* ── 13. questions fréquentes (details/summary) ───────── */
-.faq{margin-top:38px;border-top:1px solid var(--ligne);max-width:820px}
-.faq details{border-bottom:1px solid var(--ligne)}
-.faq summary{list-style:none;cursor:pointer;min-height:48px;padding:20px 44px 20px 0;position:relative;font-family:var(--titre);
-  font-size:clamp(17.5px,2vw,20px);font-weight:700;line-height:1.3}
-.faq summary::-webkit-details-marker{display:none}
-/* 27/09 — la question survolée passe en orange clair (orange texte sur blanc) : on voit ce qui s'ouvre */
-.faq summary{transition:color .2s}
-.faq summary:hover{color:var(--accent)}
-.blanc .faq summary:hover,.creme .faq summary:hover{color:var(--orange-texte)}
-.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:var(--texte-ff);font-size:26px;
-  line-height:1;color:var(--accent);transition:transform .25s}
-.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-.faq details p{color:var(--texte-doux);padding-right:40px;margin:-4px 0 20px}
-.blanc .faq,.blanc .faq details,.creme .faq,.creme .faq details{border-color:var(--ligne-claire)}
-.blanc .faq summary::after,.creme .faq summary::after{color:var(--orange-texte)}
-.blanc .faq details p,.creme .faq details p{color:var(--gris)}
+/* ── 8. le bloc « Essai » de fin de page, et « Suite » ─────
+   Une plaque teintée au milieu de la page, le seul bouton orange de l'écran.
+   « Suite » : la ligne qui mène à la page suivante, au-dessus du pied. */
+.essai-final{padding-block:var(--section-gap-s)}
+.essai-final-cadre{display:grid;justify-items:center;gap:var(--space-md);padding:var(--space-2xl) var(--space-xl);border-radius:var(--radius-card);
+  background:var(--color-paper-2);text-align:center}
+.essai-final-cadre h2{max-width:22ch}
+.essai-final-cadre p{max-width:40rem;font-size:var(--text-lead);color:var(--color-ink-2)}
+.essai-final-cadre .btn{margin-top:var(--space-md)}
+.suite{border-top:1px solid var(--color-rule)}
+.suite-lien{display:flex;align-items:center;justify-content:space-between;gap:var(--space-lg);min-height:96px;padding-block:var(--space-lg);
+  font-family:var(--font-display);font-size:var(--text-title);font-weight:800;letter-spacing:var(--tracking-display);word-spacing:var(--word-display);
+  text-decoration:none}
+.suite-mot{color:var(--color-muted);font-family:var(--font-body);font-weight:600;letter-spacing:0;word-spacing:0}
+.suite-fleche{display:inline-grid;place-items:center;flex:none;width:48px;height:48px;border:1px solid var(--color-rule-2);border-radius:50%;
+  transition:background-color var(--dur-micro) var(--ease-out),border-color var(--dur-micro) var(--ease-out)}
+.suite-fleche svg{width:20px;height:20px}
+.suite-lien:hover .suite-texte{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.suite-lien:hover .suite-fleche{border-color:var(--color-ink);background:var(--color-paper-3)}
 
-/* ── 14. champs de formulaire (16 px : pas de zoom sur iPhone) ─
-   <div class="champ"><label for="x">Libellé</label><input id="x" …>
-     <p class="champ-aide" id="x-aide">aide facultative</p>
-     <p class="champ-erreur" id="x-erreur" hidden>message d'erreur</p></div>
-   Pastilles radio : <fieldset class="champ"><legend>…</legend><div class="pastilles">
-     <label><input type="radio" name="n" value="v"><span>v</span></label>…</div></fieldset> */
-.champ{display:grid;gap:8px;min-width:0;margin:0;padding:0;border:0}
-.champ > label,.champ > legend{display:block;padding:0;font-family:var(--texte-ff);font-weight:600;font-size:15.5px;line-height:1.35;color:var(--texte)}
-.champ > legend{margin-bottom:10px}
-/* bordure à 0,40 sur la nuit (3,7:1) et #8A8EA6 sur blanc (3,2:1) : c'est elle qui montre où
-   écrire, elle doit dépasser 3:1 (contraste des éléments d'interface, WCAG 1.4.11) */
-.champ input:not([type="radio"]):not([type="checkbox"]),.champ select,.champ textarea{width:100%;min-height:52px;margin:0;
-  background:rgba(255,255,255,.06);color:var(--texte);border:1.5px solid rgba(255,255,255,.40);border-radius:12px;
-  padding:13px 15px;font-family:var(--texte-ff);font-size:16px;line-height:1.4;transition:border-color .2s,background .2s}
+/* ── 9. questions (accueil et essai) ───────────────────────
+   Des <details> : elles s'ouvrent sans script. Le titre à gauche, la liste à droite. */
+.faq-grille{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--gap-columns);align-items:start}
+.faq-grille h2{max-width:14ch}
+.faq-liste details{border-bottom:1px solid var(--color-rule)}
+.faq-liste details:first-child{border-top:1px solid var(--color-rule)}
+.faq-liste summary{display:flex;align-items:center;justify-content:space-between;gap:var(--space-lg);min-height:64px;padding-block:var(--space-md);
+  font-size:var(--text-lg);font-weight:600;cursor:pointer;list-style:none;transition:color var(--dur-micro) var(--ease-out)}
+.faq-liste summary::-webkit-details-marker{display:none}
+.faq-liste summary:hover{color:var(--color-ink-2)}
+.faq-liste summary svg{flex-shrink:0;color:var(--color-ink-2);transition:transform var(--dur-short) var(--ease-in-out)}
+.faq-liste details[open] summary svg{transform:rotate(180deg)}
+.faq-liste details p{padding-bottom:var(--space-lg);max-width:65ch;color:var(--color-ink-2)}
+
+/* ── 10. champs (essai, calculateur) ──────────────────────── */
+.champ{display:grid;gap:var(--space-xs);min-width:0;margin:0;padding:0;border:0}
+.champ > label,.champ > legend{display:block;padding:0;font-weight:600;font-size:var(--text-md);line-height:1.35;color:var(--color-ink)}
+.champ > legend{margin-bottom:var(--space-sm)}
+.champ input:not([type="radio"]):not([type="checkbox"]),.champ textarea{width:100%;min-height:52px;margin:0;padding:12px 14px;
+  border:1.5px solid var(--color-rule-2);border-radius:var(--radius-control);background:var(--color-paper-3);color:var(--color-ink);
+  font:inherit;font-size:var(--text-md);line-height:1.4;transition:border-color var(--dur-micro) var(--ease-out),box-shadow var(--dur-micro) var(--ease-out)}
 .champ textarea{min-height:120px;resize:vertical}
-.champ ::placeholder{color:rgba(196,200,222,.75);opacity:1}
-.champ input:focus,.champ select:focus,.champ textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.09)}
-.champ [aria-invalid="true"]{border-color:var(--orange-clair) !important;background:rgba(255,138,76,.08) !important}
-.champ-aide{margin:0;font-size:15px;line-height:1.45;color:var(--texte-doux)}
-.champ-erreur{margin:0;font-size:15px;line-height:1.45;font-weight:600;color:var(--accent)}
+.champ ::placeholder{color:var(--color-muted);opacity:1}
+.champ input:hover,.champ textarea:hover{border-color:var(--color-muted)}
+.champ input:focus,.champ textarea:focus{outline:none;border-color:var(--color-ink);box-shadow:0 0 0 3px var(--color-anneau)}
+.champ input:focus-visible,.champ textarea:focus-visible{outline:none}
+.champ [aria-invalid="true"]{border-color:var(--color-orange-texte) !important;background:#FFF6F1 !important}
+.champ-aide{margin:0;font-size:var(--text-sm);line-height:1.45;color:var(--color-muted)}
+.champ-erreur{margin:0;font-size:var(--text-sm);line-height:1.45;font-weight:600;color:var(--color-orange-texte)}
 .champ-erreur[hidden]{display:none}
-/* téléphone ET tablette (28/09 : à 768 px, ces textes étaient plus petits que sur téléphone) : 16 px */
-@media(max-width:919.98px){.champ > label,.champ > legend,.champ-aide,.champ-erreur{font-size:16px}}
-.blanc .champ > label,.blanc .champ > legend,.creme .champ > label,.creme .champ > legend{color:var(--encre)}
-.blanc .champ input:not([type="radio"]):not([type="checkbox"]),.blanc .champ select,.blanc .champ textarea,
-.creme .champ input:not([type="radio"]):not([type="checkbox"]),.creme .champ select,.creme .champ textarea{
-  background:var(--blanc);color:var(--encre);border-color:#8A8EA6}
-.blanc .champ ::placeholder,.creme .champ ::placeholder{color:#6B6F88}
-.blanc .champ input:focus,.blanc .champ textarea:focus,.blanc .champ select:focus,
-.creme .champ input:focus,.creme .champ textarea:focus,.creme .champ select:focus{border-color:var(--orange-texte);background:var(--blanc)}
-.blanc .champ [aria-invalid="true"],.creme .champ [aria-invalid="true"]{border-color:var(--orange-texte) !important;background:#FFF5EF !important}
-.blanc .champ-aide,.creme .champ-aide{color:var(--gris)}
-.blanc .champ-erreur,.creme .champ-erreur{color:var(--orange-texte)}
-
-/* pastilles radio (métier, créneau…) : cibles de 48 px, l'état coché en orange */
+/* pastilles radio (métier, créneau) : cibles de 48 px, l'état coché en nuit */
 .pastilles{display:flex;flex-wrap:wrap;gap:10px}
 .pastilles label{position:relative;display:inline-flex}
 .pastilles input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-.pastilles span{display:inline-flex;align-items:center;min-height:48px;padding:10px 18px;border-radius:999px;cursor:pointer;
-  border:1.5px solid rgba(255,255,255,.24);color:var(--texte);font-size:15.5px;font-weight:600;line-height:1.2;
-  transition:border-color .2s,background .2s}
-.pastilles span:hover{border-color:var(--accent)}
-.pastilles input:checked + span{background:rgba(255,107,44,.18);border-color:var(--orange);color:#FFFFFF}
-.pastilles input:focus-visible + span{outline:2px solid var(--accent);outline-offset:3px}
-.blanc .pastilles span,.creme .pastilles span{border-color:#C9CCDA;color:var(--encre)}
-.blanc .pastilles input:checked + span,.creme .pastilles input:checked + span{background:#FFEDE3;border-color:var(--orange-texte);color:var(--encre)}
-
-/* ── 15. contacts directs (pastilles téléphone / e-mail / aide) ── */
-.direct{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;font-size:15.5px}
-.direct a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--texte);min-height:48px;
-  border:1.5px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 18px;transition:border-color .2s,background .2s}
-.direct a:hover{border-color:var(--accent);background:rgba(255,138,76,.08)}
+.pastilles span{display:inline-flex;align-items:center;min-height:48px;padding:10px 18px;border:1.5px solid var(--color-rule-2);border-radius:var(--radius-pill);
+  background:var(--color-paper-3);color:var(--color-ink);font-size:var(--text-md);font-weight:600;line-height:1.2;cursor:pointer;
+  transition:border-color var(--dur-micro) var(--ease-out),background-color var(--dur-micro) var(--ease-out)}
+.pastilles span:hover{border-color:var(--color-ink)}
+.pastilles input:checked + span{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-on-nuit)}
+.pastilles input:focus-visible + span{outline:3px solid var(--color-focus);outline-offset:3px}
+/* contacts directs (téléphone, e-mail, aide) */
+.direct{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-xl)}
+.direct a{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:10px 18px;border:1.5px solid var(--color-rule-2);border-radius:var(--radius-pill);
+  background:var(--color-paper-3);color:var(--color-ink);font-weight:600;text-decoration:none;
+  transition:border-color var(--dur-micro) var(--ease-out)}
+.direct a:hover{border-color:var(--color-ink)}
 .direct svg{flex:none}
-.blanc .direct a,.creme .direct a{color:var(--encre);border-color:rgba(27,31,59,.22)}
-.blanc .direct a:hover,.creme .direct a:hover{border-color:var(--orange);background:rgba(255,107,44,.07)}
-/* téléphone et tablette : 16 px minimum pour les listes, les pastilles et les contacts (cahier § 0 ;
-   jusqu'à 919 px depuis le 28/09 — à 768 px, ils retombaient à 15,5 px) */
-@media(max-width:919.98px){.liste li,.pastilles span,.direct{font-size:16px}}
 
-/* ── 16. pied de page ──────────────────────────────────── */
-.pied{position:relative;z-index:1;border-top:1px solid var(--ligne);padding:38px 0 46px;color:var(--texte-doux);font-size:14.5px}
-.pied .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
-.pied-logo{height:22px;width:auto;opacity:.9}
-.pied-copie{margin:0}
-.pied-liens{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px}
-/* min-width 48 px (28/09) : « Aide », le plus court, ne faisait que 31 px de large — cible de 48 px comme les autres */
-.pied-liens a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:48px;color:var(--texte-doux);text-decoration:underline;
-  text-decoration-color:rgba(255,138,76,.45);text-underline-offset:5px;text-decoration-thickness:1px}
-.pied-liens a:hover{color:var(--accent)}
-.pied-liens span[aria-hidden]{color:rgba(196,200,222,.55)}
-/* Sous 960 px, les liens passent à la ligne : un point « · » resterait seul en bout de ligne.
-   On retire les points, l'espace seul sépare les liens (au-dessus, ils tiennent sur une ligne).
-   960 et non plus 920 (28/09) : avec le 7e lien « Faites le calcul », la ligne ne tient plus
-   entre 920 et 929 px, et un point restait seul après « Mentions légales ». */
-@media(max-width:959.98px){
-  .pied-liens{column-gap:20px}
-  .pied-liens span[aria-hidden]{display:none}
+/* ── 11. pied ──────────────────────────────────────────────
+   La nuit qui ferme la page. « Gérer les cookies » est ajouté par consentement.js au bout
+   de la liste .pied-liens (un <li> de plus). */
+.pied{padding-block:var(--space-3xl) var(--space-xl);background:var(--color-ink);color:var(--color-on-nuit)}
+.pied-grille{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--gap-columns)}
+.pied-marque img{width:auto;height:36px}
+.pied-marque p{margin-top:var(--space-md);max-width:30ch;color:var(--color-on-nuit-2)}
+.pied-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap-columns)}
+.pied-nav a{display:inline-flex;align-items:center;min-height:48px;color:var(--color-on-nuit);text-decoration:none;transition:color var(--dur-micro) var(--ease-out)}
+.pied-nav a:hover{color:var(--color-on-nuit-2);text-decoration:underline}
+.pied-legal{margin-top:var(--space-2xl);padding-top:var(--space-lg);border-top:1px solid var(--color-rule-nuit);font-size:var(--text-sm);color:var(--color-on-nuit-2)}
+
+/* ── 12. pages de texte (aide, mentions légales) ───────────
+   <body class="page-texte"> : une colonne de lecture, le contenu inchangé (classes
+   d'origine : .mono, .chapeau, .bloc, .actions). */
+.page-texte main{max-width:calc(46rem + 2 * var(--gutter));padding-block:var(--space-2xl) var(--section-gap-s)}
+.page-texte main h1{font-size:var(--text-page);line-height:1.08}
+.page-texte main h2{margin:var(--space-2xl) 0 var(--space-md);padding-top:var(--space-xl);border-top:1px solid var(--color-rule);font-size:clamp(1.5rem,1vw + 1.1rem,1.875rem);line-height:1.2}
+.page-texte main h3{margin:var(--space-xl) 0 var(--space-xs);font-size:var(--text-title)}
+.page-texte main p,.page-texte main li,.page-texte main dd{color:var(--color-ink-2)}
+.page-texte main p{margin:0 0 var(--space-md)}
+.page-texte main strong{color:var(--color-ink)}
+.page-texte main a:not(.btn){font-weight:600;text-decoration:underline;text-underline-offset:.2em}
+.page-texte main a:not(.btn):hover{text-decoration-color:var(--color-focus)}
+.page-texte main ul{display:grid;gap:var(--space-xs);margin:0 0 var(--space-md);padding-left:1.25em;list-style:disc}
+.page-texte main li::marker{color:var(--color-muted)}
+.page-texte code{padding:1px 6px;border-radius:6px;background:var(--color-paper-2);font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:.92em;color:var(--color-ink)}
+.page-texte main .mono{color:var(--color-muted)}
+.page-texte main .chapeau{margin:var(--space-lg) 0 var(--space-xl);font-size:var(--text-lead);line-height:1.55}
+.page-texte .bloc{margin:var(--space-lg) 0;padding:var(--space-lg) var(--space-lg) var(--space-md);border:1px solid var(--color-rule);border-radius:var(--radius-card);background:var(--color-paper-3)}
+.page-texte .bloc h2{padding-top:0;border-top:0}
+.page-texte dl{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:var(--space-sm) var(--space-lg);margin:0 0 var(--space-xs)}
+.page-texte dt{font-weight:600;color:var(--color-ink)}
+.page-texte dd{margin:0;overflow-wrap:anywhere}
+.page-texte .actions{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-top:var(--space-2xl);padding-top:var(--space-xl);border-top:1px solid var(--color-rule)}
+.page-texte .actions a{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:10px 18px;border:1.5px solid var(--color-rule-2);
+  border-radius:var(--radius-pill);background:var(--color-paper-3);color:var(--color-ink);font-weight:600;text-decoration:none}
+.page-texte .actions a:hover{border-color:var(--color-ink)}
+.page-texte .actions svg{flex:none}
+
+/* ── 13. tailles d'écran ─────────────────────────────────── */
+@media (max-width:60rem){
+  :root{--gutter:24px;--section-gap-s:80px;--section-gap:96px}
+  .entete-nav{display:none}
+  .nav-tel{display:block}
+  .entete-barre{gap:var(--space-sm)}
+  .faq-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+  .faq-grille h2{max-width:none}
+  .pied-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
 }
-/* téléphone et tablette : 16 px minimum (cahier § 0 ; jusqu'à 919 px depuis le 28/09) */
-@media(max-width:919.98px){.pied{font-size:16px}}
-
-/* ── 17. apparitions au défilement ─────────────────────────
-   27/09 (étude comparée du 27/09) : tout apparaissait de la même façon, rien ne
-   ressortait. Désormais trois gestes, dans la cascade de site.js (70 ms, 280 ms au plus) :
-   - titres, cartes, blocs : fondu + montée de 16 px (au lieu de 22) ;
-   - texte (p.rev, .eti.rev) : simple fondu, plus court (0,5 s), il ne bouge pas ;
-   - visuels (.visu.rev, .hero-visu.rev) : fondu + léger zoom (95 % → 100 %). */
-.js .rev{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
-.js .rev.vu{opacity:1;transform:none}
-.js p.rev:not(.vu),.js .eti.rev:not(.vu){transform:none}
-.js p.rev,.js .eti.rev{transition:opacity .5s ease}
-.js .hero-visu.rev:not(.vu),.js .visu.rev:not(.vu){transform:scale(.95) translateY(10px)}
-.js .hero-visu.rev,.js .visu.rev{transition:opacity .8s ease,transform 1s var(--sortie)}
-/* FILET : la ligne du <head> a posé .js mais site.js n'a jamais démarré → tout apparaît au bout de 3 s */
-.js:not(.site-pret) .rev{animation:rev-filet .6s ease 3s forwards}
-@keyframes rev-filet{to{opacity:1;transform:none}}
-
-/* ── 18. cartes qui réagissent au survol (souris seulement) ──
-   27/09 (étude comparée) : jusque-là, seuls les boutons réagissaient au survol.
-   Une carte survolée monte de 4 px et prend une ombre. Automatique pour les cartes des pages
-   1 et 2 (.bento-bloc, .pilier, .etape, .nombre) ; ailleurs, ajoutez la classe « survol » à
-   une carte. Les sélecteurs « .js ….vu:hover » sont nécessaires : sans eux, la fin
-   d'apparition (.js .rev.vu{transform:none}) l'emporte et le survol ne fait rien. Une page
-   peut donner son propre survol à ses cartes avec les MÊMES sélecteurs (sa feuille passe
-   après celle-ci). Téléphone et tablette tactile : rien (pas de survol). */
-@media (hover:hover) and (pointer:fine){
-  .survol,.bento-bloc,.etape,.pilier,.nombre{transition:transform .3s var(--sortie),box-shadow .3s ease,border-color .3s ease}
-  .js .survol.vu,.js .bento-bloc.vu,.js .etape.vu,.js .pilier.vu,.js .nombre.vu{
-    transition:opacity .7s ease,transform .3s var(--sortie),box-shadow .3s ease,border-color .3s ease}
-  .survol:hover,.js .survol.vu:hover,.bento-bloc:hover,.js .bento-bloc.vu:hover,.etape:hover,.js .etape.vu:hover,
-  .pilier:hover,.js .pilier.vu:hover,.nombre:hover,.js .nombre.vu:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(0,0,0,.7)}
-  /* sur fond blanc ou crème, une ombre nuit plus légère (le noir à 70 % y ferait une tache) */
-  .blanc :is(.survol,.pilier,.bento-bloc):hover,.creme :is(.survol,.pilier,.bento-bloc):hover,
-  .js .blanc :is(.survol,.pilier,.bento-bloc).vu:hover,.js .creme :is(.survol,.pilier,.bento-bloc).vu:hover{box-shadow:0 22px 44px -26px rgba(27,31,59,.42)}
-  .etape:hover,.nombre:hover,.survol:hover{border-color:rgba(255,138,76,.38)}
+/* téléphone et tablette : 16 px au minimum partout */
+@media (max-width:48rem){
+  :root{--text-sm:1rem}
+}
+@media (max-width:40rem){
+  :root{--gutter:16px;--section-gap-s:64px;--section-gap:72px;--gap-columns:16px}
+  .entete-barre{min-height:64px}
+  .entete-logo img{height:30px}
+  /* « Essai gratuit » seul dans la barre : « 14 jours » reste lu par les lecteurs d'écran */
+  .entete-essai-plus{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .entete-essai{margin-left:0}
+  .page-tete{padding-block:var(--space-xl) var(--space-lg)}
+  .essai-final-cadre{padding:var(--space-xl) var(--space-lg)}
+  .essai-final-cadre .btn{width:100%;white-space:normal}
+  .cadre-visuel{padding:var(--space-lg)}
+  .pied-nav{display:flex;flex-wrap:wrap;gap:0 var(--space-lg)}
+  .pied-nav ul{display:contents}
+  .pied-nav a{white-space:nowrap}
+  .page-texte dl{grid-template-columns:minmax(0,1fr);gap:0}
+  .page-texte dd{margin-bottom:var(--space-sm)}
+  .page-texte .actions a{flex:1 1 auto;justify-content:center}
+}
+/* très petit téléphone (320 px) : la barre garde le logo et « Menu » ; « Essai gratuit » est dans le menu */
+@media (max-width:22.4rem){
+  .entete-essai{display:none}
 }
 
-/* ── 19. économie : ce qui tourne en boucle s'arrête hors de l'écran ──
-   site.js pose .hors-ecran sur la bande des métiers, les bordures lumineuses et tout élément
-   [data-boucle] (ex. le disque GPS de la page 3) quand ils sont à plus de 120 px de l'écran,
-   et la retire quand ils reviennent. Rien n'est caché, seule l'animation se met en pause. */
-.bande.hors-ecran .bande-piste,.btn-lumiere.hors-ecran,.btn-lumiere.hors-ecran::before{animation-play-state:paused}
-/* !important : une feuille de page qui écrit « animation: … » sur un enfant (même précision,
-   chargée après) remettrait sinon l'animation en marche. C'est un état, pas un style. */
-[data-boucle].hors-ecran,[data-boucle].hors-ecran *,[data-boucle].hors-ecran::before,[data-boucle].hors-ecran::after,
-[data-boucle].hors-ecran *::before,[data-boucle].hors-ecran *::after{animation-play-state:paused !important}
-
-/* ── 20. mouvement réduit : aucune animation, valeurs finales, bandes figées ── */
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .js .rev{opacity:1;transform:none;transition:none;animation:none}
-  .js p.rev,.js .eti.rev,.js .hero-visu.rev,.js .visu.rev{transition:none}
-  .js .hero-visu.rev:not(.vu),.js .visu.rev:not(.vu){transform:none}
-  .survol,.bento-bloc,.etape,.pilier,.nombre,
-  .js .survol.vu,.js .bento-bloc.vu,.js .etape.vu,.js .pilier.vu,.js .nombre.vu{transition:none}
-  .survol:hover,.js .survol.vu:hover,.bento-bloc:hover,.js .bento-bloc.vu:hover,.etape:hover,.js .etape.vu:hover,
-  .pilier:hover,.js .pilier.vu:hover,.nombre:hover,.js .nombre.vu:hover{transform:none}
-  .lien-fleche,.lien-fleche svg,.faq summary{transition:none}
-  .lien-fleche:hover svg{transform:none}
-  .btn,.btn-lumiere,.menu-liens a,.menu-bouton,.menu-bouton svg path,.direct a,.pastilles span,
-  .champ input:not([type="radio"]):not([type="checkbox"]),.champ textarea,.champ select{transition:none}
-  .btn-o:hover,.btn-lumiere:hover{transform:none}
-  .btn-lumiere,.btn-lumiere::before{animation:none}
-  .js .entete.ouvert .menu{animation:none}
-  .js .entete-essai,.js .entete.essai-cache .entete-essai,.menu > .btn-o{transition:none}
-  .marque::before,.site-pret .marque:not(.trace)::before,.marque.trace::before{transform:none;transition:none}
-  .defile-liste,.defile::after{transition:none}
-  .bande-piste{animation:none}
-  .suite-fleche,.faq summary::after{transition:none}
-  .suite-lien:hover .suite-fleche{transform:none}
+/* ── 14. mouvement réduit : aucune animation, état final ── */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
