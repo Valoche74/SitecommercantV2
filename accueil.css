@@ -120,10 +120,8 @@
 .jeu img{width:100%;aspect-ratio:300 / 220}
 .jeu h3{margin-top:var(--space-lg)}
 .jeu p{margin-top:var(--space-xs);margin-inline:auto;max-width:32ch;color:var(--color-ink-2)}
-.vers-calcul{display:flex;align-items:center;justify-content:space-between;gap:var(--space-lg);margin-top:var(--space-2xl);padding-top:var(--space-xl);
-  border-top:1px solid var(--color-rule-2)}
-.vers-calcul p{font-size:var(--text-lead);color:var(--color-ink-2)}
-.vers-calcul strong{font-family:var(--font-display);font-weight:800;color:var(--color-ink)}
+/* sous les jeux : un seul bouton vers « Ce que vous pilotez » (le calculateur n’est plus mis en avant, 30/10) */
+.vers-outils{display:flex;justify-content:center;margin-top:var(--space-2xl)}
 
 /* ── 8. ce que vous pilotez ──────────────────────────────── */
 .pilotez .section-tete h2{max-width:24ch;margin-inline:auto}
@@ -203,8 +201,7 @@
   .jeu img{grid-row:1 / span 2}
   .jeu h3{margin-top:0;align-self:end}
   .jeu p{margin-inline:0;align-self:start}
-  .vers-calcul{flex-direction:column;align-items:stretch}
-  .vers-calcul .btn{white-space:normal}
+  .vers-outils .btn{white-space:normal}
   /* une seule capture, lisible (côte à côte, les deux ne faisaient que ~165 px de large) : le tableau de bord */
   .pilotez-grille{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
   .pilotez-tel-a{display:none}

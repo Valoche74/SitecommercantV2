@@ -57,9 +57,9 @@ Plus de `<script>document.documentElement.classList.add('js')</script>` : plus r
 ## 2. L'en-tête (identique sur toutes les pages)
 
 Poser `aria-current="page"` sur le lien de la page courante (le logo sur l'accueil, « Comment ça marche »,
-« Ce que vous pilotez », ou les deux boutons « Essai gratuit » sur la page 4). Le calculateur, l'aide et les mentions
-légales ne sont pas dans le menu du haut : chez eux, `aria-current="page"` se pose **dans le pied** (§ 7), sur
-« Faites le calcul », « Aide » ou « Mentions légales ».
+« Ce que vous pilotez », ou les deux boutons « Essai gratuit » sur la page 4). L'aide et les mentions
+légales ne sont pas dans le menu du haut : chez elles, `aria-current="page"` se pose **dans le pied** (§ 7), sur
+« Aide » ou « Mentions légales ». (Le calculateur n'a plus de lien depuis le 30/10 ; sa page garde le sien.)
 
 **Page 4 (essai-gratuit.html) seulement** : les trois liens d'essai — le bouton de la barre, celui du menu téléphone
 et « Essai gratuit » du pied — visent **`#essai-demande`** et non `/essai-gratuit` (sinon un clic recharge la page et
@@ -136,7 +136,7 @@ re-corrigé le 30/10). Les deux boutons gardent `aria-current="page"`.
 | classe | rôle |
 |---|---|
 | `.btn.btn-plein` | le bouton principal, orange, texte nuit — **un seul à l'écran** |
-| `.btn.btn-second` | bouton secondaire sur le clair (contour nuit) : « Retour », « Ouvrir le calculateur » |
+| `.btn.btn-second` | bouton secondaire sur le clair (contour nuit) : « Retour », « Voir nos outils » |
 | `.btn.btn-contour` | bouton sur la nuit (barre du haut, menu) |
 | `.lien`, `.lien-fleche` | lien souligné ; lien avec une flèche SVG après le texte (cible 48 px) |
 | `.cadre-visuel` | la plaque teintée aux coins ronds sous une capture (l'image prend une ombre douce) |
@@ -185,7 +185,6 @@ re-corrigé le 30/10). Les deux boutons gardent `aria-current="page"`.
       <ul>
         <li><a href="/comment-ca-marche">Comment ça marche</a></li>
         <li><a href="/ce-que-vous-pilotez">Ce que vous pilotez</a></li>
-        <li><a href="/calculateur">Faites le calcul</a></li>
         <li><a href="/essai-gratuit">Essai gratuit</a></li>
       </ul>
       <ul class="pied-liens">
@@ -202,7 +201,7 @@ re-corrigé le 30/10). Les deux boutons gardent `aria-current="page"`.
 ```
 
 - `consentement.js` ajoute « Gérer les cookies » en dernier `<li>` de `.pied-liens` (quand Clarity est configuré).
-- Page 4 : « Essai gratuit » vise `#essai-demande` (§ 2). Calculateur, aide, mentions : `aria-current="page"` sur leur
+- Page 4 : « Essai gratuit » vise `#essai-demande` (§ 2). Aide, mentions : `aria-current="page"` sur leur
   lien du pied (souligné par `site.css`).
 - Chaque lien du pied fait au moins 48 × 48 px (`min-height` et `min-width` : « Aide » est court).
 
@@ -261,7 +260,7 @@ pas au contenu de `<main>` des mentions légales (validé le 30/10, cd72817) : s
   les côtés » posait les légendes sur les cartes : retirée le 30/10.)
 - `.avec` (noms en texte entre deux filets), `.presentoirs` (l'éventail), `.film` (deux vidéos : paysage / verticale
   sous 48rem, `preload="none"` : rien n'est téléchargé avant le clic), `.parcours` + `.etapes` (4 dessins numérotés),
-  `.jeux` (bande teintée) + `.vers-calcul`, `.pilotez` (sous 40rem : une seule capture, le tableau de bord, à
+  `.jeux` (bande teintée) + `.vers-outils` (bouton « Voir nos outils »), `.pilotez` (sous 40rem : une seule capture, le tableau de bord, à
   `min(70%, 260px)` ; l'offre est retirée, côte à côte elles étaient illisibles), `.essai-accueil` (texte + `.qui-court`
   + `.essai-photos`), questions (`.faq-grille`).
 - Apostrophes : `’` (typographique) dans tout le texte des pages, depuis le 30/10 (aide et mentions exceptées : contenu

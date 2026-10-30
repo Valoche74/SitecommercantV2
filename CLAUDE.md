@@ -1,7 +1,7 @@
 # site vitrine — perify.app, le site public (consignes pour toute session Claude)
 
 Le site public de **Perify**, pour les commerçants prospects. Il tient en **4 pages** reliées par le menu
-(« comme TheGiftsClub »), plus le calculateur et deux pages de texte :
+(« comme TheGiftsClub »), plus deux pages de texte (et le calculateur, que plus aucune page ne montre) :
 
 | page | fichier | adresse |
 |---|---|---|
@@ -9,7 +9,7 @@ Le site public de **Perify**, pour les commerçants prospects. Il tient en **4 p
 | 2 — Comment ça marche | `comment-ca-marche.html` (+ `comment.css`) | `/comment-ca-marche` |
 | 3 — Ce que vous pilotez | `ce-que-vous-pilotez.html` (+ `pilotez.css`) | `/ce-que-vous-pilotez` |
 | 4 — Essai gratuit (+ « Qui est derrière », questions) | `essai-gratuit.html` (+ `essai.css`, `essai.js`) | `/essai-gratuit` |
-| Faites le calcul (hors menu) | `calculateur.html` (+ `calculateur.css`, `calcul.js`) | `/calculateur` |
+| Faites le calcul (**plus aucun lien** depuis le 30/10 : Valentin le trouve « pas intuitif » ; la page reste en ligne pour les liens déjà envoyés, dont le mail de relance de `commercial/prospection-28-09/PROSPECTION.md`) | `calculateur.html` (+ `calculateur.css`, `calcul.js`) | `/calculateur` |
 | Aide, mentions légales | `aide.html`, `mentions-legales.html` (rien d'autre que `site.css`) | `/aide`, `/mentions-legales` |
 
 HTML / CSS / JS simple, sans framework ni build. Hébergé sur Vercel (`cleanUrls` : liens internes sans
@@ -37,7 +37,7 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   resserrés (`-0.012em`, compensé entre les mots) : jamais de mots collés.
 - **L'accueil** = la maquette A : héros centré (titre, phrase, bouton, une ligne) → la vraie carte Wallet et quatre
   morceaux de la carte autour (`img/carte-*.webp`) → « Ça marche avec » (noms en texte) → **les présentoirs (éventail)
-  AVANT la vidéo** (demande de Valentin) → vidéo → parcours (4 dessins `img/scenes/`) → jeux + « Faites le calcul »
+  AVANT la vidéo** (demande de Valentin) → vidéo → parcours (4 dessins `img/scenes/`) → jeux + le bouton « Voir nos outils »
   (bande teintée) → ce que vous pilotez → l'essai avec les photos du présentoir et « Une seule personne… » → questions.
   **Ordinateur (64rem et plus)** : le premier écran montre titre, phrase, bouton ET le téléphone en entier (QR compris)
   avec ses quatre morceaux, **dans une fenêtre réelle de 650 px de haut ou plus** (mesuré le 30/10 : 1440 × 900,
@@ -48,7 +48,7 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   sous la ligne (150 px de large au minimum). **Tablette et téléphone (moins de 64rem)** : la roue et le cadeau se
   posent au pied du téléphone (sur la zone du QR), la barre de tampons dessous, entière ; rien ne recouvre les deux
   cartes ; légendes et invitation à l'avis retirées.
-- **Rythme des fonds, page par page** : accueil = fond clair partout, sauf les jeux + « Faites le calcul » (bande
+- **Rythme des fonds, page par page** : accueil = fond clair partout, sauf les jeux + « Voir nos outils » (bande
   teintée) ; « Ça marche avec » entre deux filets ; l'essai et les questions séparés par un filet. Page 2 = chapeau,
   étapes (plaques teintées), « En chiffres » (bande teintée), bloc Essai, Suite. Page 3 = chapeau, quatre modules
   séparés par des filets (captures sur plaques), « En option » en carte blanche, bloc Essai, Suite. Page 4 = chapeau,
