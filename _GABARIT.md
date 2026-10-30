@@ -162,10 +162,11 @@ La flèche est dessinée (SVG) : ne pas ajouter de « → » dans le texte.
 <footer class="pied">
   <div class="wrap">
     <img class="pied-logo" src="img/logo-perify-blanc.png" alt="Perify" width="359" height="156" loading="lazy">
-    <p class="pied-copie">© 2026 Perify — programme de fidélité pour commerces de proximité.</p>
+    <p class="pied-copie">© 2026 Perify — Valentin CARRILLO, entrepreneur individuel — programme de fidélité pour commerces de proximité.</p>
     <nav class="pied-liens" aria-label="Pied de page">
       <a href="/comment-ca-marche">Comment ça marche</a><span aria-hidden="true">·</span>
       <a href="/ce-que-vous-pilotez">Ce que vous pilotez</a><span aria-hidden="true">·</span>
+      <a href="/calculateur">Faites le calcul</a><span aria-hidden="true">·</span>
       <a href="/essai-gratuit">Essai gratuit</a><span aria-hidden="true">·</span>
       <a href="/aide">Aide</a><span aria-hidden="true">·</span>
       <a href="/mentions-legales">Mentions légales</a><span aria-hidden="true">·</span>
