@@ -102,7 +102,10 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
 - **Vraies images seulement** (`img/` : visuels Photoshop de Valentin en WebP, captures des vraies pages,
   éléments de la vraie carte) ; jamais de maquette de téléphone dessinée en HTML/CSS, jamais de police à
   empattements « style IA ». Sources hors dépôt (`IMAGE/ressources/valentin-24-09/`,
-  `IMAGE/ressources-valentin/`), préparées avec `sharp` hors du dépôt.
+  `IMAGE/ressources-valentin/`), préparées avec `sharp` hors du dépôt. **Exception (30/10, demande de Valentin)** :
+  un **boîtier** d'iPhone récent généré par Higgsfield (écran vert), dans lequel on pose un VRAI écran (visuel de
+  Valentin ou capture d'une vraie page) ; jamais un écran, un texte ou un QR inventés par l'IA. Sources et script :
+  `IMAGE/livraisons/2026-10-30-refonte-perify/iphone-recent/`.
 - **QR** : celui d'un **présentoir** pouvait rester net (décision de Valentin, 26/09) — **01/10 : flouté sur
   les 8 images** (site ca1118b) parce que ces QR menaient à baps.perify.app et falman.perify.app (un visiteur créait
   une vraie carte chez eux) ; le flou « rendait trop mal » → **remplacé le soir même par un QR NET vers perify.app**
@@ -110,7 +113,9 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   un commerce de démo, jamais à un vrai commerce. Décoder toute image de présentoir avant de pousser. Le QR ou le numéro d'une
   **carte client** (pass Wallet) se floute TOUJOURS — y compris dans `img/parcours.webp`, où le QR du pass
   (téléphone du haut) est flouté (26/09) — et celui du présentoir aussi depuis le 01/10. Le visuel du héros
-  (`img/carte-wallet.webp`, tiré de `carte-wallet-2026-10-30.webp`) porte le QR de perify.app.
+  (`img/carte-wallet.webp`, 30/10 au soir : l'écran du visuel « Carte wallet iphone » de Valentin dans l'iPhone
+  Higgsfield, même boîte 680 × 1284) porte un QR vectoriel vers perify.app, sans numéro de carte (« BAP-… » retiré).
+  L'affiche de la boulangerie (`presentoir-digital-6.webp`, 30/10) menait à falman.perify.app : QR remplacé, même règle.
 - Les captures d'écran avec des chiffres portent « Données de démonstration. » (accueil : « Captures de la vraie
   carte, données de démonstration. », aussi sous les trois étapes de la page 2 depuis le 30/10).
 - Les badges Apple / Google ne servent jamais de décoration ; dans « Ça marche avec », les noms sont écrits
