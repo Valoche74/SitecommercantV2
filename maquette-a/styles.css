@@ -1,0 +1,291 @@
+/* Hallmark · shape: one light sheet on one axis (hero with the card, proof strip, film, journey, games band, owner tools, trial on the counter, questions) · genre: modern-minimal · theme: custom · job: try · idea: "La vraie carte Perify au centre, ses vrais morceaux autour, sur une seule feuille claire encadrée de nuit" · vibe: "clair, net, commerçant, produit réel, chaleureux"
+ * paper: oklch(98.4% 0.006 276) · accent: oklch(70.4% 0.195 40.9) · display: Plus Jakarta Sans · body: Inter · hero: centred corridor, the Wallet phone rising under the action with four real pieces of the card floating round it · nav: night slab, wordmark left, three links and one outlined action right, a details menu under 60rem · footer: night mast, wordmark and one line beside two link lists, legal line under a rule · imagery: the product (Valentin's Wallet visual, captures of the card and of the merchant space, photos of the stand), the drawings chosen on 29/10 · signature: the Wallet card with its stamp bar, wheel, prize and Google invitation floating round it
+ * axes: light/grotesk-heavy/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H5 E4 S4 R4 V3 · weakest: V, the centred axis is TheGiftsClub's by request; the real card pieces, the stand photos and the owner's voice make it Perify's */
+/* Hallmark · waive 6b · title, lede, action and the phone share one centred axis · Valentin asked for a page close to TheGiftsClub, whose hero is centred; the four floating card pieces break the axis */
+/* Hallmark · waive 59 · 64px between the hero text and the card section · the Wallet card is the hero picture, set in its own section so the headline, phrase and bouton fit every screen; it must sit right under the bouton */
+/* Hallmark · dismissed 58 · the page count includes the eight FAQ answers kept closed in details (about 300 words a visitor opens one at a time; 482 words render at 1440); the hero phrase is Valentin's validated line, already cut from 37 to 19 words; the trial screen holds 85 words because the owner's name, town and phone are the proof */
+/* Hallmark · waive 80 · seven drawings from the 29/10 parcours delivery · Valentin chose these parcours and jeux drawings on 29/10; the scratch card and mystery box are built on request and have no capture yet */
+
+/* Polices servies par le site (mêmes fichiers que site vitrine/polices, licence SIL OFL), jamais Google Fonts */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/polices/inter-v20-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/polices/inter-v20-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 700 800; font-display: swap; src: url(/polices/plus-jakarta-sans-v12-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 700 800; font-display: swap; src: url(/polices/plus-jakarta-sans-v12-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* ── Jetons ─────────────────────────────────────────────────────────────
+   Couleurs de la marque Perify, en OKLCH (équivalent hexadécimal en commentaire) :
+   nuit #1B1F3B, orange #FF6B2C, orange clair #FF8A4C, orange texte #C2410C. */
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.125rem;
+  --text-display: clamp(2.25rem, 3.4vw + 0.9rem, 4.25rem);
+  --text-section: clamp(1.875rem, 1.6vw + 1.25rem, 2.75rem);
+  --text-title: clamp(1.1875rem, 0.4vw + 1rem, 1.375rem);
+  --text-lead: clamp(1.0625rem, 0.4vw + 0.95rem, 1.3125rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100;
+
+  --color-paper: oklch(98.4% 0.006 276);      /* #F8F9FE, le fond unique de la page */
+  --color-paper-2: oklch(96.2% 0.014 276);    /* #F0F2FC, la seule bande teintée (les jeux) */
+  --color-paper-3: oklch(99.5% 0.003 276);    /* #FDFDFF, le cadre des morceaux de carte */
+  --color-ink: oklch(25.1% 0.053 275.7);      /* #1B1F3B, la nuit */
+  --color-ink-2: oklch(39.4% 0.048 276.2);    /* #3F4460 */
+  --color-muted: oklch(52% 0.04 277);         /* #636780 */
+  --color-rule: oklch(91% 0.012 278);         /* #DFE1E9 */
+  --color-rule-2: oklch(86% 0.018 278);
+  --color-accent: oklch(70.4% 0.195 40.9);    /* #FF6B2C, réservé aux boutons */
+  --color-accent-hover: oklch(75.1% 0.161 46.8); /* #FF8A4C */
+  --color-accent-ink: oklch(25.1% 0.053 275.7);  /* texte nuit sur orange, 5,7:1 */
+  --color-focus: oklch(55.3% 0.174 38.4);     /* #C2410C, 4,9:1 sur le fond */
+  --color-focus-nuit: oklch(75.1% 0.161 46.8);/* #FF8A4C, 6,9:1 sur la nuit */
+  --color-anneau: oklch(93.5% 0.018 276);     /* #E6E9F6, liseré lavande des morceaux */
+  --color-anneau-2: oklch(94.5% 0.03 50);     /* #FEE8DB, liseré pêche (morceaux, anneau du bouton) */
+  --color-nuit-2: oklch(30.5% 0.055 276);
+  --color-on-nuit: oklch(97% 0.008 276);
+  --color-on-nuit-2: oklch(82% 0.025 276);
+  --color-rule-nuit: oklch(36% 0.045 276);
+  --color-ombre: oklch(25% 0.05 276 / 0.22);
+  --color-ombre-2: oklch(25% 0.05 276 / 0.12);
+
+  --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius-control: 12px; --radius-card: 22px; --radius-media: 20px; --radius-pill: 999px;
+  --tracking-display: -0.012em; --word-display: 0.05em;
+}
+
+/* ── Socle (base Hallmark) ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-muted) var(--color-paper); scroll-padding-top: var(--space-xl); }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); font-synthesis: none; }
+::selection { background: var(--color-anneau-2); color: var(--color-ink); }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 800; letter-spacing: var(--tracking-display); word-spacing: var(--word-display); overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+figure { margin: 0; }
+img, video { max-width: 100%; height: auto; display: block; }
+svg { display: block; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+
+h2 { font-size: var(--text-section); line-height: 1.1; }
+h3 { font-size: var(--text-title); line-height: 1.25; }
+
+/* ── Boutons : un seul bouton orange plein à l'écran, texte nuit ───── */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding-inline: var(--space-lg); border: 2px solid transparent; border-radius: var(--radius-control); font-family: var(--font-body); font-size: var(--text-lg); font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.btn:active { transform: translateY(1px); }
+.btn-plein { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: 0 0 0 4px var(--color-anneau-2); }
+.btn-plein:hover { background: var(--color-accent-hover); }
+.btn-contour { min-height: 44px; padding-inline: var(--space-md); border-color: var(--color-accent); color: var(--color-on-nuit); font-size: var(--text-md); }
+.btn-contour:hover { background: var(--color-nuit-2); }
+.btn-second { border-color: var(--color-ink); color: var(--color-ink); background: transparent; }
+.btn-second:hover { background: var(--color-paper-3); }
+.lien { font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; transition: text-decoration-color var(--dur-micro) var(--ease-out); }
+.lien:hover { text-decoration-color: var(--color-focus); }
+.lien:active { color: var(--color-ink-2); }
+.legende { font-size: var(--text-sm); color: var(--color-muted); }
+
+/* ── En-tête : la barre nuit qui encadre la page (comme la barre bleue de TheGiftsClub) ── */
+.entete { position: relative; z-index: var(--z-dropdown); background: var(--color-ink); color: var(--color-on-nuit); }
+.entete :focus-visible, .pied :focus-visible { outline-color: var(--color-focus-nuit); }
+.entete-barre { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: 72px; }
+.entete-logo { display: block; flex-shrink: 0; border-radius: var(--space-2xs); }
+.entete-logo img { width: auto; height: 34px; }
+.entete-nav { display: flex; align-items: center; gap: var(--space-xl); }
+.nav-liens { display: flex; gap: var(--space-lg); }
+.nav-liens a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-on-nuit-2); font-weight: 600; text-decoration: none; transition: color var(--dur-micro) var(--ease-out); }
+.nav-liens a:hover { color: var(--color-on-nuit); }
+.nav-liens a:active { color: var(--color-on-nuit-2); }
+.nav-tel { display: none; }
+.nav-tel summary { display: inline-flex; align-items: center; gap: var(--space-xs); min-height: 44px; padding-inline: var(--space-md); border: 1px solid var(--color-rule-nuit); border-radius: var(--radius-control); color: var(--color-on-nuit); font-weight: 600; cursor: pointer; list-style: none; transition: background-color var(--dur-micro) var(--ease-out); }
+.nav-tel summary::-webkit-details-marker { display: none; }
+.nav-tel summary:hover { background: var(--color-nuit-2); }
+.nav-tel summary:active { background: var(--color-nuit-2); }
+.nav-tel:not([open]) .nav-tel-liens { display: none; }
+.nav-tel-liens { position: absolute; inset-inline: 0; top: 100%; display: grid; gap: var(--space-2xs); padding: var(--space-xs) var(--gutter) var(--space-lg); background: var(--color-ink); border-top: 1px solid var(--color-rule-nuit); }
+.nav-tel-liens a:not(.btn) { display: flex; align-items: center; min-height: 48px; color: var(--color-on-nuit); font-size: var(--text-lg); font-weight: 600; text-decoration: none; }
+.nav-tel-liens .btn { margin-top: var(--space-sm); width: 100%; min-height: 52px; }
+
+/* ── Héros : un seul axe, puis la carte et ses morceaux ──────────────── */
+.heros { padding-block: var(--space-2xl); }
+.heros-texte { display: grid; justify-items: center; text-align: center; }
+.heros h1 { font-size: var(--text-display); line-height: 1.04; max-width: 20ch; }
+.heros-phrase { margin-top: var(--space-lg); max-width: 44rem; font-size: var(--text-lead); color: var(--color-ink-2); }
+.heros .btn { margin-top: var(--space-xl); }
+.heros-note { margin-top: var(--space-md); font-size: var(--text-sm); color: var(--color-muted); }
+
+.carte { padding-bottom: var(--space-xl); }
+.scene { padding-inline: var(--gutter); }
+.scene-plateau { position: relative; max-width: 1120px; margin-inline: auto; }
+.scene-tel { width: 29.5%; margin-inline: auto; filter: drop-shadow(0 28px 36px var(--color-ombre-2)); }
+.morceau { position: absolute; z-index: var(--z-raised); background: var(--color-paper-3); border: 6px solid var(--color-anneau); border-radius: var(--radius-card); box-shadow: 0 18px 40px -18px var(--color-ombre); animation: pose 640ms var(--ease-out) both; animation-delay: calc(var(--i) * 90ms + 200ms); }
+.morceau img { width: 100%; border-radius: calc(var(--radius-card) - 6px); }
+.morceau-tampons { width: 31%; left: 6%; top: 7%; }
+.morceau-cadeau { width: 22.5%; right: 15%; top: 1%; border-color: var(--color-anneau-2); }
+.morceau-roue { width: 17%; left: 21%; top: 47%; border-radius: 50%; border-color: var(--color-anneau-2); }
+.morceau-roue img { border-radius: 50%; }
+.morceau-avis { width: 32%; right: 3%; top: 41%; }
+.pastille { position: absolute; left: calc(var(--space-lg) * -1); bottom: calc(var(--space-md) * -1); padding: var(--space-xs) var(--space-md); border-radius: var(--radius-pill); background: var(--color-ink); color: var(--color-on-nuit); font-size: var(--text-sm); font-weight: 600; line-height: 1.3; white-space: nowrap; box-shadow: 0 8px 18px -8px var(--color-ombre); }
+.morceau-tampons .pastille, .morceau-avis .pastille { top: calc(100% + var(--space-sm)); bottom: auto; }
+.morceau-tampons .pastille { left: var(--space-lg); }
+.morceau-avis .pastille { left: auto; right: var(--space-lg); }
+.morceau-roue .pastille { left: auto; right: calc(var(--space-xl) * -1); bottom: var(--space-xs); }
+.scene-legende { margin-top: var(--space-lg); text-align: center; font-size: var(--text-sm); color: var(--color-muted); }
+
+@keyframes pose { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ── Ça marche avec : la bande de preuve, en noms ─────────────────────── */
+.avec { padding-block: var(--space-xl) 0; }
+.avec-cadre { display: grid; justify-items: center; gap: var(--space-lg); padding-block: var(--space-xl); border-block: 1px solid var(--color-rule); }
+.avec h2 { font-size: var(--text-title); line-height: 1.3; color: var(--color-ink-2); text-align: center; }
+.avec-liste { display: flex; flex-wrap: wrap; justify-content: center; row-gap: var(--space-sm); }
+.avec-liste li { padding-inline: var(--space-lg); font-family: var(--font-display); font-size: var(--text-lg); font-weight: 800; color: var(--color-ink); white-space: nowrap; }
+.avec-liste li + li { border-left: 1px solid var(--color-rule-2); }
+
+/* ── La vidéo ───────────────────────────────────────────────────────── */
+.film { padding-block: var(--section-gap-s) 0; text-align: center; }
+.film h2 { margin-bottom: var(--space-xl); }
+.film-cadre { max-width: 1104px; margin-inline: auto; }
+.film video { width: 100%; border-radius: var(--radius-media); border: 1px solid var(--color-rule); background: var(--color-paper-2); }
+.film-vertical { display: none; }
+
+/* ── Le parcours ───────────────────────────────────────────────────── */
+.parcours { padding-block: var(--section-gap); }
+.parcours h2 { text-align: center; margin-bottom: var(--space-2xl); }
+.etapes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-columns); counter-reset: etape; }
+.etape { counter-increment: etape; }
+.etape img { width: 100%; aspect-ratio: 4 / 3; }
+/* le dessin « Il scanne » coupe la main au bord du cadre : un fondu léger plutôt qu'un trait net */
+.etape-scan img { -webkit-mask-image: linear-gradient(to bottom, var(--color-ink) 80%, transparent); mask-image: linear-gradient(to bottom, var(--color-ink) 80%, transparent); }
+.etape h3 { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg); }
+.etape h3::before { content: counter(etape); display: inline-grid; place-items: center; flex-shrink: 0; width: 32px; height: 32px; border: 2px solid var(--color-ink); border-radius: 50%; font-size: var(--text-md); line-height: 1; }
+.etape p { margin-top: var(--space-xs); color: var(--color-ink-2); }
+
+/* ── Les jeux : la seule bande teintée ─────────────────────────────── */
+.jeux { padding-block: var(--section-gap) var(--section-gap-s); background: var(--color-paper-2); text-align: center; }
+.chapo { margin-top: var(--space-md); font-size: var(--text-lead); color: var(--color-ink-2); }
+.jeux-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-columns); margin-top: var(--space-2xl); }
+.jeu img { width: 100%; aspect-ratio: 300 / 220; }
+.jeu h3 { margin-top: var(--space-lg); }
+.jeu p { margin-top: var(--space-xs); margin-inline: auto; max-width: 32ch; color: var(--color-ink-2); }
+.calcul { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-rule-2); text-align: left; }
+.calcul p { font-size: var(--text-lead); color: var(--color-ink-2); }
+.calcul strong { font-family: var(--font-display); font-weight: 800; color: var(--color-ink); }
+
+/* ── Ce que vous pilotez ───────────────────────────────────────────── */
+.pilotez { padding-block: var(--section-gap); }
+.pilotez h2 { max-width: 24ch; margin-inline: auto; text-align: center; }
+.pilotez-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr); align-items: center; gap: var(--gap-columns); margin-top: var(--space-2xl); }
+.pilotez-tel img { width: min(100%, 290px); margin-inline: auto; filter: drop-shadow(0 24px 30px var(--color-ombre-2)); }
+.pilotez-liste li { padding-block: var(--space-lg); border-top: 1px solid var(--color-rule); font-family: var(--font-display); font-size: var(--text-title); font-weight: 800; line-height: 1.35; letter-spacing: var(--tracking-display); word-spacing: var(--word-display); }
+.pilotez-liste li:last-child { border-bottom: 1px solid var(--color-rule); }
+.pilotez-texte .lien { display: inline-flex; align-items: center; min-height: 48px; margin-top: var(--space-md); }
+.pilotez-legende { margin-top: var(--space-lg); text-align: center; }
+
+/* ── L'essai, sur le comptoir ──────────────────────────────────────── */
+.essai { padding-block: var(--section-gap-s); border-top: 1px solid var(--color-rule); }
+.essai-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: var(--gap-columns); }
+.essai-texte { padding-inline-end: var(--space-2xl); }
+.essai-texte p { margin-top: var(--space-md); font-size: var(--text-lead); color: var(--color-ink-2); }
+.essai-texte .btn { margin-top: var(--space-xl); }
+.qui { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-rule); }
+.qui p { margin-top: var(--space-xs); font-size: var(--text-md); }
+.essai-photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap-columns); align-items: start; }
+.essai-photos img { width: 100%; border-radius: var(--radius-media); }
+.photo-b { margin-top: var(--space-3xl); }
+
+/* ── Questions ─────────────────────────────────────────────────────── */
+.faq { padding-block: var(--section-gap-s) var(--section-gap); background: var(--color-paper); }
+.faq-grille { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--gap-columns); align-items: start; }
+.faq h2 { max-width: 14ch; }
+.faq-liste details { border-bottom: 1px solid var(--color-rule); }
+.faq-liste details:first-child { border-top: 1px solid var(--color-rule); }
+.faq-liste summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: 64px; padding-block: var(--space-md); font-size: var(--text-lg); font-weight: 600; cursor: pointer; list-style: none; transition: color var(--dur-micro) var(--ease-out); }
+.faq-liste summary::-webkit-details-marker { display: none; }
+.faq-liste summary:hover { color: var(--color-ink-2); }
+.faq-liste summary:active { color: var(--color-ink-2); }
+.faq-liste summary svg { flex-shrink: 0; color: var(--color-ink-2); transition: transform var(--dur-short) var(--ease-in-out); }
+.faq-liste details[open] summary svg { transform: rotate(180deg); }
+.faq-liste details:not([open]) > p { display: none; }
+.faq-liste details p { padding-bottom: var(--space-lg); max-width: 65ch; color: var(--color-ink-2); }
+
+/* ── Pied : la nuit qui ferme la page ──────────────────────────────── */
+.pied { padding-block: var(--space-3xl) var(--space-xl); background: var(--color-ink); color: var(--color-on-nuit); }
+.pied-grille { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--gap-columns); }
+.pied-marque img { width: auto; height: 36px; }
+.pied-marque p { margin-top: var(--space-md); max-width: 30ch; color: var(--color-on-nuit-2); }
+.pied-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-columns); }
+.pied-nav a { display: inline-flex; align-items: center; min-height: 40px; color: var(--color-on-nuit); text-decoration: none; transition: color var(--dur-micro) var(--ease-out); }
+.pied-nav a:hover { color: var(--color-on-nuit-2); text-decoration: underline; }
+.pied-nav a:active { color: var(--color-on-nuit-2); }
+.pied-legal { margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: 1px solid var(--color-rule-nuit); font-size: var(--text-sm); color: var(--color-on-nuit-2); }
+
+/* ── Tablette ──────────────────────────────────────────────────────── */
+@media (max-width: 60rem) {
+  :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; }
+  .nav-liens, .entete-nav > .btn-contour { display: none; }
+  .nav-tel { display: block; }
+  .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--space-2xl); }
+  .pilotez-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pilotez-texte { grid-column: 1 / -1; grid-row: 1; }
+  .essai-grille { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xl); }
+  .faq-grille { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+  .faq h2 { max-width: none; }
+  .pied-grille { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+}
+
+/* ── Téléphone : 16 px au minimum partout ──────────────────────────── */
+@media (max-width: 48rem) {
+  :root { --text-sm: 1rem; }
+  .film-paysage { display: none; }
+  .film-vertical { display: block; max-width: 340px; margin-inline: auto; }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: 16px; --section-gap-s: 64px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; }
+  .entete-barre { min-height: 64px; }
+  .entete-logo img { height: 30px; }
+  .heros { padding-block: var(--space-xl); }
+  .heros-texte { justify-items: stretch; }
+  .heros .btn { margin-top: var(--space-lg); }
+  .heros-phrase { margin-top: var(--space-md); }
+  .scene { padding-inline: var(--space-xs); }
+  .scene-tel { width: 54%; }
+  .morceau { border-width: 4px; }
+  .morceau:not(.morceau-roue) { border-radius: 16px; }
+  .morceau:not(.morceau-roue) img { border-radius: 12px; }
+  .morceau .pastille { display: none; }
+  .morceau-tampons { width: 66%; left: 0; top: 78%; }
+  .morceau-cadeau { width: 40%; right: 0; top: 9%; }
+  .morceau-roue { width: 33%; left: 0; top: 30%; }
+  .morceau-avis { display: none; }
+  .avec-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; row-gap: var(--space-md); }
+  .avec-liste li { padding-inline: var(--space-sm); text-align: center; white-space: normal; }
+  .avec-liste li + li { border-left: 0; }
+  .etapes { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-xl); }
+  .etape { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: var(--space-md); align-items: center; }
+  .etape img { grid-row: 1 / span 2; }
+  .etape h3 { margin-top: 0; align-self: end; }
+  .jeux-liste { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+  .jeu { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: var(--space-md); align-items: center; text-align: left; }
+  .jeu img { grid-row: 1 / span 2; }
+  .jeu h3 { margin-top: 0; align-self: end; }
+  .jeu p { margin-inline: 0; align-self: start; }
+  .calcul { flex-direction: column; align-items: stretch; }
+  .pilotez-grille { gap: var(--space-md); }
+  .essai-photos { gap: var(--space-md); }
+  .photo-b { margin-top: var(--space-2xl); }
+  .pied-grille { grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+  .pied-nav { display: flex; flex-wrap: wrap; gap: 0 var(--space-lg); }
+  .pied-nav ul { display: contents; }
+  .pied-nav a { min-height: 48px; white-space: nowrap; }
+}
+
+/* ── Mouvement réduit : aucune animation, état final ───────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .morceau { animation: none; }
+}
