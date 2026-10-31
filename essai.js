@@ -148,6 +148,47 @@
     if (!REGLES[el.name](valeur(el.name))) montrerErreur(el, '');
   });
 
+  /* ── Le brouillon (31/10/2026) ───────────────────────────
+     Sur un iPhone, une saisie a été perdue après un toucher sur « Essai gratuit » en haut de la page
+     (page rechargée ou quittée : non reproduit sur ordinateur, où le lien vise #essai-demande sans
+     recharger). Ce qui est tapé reste donc dans l'onglet (sessionStorage : effacé à la fermeture de
+     l'onglet, jamais envoyé nulle part) et revient au retour sur la page ; on l'oublie dès que la
+     demande est partie. Le piège site_web n'est jamais gardé. Stockage indisponible : rien ne change. */
+  var CLE_BROUILLON = 'perify-essai-brouillon';
+  var CHAMPS_GARDES = ['commerce', 'ville', 'nom', 'tel', 'email', 'message'];
+  var CHOIX_GARDES = ['metier', 'creneau'];
+
+  function garderBrouillon(){
+    try {
+      var b = {}, vide = true;
+      CHAMPS_GARDES.forEach(function(nom){ var el = element(nom); if (el && el.value) { b[nom] = String(el.value); vide = false; } });
+      CHOIX_GARDES.forEach(function(nom){ var v = valeurRadio(nom); if (v) { b[nom] = v; vide = false; } });
+      if (vide) window.sessionStorage.removeItem(CLE_BROUILLON);
+      else window.sessionStorage.setItem(CLE_BROUILLON, JSON.stringify(b));
+    } catch (e) {}
+  }
+  function oublierBrouillon(){
+    try { window.sessionStorage.removeItem(CLE_BROUILLON); } catch (e) {}
+  }
+  // Ne remplit que les champs encore vides (Safari remet parfois lui-même la saisie en revenant en arrière).
+  function reprendreBrouillon(){
+    try {
+      var b = JSON.parse(window.sessionStorage.getItem(CLE_BROUILLON) || 'null');
+      if (!b || typeof b !== 'object') return;
+      CHAMPS_GARDES.forEach(function(nom){
+        var el = element(nom);
+        if (!el || el.value || typeof b[nom] !== 'string') return;
+        el.value = el.maxLength > 0 ? b[nom].slice(0, el.maxLength) : b[nom];
+      });
+      CHOIX_GARDES.forEach(function(nom){
+        if (typeof b[nom] !== 'string' || valeurRadio(nom)) return;
+        [].slice.call(form.querySelectorAll('input[name="' + nom + '"]')).forEach(function(r){ if (r.value === b[nom]) r.checked = true; });
+      });
+    } catch (e) {}
+  }
+  form.addEventListener('input', garderBrouillon);
+  form.addEventListener('change', garderBrouillon);
+
   /* ── Focus et défilement ─────────────────────────────── */
   function hauteurEntete(){
     var e = document.querySelector('.entete');
@@ -275,6 +316,7 @@
   }
 
   function afficherReussite(){
+    oublierBrouillon();               // la demande est partie : plus rien à garder
     montrerResultat(reussite);
     // 01/10 — mesure d'audience (consentement.js) : un simple nom d'événement, AUCUNE donnée du
     // formulaire ; sans effet si le visiteur n'a pas accepté, ou si Clarity n'est pas configuré.
@@ -345,6 +387,7 @@
     form.classList.add('par-etapes');          // essai.css : une étape à la fois, bouton d'envoi visible
     if (progression) progression.hidden = false;
     [].slice.call(form.querySelectorAll('.etape-actions[hidden], [data-precedent][hidden]')).forEach(function(el){ el.hidden = false; });
+    reprendreBrouillon();
     aller(0, false);
     // Le HTML livre le bouton d'envoi désactivé (sans ce script, Entrée ne doit rien envoyer) :
     // on ne l'active qu'une fois tout en place.

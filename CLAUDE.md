@@ -94,6 +94,9 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   e-mail de l'écran d'échec qui contient la demande ; sans lui, la demande partirait chez Clarity pour les visiteurs
   qui ont accepté). Sur la page 4, les liens « Essai gratuit » (barre, menu, pied) visent `#essai-demande`, jamais
   `/essai-gratuit` (un rechargement vide ce qui est tapé). Contour des champs `#868A9F` (3:1 au moins).
+  **Brouillon (31/10)** : sur l'iPhone de Valentin, la saisie s'est perdue malgré ces liens. `essai.js` garde donc ce qui
+  est tapé dans l'onglet (`sessionStorage`, clé `perify-essai-brouillon`, jamais le piège `site_web`), le remet au
+  retour sur la page (champs vides seulement), et l'oublie dès la réussite de l'envoi.
   Aucun autre service tiers sans accord.
 - **Couleurs** : nuit `#1B1F3B`, orange `#FF6B2C` (boutons), orange clair `#FF8A4C` (survol, focus sur la nuit),
   orange texte `#C2410C` (erreurs, focus sur le clair), fond `#F8F9FE`, bande `#F0F2FC`, cartes `#FDFDFF`. **Plus de
