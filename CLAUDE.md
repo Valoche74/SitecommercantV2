@@ -5,7 +5,7 @@ Le site public de **Perify**, pour les commerçants prospects. Il tient en **4 p
 
 | page | fichier | adresse |
 |---|---|---|
-| 1 — Accueil | `index.html` (+ `accueil.css`, `eventail.css`, `eventail.js`) | `/` |
+| 1 — Accueil | `index.html` (+ `accueil.css`, `eventail.css`, `eventail.js`, `bandes.css`, `bandes.js`) | `/` |
 | 2 — Comment ça marche | `comment-ca-marche.html` (+ `comment.css`) | `/comment-ca-marche` |
 | 3 — Ce que vous pilotez | `ce-que-vous-pilotez.html` (+ `pilotez.css`) | `/ce-que-vous-pilotez` |
 | 4 — Essai gratuit (+ « Qui est derrière », questions) | `essai-gratuit.html` (+ `essai.css`, `essai.js`) | `/essai-gratuit` |
@@ -32,13 +32,18 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   « En option » (`.pastille`, casse normale).
 - **Deux bandes qui défilent, sur l'accueil seulement** (redemandées par Valentin le 13/11) : la **bande des métiers**
   sous le héros et les noms de **« Ça marche avec »** en pastilles (`bandes.css`, `bandes.js`). Pur CSS (une piste de
-  copies qui glisse d'une demi-piste ; la première copie est la vraie liste, les autres `aria-hidden`) ; `bandes.js`
-  ajoute la pause hors écran et au toucher ou au clic, le CSS la pause au survol et au focus. Mouvement réduit : rien ne
-  défile, une seule copie à la ligne. `.bande` garde `overflow:hidden` + `max-width:100%` et n'est jamais posée dans une
-  grille. Style de la bande des métiers : grands mots et étoile ; la classe `bande-capitales` en plus donne la variante
-  petites capitales et point.
-- **Orange `#FF6B2C` = le bouton principal, UN par écran**, texte nuit (5,7:1). Le bouton de la barre du haut est
-  **toujours en contour** (orange sur la nuit) : il ne fait jamais un second bouton plein (plus de `.essai-cache`).
+  copies qui glisse d'une demi-piste ; la première copie est la vraie liste, `role="list"`, les autres `aria-hidden`).
+  Tout ce qui bouge doit pouvoir s'arrêter (WCAG 2.2.2), sans bouton pause visible à la souris (arbitrage du 01/10) :
+  le CSS arrête une bande au survol ; `bandes.js` ajoute la pause hors écran, la pause au toucher ou au clic (un second
+  geste relance) et, pour le clavier, le bouton « Arrêter le défilement » / « Relancer le défilement » (`.bande-arret`,
+  juste avant la bande des métiers) : invisible tant qu'il n'a pas le focus, comme un lien d'évitement, il arrête ou
+  relance les deux bandes (caché par `hidden` si le script ne tourne pas). Rien dans les bandes ne prend le focus.
+  Mouvement réduit : rien ne défile, une seule copie à la ligne, sans étoile, pas de bouton d'arrêt. `.bande` garde
+  `overflow:hidden` + `max-width:100%` et n'est jamais posée dans une grille. Style de la bande des métiers : grands mots
+  et étoile ; la classe `bande-capitales` en plus donne la variante petites capitales et point.
+- **Orange `#FF6B2C` = le bouton principal, UN par écran**, texte nuit (5,7:1) ; seule autre trace d'orange plein :
+  le petit signe décoratif entre deux métiers de la bande des métiers (étoile en style A, point en variante B). Le bouton
+  de la barre du haut est **toujours en contour** (orange sur la nuit) : il ne fait jamais un second bouton plein (plus de `.essai-cache`).
   Les autres boutons sont `.btn-second` (contour nuit). Orange texte `#C2410C` : erreurs et anneau de focus seulement.
 - **Polices** : Plus Jakarta Sans 800 (titres, chiffres) + Inter (texte), servies par `polices/`. Titres à peine
   resserrés (`-0.012em`, compensé entre les mots) : jamais de mots collés.
@@ -119,6 +124,9 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   un **boîtier** d'iPhone récent généré par Higgsfield (écran vert), dans lequel on pose un VRAI écran (visuel de
   Valentin ou capture d'une vraie page) ; jamais un écran, un texte ou un QR inventés par l'IA. Sources et script :
   `IMAGE/livraisons/2026-10-30-refonte-perify/iphone-recent/`.
+  **Exception (13/11, demande de Valentin)** : les sept illustrations en relief `img/scenes/*.webp` (Higgsfield, parcours
+  et jeux), sans texte, sans visage, sans QR lisible ; leurs écrans de téléphone sont dessinés, donc elles ne sont jamais
+  présentées comme des captures du produit. Ni cette exception ni celle du boîtier ne s'étendent à un autre visuel.
 - **QR** : celui d'un **présentoir** pouvait rester net (décision de Valentin, 26/09) — **01/10 : flouté sur
   les 8 images** (site ca1118b) parce que ces QR menaient à baps.perify.app et falman.perify.app (un visiteur créait
   une vraie carte chez eux) ; le flou « rendait trop mal » → **remplacé le soir même par un QR NET vers perify.app**
@@ -158,8 +166,8 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
 ## Vérifier
 - `node _outils/tests/lancer-tous.mjs --seulement "des pages" > fichier 2>&1` (depuis `EN-COURS`), puis lire le **code
   de sortie** et le fichier — jamais `| tail` (le tube rend toujours 0). Il vérifie la syntaxe des scripts en ligne des
-  pages ET des `.js` du site (`site.js`, `eventail.js`, `calcul.js`, `essai.js`, `consentement.js` ; `accueil.js`
-  seulement s'il existe encore), les `.catch` fautifs, et `verif-ressources-externes.mjs` : aucune ressource chargée
+  pages ET des `.js` du site (`site.js`, `eventail.js`, `bandes.js`, `calcul.js`, `essai.js`, `consentement.js` ;
+  `accueil.js` seulement s'il existe encore), les `.catch` fautifs, et `verif-ressources-externes.mjs` : aucune ressource chargée
   depuis un autre site, aucune adresse de Google Fonts, chaque page charge `site.css` (où sont les `@font-face`),
   fichiers et licences présents dans `polices/` (⚠️ tant qu'un fichier de `polices/` n'est pas dans git : Vercel publie
   ce qui est dans git).

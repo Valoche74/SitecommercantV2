@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────────
    PERIFY — accueil.css, la page d'accueil (refonte A, 30/10/2026)
-   Chargée après site.css (jetons, en-tête, boutons, sections, questions, pied) et avant
+   Chargée après site.css (jetons, en-tête, boutons, sections, questions, pied), avant bandes.css (les bandes) et
    eventail.css (les présentoirs). Reprend la maquette A validée par Valentin, avec deux
    corrections :
    1. ordinateur : le premier écran montre le titre, la phrase, le bouton ET tout le visuel (le
@@ -83,7 +83,8 @@
 .scene-legende{margin-top:var(--space-lg);text-align:center;font-size:var(--text-sm);color:var(--color-muted)}
 
 /* ── 3. la bande des métiers, puis « ça marche avec » : le titre et les noms en pastilles (bandes.css) ── */
-.heros + .bande-metiers{margin-top:var(--space-xl)}
+/* « ~ » et non « + » : le bouton d'arrêt au clavier (.bande-arret) se pose entre le héros et la bande */
+.heros ~ .bande-metiers{margin-top:var(--space-xl)}
 .avec{padding-top:var(--space-xl)}
 .avec h2{margin-bottom:var(--space-lg);font-size:var(--text-title);line-height:1.3;color:var(--color-ink-2);text-align:center}
 

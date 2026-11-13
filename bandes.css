@@ -7,22 +7,36 @@
    .bande-metiers    les métiers : grands mots, une étoile orange entre deux
    .bande-capitales  (avec .bande-metiers) une variante : petites capitales espacées, point orange
    .bande-avec       « Ça marche avec » : les noms en pastilles
-   Sans script, ça tourne. bandes.js ajoute la pause hors écran (.hors-ecran) et la pause au toucher ou au clic (.en-pause).
-   Mouvement réduit : rien ne défile ; une seule copie, à la ligne, centrée.
+   .bande-arret      le bouton qui arrête ou relance les deux bandes au clavier (caché tant qu'il n'a pas le focus)
+   Sans script, ça tourne et la souris l'arrête (survol). bandes.js ajoute la pause hors écran (.hors-ecran), la pause
+   au toucher ou au clic (.en-pause) et montre le bouton d'arrêt.
+   Mouvement réduit : rien ne défile ; une seule copie, à la ligne, centrée, sans étoile ; pas de bouton d'arrêt.
    Safari iPhone : .bande garde overflow:hidden ET max-width:100%, et ne se pose jamais dans une grille à colonne « auto »
    (sinon toute la page s'élargit et zoome). */
-.bande{position:relative;max-width:100%;overflow:hidden;
+.bande{position:relative;max-width:100%;overflow:hidden;-webkit-tap-highlight-color:transparent;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
           mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .bande-piste{display:flex;width:max-content;animation:bande-defile var(--bande-duree,110s) linear infinite}
 .bande-inverse .bande-piste{animation-direction:reverse}
-.bande.en-pause .bande-piste,.bande.hors-ecran .bande-piste,.bande:focus-within .bande-piste{animation-play-state:paused}
+.bande.en-pause .bande-piste,.bande.hors-ecran .bande-piste{animation-play-state:paused}
 @media (hover:hover){
   .bande:hover .bande-piste{animation-play-state:paused}
 }
 .bande-liste{display:flex;flex:none;align-items:center;margin:0;padding:0;list-style:none}
 .bande-liste li{display:flex;align-items:center;white-space:nowrap}
 @keyframes bande-defile{to{transform:translateX(-50%)}}
+
+/* ── l'arrêt au clavier ──
+   Posé juste avant la bande des métiers, comme un lien d'évitement : invisible (et intouchable) tant qu'il n'a pas le
+   focus, il apparaît au premier Tab qui l'atteint. En absolu à sa place dans la page : il ne décale rien en apparaissant.
+   Son texte dit ce qu'il va faire (bandes.js le change). Il se pose à cheval sur le filet du haut de la bande (l'écart
+   au-dessus de la bande, --space-xl dans accueil.css, moins la moitié de ses 52 px), loin de la légende du héros.
+   Quand le focus le fait défiler à l'écran, la marge du bas (scroll-margin) amène aussi la bande : on voit ce qu'on arrête. */
+.bande-arret{position:absolute;left:0;right:0;z-index:var(--z-raised);width:max-content;max-width:calc(100% - 2 * var(--gutter));
+  margin:calc(var(--space-xl) - 26px) auto 0;scroll-margin-block:var(--space-lg) var(--space-3xl);
+  background:var(--color-paper-3);box-shadow:0 8px 20px -10px rgba(27,31,59,.4)}
+.bande-arret:not(:focus){clip-path:inset(50%)}
+.bande-arret[hidden]{display:none}
 
 /* ── les métiers ── */
 .bande-metiers{--bande-duree:110s;padding-block:var(--space-lg);border-block:1px solid var(--color-rule)}
@@ -50,6 +64,10 @@
   /* la liste peut rétrécir (flex:0 1 auto) : elle revient à la ligne au lieu de dépasser des deux côtés */
   .bande-liste{flex:0 1 auto;flex-wrap:wrap;justify-content:center;row-gap:var(--space-sm);min-width:0;padding-inline:var(--gutter)}
   .bande-liste[aria-hidden="true"]{display:none}
-  .bande-metiers li:last-child::after{display:none}
+  /* à la ligne, une étoile finirait chaque ligne : un simple écart sépare les métiers */
+  .bande-metiers li::after{display:none}
+  .bande-metiers .bande-liste{column-gap:var(--space-xl)}
   .bande-avec .bande-liste{padding-right:var(--gutter)}
+  /* rien ne bouge : rien à arrêter */
+  .bande-arret{display:none}
 }

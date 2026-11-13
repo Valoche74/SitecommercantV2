@@ -9,10 +9,11 @@
 ## 0. À savoir avant de commencer
 
 - **Une feuille commune, `site.css`** (toutes les pages), puis la feuille de la page (`accueil.css`, `comment.css`,
-  `pilotez.css`, `essai.css`, `calculateur.css`). Aide et mentions n'ont que `site.css` (§ 9). Une mise en page propre
+  `pilotez.css`, `essai.css`, `calculateur.css`) ; l'accueil ajoute `eventail.css` (les présentoirs) et `bandes.css`
+  (les deux bandes qui défilent). Aide et mentions n'ont que `site.css` (§ 9). Une mise en page propre
   à une page va dans SA feuille ; ce qui sert à deux pages ou plus va dans `site.css`.
 - **Un seul script commun, `site.js`** (menu téléphone, compteur pour le calculateur, e-mail assemblé) ; les scripts
-  de page : `eventail.js` (accueil), `essai.js`, `calcul.js`. `consentement.js` sur toutes les pages.
+  de page : `eventail.js` et `bandes.js` (accueil), `essai.js`, `calcul.js`. `consentement.js` sur toutes les pages.
 - Chemins **relatifs** pour les fichiers (`site.css`, `img/…`) ; liens entre pages **absolus sans .html**
   (`/comment-ca-marche`) — `cleanUrls`. Fins de ligne : LF.
 - Aucun script externe, aucun jaune, aucune crème en fond, aucun chiffre / prix / texte hors de ceux validés, aucun
@@ -258,8 +259,11 @@ pas au contenu de `<main>` des mentions légales (validé le 30/10, cd72817) : s
   `::before` à 132 % sans `aspect-ratio`), la roue et le cadeau se posent au pied du téléphone (zone du QR), la barre de
   tampons dessous ; légendes et invitation à l'avis retirées. (Entre 48 et 64rem, l'ancienne disposition « morceaux sur
   les côtés » posait les légendes sur les cartes : retirée le 30/10.)
-- `.avec` (noms en texte entre deux filets), `.presentoirs` (l'éventail), `.film` (deux vidéos : paysage / verticale
-  sous 48rem, `preload="none"` : rien n'est téléchargé avant le clic), `.parcours` + `.etapes` (4 dessins numérotés),
+- Le bouton d'arrêt au clavier (`.bande-arret`, invisible tant qu'il n'a pas le focus), la bande des métiers
+  (`.bande-metiers`, pleine largeur entre deux filets), `.avec` (le titre, puis les noms en pastilles qui défilent :
+  `.bande-avec`) — les bandes et le bouton : `bandes.css`, `bandes.js`, règles dans `CLAUDE.md` ; `.presentoirs`
+  (l'éventail), `.film` (deux vidéos : paysage / verticale sous 48rem, `preload="none"` : rien n'est téléchargé avant
+  le clic), `.parcours` + `.etapes` (4 images en relief numérotées),
   `.jeux` (bande teintée) + `.vers-outils` (bouton « Voir nos outils »), `.pilotez` (sous 40rem : une seule capture, le tableau de bord, à
   `min(70%, 260px)` ; l'offre est retirée, côte à côte elles étaient illisibles), `.essai-accueil` (texte + `.qui-court`
   + `.essai-photos`), questions (`.faq-grille`).
