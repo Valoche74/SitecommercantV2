@@ -26,18 +26,26 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   chiffres » (page 2), « Qui est derrière » (page 4). Les captures sont posées sur une **plaque teintée** (`.cadre-visuel`),
   le bloc « Essai » de fin de page est une plaque teintée centrée, le formulaire et le calculateur sont des **cartes blanches**.
 - **Plus jamais** : crème `#FFF8F0` en fond, halo, grain, mot surligné (marqueur), mot-clé coloré, étiquette en capitales
-  espacées au-dessus des titres, mot qui défile, bande des métiers qui tourne, bordure lumineuse, apparitions au
+  espacées au-dessus des titres, mot qui défile, bordure lumineuse, apparitions au
   défilement, compteurs qui roulent tout seuls, entrée animée des morceaux de carte. Seules indications au-dessus d'un
   titre : le **nom de la page** en petit (`.page-nom`, casse normale) et les pastilles « Nouveau », « Sur iPhone »,
   « En option » (`.pastille`, casse normale).
+- **Deux bandes qui défilent, sur l'accueil seulement** (redemandées par Valentin le 13/11) : la **bande des métiers**
+  sous le héros et les noms de **« Ça marche avec »** en pastilles (`bandes.css`, `bandes.js`). Pur CSS (une piste de
+  copies qui glisse d'une demi-piste ; la première copie est la vraie liste, les autres `aria-hidden`) ; `bandes.js`
+  ajoute la pause hors écran et au toucher ou au clic, le CSS la pause au survol et au focus. Mouvement réduit : rien ne
+  défile, une seule copie à la ligne. `.bande` garde `overflow:hidden` + `max-width:100%` et n'est jamais posée dans une
+  grille. Style de la bande des métiers : grands mots et étoile ; la classe `bande-capitales` en plus donne la variante
+  petites capitales et point.
 - **Orange `#FF6B2C` = le bouton principal, UN par écran**, texte nuit (5,7:1). Le bouton de la barre du haut est
   **toujours en contour** (orange sur la nuit) : il ne fait jamais un second bouton plein (plus de `.essai-cache`).
   Les autres boutons sont `.btn-second` (contour nuit). Orange texte `#C2410C` : erreurs et anneau de focus seulement.
 - **Polices** : Plus Jakarta Sans 800 (titres, chiffres) + Inter (texte), servies par `polices/`. Titres à peine
   resserrés (`-0.012em`, compensé entre les mots) : jamais de mots collés.
 - **L'accueil** = la maquette A : héros centré (titre, phrase, bouton, une ligne) → la vraie carte Wallet et quatre
-  morceaux de la carte autour (`img/carte-*.webp`) → « Ça marche avec » (noms en texte) → **les présentoirs (éventail)
-  AVANT la vidéo** (demande de Valentin) → vidéo → parcours (4 dessins `img/scenes/`) → jeux + le bouton « Voir nos outils »
+  morceaux de la carte autour (`img/carte-*.webp`) → la bande des métiers → « Ça marche avec » (noms en texte, en
+  pastilles qui défilent) → **les présentoirs (éventail) AVANT la vidéo** (demande de Valentin) → vidéo → parcours
+  (4 images `img/scenes/`) → jeux + le bouton « Voir nos outils »
   (bande teintée) → ce que vous pilotez → l'essai avec les photos du présentoir et « Une seule personne… » → questions.
   **Ordinateur (64rem et plus)** : le premier écran montre titre, phrase, bouton ET le téléphone en entier (QR compris)
   avec ses quatre morceaux, **dans une fenêtre réelle de 650 px de haut ou plus** (mesuré le 30/10 : 1440 × 900,
@@ -49,15 +57,17 @@ crème, nuit en haut de page) et « accueil simplifié » d'avant.
   posent au pied du téléphone (sur la zone du QR), la barre de tampons dessous, entière ; rien ne recouvre les deux
   cartes ; légendes et invitation à l'avis retirées.
 - **Rythme des fonds, page par page** : accueil = fond clair partout, sauf les jeux + « Voir nos outils » (bande
-  teintée) ; « Ça marche avec » entre deux filets ; l'essai et les questions séparés par un filet. Page 2 = chapeau,
+  teintée) ; la bande des métiers entre deux filets ; l'essai et les questions séparés par un filet. Page 2 = chapeau,
   étapes (plaques teintées), « En chiffres » (bande teintée), bloc Essai, Suite. Page 3 = chapeau, quatre modules
   séparés par des filets (captures sur plaques), « En option » en carte blanche, bloc Essai, Suite. Page 4 = chapeau,
   texte + formulaire (carte blanche), « Qui est derrière » (bande teintée), questions, « Retour à l'accueil ».
   Calculateur = chapeau, la carte blanche du calcul (résultats sur sa partie teintée), bloc Essai, Suite. Aide et
   mentions = une colonne de lecture, leurs `.bloc` en cartes blanches.
-- Les dessins `img/scenes/*.svg` viennent de la session Design (`IMAGE/livraisons/2026-10-29-parcours-illustre/`,
-  générateur `sources/fabrique.mjs`) : on corrige le générateur puis on relivre, jamais les SVG à la main. Les trois jeux
-  sont au même niveau, sans badge (faits sur mesure ; au 29/10 seule la roue existe dans le produit).
+- Les images `img/scenes/*.webp` (4 du parcours, 3 jeux ; fond transparent) sont des images en relief faites par la
+  session Design (13/11, `IMAGE/livraisons/2026-11-13-bandeaux-et-images-en-relief/`) ; elles remplacent les dessins à
+  plat (SVG) du 29/10. Ce sont des illustrations, pas des captures du produit : aucun texte, aucun visage, aucun QR
+  lisible (vérifié par décodage). Pour en changer une : nouvelle génération côté Design, jamais de retouche dans le
+  dépôt. Les trois jeux sont au même niveau, sans badge (faits sur mesure ; au 29/10 seule la roue existe dans le produit).
 
 ## Le socle commun
 - **`site.css`, LA feuille commune** de toutes les pages : polices (`@font-face`), jetons, en-tête + menu téléphone,

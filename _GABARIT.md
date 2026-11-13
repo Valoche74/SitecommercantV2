@@ -272,7 +272,7 @@ pas au contenu de `<main>` des mentions légales (validé le 30/10, cd72817) : s
 |---|---|
 | `img/carte-wallet.webp` (680 × 1284) | le visuel de Valentin (deux cartes dans l'app Cartes), détouré ; QR de perify.app |
 | `img/carte-tampons.webp`, `carte-roue.webp`, `carte-cadeau.webp`, `carte-avis.webp` | morceaux de la vraie carte (captures, données de démonstration) |
-| `img/scenes/*.svg` | les 4 dessins du parcours et les 3 jeux (session Design, 29/10) |
+| `img/scenes/*.webp` (800 × 600 et 900 × 660) | les 4 images du parcours et les 3 jeux, en relief (session Design, 13/11 ; remplacent les SVG du 29/10) |
 | `video/perify-promo-affiche-9s-16x9.jpg`, `…-9x16.jpg` | les affiches des vidéos (image de la 9e seconde) |
 
 Ne sont plus affichés (gardés dans `img/`) : `carte-wallet-2026-10-30.webp`, `carte-main.webp`, `cadeau-gagne.webp`,

@@ -21,9 +21,11 @@
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="accueil.css">
 <link rel="stylesheet" href="eventail.css">
+<link rel="stylesheet" href="bandes.css">
 <script src="site.js" defer></script>
 <script src="consentement.js" defer></script>
 <script src="eventail.js" defer></script>
+<script src="bandes.js" defer></script>
 </head>
 <body>
 
@@ -90,21 +92,33 @@
     </figure>
   </section>
 
-  <!-- ÇA MARCHE AVEC : les noms en texte, aucun logo de marque tierce. -->
+  <!-- LA BANDE DES MÉTIERS : pleine largeur, juste sous le héros.
+       bandes.css la fait défiler sans script ; quatre copies de la liste, les trois dernières cachées aux lecteurs d'écran. -->
+  <div class="bande bande-metiers" data-bande>
+    <div class="bande-piste">
+      <ul class="bande-liste" aria-label="Pensé pour ces commerces"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
+      <ul class="bande-liste" aria-hidden="true"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
+      <ul class="bande-liste" aria-hidden="true"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
+      <ul class="bande-liste" aria-hidden="true"><li>Boulangerie</li><li>Restaurant</li><li>Snack</li><li>Café</li><li>Coiffeur</li><li>Fleuriste</li><li>Primeur</li><li>Fromager</li><li>Pâtisserie</li><li>Caviste</li><li>Épicerie fine</li><li>Boucherie</li></ul>
+    </div>
+  </div>
+
+  <!-- ÇA MARCHE AVEC : les noms en texte, aucun logo de marque tierce. En pastilles qui défilent,
+       dans le sens inverse de la bande des métiers ; huit copies de la liste, les sept dernières cachées aux lecteurs d'écran. -->
   <section class="avec" aria-labelledby="titre-avec">
     <div class="container">
-      <div class="avec-cadre">
-        <h2 id="titre-avec">Ça marche avec ce que vos clients ont déjà.</h2>
-        <ul class="avec-liste">
-          <li>Apple Wallet</li>
-          <li>Google Wallet</li>
-          <li>Avis Google</li>
-          <li>Instagram</li>
-          <li>Facebook</li>
-          <li>Tripadvisor</li>
-          <li>iPhone et Android</li>
-          <li>E-mail</li>
-        </ul>
+      <h2 id="titre-avec">Ça marche avec ce que vos clients ont déjà.</h2>
+    </div>
+    <div class="bande bande-avec bande-inverse" data-bande>
+      <div class="bande-piste">
+        <ul class="bande-liste"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
+        <ul class="bande-liste" aria-hidden="true"><li>Apple Wallet</li><li>Google Wallet</li><li>Avis Google</li><li>Instagram</li><li>Facebook</li><li>Tripadvisor</li><li>iPhone et Android</li><li>E-mail</li></ul>
       </div>
     </div>
   </section>
@@ -157,7 +171,7 @@
     </div>
   </section>
 
-  <!-- LE PARCOURS : les quatre dessins du 29/10 (session Design, img/scenes/ : on corrige le générateur, jamais les SVG à la main). -->
+  <!-- LE PARCOURS : quatre images en relief, fond transparent (img/scenes/*.webp). -->
   <section class="section parcours" aria-labelledby="titre-parcours">
     <div class="container">
       <div class="section-tete centre">
@@ -166,22 +180,22 @@
       </div>
       <ol class="etapes">
         <li class="etape">
-          <img src="img/scenes/parcours-entree.svg" width="1200" height="900" alt="" loading="lazy">
+          <img src="img/scenes/parcours-entree.webp" width="800" height="600" alt="" loading="lazy">
           <h3>Il entre</h3>
           <p>Le présentoir est posé sur votre comptoir, à vos couleurs. Il le voit en arrivant.</p>
         </li>
         <li class="etape etape-scan">
-          <img src="img/scenes/parcours-scan.svg" width="1200" height="900" alt="" loading="lazy">
+          <img src="img/scenes/parcours-scan.webp" width="800" height="600" alt="" loading="lazy">
           <h3>Il scanne</h3>
           <p>Avec l’appareil photo de son téléphone. Pas d’appli à installer, pas de compte à créer. Au premier scan, il est invité à laisser son avis Google.</p>
         </li>
         <li class="etape">
-          <img src="img/scenes/parcours-joue.svg" width="1200" height="900" alt="" loading="lazy">
+          <img src="img/scenes/parcours-joue.webp" width="800" height="600" alt="" loading="lazy">
           <h3>Il joue, il gagne</h3>
           <p>La roue tourne une fois par carte&nbsp;: un produit offert, à venir chercher chez vous.</p>
         </li>
         <li class="etape">
-          <img src="img/scenes/parcours-revient.svg" width="1200" height="900" alt="" loading="lazy">
+          <img src="img/scenes/parcours-revient.webp" width="800" height="600" alt="" loading="lazy">
           <h3>Il repart avec sa carte</h3>
           <p>Dans Apple Wallet ou Google Wallet, à côté de sa carte bancaire. Un tampon à chaque passage.</p>
         </li>
@@ -189,7 +203,8 @@
     </div>
   </section>
 
-  <!-- LES JEUX : la bande teintée de la page. Trois jeux au même niveau, sans badge (faits sur mesure, décision du 29/10). -->
+  <!-- LES JEUX : la bande teintée de la page. Trois jeux au même niveau, sans badge (faits sur mesure).
+       Images en relief, fond transparent (img/scenes/*.webp). -->
   <section class="section teinte jeux" aria-labelledby="titre-jeux">
     <div class="container">
       <div class="section-tete centre">
@@ -198,17 +213,17 @@
       </div>
       <ul class="jeux-liste">
         <li class="jeu">
-          <img src="img/scenes/jeu-roue.svg" width="900" height="660" alt="" loading="lazy">
+          <img src="img/scenes/jeu-roue.webp" width="900" height="660" alt="" loading="lazy">
           <h3>La roue</h3>
           <p>Six cases, un tour par carte. Les lots, c’est vous qui les choisissez.</p>
         </li>
         <li class="jeu">
-          <img src="img/scenes/jeu-gratter.svg" width="900" height="660" alt="" loading="lazy">
+          <img src="img/scenes/jeu-gratter.webp" width="900" height="660" alt="" loading="lazy">
           <h3>La carte à gratter</h3>
           <p>Il frotte l’écran du doigt, le lot apparaît.</p>
         </li>
         <li class="jeu">
-          <img src="img/scenes/jeu-mystere.svg" width="900" height="660" alt="" loading="lazy">
+          <img src="img/scenes/jeu-mystere.webp" width="900" height="660" alt="" loading="lazy">
           <h3>Le cadeau mystère</h3>
           <p>Une boîte à ouvrir&nbsp;: le lot est tiré au sort parmi les vôtres.</p>
         </li>

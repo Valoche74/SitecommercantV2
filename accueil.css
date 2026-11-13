@@ -13,7 +13,7 @@
    Les morceaux sont posés d'emblée (l'entrée animée de la maquette est retirée : à la capture,
    le dernier morceau pouvait rester invisible ; rien ne doit dépendre d'une animation).
 
-   Ordre de la page : héros + carte → « Ça marche avec » → présentoirs → vidéo → parcours →
+   Ordre de la page : héros + carte → bande des métiers → « Ça marche avec » → présentoirs → vidéo → parcours →
    jeux (la bande teintée) → ce que vous pilotez → l'essai et la personne → questions.
    ───────────────────────────────────────────────────────────── */
 
@@ -82,13 +82,10 @@
 .morceau-roue .etiquette{top:50%;right:calc(100% + var(--space-sm));transform:translateY(-50%)}
 .scene-legende{margin-top:var(--space-lg);text-align:center;font-size:var(--text-sm);color:var(--color-muted)}
 
-/* ── 3. ça marche avec : les noms, entre deux filets ─────── */
+/* ── 3. la bande des métiers, puis « ça marche avec » : le titre et les noms en pastilles (bandes.css) ── */
+.heros + .bande-metiers{margin-top:var(--space-xl)}
 .avec{padding-top:var(--space-xl)}
-.avec-cadre{display:grid;justify-items:center;gap:var(--space-lg);padding-block:var(--space-xl);border-block:1px solid var(--color-rule)}
-.avec h2{font-size:var(--text-title);line-height:1.3;color:var(--color-ink-2);text-align:center}
-.avec-liste{display:flex;flex-wrap:wrap;justify-content:center;row-gap:var(--space-sm)}
-.avec-liste li{padding-inline:var(--space-lg);font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;color:var(--color-ink);white-space:nowrap}
-.avec-liste li + li{border-left:1px solid var(--color-rule-2)}
+.avec h2{margin-bottom:var(--space-lg);font-size:var(--text-title);line-height:1.3;color:var(--color-ink-2);text-align:center}
 
 /* ── 4. les présentoirs (l'éventail : eventail.css) ───────── */
 .presentoirs{padding-bottom:0}
@@ -107,8 +104,6 @@
 .etapes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap-columns);counter-reset:etape}
 .etape{min-width:0;counter-increment:etape}
 .etape img{width:100%;aspect-ratio:4 / 3}
-/* le dessin « Il scanne » coupe la main au bord du cadre : un fondu léger plutôt qu'un trait net */
-.etape-scan img{-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent)}
 .etape h3{display:flex;align-items:center;gap:var(--space-sm);margin-top:var(--space-lg)}
 .etape h3::before{content:counter(etape);display:inline-grid;place-items:center;flex-shrink:0;width:32px;height:32px;border:2px solid var(--color-ink);
   border-radius:50%;font-size:var(--text-md);line-height:1}
@@ -188,9 +183,6 @@
   .heros{padding-top:var(--space-xl)}
   .heros-texte{justify-items:stretch}
   .heros .btn{margin-top:var(--space-lg);white-space:normal}
-  .avec-liste{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;row-gap:var(--space-md)}
-  .avec-liste li{padding-inline:var(--space-sm);text-align:center;white-space:normal}
-  .avec-liste li + li{border-left:0}
   .etapes{grid-template-columns:minmax(0,1fr);row-gap:var(--space-xl)}
   .etape{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);column-gap:var(--space-md);align-items:center}
   .etape img{grid-row:1 / span 2}

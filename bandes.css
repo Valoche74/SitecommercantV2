@@ -1,0 +1,55 @@
+/* bandes.css — les deux bandes qui défilent de l'accueil : la bande des métiers, et « Ça marche avec ».
+   .bande            le cadre : coupe ce qui dépasse, fondu aux deux bords
+   .bande-piste      la piste : un nombre PAIR de copies de la liste, côte à côte ; elle glisse d'une demi-piste,
+                     donc la boucle n'a pas de raccord tant qu'une demi-piste est plus large que l'écran
+   .bande-liste      une copie : la première est la vraie liste, les suivantes portent aria-hidden="true"
+   .bande-inverse    défile de gauche à droite
+   .bande-metiers    les métiers : grands mots, une étoile orange entre deux
+   .bande-capitales  (avec .bande-metiers) une variante : petites capitales espacées, point orange
+   .bande-avec       « Ça marche avec » : les noms en pastilles
+   Sans script, ça tourne. bandes.js ajoute la pause hors écran (.hors-ecran) et la pause au toucher ou au clic (.en-pause).
+   Mouvement réduit : rien ne défile ; une seule copie, à la ligne, centrée.
+   Safari iPhone : .bande garde overflow:hidden ET max-width:100%, et ne se pose jamais dans une grille à colonne « auto »
+   (sinon toute la page s'élargit et zoome). */
+.bande{position:relative;max-width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.bande-piste{display:flex;width:max-content;animation:bande-defile var(--bande-duree,110s) linear infinite}
+.bande-inverse .bande-piste{animation-direction:reverse}
+.bande.en-pause .bande-piste,.bande.hors-ecran .bande-piste,.bande:focus-within .bande-piste{animation-play-state:paused}
+@media (hover:hover){
+  .bande:hover .bande-piste{animation-play-state:paused}
+}
+.bande-liste{display:flex;flex:none;align-items:center;margin:0;padding:0;list-style:none}
+.bande-liste li{display:flex;align-items:center;white-space:nowrap}
+@keyframes bande-defile{to{transform:translateX(-50%)}}
+
+/* ── les métiers ── */
+.bande-metiers{--bande-duree:110s;padding-block:var(--space-lg);border-block:1px solid var(--color-rule)}
+.bande-metiers li{font-family:var(--font-display);font-size:clamp(1.25rem,.9vw + 1rem,1.75rem);font-weight:800;line-height:1.2;
+  letter-spacing:var(--tracking-display);color:var(--color-ink)}
+/* l'étoile à quatre branches du logo, entre deux métiers */
+.bande-metiers li::after{content:"";flex:none;width:.5em;height:.5em;margin-inline:1.05em;background:var(--color-accent);
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+/* variante (classe bande-capitales en plus de bande-metiers) : petites capitales espacées, point orange */
+.bande-capitales{padding-block:19px}
+.bande-capitales li{font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--color-ink-2)}
+.bande-capitales li::after{width:6px;height:6px;margin:0 26px 0 calc(26px - .16em);border-radius:50%;clip-path:none}
+
+/* ── ça marche avec ── */
+.bande-avec{--bande-duree:120s;padding-block:var(--space-xs)}
+/* l'écart entre deux pastilles vaut aussi entre deux copies (padding-right) : la boucle reste sans raccord */
+.bande-avec .bande-liste{gap:var(--space-sm);padding-right:var(--space-sm)}
+.bande-avec li{padding:.62em 1.15em;border:1px solid var(--color-rule-2);border-radius:999px;background:var(--color-paper-3);
+  font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;line-height:1.2;color:var(--color-ink);
+  box-shadow:0 1px 2px rgba(27,31,59,.06)}
+
+@media (prefers-reduced-motion:reduce){
+  .bande{-webkit-mask-image:none;mask-image:none}
+  .bande-piste{width:auto;justify-content:center;animation:none}
+  /* la liste peut rétrécir (flex:0 1 auto) : elle revient à la ligne au lieu de dépasser des deux côtés */
+  .bande-liste{flex:0 1 auto;flex-wrap:wrap;justify-content:center;row-gap:var(--space-sm);min-width:0;padding-inline:var(--gutter)}
+  .bande-liste[aria-hidden="true"]{display:none}
+  .bande-metiers li:last-child::after{display:none}
+  .bande-avec .bande-liste{padding-right:var(--gutter)}
+}
